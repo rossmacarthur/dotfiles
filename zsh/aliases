@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# So these commands can be executed with sudo
+alias sudo="sudo "
+
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# List hidden
+alias lh="ls -a | egrep '^\.'"
+
+# IP addresses
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
+
+# Lock screen
+alias afk="gnome-screensaver-command -l"
+
+# Max brightness of Toshiba R850-12R laptop screen
+function maxbrightness {
+  sudo sh -c "echo 7 > /sys/class/backlight/acpi_video0/brightness"
+  sudo sh -c "echo 255 > /sys/class/backlight/radeon_bl0/brightness"
+}

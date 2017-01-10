@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 if [[ $UID -eq 0 ]]; then
   local user_symbol='#'
 else

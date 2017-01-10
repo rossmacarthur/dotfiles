@@ -61,19 +61,18 @@ function parse_opts {
 }
 
 
-function symlink_dotfiles {
-  info "Symlinking gitconfig"
-  rm -f $HOME/.gitconfig
-  ln -s $DIR/dotfiles/git/gitconfig $HOME/.gitconfig
+function symlink {
+  ln -fs "${DIR}/${1}" "${HOME}/${2}"
+}
 
-  info "Symlinking zshrc and rossmacarthur.zsh-theme"
-  rm -f $HOME/.zshrc $HOME/.oh-my-zsh/themes/rossmacarthur.zsh-theme
-  ln -s $DIR/dotfiles/zsh/zshrc $HOME/.zshrc
-  ln -s $DIR/dotfiles/zsh/rossmacarthur.zsh-theme $HOME/.oh-my-zsh/themes/rossmacarthur.zsh-theme
 
-  info "Symlinking tmux.conf"
-  rm -f $HOME/.tmux.conf
-  ln -s $DIR/dotfiles/tmux/tmux.conf $HOME/.tmux.conf
+function install_dotfiles {
+  info "Symlinking dotfiles"
+  symlink "git/gitconfig"                ".gitconfig"
+  symlink "tmux/tmux.conf"               ".tmux.conf"
+  symlink "zsh/zshrc"                    ".zshrc"
+  symlink "zsh/aliases"                  ".aliases"
+  symlink "zsh/rossmacarthur.zsh-theme"  ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 }
 
 
@@ -276,7 +275,7 @@ function device_setup {
     install_oh_my_zsh
   fi
 
-  symlink_dotfiles
+  install_dotfiles
 
   if [ "${DEVICE_SSH}" = true ]; then
     setup_ssh
@@ -311,7 +310,7 @@ function desktop_setup {
     install_spotify_client
   fi
 
-  symlink_dotfiles
+  install_dotfiles
 
   if [ "${DESKTOP_UBUNTU}" = true ]; then
     setup_gnome_terminal
@@ -334,7 +333,7 @@ function main {
     configure)
       "${EDITOR:-nano}" bootstrap.env;;
     dotfiles)
-      symlink_dotfiles;;
+      install_dotfiles;;
     device)
       device_setup;;
     desktop)
