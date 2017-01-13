@@ -1,18 +1,11 @@
-# bootstrap
-
-**Clone the repo:**
-```
-git clone https://github.com/rossmacarthur/bootstrap.git ~/.bootstrap && cd ~/.bootstrap
-```
-
-**Bootstrap the system:**
+# dotfiles
 
 ```
-./bootstrap/bootstrap_lite.sh
+curl -LsS https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh | bash
 ```
 
 **or**
 
 ```
-./bootstrap/bootstrap_desktop.sh
+wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh | bash
 ```

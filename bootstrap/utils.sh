@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PARENTDIR="$(dirname "$DIR")"
-
 
 ask_for_sudo() {
   sudo -v &> /dev/null
@@ -18,6 +15,11 @@ ask_for_confirmation() {
 
 answer_is_yes() {
   [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1
+}
+
+
+command_exists() {
+  return $(hash $1 > /dev/null 2>&1)
 }
 
 
@@ -41,6 +43,16 @@ print_in_blue() {
 }
 
 
+heading() {
+  print_in_blue "\n • ${1}\n"
+}
+
+
+subheading() {
+  print_in_blue "\n   ${1}\n\n"
+}
+
+
 spinstr='|/-\'
 spinner() {
   local pid=$1
@@ -57,16 +69,6 @@ spinner() {
 }
 
 
-print_heading() {
-  print_in_blue "\n • ${1}\n"
-}
-
-
-print_subheading() {
-  print_in_blue "\n   ${1}\n\n"
-}
-
-
 execute() {
   eval $1 > /dev/null 2>&1 &
   spinner $! "${2}"
@@ -77,43 +79,5 @@ execute() {
   else
     print_in_red "[✖] ${2}\n"
     return 1
-  fi
-}
-
-
-install_package() {
-  execute "sudo apt -y install ${2}" "${1}"
-}
-
-
-install_pip_package() {
-  execute "pip install --user ${2}" "${1}"
-}
-
-
-install_pip3_package() {
-  execute "pip3 install --user ${2}" "${1}"
-}
-
-
-symlink() {
-  execute "ln -fs '${PARENTDIR}/${1}' '${HOME}/${2}'" "${1} →  ~/${2}"
-}
-
-
-install_oh_my_zsh() {
-  if [ ! -n "$ZSH" ]; then 
-    ZSH=~/.oh-my-zsh 
-  fi
-  if [ -d "$ZSH" ]; then
-    ask_for_confirmation "Oh My Zsh installation detected. Overwrite?"
-    if answer_is_yes; then
-      execute "rm -rf ${ZSH}" "Remove ${ZSH}"
-      execute "env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${ZSH}" "Clone Oh My Zsh from GitHub"
-    else
-      print_in_yellow "   [!] Skipping\n"
-    fi
-  else
-    execute "env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${ZSH}" "Clone Oh My Zsh from GitHub"
   fi
 }
