@@ -32,7 +32,7 @@ download_utils() {
 
 
 download_archive() {
-  if command_exists gitx; then
+  if command_exists git; then
     execute "env git clone ${DOTFILES_ORIGIN} ${DOTFILES_DIRECTORY}" "Clone repository from GitHub"
     return $?
   elif command_exists tar && command_exists gzip; then
