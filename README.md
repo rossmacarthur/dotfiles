@@ -5,28 +5,14 @@
 git clone https://github.com/rossmacarthur/bootstrap.git ~/.bootstrap && cd ~/.bootstrap
 ```
 
-**Configure the bootstrap**
-```
-./bootstrap configure
-```
-
 **Bootstrap the system:**
 
-To symlink dotfiles only:
 ```
-./bootstrap.sh dotfiles
-```
-
-**or**
-
-To install device packages and dotfiles:
-```
-./bootstrap.sh device
+./bootstrap/bootstrap_lite.sh
 ```
 
 **or**
 
-To install desktop packages and dotfiles:
 ```
-./bootstrap.sh desktop
+./bootstrap/bootstrap_desktop.sh
 ```
