@@ -3,6 +3,7 @@
 
 ask_for_sudo() {
   sudo -v &> /dev/null
+  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 }
 
 
@@ -71,8 +72,9 @@ spinner() {
 
 execute() {
   eval $1 > /dev/null 2>&1 &
-  spinner $! "${2}"
-  wait %1
+  local pid=$!
+  spinner "${pid}" "${2}"
+  wait ${pid}
   if [ $? -eq 0 ]; then
     print_in_green "[✔] ${2}\n"
     return 0

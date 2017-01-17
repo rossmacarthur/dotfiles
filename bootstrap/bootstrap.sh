@@ -32,10 +32,7 @@ download_utils() {
 
 
 download_archive() {
-  if command_exists git; then
-    execute "env git clone ${DOTFILES_ORIGIN} ${DOTFILES_DIRECTORY}" "Clone repository from GitHub"
-    return $?
-  elif command_exists tar && command_exists gzip; then
+  if command_exists tar; then
     local url=${DOTFILES_TARBALL_URL}
     local output=$(mktemp /tmp/XXXXX)
     execute "eval download ${url} ${output}" "Download archive from GitHub"
@@ -43,7 +40,7 @@ download_archive() {
     execute "tar -zxf ${output} --strip-components 1 -C ${DOTFILES_DIRECTORY}" "Extract archive"
     return $?
   fi
-  print_in_red "   [✖] Need git or tar to get archive\n"
+  print_in_red "   [✖] Need tar to get archive\n"
   return 1
 }
 
@@ -59,7 +56,7 @@ main() {
 
   heading "Download and extract archive\n"
   if [ -d "${DOTFILES_DIRECTORY}" ]; then
-    ask_for_confirmation "Installation detected in ${DOTFILES_DIRECTORY}. Overwrite?"
+    ask_for_confirmation "Installation detected in ${DOTFILES_DIRECTORY}. Delete?"
     if answer_is_yes; then
       execute "rm -rf ${DOTFILES_DIRECTORY}" "Remove folder ${DOTFILES_DIRECTORY}"
       download_archive || return 1
@@ -74,6 +71,14 @@ main() {
     ./bootstrap_device.sh
   else
     ./bootstrap_$1.sh
+  fi
+
+  cd ${DOTFILES_DIRECTORY}
+
+  if command_exists git && ! [ -d "${DOTFILES_DIRECTORY}/.git" ]; then
+    heading "Initialize Git repository"
+    execute "git init" "Initialize the repository"
+    execute "git remote add origin ${GIT_ORIGIN}" "Add remote origin"
   fi
 
   heading "Complete!\n"
