@@ -7,7 +7,7 @@ else
 fi
 
 local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})${user_symbol}%{$reset_color%} "
-local directory="%{$fg_bold[blue]%}%c%{$reset_color%} "
+local directory="%{$fg_bold[blue]%}%~%{$reset_color%} "
 PROMPT='${directory}$(git_prompt_info)${ret_status}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[magenta]%}"
