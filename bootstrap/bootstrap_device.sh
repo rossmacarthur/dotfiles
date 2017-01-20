@@ -6,7 +6,7 @@
 ask_for_sudo
 
 
-heading "Installs\n"
+heading "Installs"
 
 subheading "Core packages"
 install_package "cURL"       "curl"

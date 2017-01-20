@@ -76,9 +76,9 @@ main() {
   cd ${DOTFILES_DIRECTORY}
 
   if command_exists git && ! [ -d "${DOTFILES_DIRECTORY}/.git" ]; then
-    heading "Initialize Git repository"
+    heading "Initialize Git repository\n"
     execute "git init" "Initialize the repository"
-    execute "git remote add origin ${GIT_ORIGIN}" "Add remote origin"
+    execute "git remote add origin ${DOTFILES_ORIGIN}" "Add remote origin"
   fi
 
   heading "Complete!\n"
