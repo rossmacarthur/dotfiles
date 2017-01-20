@@ -8,8 +8,6 @@ ask_for_sudo
 
 heading "Installs\n"
 
-execute "sudo apt update" "Update APT"
-
 subheading "Core packages"
 install_package "cURL"       "curl"
 install_package "Git"        "git"

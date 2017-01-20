@@ -2,8 +2,10 @@
 
 
 ask_for_sudo() {
-  sudo -v &> /dev/null
-  while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+  if [[ $EUID -ne 0 ]]; then
+    sudo -v &> /dev/null
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+  fi
 }
 
 
