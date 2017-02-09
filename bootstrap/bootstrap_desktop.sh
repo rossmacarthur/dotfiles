@@ -62,3 +62,7 @@ symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "zsh/zshrc"                   ".zshrc"
 symlink "zsh/aliases"                 ".aliases"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+
+
+heading "Install scripts\n"
+symlink "bin/storepass.py" ".local/bin/storepass"
