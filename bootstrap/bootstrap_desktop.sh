@@ -41,7 +41,6 @@ install_pip_package "Pyperclip"  "pyperclip"
 subheading "Python 3 packages"
 install_pip3
 install_pip3_package "Click"     "click"
-install_pip3_package "TrueSkill" "trueskill"
 
 subheading "Sublime Text 3"
 install_sublime_text_3
@@ -65,4 +64,5 @@ symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme
 
 
 heading "Install scripts\n"
-symlink "bin/storepass.py" ".local/bin/storepass"
+symlink "bin/storepass.py"          ".local/bin/storepass"
+symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"

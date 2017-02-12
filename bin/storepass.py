@@ -34,26 +34,36 @@ def decrypt(encoded, password):
     return aes_obj.decrypt(encoded[16:])
 
 
-def write_database(pd, password, filename):
+def write_database(pd, password):
     """
     Serialize, encrypt and store object to file.
     """
     try:
-        enc = encrypt(pickle.dumps(pd), password)
-        with open(filename, 'wb') as output_file:
+        enc = [pd.keys(), encrypt(pickle.dumps(pd), password)]
+        with open(DEFAULTPATH, 'wb') as output_file:
             pickle.dump(enc, output_file, -1)
         return True
     except:
         return False
 
 
-def read_database(password, filename):
+def read_database(password):
     """
     Read, decrypt and deserialize object from file.
     """
     try:
-        enc = pickle.load(open(filename, 'rb'))
+        enc = pickle.load(open(DEFAULTPATH, 'rb'))[1]
         return pickle.loads(decrypt(enc, password))
+    except:
+        return False
+
+
+def read_database_labels():
+    """
+    Read database labels from file.
+    """
+    try:
+        return pickle.load(open(os.path.expanduser(DEFAULTPATH), 'rb'))[0]
     except:
         return False
 
@@ -92,7 +102,7 @@ def paths_to_tree(subset):
             t = t[node]
 
     t = tree()
-    for path, password in subset.items():
+    for path in subset:
         add(t, path.split('/'))
     return t
 
@@ -112,11 +122,27 @@ def get_database():
     """
     if os.path.isfile(DEFAULTPATH):
         master = click.prompt('Enter master password', hide_input=True)
-        pd = read_database(master, DEFAULTPATH)
+        pd = read_database(master)
         if not isinstance(pd, dict):
             click.echo('Unable to decrypt database.')
             raise click.Abort()
         return pd, master
+    else:
+        click.echo('No password database found.\n'
+                   'Use the \'init\' command to initialize one.')
+        raise click.Abort()
+
+
+def get_labels():
+    """
+    Read labels from database.
+    """
+    if os.path.isfile(DEFAULTPATH):
+        labels = read_database_labels()
+        if not isinstance(labels, list):
+            click.echo('Unable to decrypt database.')
+            raise click.Abort()
+        return labels
     else:
         click.echo('No password database found.\n'
                    'Use the \'init\' command to initialize one.')
@@ -156,7 +182,7 @@ def init():
 
     password = click.prompt('Enter new master password', hide_input=True,
                             confirmation_prompt=True)
-    if write_database(dict(), password, DEFAULTPATH):
+    if write_database(dict(), password):
         click.echo('Initialized new password database.')
     else:
         click.echo('Error: Unable to initialize new password database.')
@@ -174,9 +200,10 @@ def store(label, generate):
 
     This command will prompt for the entry's password.
     """
-    pd, master = get_database()
-    if label in pd:
+    labels = get_labels()
+    if label in labels:
         click.confirm('Entry already exists. Update?', abort=True)
+    pd, master = get_database()
     if generate:
         password = random_password(generate)
         paste_to_clipboard(password, timeout=45)
@@ -187,7 +214,7 @@ def store(label, generate):
                                 confirmation_prompt=True)
     pd[label] = password
     click.echo('Stored label and password.')
-    if not write_database(pd, master, DEFAULTPATH):
+    if not write_database(pd, master):
         click.echo('Error: Unable to encrypt database to file.')
 
 
@@ -204,11 +231,12 @@ def get(label, clipboard):
     The retrieved password will be copied to the clipboard unless otherwise
     specified.
     """
-    pd, master = get_database()
-    subset = {k: v for k, v in pd.items() if k.startswith(label)}
+    labels = get_labels()
+    subset = [k for k in labels if not label or k.startswith(label)]
     if len(subset) == 1:
-        label = subset.keys()[0]
-    if label in pd:
+        label = subset[0]
+    if label in labels:
+        pd, master = get_database()
         if clipboard:
             paste_to_clipboard(pd[label], timeout=45)
             click.echo('Password copied to clipboard.\n'
@@ -229,8 +257,8 @@ def ls(label):
 
     LABEL is the path-like tag for the password.
     """
-    pd, master = get_database()
-    subset = {k: v for k, v in pd.items() if not label or k.startswith(label)}
+    labels = get_labels()
+    subset = [k for k in labels if not label or k.startswith(label)]
     if subset:
         click.echo('Password Database')
         print_tree(paths_to_tree(subset))
@@ -248,16 +276,17 @@ def rm(label):
 
     LABEL is the path-like tag for the password.
     """
-    pd, master = get_database()
-    subset = [k for k in sorted(pd) if k.startswith(label)]
+    labels = get_labels()
+    subset = [k for k in sorted(labels) if k.startswith(label)]
     if len(subset) > 0:
         entries = '\n '.join(k for k in subset)
         click.confirm('Are you sure you want to delete the following '
                       'entries?\n {}\n'.format(entries), abort=True)
+        pd, master = get_database()
         for k in subset:
             del pd[k]
         click.echo('Removed {} entries.'.format(len(subset)))
-        if not write_database(pd, master, DEFAULTPATH):
+        if not write_database(pd, master):
             click.echo('Error: Unable to encrypt database to file.')
     else:
         click.echo('No entries starting with "{}".'.format(label))
@@ -270,15 +299,18 @@ def mv(old_label, new_label):
     """
     Rename a password label.
     """
-    pd, master = get_database()
-    if old_label in pd:
+    labels = get_labels()
+    if old_label in labels:
         click.confirm('Are you sure you want to rename "{}" to "{}"?'
                       .format(old_label, new_label), abort=True)
+        pd, master = get_database()
         pd[new_label] = pd[old_label]
         del pd[old_label]
         click.echo('Renamed entry.')
-        if not write_database(pd, master, DEFAULTPATH):
+        if not write_database(pd, master):
             click.echo('Error: Unable to encrypt database to file.')
+    elif new_label in labels:
+        click.echo('Entry already exists.')
     else:
         click.echo('Entry does not exist.')
 
@@ -291,7 +323,7 @@ def set_key():
     pd, master = get_database()
     password = click.prompt('Enter new master password for database', type=str,
                             hide_input=True, confirmation_prompt=True)
-    if write_database(pd, password, DEFAULTPATH):
+    if write_database(pd, password):
         click.echo('Successfully changed master password.')
     else:
         click.echo('Error: Unable to change master password.')
