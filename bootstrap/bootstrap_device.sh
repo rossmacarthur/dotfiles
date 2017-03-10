@@ -3,8 +3,6 @@
 . utils.sh
 . installs.sh
 
-ask_for_sudo
-
 
 heading "Installs"
 

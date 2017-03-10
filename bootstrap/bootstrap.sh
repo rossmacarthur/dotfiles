@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 GITHUB_REPOSITORY="rossmacarthur/dotfiles"
-DOTFILES_ORIGIN="git@github.com:${GITHUB_REPOSITORY}.git"
 DOTFILES_TARBALL_URL="https://github.com/${GITHUB_REPOSITORY}/tarball/master"
 DOTFILES_UTILS_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/bootstrap/utils.sh"
 DOTFILES_DIRECTORY="${HOME}/.dotfiles"
@@ -46,11 +45,7 @@ download_archive() {
 
 
 main() {
-  if [ -f "utils.sh" ]; then
-    . utils.sh
-  else
-    download_utils || return 1
-  fi
+  download_utils || return 1
 
   ask_for_sudo
 
@@ -71,14 +66,6 @@ main() {
     ./bootstrap_device.sh
   else
     ./bootstrap_$1.sh
-  fi
-
-  cd ${DOTFILES_DIRECTORY}
-
-  if command_exists git && ! [ -d "${DOTFILES_DIRECTORY}/.git" ]; then
-    heading "Initialize Git repository\n"
-    execute "git init" "Initialize the repository"
-    execute "git remote add origin ${DOTFILES_ORIGIN}" "Add remote origin"
   fi
 
   heading "Complete!\n"

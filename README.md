@@ -1,11 +1,11 @@
 # dotfiles
 
 ```
-curl -LsS https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh | bash
+bash -c "$(curl -LsS https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh)"
 ```
 
 **or**
 
 ```
-wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh | bash
+bash -c "$(wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh)"
 ```

@@ -15,11 +15,13 @@ alias -- -="cd -"
 alias lh="ls -a | egrep '^\.'"
 
 # IP addresses
-alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
 
 # Lock screen
 alias afk="gnome-screensaver-command -l"
+
+# stty dimensions for full screen terminal on a Dell 24" Monitor
+alias sttyd="stty cols 238 rows 78"
 
 # Max brightness of Toshiba R850-12R laptop screen
 function maxbrightness {
