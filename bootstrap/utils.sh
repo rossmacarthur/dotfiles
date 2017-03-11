@@ -11,7 +11,7 @@ ask_for_sudo() {
 
 ask_for_confirmation() {
   print_in_yellow "   [?] ${1} (y/n) "
-  read -r -n 1 -t 5
+  read -r -n 1 -t 10
   printf "\n"
 }
 

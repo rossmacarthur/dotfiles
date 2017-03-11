@@ -39,7 +39,7 @@ download_archive() {
     execute "tar -zxf ${output} --strip-components 1 -C ${DOTFILES_DIRECTORY}" "Extract archive"
     return $?
   fi
-  print_in_red "   [✖] Need tar to get archive\n"
+  print_in_red "   [✖] Need tar to extract archive\n"
   return 1
 }
 
@@ -53,7 +53,7 @@ main() {
   if [ -d "${DOTFILES_DIRECTORY}" ]; then
     ask_for_confirmation "Installation detected in ${DOTFILES_DIRECTORY}. Delete?"
     if answer_is_yes; then
-      execute "rm -rf ${DOTFILES_DIRECTORY}" "Remove folder ${DOTFILES_DIRECTORY}"
+      execute "rm -rf ${DOTFILES_DIRECTORY}" "Remove directory ${DOTFILES_DIRECTORY}"
       download_archive || return 1
     fi
   else

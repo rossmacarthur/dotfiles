@@ -4,7 +4,9 @@
 . installs.sh
 
 
-heading "Installs"
+heading "Installs\n"
+
+execute "sudo apt update" "Update APT"
 
 subheading "Core packages"
 install_package "cURL"     "curl"

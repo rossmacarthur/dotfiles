@@ -10,7 +10,7 @@ symlink() {
 
 
 create_dir() {
-  execute "mkdir -p ${HOME}/${1}" "Create directory ${1}"
+  execute "mkdir -p ${HOME}/${1}" "Create directory ~/${1}"
 }
 
 
@@ -42,7 +42,7 @@ install_oh_my_zsh() {
   if [ -d "${ZSH}" ]; then
     ask_for_confirmation "Oh My Zsh installation detected. Overwrite?"
     if answer_is_yes; then
-      execute "rm -rf ${ZSH}" "Remove ${ZSH}"
+      execute "rm -rf ${ZSH}" "Remove directory ${ZSH}"
       execute "env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${ZSH}" "Clone Oh My Zsh from GitHub"
     else
       print_in_yellow "   [!] Skipping\n"
@@ -56,18 +56,19 @@ install_oh_my_zsh() {
 install_sublime_text_3() {
   command_exists subl
   local installed=$?
-  local reinstall=0
+  local reinstall=1
 
   if [ $installed -eq 0 ]; then
     ask_for_confirmation "Sublime Text 3 is already installed. Reinstall?"
-    reinstall=answer_is_yes
+    answer_is_yes
+    reinstall=$?
   fi
 
-  if $reinstall; then
+  if [ $reinstall -eq 0 ]; then
     execute "sudo apt -y remove sublime-text" "Remove current install"
   fi
 
-  if [ $installed -ne 0 ] || $reinstall; then
+  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
     BUILD=$(curl -s -L www.sublimetext.com/3 | python -c \
             "import re,sys;print re.search(r'(?<=The latest build is )(\d\d\d\d)',sys.stdin.read()).groups()[0]")
     execute "curl -O https://download.sublimetext.com/sublime-text_build-${BUILD}_amd64.deb" "Download archive"
@@ -88,18 +89,19 @@ install_sublime_text_3() {
 install_google_chrome() {
   command_exists google-chrome-stable
   local installed=$?
-  local reinstall=0
+  local reinstall=1
 
   if [ $installed -eq 0 ]; then
     ask_for_confirmation "Google Chrome is already installed. Reinstall?"
-    reinstall=answer_is_yes
+    answer_is_yes
+    reinstall=$?
   fi
 
-  if $reinstall; then
+  if [ $reinstall -eq 0 ]; then
     execute "sudo apt -y remove google-chrome-stable" "Remove current install"
   fi
 
-  if [ $installed -ne 0 ] || $reinstall; then
+  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
     execute "curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" "Download archive"
     if [ $? -ne 0 ]; then
       return
@@ -118,18 +120,19 @@ install_google_chrome() {
 install_megasync_client() {
   command_exists megasync
   local installed=$?
-  local reinstall=0
+  local reinstall=1
 
   if [ $installed -eq 0 ]; then
     ask_for_confirmation "MEGAsync Client is already installed. Reinstall?"
-    reinstall=answer_is_yes
+    answer_is_yes
+    reinstall=$?
   fi
 
-  if $reinstall; then
+  if [ $reinstall -eq 0 ]; then
     execute "sudo apt -y remove megasync" "Remove current install"
   fi
 
-  if [ $installed -ne 0 ] || $reinstall; then
+  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
     execute "curl -O https://mega.nz/linux/MEGAsync/xUbuntu_16.04/amd64/megasync-xUbuntu_16.04_amd64.deb" "Download archive"
     if [ $? -ne 0 ]; then 
       return

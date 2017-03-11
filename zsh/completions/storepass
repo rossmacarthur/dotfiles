@@ -1,5 +1,3 @@
-#!/usr/bin/env zsh
-
 #compdef storepass
 
 _storepass() {
@@ -9,7 +7,7 @@ _storepass() {
 
   case $state in
   command)
-    _arguments "1: :(get init ls mv rm set-key store)"
+    _arguments "1: :(dump get init load ls mv rm set-key store)"
   ;;
   *) 
     case $words[2] in

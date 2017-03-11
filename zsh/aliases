@@ -20,11 +20,14 @@ alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
 # Lock screen
 alias afk="gnome-screensaver-command -l"
 
-# stty dimensions for full screen terminal on a Dell 24" Monitor
-alias sttyd="stty cols 238 rows 78"
+# Shortcut for storepass script
+alias sp="storepass"
+
+# stty dimensions for full screen terminal on a Dell 24" Monitor and disable driver messages
+alias dev="stty cols 238 rows 78 && dmesg -n 1"
 
 # Max brightness of Toshiba R850-12R laptop screen
-function maxbrightness {
+maxbrightness() {
   sudo sh -c "echo 7 > /sys/class/backlight/acpi_video0/brightness"
   sudo sh -c "echo 255 > /sys/class/backlight/radeon_bl0/brightness"
 }
