@@ -149,14 +149,72 @@ install_megasync_client() {
 
 
 install_spotify_client() {
-  execute "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886" "Add signing key"
+  command_exists spotify
+  local installed=$?
+  local reinstall=1
+
+  if [ $installed -eq 0 ]; then
+    ask_for_confirmation "Spotify Client is already installed. Reinstall?"
+    answer_is_yes
+    reinstall=$?
+  fi
+
+  if [ $reinstall -eq 0 ]; then
+    execute "sudo apt -y remove spotify-client" "Remove current install"
+  fi
+
+  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
+    execute "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886" "Add signing key"
+    if [ $? -ne 0 ]; then
+      return
+    fi
+    execute "echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list" "Add respository"
+    if [ $? -ne 0 ]; then 
+      return
+    fi
+    execute "sudo apt update" "Update APT"
+    execute "sudo apt -y install spotify-client" "Install Spotify Client"
+  else
+    print_in_yellow "   [!] Skipping\n"
+  fi
+}
+
+
+_setup_gnome_terminal_theme() {
+  local base_key=/org/gnome/terminal/legacy/profiles:
+  local profile_uuid=$(uuidgen)
+
+  dconf reset -f $base_key/
   if [ $? -ne 0 ]; then
-    return
+    return 1
   fi
-  execute "echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list" "Add respository"
-  if [ $? -ne 0 ]; then 
-    return
+  dconf write "$base_key/list" "['$profile_uuid']"
+  if [ $? -ne 0 ]; then
+    return 1
   fi
-  execute "sudo apt update" "Update APT"
-  execute "sudo apt -y install spotify-client" "Install Spotify Client"
+  dconf load $base_key/:$profile_uuid/ <<EOL
+[/]
+foreground-color='#c0c5ce'
+visible-name='Ross MacArthur'
+palette=['#2b303b', '#bf616a', '#a3be8c', '#ebcb8b', '#8fa1b3', '#b48ead', '#96b5b4', '#c0c5ce', '#65737e', '#bf616a', '#a3be8c', '#ebcb8b', '#8fa1b3', '#b48ead', '#96b5b4', '#eff1f5']
+use-theme-colors=false
+use-theme-transparency=false
+use-theme-background=false
+bold-color-same-as-fg=true
+bold-color='#c0c5ce'
+background-color='#2b303b'
+EOL
+  return $?
+}
+setup_gnome_terminal_theme() {
+  execute "_setup_gnome_terminal_theme" "Install Gnome Terminal theme"
+}
+
+
+_disable_guest_login() {
+  sudo mkdir -p /etc/lightdm/lightdm.conf.d
+  sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" > /etc/lightdm/lightdm.conf.d/50-no-guest.conf'
+}
+disable_guest_login() {
+  execute "_disable_guest_login" "Disable Guest login"
 }

@@ -44,6 +44,10 @@ install_megasync_client
 subheading "Spotify Client"
 install_spotify_client
 
+subheading "Other"
+setup_gnome_terminal_theme
+disable_guest_login
+
 
 heading "Symlink dotfiles\n"
 symlink "git/gitconfig"               ".gitconfig"
