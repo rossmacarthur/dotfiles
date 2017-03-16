@@ -26,6 +26,7 @@ install_pip_package "Supervisor 3.3.1"  "supervisor==3.3.1"
 
 heading "Symlink dotfiles\n"
 
+symlink "bin/serial.sh"             ".local/bin/serial"
 symlink "git/gitconfig"               ".gitconfig"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "zsh/zshrc"                   ".zshrc"

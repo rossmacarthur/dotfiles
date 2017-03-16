@@ -16,7 +16,6 @@ install_package "htop"       "htop"
 install_package "Python 2"   "python"
 install_package "Python Dev" "python-dev"
 install_package "Pinta"      "pinta"
-install_package "Screen"     "screen"
 install_package "tmux"       "tmux"
 install_package "xclip"      "xclip"
 install_package "Zsh"        "zsh"
@@ -50,6 +49,7 @@ disable_guest_login
 
 
 heading "Symlink dotfiles\n"
+
 symlink "git/gitconfig"               ".gitconfig"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "zsh/zshrc"                   ".zshrc"
@@ -58,6 +58,8 @@ symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme
 
 
 heading "Install scripts\n"
+
+symlink "bin/serial.sh"             ".local/bin/serial"
 symlink "bin/storepass.py"          ".local/bin/storepass"
 create_dir                          ".oh-my-zsh/completions/"
 symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
