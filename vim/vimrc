@@ -1,0 +1,73 @@
+filetype plugin on       " Enable filetype detection
+filetype indent on       " Set indent for current filetype
+syntax enable            " Enable syntax highlighting
+let base16colorspace=256 " Access colors present in 256 colorspace
+set t_Co=256             " 256 color mode
+set background=dark      " Dark background
+
+" Try set colorscheme based on current base16 shell theme
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+" Else default to base16-onedark
+else
+  colorscheme base16-onedark
+endif
+
+" Create undo directory if it doesn't exist
+silent !mkdir -p ~/.vim/vimundo > /dev/null 2>&1
+
+set nocompatible
+set autoread      " Auto read when a file is changed from the outside
+set number        " Show line numbers
+set ruler         " Show current position
+set nowrap        " Do not wrap lines
+set expandtab     " Use spaces instead of tabs
+set smarttab      " Tab are very smart
+set shiftwidth=2  " 1 tab == 2 spaces
+set tabstop=2     " 1 tab == 2 spaces
+set autoindent    " Auto indent
+set smartindent   " Indent are very smart
+set nobackup      " Do not make temporary backup of file
+set nowritebackup " Do not write temporary backup of file
+set noswapfile    " Do not make a swap file for the buffer
+set undofile      " Make undo's persist after exiting Vim
+set undodir=~/.vim/vimundo/ " Set undo directory
+
+" Remap direction keys for Colemak: 'h'=up, 'k'=down, 'l'=right, 'j'=left
+nnoremap j h
+nnoremap k j
+nnoremap h k
+vnoremap j h
+vnoremap k j
+vnoremap h k
+
+" Delete trailing whitespace on save
+func! DeleteTrailingWhitespace()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite * :call DeleteTrailingWhitespace()
+
+" Return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Plugins
+set runtimepath^=~/.vim/bundle/flake8   " Enable flake8
+set runtimepath^=~/.vim/bundle/nerdtree " Enable nerdtree
+
+" Flake8 settings
+let g:flake8_show_in_gutter = 1          " Show marks on the left
+let g:flake8_quickfix_location="topleft" " Show quickfix window at the top
+let g:flake8_error_marker='●'            " Set error marker
+let g:flake8_warning_marker='●'          " Set warning marker
+let g:flake8_pyflake_marker=''           " Disable PyFlakes warnings
+let g:flake8_complexity_marker=''        " Disable McCabe complexity warnings
+let g:flake8_naming_marker=''            " Disable naming warnings
+highlight link Flake8_Error   ErrorMsg
+highlight link Flake8_Warning WarningMsg
+autocmd BufWritePost *.py call Flake8()  " Call Flake8 when writing a Python file
+
+" NERDTree settings
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$']

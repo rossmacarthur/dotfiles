@@ -5,12 +5,9 @@ PARENTDIR="$(dirname "$DIR")"
 
 
 symlink() {
-  execute "ln -fs '${PARENTDIR}/${1}' '${HOME}/${2}'" "${1} →  ~/${2}"
-}
-
-
-create_dir() {
-  execute "mkdir -p ${HOME}/${1}" "Create directory ~/${1}"
+  create_directory "$(dirname "${HOME}/${2}")"
+  execute "ln -fs '${PARENTDIR}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
+  sleep 0.25
 }
 
 
@@ -35,186 +32,128 @@ install_pip_package() {
 }
 
 
-install_oh_my_zsh() {
-  if [ ! -n "${ZSH}" ]; then 
-    ZSH=~/.oh-my-zsh 
-  fi
-  if [ -d "${ZSH}" ]; then
-    ask_for_confirmation "Oh My Zsh installation detected. Overwrite?"
+clone_git_repository() {
+  local name=$1
+  local url=$2
+  local folder=$3
+  local install=1
+  if [ -d "${folder}" ]; then
+    ask_for_confirmation "${name} is already installed. Reinstall?"
     if answer_is_yes; then
-      execute "rm -rf ${ZSH}" "Remove directory ${ZSH}"
-      execute "env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${ZSH}" "Clone Oh My Zsh from GitHub"
-    else
-      print_in_yellow "   [!] Skipping\n"
+      remove_directory "${folder}"
+      install=0
     fi
   else
-    execute "env git clone --depth=1 https://github.com/robbyrussell/oh-my-zsh.git ${ZSH}" "Clone Oh My Zsh from GitHub"
+    install=0
+  fi
+  if [ $install -eq 0 ]; then
+    execute "git clone --depth=1 ${url} ${folder}" "Clone ${name}"
   fi
 }
 
 
-install_sublime_text_3() {
-  command_exists subl
-  local installed=$?
-  local reinstall=1
+check_package_installed() {
+  local name=$1
+  local command=$2
 
-  if [ $installed -eq 0 ]; then
-    ask_for_confirmation "Sublime Text 3 is already installed. Reinstall?"
-    answer_is_yes
-    reinstall=$?
-  fi
-
-  if [ $reinstall -eq 0 ]; then
-    execute "sudo apt -y remove sublime-text" "Remove current install"
-  fi
-
-  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
-    BUILD=$(curl -s -L www.sublimetext.com/3 | python -c \
-            "import re,sys;print re.search(r'(?<=The latest build is )(\d\d\d\d)',sys.stdin.read()).groups()[0]")
-    execute "curl -O https://download.sublimetext.com/sublime-text_build-${BUILD}_amd64.deb" "Download archive"
-    if [ $? -ne 0 ]; then
-      return
-    fi
-    execute "sudo dpkg -i sublime-text_build-${BUILD}_amd64.deb" "Install Sublime Text 3"
-    if [ $? -ne 0 ]; then
-      execute "sudo apt -y install -f" "Fixing dependencies"
-      execute "sudo dpkg -i sublime-text_build-${BUILD}_amd64.deb" "Install Sublime Text 3"
+  dpkg -s "${command}" > /dev/null 2>&1
+  if [ $? -eq 0 ]; then
+    ask_for_confirmation "${name} is already installed. Reinstall?"
+    if answer_is_yes; then
+      execute "sudo apt -y remove ${command}" "Remove current ${name}"
+      return 0
     fi
   else
-    print_in_yellow "   [!] Skipping\n"
+    return 0
+  fi
+  return 1
+}
+
+
+install_deb_package() {
+  local name=$1
+  local url=$2
+  local output=$(mktemp /tmp/XXXXX)
+  execute "curl -LsSo ${output} ${url}" "Download ${name} archive"
+  if [ $? -ne 0 ]; then
+    return
+  fi
+  execute "sudo dpkg -i ${output}" "Install ${name}"
+  if [ $? -ne 0 ]; then
+    execute "sudo apt -y install -f" "Fixing dependencies for ${name}"
+    execute "sudo dpkg -i ${output}" "Install ${name}"
+  fi
+}
+
+
+clone_oh_my_zsh() {
+  if [ ! -n "${ZSH}" ]; then
+    ZSH=~/.oh-my-zsh
+  fi
+  clone_git_repository "Oh My Zsh" \
+    "https://github.com/robbyrussell/oh-my-zsh.git" \
+    "${ZSH}"
+}
+
+
+clone_base16_shell_theme() {
+  clone_git_repository "Base16 Shell" \
+    "https://github.com/chriskempson/base16-shell" \
+    "${HOME}/.config/base16-shell"
+}
+
+
+clone_vim_nerdtree_plugin() {
+  clone_git_repository "NERDTree" \
+    "https://github.com/scrooloose/nerdtree.git" \
+    "${HOME}/.vim/bundle/nerdtree"
+}
+
+
+clone_vim_flake8_plugin() {
+  clone_git_repository "Flake8" \
+    "https://github.com/nvie/vim-flake8.git" \
+    "${HOME}/.vim/bundle/flake8"
+}
+
+
+clone_vim_base16_themes() {
+  clone_git_repository "Base16" \
+    "https://github.com/chriskempson/base16-vim" \
+    "${HOME}/.vim/colors/base16"
+  execute "cp ${HOME}/.vim/colors/base16/colors/*.vim ${HOME}/.vim/colors/" "Copy Base16 color schemes to ~/.vim/colors/"
+}
+
+
+install_sublime_text_3() {
+  check_package_installed "Sublime Text 3" "sublime-text"
+  if [ $? -eq 0 ]; then
+    local build=$(curl -Ls https://www.sublimetext.com/3 | python -c "import re,sys;print re.search(r'(?<=The latest build is )(\d\d\d\d)',sys.stdin.read()).groups()[0]")
+    if [ ! -z "$build" ]; then
+      install_deb_package "Sublime Text 3" \
+        "https://download.sublimetext.com/sublime-text_build-${build}_amd64.deb"
+    else
+      print_error "Unable to check latest Sublime Text 3 build"
+    fi
   fi
 }
 
 
 install_google_chrome() {
-  command_exists google-chrome-stable
-  local installed=$?
-  local reinstall=1
-
-  if [ $installed -eq 0 ]; then
-    ask_for_confirmation "Google Chrome is already installed. Reinstall?"
-    answer_is_yes
-    reinstall=$?
-  fi
-
-  if [ $reinstall -eq 0 ]; then
-    execute "sudo apt -y remove google-chrome-stable" "Remove current install"
-  fi
-
-  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
-    execute "curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb" "Download archive"
-    if [ $? -ne 0 ]; then
-      return
-    fi
-    execute "sudo dpkg -i google-chrome-stable_current_amd64.deb" "Install Google Chrome"
-    if [ $? -ne 0 ]; then
-      execute "sudo apt -y install -f" "Fixing dependencies"
-      execute "sudo dpkg -i google-chrome-stable_current_amd64.deb" "Install Google Chrome"
-    fi
-  else
-    print_in_yellow "   [!] Skipping\n"
-  fi
+  check_package_installed "Google Chrome" "google-chrome-stable"
+  [ $? -eq 0 ] && install_deb_package "Google Chrome" \
+    "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 }
 
 
 install_megasync_client() {
-  command_exists megasync
-  local installed=$?
-  local reinstall=1
-
-  if [ $installed -eq 0 ]; then
-    ask_for_confirmation "MEGAsync Client is already installed. Reinstall?"
-    answer_is_yes
-    reinstall=$?
-  fi
-
-  if [ $reinstall -eq 0 ]; then
-    execute "sudo apt -y remove megasync" "Remove current install"
-  fi
-
-  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
-    execute "curl -O https://mega.nz/linux/MEGAsync/xUbuntu_16.04/amd64/megasync-xUbuntu_16.04_amd64.deb" "Download archive"
-    if [ $? -ne 0 ]; then 
-      return
-    fi
-    execute "sudo dpkg -i megasync-xUbuntu_16.04_amd64.deb" "Install MEGAsync Client"
-    if [ $? -ne 0 ]; then
-      execute "sudo apt -y install -f" "Fixing dependencies"
-      execute "sudo dpkg -i megasync-xUbuntu_16.04_amd64.deb" "Install MEGAsync Client"
-    fi
-  else
-    print_in_yellow "   [!] Skipping\n"
-  fi
+  check_package_installed "MEGAsync Client" "megasync"
+  [ $? -eq 0 ] && install_deb_package "MEGAsync Client" \
+    "https://mega.nz/linux/MEGAsync/xUbuntu_16.04/amd64/megasync-xUbuntu_16.04_amd64.deb"
 }
 
 
-install_spotify_client() {
-  command_exists spotify
-  local installed=$?
-  local reinstall=1
-
-  if [ $installed -eq 0 ]; then
-    ask_for_confirmation "Spotify Client is already installed. Reinstall?"
-    answer_is_yes
-    reinstall=$?
-  fi
-
-  if [ $reinstall -eq 0 ]; then
-    execute "sudo apt -y remove spotify-client" "Remove current install"
-  fi
-
-  if [ $installed -ne 0 ] || [ $reinstall -eq 0 ]; then
-    execute "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886" "Add signing key"
-    if [ $? -ne 0 ]; then
-      return
-    fi
-    execute "echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list" "Add respository"
-    if [ $? -ne 0 ]; then 
-      return
-    fi
-    execute "sudo apt update" "Update APT"
-    execute "sudo apt -y install spotify-client" "Install Spotify Client"
-  else
-    print_in_yellow "   [!] Skipping\n"
-  fi
-}
-
-
-_setup_gnome_terminal_theme() {
-  local base_key=/org/gnome/terminal/legacy/profiles:
-  local profile_uuid=$(uuidgen)
-
-  dconf reset -f $base_key/
-  if [ $? -ne 0 ]; then
-    return 1
-  fi
-  dconf write "$base_key/list" "['$profile_uuid']"
-  if [ $? -ne 0 ]; then
-    return 1
-  fi
-  dconf load $base_key/:$profile_uuid/ <<EOL
-[/]
-foreground-color='#c0c5ce'
-visible-name='Ross MacArthur'
-palette=['#2b303b', '#bf616a', '#a3be8c', '#ebcb8b', '#8fa1b3', '#b48ead', '#96b5b4', '#c0c5ce', '#65737e', '#bf616a', '#a3be8c', '#ebcb8b', '#8fa1b3', '#b48ead', '#96b5b4', '#eff1f5']
-use-theme-colors=false
-use-theme-transparency=false
-use-theme-background=false
-bold-color-same-as-fg=true
-bold-color='#c0c5ce'
-background-color='#2b303b'
-EOL
-  return $?
-}
-setup_gnome_terminal_theme() {
-  execute "_setup_gnome_terminal_theme" "Install Gnome Terminal theme"
-}
-
-
-_disable_guest_login() {
-  sudo mkdir -p /etc/lightdm/lightdm.conf.d
-  sudo sh -c 'printf "[SeatDefaults]\nallow-guest=false\n" > /etc/lightdm/lightdm.conf.d/50-no-guest.conf'
-}
 disable_guest_login() {
-  execute "_disable_guest_login" "Disable Guest login"
+  create_directory "/etc/lightdm/lightdm.conf.d"
+  execute 'printf "[SeatDefaults]\nallow-guest=false\n" | sudo tee /etc/lightdm/lightdm.conf.d/50-no-guest.conf' "Disable Guest login"
 }

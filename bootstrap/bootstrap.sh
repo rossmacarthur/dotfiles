@@ -17,7 +17,7 @@ download() {
     printf "Please install curl or wget"
     return 1
   fi
-  return 0  
+  return 0
 }
 
 
@@ -35,11 +35,11 @@ download_archive() {
     local url=${DOTFILES_TARBALL_URL}
     local output=$(mktemp /tmp/XXXXX)
     execute "eval download ${url} ${output}" "Download archive from GitHub"
-    execute "mkdir -p ${DOTFILES_DIRECTORY}" "Create directory ${DOTFILES_DIRECTORY}"
+    create_directory "${DOTFILES_DIRECTORY}"
     execute "tar -zxf ${output} --strip-components 1 -C ${DOTFILES_DIRECTORY}" "Extract archive"
     return $?
   fi
-  print_in_red "   [✖] Need tar to extract archive\n"
+  print_error "Need tar to extract archive"
   return 1
 }
 
@@ -51,9 +51,9 @@ main() {
 
   heading "Download and extract archive\n"
   if [ -d "${DOTFILES_DIRECTORY}" ]; then
-    ask_for_confirmation "Installation detected in ${DOTFILES_DIRECTORY}. Delete?"
+    ask_for_confirmation "Installation detected in ${DOTFILES_DIRECTORY/#$HOME/'~'}. Delete?"
     if answer_is_yes; then
-      execute "rm -rf ${DOTFILES_DIRECTORY}" "Remove directory ${DOTFILES_DIRECTORY}"
+      remove_directory "${DOTFILES_DIRECTORY}"
       download_archive || return 1
     fi
   else
@@ -61,15 +61,12 @@ main() {
   fi
 
   cd ${DOTFILES_DIRECTORY}/bootstrap
-
-  if [ ! $1 ]; then
-    ./bootstrap_device.sh
-  else
-    ./bootstrap_$1.sh
-  fi
-
+  local options=$(find . -type f -name "bootstrap_*.sh" | cut -d '_' -f 2- | cut -d '.' -f 1 | xargs -n20)
+  prompt_for_choice $options "Please select a bootstrap type"
+  [ $? -ne 0 ] && return 1
+  ./bootstrap_$CHOICE.sh
   heading "Complete!\n"
 }
 
 
-main $@ || printf "\033[31m\n • Aborted!\033[m\n"
+main $@ || printf "\033[31m\n • Aborted!\033[m\n\n"

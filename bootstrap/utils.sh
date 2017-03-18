@@ -11,13 +11,13 @@ ask_for_sudo() {
 
 ask_for_confirmation() {
   print_in_yellow "   [?] ${1} (y/n) "
-  read -r -n 1 -t 10
+  read -r -n 1 -t 10 ANSWER
   printf "\n"
 }
 
 
 answer_is_yes() {
-  [[ "$REPLY" =~ ^[Yy]$ ]] && return 0 || return 1
+  [[ "$ANSWER" =~ ^[Yy]$ ]] && return 0 || return 1
 }
 
 
@@ -56,6 +56,35 @@ subheading() {
 }
 
 
+print_error() {
+  print_in_red "   [✖] ${1}\n"
+}
+
+
+prompt_for_choice() {
+  print_in_yellow "\n   [?] ${@:$#}\n"
+  local index=1
+  for choice in "${@:1:$(($#-1))}"; do
+    print_in_yellow "         ${index}) ${choice}\n"
+    index=$((index+1))
+  done
+  print_in_yellow "         x) exit\n"
+  while : ; do
+    print_in_yellow "       : "
+    read -r -n 1 CHOICE
+    if [ "${CHOICE}" == "x" ]; then
+      printf "\n"
+      return 1
+    elif [ ! -z "${!CHOICE}" ]  && [ $CHOICE -ne 0 ] && [ $CHOICE -ne $# ]; then
+      CHOICE="${!CHOICE}"
+      printf "\n"
+      return 0
+    fi
+    print_in_yellow " Invalid selection\n"
+  done
+}
+
+
 spinstr='|/-\'
 spinner() {
   local pid=$1
@@ -84,4 +113,16 @@ execute() {
     print_in_red "[✖] ${2}\n"
     return 1
   fi
+}
+
+
+create_directory() {
+  if [ ! -d "${1}" ]; then
+    execute "mkdir -p '${1}'" "Create directory ${1/#$HOME/'~'}"
+  fi
+}
+
+
+remove_directory() {
+  execute "rm -rf ${1}" "Remove directory ${1/#$HOME/'~'}"
 }

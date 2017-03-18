@@ -4,31 +4,44 @@
 . installs.sh
 
 
-heading "Installs\n"
+heading "Installs"
 
+subheading "System packages"
 execute "sudo apt update" "Update APT"
-
-subheading "Core packages"
 install_package "cURL"     "curl"
 install_package "Git"      "git"
 install_package "Python 2" "python"
 install_package "tmux"     "tmux"
+install_package "Vim"      "vim"
 install_package "Zsh"      "zsh"
-
-subheading "Oh My Zsh"
-install_oh_my_zsh
 
 subheading "Python 2 packages"
 install_pip
 install_pip_package "Virtualenv 15.0.3" "virtualenv==15.0.3"
 install_pip_package "Supervisor 3.3.1"  "supervisor==3.3.1"
 
+subheading "Oh My Zsh"
+clone_oh_my_zsh
 
-heading "Symlink dotfiles\n"
+subheading "Base16 Shell Theme"
+clone_base16_shell_theme
 
-symlink "bin/serial.sh"             ".local/bin/serial"
-symlink "git/gitconfig"               ".gitconfig"
-symlink "tmux/tmux.conf"              ".tmux.conf"
-symlink "zsh/zshrc"                   ".zshrc"
-symlink "zsh/aliases"                 ".aliases"
-symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+subheading "Vim plugins"
+clone_vim_nerdtree_plugin
+clone_vim_flake8_plugin
+clone_vim_base16_themes
+
+
+heading "Create symbolic links"
+
+subheading "Configurations"
+symlink "git/gitconfig"                 ".gitconfig"
+symlink "tmux/tmux.conf"                ".tmux.conf"
+symlink "vim/vimrc"                     ".vimrc"
+symlink "vim/colors/base16-onedark.vim" ".vim/colors/base16-onedark.vim"
+symlink "zsh/zshrc"                     ".zshrc"
+symlink "zsh/aliases"                   ".aliases"
+symlink "zsh/rossmacarthur.zsh-theme"   ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+
+subheading "Scripts"
+symlink "bin/serial.sh" ".local/bin/serial"

@@ -11,8 +11,14 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(git sublime)
 source $ZSH/oh-my-zsh.sh
 
+# Base16 Shell
+BASE16_SHELL=$HOME/.config/base16-shell/
+if [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ]; then
+  eval "$($BASE16_SHELL/profile_helper.sh)"
+fi
+
 # Custom
-export EDITOR='nano'
+export EDITOR='vim'
 if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
