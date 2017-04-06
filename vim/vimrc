@@ -8,9 +8,6 @@ set background=dark      " Dark background
 " Try set colorscheme based on current base16 shell theme
 if filereadable(expand("~/.vimrc_background"))
   source ~/.vimrc_background
-" Else default to base16-onedark
-else
-  colorscheme base16-onedark
 endif
 
 " Create undo directory if it doesn't exist
@@ -32,6 +29,7 @@ set nowritebackup " Do not write temporary backup of file
 set noswapfile    " Do not make a swap file for the buffer
 set undofile      " Make undo's persist after exiting Vim
 set undodir=~/.vim/vimundo/ " Set undo directory
+set pastetoggle=<F2>        " Toggle for pasting
 
 " Remap direction keys for Colemak: 'h'=up, 'k'=down, 'l'=right, 'j'=left
 nnoremap j h

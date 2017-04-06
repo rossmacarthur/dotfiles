@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# So these commands can be executed with sudo
+alias sudo="sudo "
+
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# List hidden
+alias lh="ls -a | egrep '^\.'"
+
+# IP addresses
+alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
+
+# stty dimensions for full screen terminal on a Dell 24" Monitor and disable driver messages
+alias dev="stty cols 238 rows 78 && dmesg -n 1"
+
+# So that Vim colors look correct in tmux
+alias tmux="export TERM=xterm-256color; tmux"
