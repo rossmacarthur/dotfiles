@@ -23,6 +23,21 @@ alias afk="gnome-screensaver-command -l"
 # Shortcut for storepass script
 alias sp="storepass"
 
+# Shortcut for capslock script
+alias cl="capslock"
+
+# Set keyboard to Colemak
+cm() {
+  setxkbmap us -variant colemak
+  xset r 66
+}
+
+# Set keyboard to QWERTY
+qw() {
+  setxkbmap us
+  xset -r 66
+}
+
 # Max brightness of Toshiba R850-12R laptop screen
 maxbrightness() {
   sudo sh -c "echo 7 > /sys/class/backlight/acpi_video0/brightness"

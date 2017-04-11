@@ -58,6 +58,7 @@ subheading "Scripts"
 symlink "bin/serial.sh"             ".local/bin/serial"
 symlink "bin/storepass.py"          ".local/bin/storepass"
 symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
+symlink "bin/capslock.py"           ".local/bin/capslock"
 
 
 heading "General\n"
