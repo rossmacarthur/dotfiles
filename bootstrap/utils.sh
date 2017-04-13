@@ -10,6 +10,7 @@ ask_for_sudo() {
 
 
 ask_for_confirmation() {
+  unset ANSWER
   print_in_yellow "   [?] ${1} (y/n) "
   read -r -n 1 -t 10 ANSWER
   printf "\n"
@@ -68,7 +69,7 @@ prompt_for_choice() {
     print_in_yellow "         ${index}) ${choice}\n"
     index=$((index+1))
   done
-  print_in_yellow "         x) exit\n"
+  print_in_yellow "         x) Exit\n"
   while : ; do
     print_in_yellow "       : "
     read -r -n 1 CHOICE
@@ -116,13 +117,37 @@ execute() {
 }
 
 
+check_os() {
+  local os_name=$(uname -s)
+  if [ "${os_name}" == "Darwin" ]; then
+    PLATFORM="macOS"
+  else
+    PLATFORM=$os_name
+  fi
+}
+
+
+download() {
+  local url=$1
+  local output=$2
+  if command_exists curl; then
+    curl -LsSo "${output}" "${url}" &> /dev/null
+  elif command_exists wget; then
+    wget -qO "${output}" "${url}" &> /dev/null
+  else
+    return 1
+  fi
+  return 0
+}
+
+
 create_directory() {
   if [ ! -d "${1}" ]; then
-    execute "mkdir -p '${1}'" "Create directory ${1/#$HOME/'~'}"
+    execute "mkdir -p '${1}'" "Create directory ${1/#$HOME/~}"
   fi
 }
 
 
 remove_directory() {
-  execute "rm -rf ${1}" "Remove directory ${1/#$HOME/'~'}"
+  execute "rm -rf ${1}" "Remove directory ${1/#$HOME/~}"
 }

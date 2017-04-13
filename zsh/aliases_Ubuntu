@@ -30,12 +30,20 @@ alias cl="capslock"
 cm() {
   setxkbmap us -variant colemak
   xset r 66
+  echo "Keyboard set to Colemak"
 }
 
 # Set keyboard to QWERTY
 qw() {
   setxkbmap us
   xset -r 66
+  echo "Keyboard set to QWERTY"
+}
+
+# Copy "¯\_(ツ)_/¯" to clipboard
+shrug() {
+  echo "¯\_(ツ)_/¯" | xclip -selection clipboard
+  echo "Copied ¯\_(ツ)_/¯ to clipboard"
 }
 
 # Max brightness of Toshiba R850-12R laptop screen

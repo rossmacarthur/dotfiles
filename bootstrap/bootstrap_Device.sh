@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 
-. utils.sh
 . installs.sh
 
 
 heading "Installs"
 
 subheading "System packages"
-execute "sudo apt update" "Update APT"
+execute "sudo apt update" "APT (update)"
 install_package "cURL"     "curl"
 install_package "Git"      "git"
 install_package "Python 2" "python"
@@ -38,7 +37,7 @@ symlink "git/gitconfig"                 ".gitconfig"
 symlink "tmux/tmux.conf"                ".tmux.conf"
 symlink "vim/vimrc"                     ".vimrc"
 symlink "zsh/zshrc"                     ".zshrc"
-symlink "zsh/aliases_device"            ".aliases"
+symlink "zsh/aliases_Device"            ".aliases"
 symlink "zsh/rossmacarthur.zsh-theme"   ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"

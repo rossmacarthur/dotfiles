@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# So these commands can be executed with sudo
+alias sudo="sudo "
+
+# Easier navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# List hidden
+alias lh="ls -a | egrep '^\.'"
+
+# IP addresses
+alias ips="ifconfig -a | awk '/inet /{print \$2}'"
+
+# Lock screen
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Shortcut for storepass script
+alias sp="storepass"
+
+# Trim trailing newline and copy
+alias copy="tr -d '\n' | pbcopy"
+
+# Copy "¯\_(ツ)_/¯" to clipboard
+shrug() {
+  echo "¯\_(ツ)_/¯" | copy
+  echo "Copied ¯\_(ツ)_/¯ to clipboard"
+}

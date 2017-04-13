@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+. utils.sh
+
+check_os
+
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PARENTDIR="$(dirname "$DIR")"
 
@@ -11,9 +15,23 @@ symlink() {
 }
 
 
-install_package() {
-  execute "sudo apt -y install ${2}" "${1}"
+install_homebrew() {
+  if ! command_exists brew; then
+    execute "echo | ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'" "Homebrew (install)"
+  fi
+  execute "brew update" "Homebrew (update)"
 }
+
+
+if [ "${PLATFORM}" == "macOS" ]; then
+  install_package() {
+    execute "brew install ${2}" "${1}"
+  }
+else
+  install_package() {
+    execute "sudo apt -y install ${2}" "${1}"
+  }
+fi
 
 
 install_pip() {
