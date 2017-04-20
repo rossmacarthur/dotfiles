@@ -45,9 +45,15 @@ install_pip() {
 }
 
 
-install_pip_package() {
-  execute "pip install --user ${2}" "${1}"
-}
+if [ "${PLATFORM}" == "macOS" ]; then
+  install_pip_package() {
+    execute "pip install ${2}" "${1}"
+  }
+else
+  install_pip_package() {
+    execute "pip install --user ${2}" "${1}"
+  }
+fi
 
 
 clone_git_repository() {

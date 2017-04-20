@@ -8,9 +8,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 if [[ $# -lt 1 ]]; then
-  echo "Usage: serial <serial-port> [ <speed> [ <stty-options> ... ] ]"
+  echo "Usage: femtocom <serial-port> [ <speed> [ <stty-options> ... ] ]"
   echo ""
-  echo "e.g: serial /dev/ttyUSB0 115200"
+  echo "e.g: femtocom /dev/ttyUSB0 115200"
   echo ""
   echo "Press Ctrl+Q to quit"
   exit 0

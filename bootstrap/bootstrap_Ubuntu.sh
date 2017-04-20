@@ -46,18 +46,20 @@ clone_vim_base16_themes
 heading "Create symbolic links"
 
 subheading "Configurations"
-symlink "git/gitconfig"                 ".gitconfig"
-symlink "tmux/tmux.conf"                ".tmux.conf"
-symlink "vim/vimrc"                     ".vimrc"
-symlink "zsh/zshrc"                     ".zshrc"
-symlink "zsh/aliases_Ubuntu"            ".aliases"
-symlink "zsh/rossmacarthur.zsh-theme"   ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+symlink "git/gitconfig"               ".gitconfig"
+symlink "git/gitconfig_global"        ".gitconfig_global"
+symlink "tmux/tmux.conf"              ".tmux.conf"
+symlink "vim/vimrc"                   ".vimrc"
+symlink "zsh/zshrc"                   ".zshrc"
+symlink "zsh/aliases_Ubuntu"          ".aliases"
+symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
-symlink "bin/serial.sh"             ".local/bin/serial"
+symlink "bin/capslock.py"           ".local/bin/capslock"
+symlink "bin/femtocom.sh"           ".local/bin/femtocom"
+symlink "bin/nanocom.py"            ".local/bin/nanocom"
 symlink "bin/storepass.py"          ".local/bin/storepass"
 symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
-symlink "bin/capslock.py"           ".local/bin/capslock"
 
 
 heading "General\n"
