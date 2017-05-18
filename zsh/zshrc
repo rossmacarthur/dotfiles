@@ -22,3 +22,6 @@ export EDITOR='vim'
 if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
+if [ -f $HOME/.aliases_os ]; then
+  source $HOME/.aliases_os
+fi

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# Modified version of https://github.com/pyserial/pyserial/blob/master/serial/tools/miniterm.py
+
 import click
 import codecs
 import serial

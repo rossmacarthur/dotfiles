@@ -17,8 +17,20 @@ alias lh="ls -a | egrep '^\.'"
 # IP addresses
 alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
 
-# stty dimensions for full screen terminal on a Dell 24" Monitor and disable driver messages
-alias dev="stty cols 238 rows 78 && dmesg -n 1"
-
 # So that Vim colors look correct in tmux
 alias tmux="export TERM=xterm-256color; tmux"
+
+# Shortcut for storepass script
+alias sp="storepass"
+
+# Dev command
+dev() {
+  ttyresize
+  dmesg -n 1
+}
+
+# Copy "¯\_(ツ)_/¯" to clipboard
+shrug() {
+  echo "¯\_(ツ)_/¯" | copy
+  echo "Copied ¯\_(ツ)_/¯ to clipboard"
+}

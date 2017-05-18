@@ -51,7 +51,8 @@ symlink "git/gitconfig_global"        ".gitconfig_global"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"
-symlink "zsh/aliases_Ubuntu"          ".aliases"
+symlink "zsh/aliases"                 ".aliases"
+symlink "zsh/aliases_Ubuntu"          ".aliases_os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
@@ -60,9 +61,9 @@ symlink "bin/femtocom.sh"           ".local/bin/femtocom"
 symlink "bin/nanocom.py"            ".local/bin/nanocom"
 symlink "bin/storepass.py"          ".local/bin/storepass"
 symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
+symlink "bin/ttyresize"             ".local/bin/ttyresize"
 
 
 heading "General\n"
 
 disable_guest_login
-
