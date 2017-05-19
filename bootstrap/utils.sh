@@ -69,7 +69,7 @@ prompt_for_choice() {
     print_in_yellow "         ${index}) ${choice}\n"
     index=$((index+1))
   done
-  print_in_yellow "         x) Exit\n"
+  print_in_yellow "         x) exit\n"
   while : ; do
     print_in_yellow "       : "
     read -r -n 1 CHOICE

@@ -27,6 +27,7 @@ alias sp="storepass"
 dev() {
   ttyresize
   dmesg -n 1
+  stty speed 115200 -F /dev/ttyS1
 }
 
 # Copy "¯\_(ツ)_/¯" to clipboard
