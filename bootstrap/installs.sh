@@ -25,7 +25,7 @@ install_homebrew() {
 
 if [ "${PLATFORM}" == "macOS" ]; then
   install_package() {
-    execute "brew install ${2}" "${1}"
+    execute "brew install ${2} || brew upgrade ${2}" "${1}"
   }
 else
   install_package() {
