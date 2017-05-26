@@ -199,9 +199,9 @@ def store(label, generate):
     pd, master = get_database()
     if generate:
         password = random_password(generate)
-        paste_to_clipboard(password, timeout=45)
+        paste_to_clipboard(password, timeout=10)
         click.echo('Password generated and copied to clipboard.\n'
-                   'The clipboard will clear in 45 seconds.')
+                   'The clipboard will clear in 10 seconds.')
     else:
         password = click.prompt('Enter password for entry', hide_input=True,
                                 confirmation_prompt=True)
@@ -231,8 +231,8 @@ def get(label, clipboard):
     if label in labels:
         pd, master = get_database()
         if clipboard:
-            paste_to_clipboard(pd[label], timeout=45)
-            click.echo('Password copied to clipboard.\nThe clipboard will clear in 45 seconds.')
+            paste_to_clipboard(pd[label], timeout=10)
+            click.echo('Password copied to clipboard.\nThe clipboard will clear in 10 seconds.')
         else:
             click.echo('The password is: {}'.format(pd[label]))
     elif subset:
