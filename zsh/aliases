@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # So these commands can be executed with sudo
 alias sudo="sudo "
@@ -28,10 +28,4 @@ dev() {
   ttyresize
   dmesg -n 1
   stty speed 115200 -F /dev/ttyS1
-}
-
-# Copy "¯\_(ツ)_/¯" to clipboard
-shrug() {
-  echo "¯\_(ツ)_/¯" | copy
-  echo "Copied ¯\_(ツ)_/¯ to clipboard"
 }

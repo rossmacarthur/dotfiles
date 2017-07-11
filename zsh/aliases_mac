@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # IP addresses
 alias ips="ifconfig -a | awk '/inet /{print \$2}'"
@@ -8,3 +8,9 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Trim trailing newline and copy to clipboard
 alias copy="tr -d '\n' | pbcopy"
+
+# Copy "¯\_(ツ)_/¯" to clipboard
+shrug() {
+  echo "¯\_(ツ)_/¯" | copy
+  echo "Copied ¯\_(ツ)_/¯ to clipboard"
+}
