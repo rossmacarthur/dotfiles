@@ -20,12 +20,13 @@ install_package "xclip"      "xclip"
 install_package "Zsh"        "zsh"
 
 subheading "Python 2 packages"
-install_pip
-install_pip_package "Click"      "click"
-install_pip_package "Flake8"     "flake8"
-install_pip_package "PyCrypto"   "pycrypto"
-install_pip_package "Pyperclip"  "pyperclip"
-install_pip_package "Virtualenv" "virtualenv"
+install_pip2
+install_pip2_package "Flake8"     "flake8"
+install_pip2_package "Virtualenv" "virtualenv"
+
+subheading "Python 3 packages"
+install_pip3
+install_pip3_package "PassTheSalt" "passthesalt"
 
 subheading "Deb packages"
 install_sublime_text_3
@@ -56,12 +57,10 @@ symlink "zsh/aliases_ubuntu"          ".aliases_os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
-symlink "bin/capslock.py"           ".local/bin/capslock"
-symlink "bin/femtocom.sh"           ".local/bin/femtocom"
-symlink "bin/nanocom.py"            ".local/bin/nanocom"
-symlink "bin/storepass.py"          ".local/bin/storepass"
-symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
-symlink "bin/ttyresize"             ".local/bin/ttyresize"
+symlink "bin/capslock.py"             ".local/bin/capslock"
+symlink "bin/femtocom.sh"             ".local/bin/femtocom"
+symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
+symlink "bin/ttyresize"               ".local/bin/ttyresize"
 
 
 heading "General\n"

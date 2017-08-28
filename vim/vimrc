@@ -28,8 +28,9 @@ set nobackup      " Do not make temporary backup of file
 set nowritebackup " Do not write temporary backup of file
 set noswapfile    " Do not make a swap file for the buffer
 set undofile      " Make undo's persist after exiting Vim
-set undodir=~/.vim/vimundo/ " Set undo directory
-set pastetoggle=<F2>        " Toggle for pasting
+set undodir=~/.vim/vimundo/    " Set undo directory
+set pastetoggle=<F2>           " Toggle for pasting
+set backspace=indent,eol,start " Allow backspacing over everything in insert mode
 
 " Remap direction keys for Colemak: 'h'=up, 'k'=down, 'l'=right, 'j'=left
 nnoremap j h

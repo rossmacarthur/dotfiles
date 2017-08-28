@@ -15,8 +15,10 @@ install_package "Vim"      "vim"
 install_package "Zsh"      "zsh"
 
 subheading "Python 2 packages"
-install_pip
-install_pip_package "Flake8" "flake8"
+install_pip2
+install_pip2_package "Flake8"     "flake8"
+install_pip2_package "Nanocom"    "nanocom"
+install_pip2_package "Virtualenv" "virtualenv"
 
 subheading "Oh My Zsh"
 clone_oh_my_zsh

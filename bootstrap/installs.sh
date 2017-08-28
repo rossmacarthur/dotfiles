@@ -34,24 +34,46 @@ else
 fi
 
 
-install_pip() {
+install_pip2() {
   if command_exists pip; then
-    execute "pip install --upgrade pip" "PIP"
+    execute "pip install --upgrade pip" "PIP 2"
   else
     execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
-    execute "sudo python get-pip.py" "PIP"
+    execute "sudo python2 get-pip.py" "PIP 2"
+    rm -f get-pip.py
+  fi
+}
+
+
+install_pip3() {
+  if command_exists pip3; then
+    execute "pip3 install --upgrade pip" "PIP 3"
+  else
+    execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
+    execute "sudo python3 get-pip.py" "PIP 3"
     rm -f get-pip.py
   fi
 }
 
 
 if [ "${PLATFORM}" == "macOS" ]; then
-  install_pip_package() {
-    execute "pip install ${2}" "${1}"
+  install_pip2_package() {
+    execute "pip2 install ${2}" "${1}"
   }
 else
-  install_pip_package() {
-    execute "pip install --user ${2}" "${1}"
+  install_pip2_package() {
+    execute "pip2 install --user ${2}" "${1}"
+  }
+fi
+
+
+if [ "${PLATFORM}" == "macOS" ]; then
+  install_pip3_package() {
+    execute "pip3 install ${2}" "${1}"
+  }
+else
+  install_pip3_package() {
+    execute "pip3 install --user ${2}" "${1}"
   }
 fi
 

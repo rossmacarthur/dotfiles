@@ -1,0 +1,26 @@
+#compdef passthesalt pts
+
+_passthesalt() {
+  local curcontext="$curcontext" state line
+
+  _arguments "1: :->command" "*: :->label"
+
+  case $state in
+  command)
+    _arguments "1: :(add get ls rm)"
+  ;;
+  *) 
+    case $words[2] in
+      add|get|ls|rm)
+        if [ -f ~/.passthesalt ]; then
+          IFS=$'\n' raw=($(pts ls))
+          _multi_parts -M "m:{[:lower:][:upper:]}={[:upper:][:lower:]}" -i / raw
+ 
+        fi
+      ;;
+      *)
+        _files
+      ;;
+    esac
+  esac
+}

@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 GITHUB_REPOSITORY="rossmacarthur/dotfiles"
-DOTFILES_TARBALL_URL="https://github.com/${GITHUB_REPOSITORY}/tarball/master"
-DOTFILES_UTILS_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/master/bootstrap/utils.sh"
+GIT_BRANCH="master"
+DOTFILES_TARBALL_URL="https://github.com/${GITHUB_REPOSITORY}/tarball/${GIT_BRANCH}"
+DOTFILES_UTILS_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GIT_BRANCH}/bootstrap/utils.sh"
 DOTFILES_DIRECTORY="${HOME}/.dotfiles"
 
 

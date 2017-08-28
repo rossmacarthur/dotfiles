@@ -7,22 +7,25 @@ heading "Installs"
 
 subheading "System packages"
 install_homebrew
-install_package "cURL"       "curl"
-install_package "Git"        "git"
-install_package "htop"       "htop"
-install_package "Python 2"   "python"
-install_package "tmux"       "tmux"
-install_package "Vim"        "vim --with-override-system-vi"
-install_package "Zsh"        "zsh"
+install_package "cURL"            "curl"
+install_package "Git"             "git"
+install_package "htop"            "htop"
+install_package "Python 2"        "python"
+install_package "Python 3"        "python3"
+install_package "tmux"            "tmux"
+install_package "tmux-pasteboard" "reattach-to-user-namespace"
+install_package "Vim"             "vim --with-override-system-vi"
+install_package "Zsh"             "zsh"
 
 subheading "Python 2 packages"
-install_pip
-install_pip_package "Click"      "click"
-install_pip_package "Flake8"     "flake8"
-install_pip_package "PyCrypto"   "pycrypto"
-install_pip_package "Pyperclip"  "pyperclip"
-install_pip_package "PypSerial"  "pyserial"
-install_pip_package "Virtualenv" "virtualenv"
+install_pip2
+install_pip2_package "Flake8"     "flake8"
+install_pip2_package "Nanocom"    "nanocom"
+install_pip2_package "Virtualenv" "virtualenv"
+
+subheading "Python 3 packages"
+install_pip3
+install_pip3_package "PassTheSalt" "passthesalt"
 
 subheading "Oh My Zsh"
 clone_oh_my_zsh
@@ -49,6 +52,4 @@ symlink "zsh/aliases_mac"             ".aliases_os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
-symlink "bin/nanocom.py"            ".local/bin/nanocom"
-symlink "bin/storepass.py"          ".local/bin/storepass"
-symlink "zsh/completions/storepass" ".oh-my-zsh/completions/_storepass"
+symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
