@@ -35,8 +35,8 @@ fi
 
 
 install_pip2() {
-  if command_exists pip; then
-    execute "pip install --upgrade pip" "PIP 2"
+  if command_exists pip2; then
+    execute "pip2 install --upgrade pip" "PIP 2"
   else
     execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
     execute "sudo python2 get-pip.py" "PIP 2"
