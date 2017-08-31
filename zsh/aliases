@@ -26,6 +26,6 @@ alias sp="storepass"
 # Dev command
 dev() {
   ttyresize
-  dmesg -n 1
-  stty speed 115200 -F /dev/ttyS1
+  dmesg -n 1 && echo 'set dmesg level to 1\n'
+  stty speed 115200 -F /dev/ttyS1 >/dev/null && echo 'set /dev/ttyS1 speed to 115200\n'
 }
