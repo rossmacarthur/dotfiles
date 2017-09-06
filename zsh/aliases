@@ -20,9 +20,6 @@ alias ips="ifconfig -a | awk '/inet addr/{print substr(\$2,6)}'"
 # So that Vim colors look correct in tmux
 alias tmux="export TERM=xterm-256color; tmux"
 
-# Shortcut for storepass script
-alias sp="storepass"
-
 # Dev command
 dev() {
   ttyresize
