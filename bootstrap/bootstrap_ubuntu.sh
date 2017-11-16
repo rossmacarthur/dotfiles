@@ -21,13 +21,10 @@ install_package "Zsh"        "zsh"
 
 subheading "Python 2 packages"
 install_pip2
-install_pip2_package "awscli"     "awscli"
-install_pip2_package "Flake8"     "flake8"
-install_pip2_package "Virtualenv" "virtualenv"
-
-subheading "Python 3 packages"
-install_pip3
-install_pip3_package "PassTheSalt" "passthesalt"
+install_pip2_package "awscli"      "awscli"
+install_pip2_package "Flake8"      "flake8"
+install_pip2_package "PassTheSalt" "passthesalt"
+install_pip2_package "Virtualenv"  "virtualenv"
 
 subheading "Deb packages"
 install_sublime_text_3
@@ -49,7 +46,7 @@ heading "Create symbolic links"
 
 subheading "Configurations"
 symlink "git/gitconfig"               ".gitconfig"
-symlink "git/gitconfig_global"        ".gitconfig_global"
+symlink "git/gitignore_global"        ".gitignore_global"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"

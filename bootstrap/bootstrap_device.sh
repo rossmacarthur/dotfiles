@@ -37,7 +37,7 @@ heading "Create symbolic links"
 
 subheading "Configurations"
 symlink "git/gitconfig"               ".gitconfig"
-symlink "git/gitconfig_global"        ".gitconfig_global"
+symlink "git/gitignore_global"        ".gitignore_global"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"
