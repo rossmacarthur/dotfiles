@@ -6,9 +6,10 @@ else
   local user_symbol='$'
 fi
 
+local context="%{$fg_bold[grey]%}%m%{$reset_color%} "
 local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})${user_symbol}%{$reset_color%} "
 local directory="%{$fg_bold[blue]%}%~%{$reset_color%} "
-PROMPT='${directory}$(git_prompt_info)${ret_status}'
+PROMPT='${context}${directory}$(git_prompt_info)${ret_status}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
