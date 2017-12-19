@@ -7,6 +7,11 @@ DOTFILES_UTILS_URL="https://raw.githubusercontent.com/${GITHUB_REPOSITORY}/${GIT
 DOTFILES_DIRECTORY="${HOME}/.dotfiles"
 
 
+print_error() {
+  printf "\n\033[31m • ${1}\033[m\n"
+}
+
+
 download_utils() {
   local output=$(mktemp /tmp/XXXXX)
   if hash curl > /dev/null 2>&1; then
@@ -14,9 +19,10 @@ download_utils() {
   elif hash wget > /dev/null 2>&1; then
     wget -qO "${output}" "${DOTFILES_UTILS_URL}" &> /dev/null
   else
-    printf "Please install curl or wget"
+    print_error "Please install curl or wget"
     return 1
   fi
+  [ $? -ne 0 ] && print_error "Unable to download utils" && return 1
   . $output
   rm -rf $output
   return 0
@@ -39,7 +45,7 @@ download_archive() {
 
 main() {
   download_utils || return 1
-  
+
   ask_for_sudo
 
   heading "Download and extract archive\n"
@@ -62,4 +68,4 @@ main() {
 }
 
 
-main $@ || printf "\033[31m\n • Aborted!\033[m\n\n"
+main $@ || print_error "Aborted!\n"

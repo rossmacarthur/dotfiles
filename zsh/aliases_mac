@@ -7,6 +7,7 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias copy="tr -d '\n' | pbcopy"
 
 # IP addresses
+unalias ips
 ips() {
   ifconfig -a | python -c "
 import itertools, re, sys
