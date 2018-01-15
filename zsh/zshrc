@@ -25,3 +25,6 @@ fi
 if [ -f $HOME/.aliases_os ]; then
   source $HOME/.aliases_os
 fi
+if [ -f $HOME/.aliases_pvt ]; then
+  source $HOME/.aliases_pvt
+fi
