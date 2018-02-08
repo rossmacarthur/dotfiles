@@ -6,18 +6,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 # Trim trailing newline and copy to clipboard
 alias copy="tr -d '\n' | pbcopy"
 
-# IP addresses
-unalias ips
-ips() {
-  ifconfig -a | python -c "
-import itertools, re, sys
-matches = iter(re.split(r'((?:^|(?<=\n))[A-z0-9]+(?=:\s))', sys.stdin.read(), re.DOTALL)[1:])
-for r in list(itertools.izip_longest(matches, matches)):
-    ip_address = re.search(r'(?<=inet\s)\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', r[1])
-    if ip_address:
-        print '{:<5} {}'.format(r[0], ip_address.group(0))"
-}
-
 # Copy "¯\_(ツ)_/¯" to clipboard
 shrug() {
   echo "¯\_(ツ)_/¯" | copy
