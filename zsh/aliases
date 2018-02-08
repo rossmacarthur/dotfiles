@@ -30,7 +30,7 @@ obf() {
 
 # Unobfuscate text with a key
 unobf() {
-  cat - | xxd -ps -r | xz -d | base64 -D | xor $1
+  cat - | xxd -ps -r | xz -d | base64 --decode | xor $1
 }
 
 # Dev command
