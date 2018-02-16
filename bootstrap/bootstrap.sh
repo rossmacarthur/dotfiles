@@ -60,7 +60,7 @@ main() {
   fi
 
   cd ${DOTFILES_DIRECTORY}/bootstrap
-  local options=$(find . -type f -name "bootstrap_*.sh" | cut -d '_' -f 2- | cut -d '.' -f 1 | xargs -n20 | sort)
+  local options=$(find . -type f -name "bootstrap_*.sh" | cut -d '_' -f 2- | cut -d '.' -f 1 | sort | xargs)
   prompt_for_choice $options "Please select a bootstrap type"
   [ $? -ne 0 ] && return 1
   ./bootstrap_$CHOICE.sh
