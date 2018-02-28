@@ -42,6 +42,7 @@ clone_vim_nerdtree_plugin
 clone_vim_flake8_plugin
 clone_vim_base16_themes
 
+
 heading "Create symbolic links"
 
 subheading "Configurations"
@@ -57,8 +58,9 @@ symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme
 subheading "Scripts"
 symlink "bin/capslock.py"             ".local/bin/capslock"
 symlink "bin/femtocom.sh"             ".local/bin/femtocom"
-symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
+symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
 symlink "bin/ttyresize"               ".local/bin/ttyresize"
+symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
 
 
 heading "General\n"

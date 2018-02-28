@@ -50,4 +50,5 @@ symlink "zsh/aliases_mac"             ".aliases_os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
+symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
 symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
