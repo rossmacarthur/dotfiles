@@ -46,7 +46,7 @@ symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"
 symlink "zsh/aliases"                 ".aliases"
-symlink "zsh/aliases_mac"             ".aliases_os"
+symlink "zsh/aliases.mac"             ".aliases.os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"

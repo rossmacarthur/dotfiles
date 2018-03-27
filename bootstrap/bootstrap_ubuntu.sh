@@ -52,7 +52,7 @@ symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"
 symlink "zsh/aliases"                 ".aliases"
-symlink "zsh/aliases_ubuntu"          ".aliases_os"
+symlink "zsh/aliases.ubuntu"          ".aliases.os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
