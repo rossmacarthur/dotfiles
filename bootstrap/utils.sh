@@ -117,13 +117,11 @@ execute() {
 }
 
 
-check_os() {
-  local os_name=$(uname -s)
-  if [ "${os_name}" == "Darwin" ]; then
-    PLATFORM="macOS"
-  else
-    PLATFORM=$os_name
+os_is() {
+  if [ -z "${PLATFORM}" ]; then
+    PLATFORM=$(uname -s)
   fi
+  [ "${PLATFORM}" == "${1}" ] && return 0 || return 1
 }
 
 
