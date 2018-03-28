@@ -13,7 +13,7 @@ symlink() {
 }
 
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   update_package_manager() {
     if ! command_exists brew; then
       execute "echo | ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'" "Homebrew (install)"
@@ -27,7 +27,7 @@ else
 fi
 
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   install_package() {
     execute "brew install ${2} || brew upgrade ${2}" "${1}"
   }
@@ -60,7 +60,7 @@ install_pip3() {
 }
 
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   install_pip2_package() {
     execute "pip2 install ${2}" "${1}"
   }
@@ -71,7 +71,7 @@ else
 fi
 
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   install_pip3_package() {
     execute "pip3 install ${2}" "${1}"
   }

@@ -8,7 +8,7 @@ heading "Installs"
 subheading "System packages"
 update_package_manager
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   install_package "cURL"            "curl"
   install_package "Git"             "git"
   install_package "htop"            "htop"
@@ -63,12 +63,12 @@ symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 symlink "zsh/zshrc"                   ".zshrc"
 symlink "zsh/aliases"                 ".aliases"
-symlink "zsh/aliases.mac"             ".aliases.os"
+symlink "zsh/aliases.${PLATFORM}"     ".aliases.os"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
 
-if os_is "Darwin"; then
+if os_is "darwin"; then
   symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
   symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
 else

@@ -119,7 +119,7 @@ execute() {
 
 os_is() {
   if [ -z "${PLATFORM}" ]; then
-    PLATFORM=$(uname -s)
+    PLATFORM=$(uname -s | tr '[:upper:]' '[:lower:]')
   fi
   [ "${PLATFORM}" == "${1}" ] && return 0 || return 1
 }
