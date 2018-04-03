@@ -1,5 +1,9 @@
 # dotfiles
 
+Install packages and and my personal dotfiles on a new system.
+
+## Usage
+
 ```bash
 bash -c "$(curl -LsS https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/bootstrap.sh)"
 ```
@@ -12,9 +16,9 @@ bash -c "$(wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/boots
 
 The bootstrap process in action:
 
-![setup process](https://user-images.githubusercontent.com/17109887/29859861-4be1e03a-8d64-11e7-88e4-72c0dce4609f.gif)
+![setup process](https://user-images.githubusercontent.com/17109887/38251198-1295fefa-3751-11e8-9e0d-c607934cb04e.gif)
 
-### Customization
+## Customization
 
 The install script is designed to be very easy to create your own bootstrap. Simply:
 
@@ -24,6 +28,10 @@ The install script is designed to be very easy to create your own bootstrap. Sim
 * Change the top line of [bootstrap.sh](https://github.com/rossmacarthur/dotfiles/blob/master/bootstrap/bootstrap.sh) to reference your own fork as well as the code snippet at the top of this README.
 * Run the bootstrap script and your custom bootstrap will be presented as a bootstrap option.
 
-### Acknowledgements
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file.
+
+## Acknowledgements
 
 Inspired by [Cătălin Mariș's](https://github.com/alrra) [dotfiles](https://github.com/alrra/dotfiles).
