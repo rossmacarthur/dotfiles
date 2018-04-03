@@ -15,7 +15,6 @@ _passthesalt() {
         if [ -f ~/.passthesalt ]; then
           IFS=$'\n' raw=($(pts ls))
           _multi_parts -M "m:{[:lower:][:upper:]}={[:upper:][:lower:]}" -i / raw
-
         fi
       ;;
       *)
