@@ -16,8 +16,6 @@ install_package "Zsh"      "zsh"
 
 subheading "Python 2 packages"
 install_pip2
-install_pip2_package "awscli"     "awscli"
-install_pip2_package "Flake8"     "flake8"
 install_pip2_package "Nanocom"    "nanocom"
 install_pip2_package "Virtualenv" "virtualenv"
 
@@ -28,8 +26,6 @@ subheading "Base16 Shell Theme"
 clone_base16_shell_theme
 
 subheading "Vim plugins"
-clone_vim_nerdtree_plugin
-clone_vim_flake8_plugin
 clone_vim_base16_themes
 
 
