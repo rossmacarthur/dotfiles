@@ -137,13 +137,6 @@ clone_base16_shell_theme() {
 }
 
 
-clone_vim_nerdtree_plugin() {
-  clone_git_repository "NERDTree" \
-    "https://github.com/scrooloose/nerdtree.git" \
-    "${HOME}/.vim/bundle/nerdtree"
-}
-
-
 clone_vim_flake8_plugin() {
   clone_git_repository "Flake8" \
     "https://github.com/nvie/vim-flake8.git" \

@@ -52,21 +52,19 @@ autocmd BufWrite * :call DeleteTrailingWhitespace()
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Plugins
-set runtimepath^=~/.vim/bundle/flake8   " Enable flake8
-set runtimepath^=~/.vim/bundle/nerdtree " Enable nerdtree
 
-" Flake8 settings
-let g:flake8_show_in_gutter = 1          " Show marks on the left
-let g:flake8_quickfix_location="topleft" " Show quickfix window at the top
-let g:flake8_error_marker='●'            " Set error marker
-let g:flake8_warning_marker='●'          " Set warning marker
-let g:flake8_pyflake_marker=''           " Disable PyFlakes warnings
-let g:flake8_complexity_marker=''        " Disable McCabe complexity warnings
-let g:flake8_naming_marker=''            " Disable naming warnings
-highlight link Flake8_Error   ErrorMsg
-highlight link Flake8_Warning WarningMsg
-autocmd BufWritePost *.py call Flake8()  " Call Flake8 when writing a Python file
+if executable('flake8')
+  set runtimepath^=~/.vim/bundle/flake8   " Enable flake8
 
-" NERDTree settings
-map <C-n> :NERDTreeToggle<CR>
-let NERDTreeIgnore = ['\.pyc$']
+  " Flake8 settings
+  let g:flake8_show_in_gutter = 1          " Show marks on the left
+  let g:flake8_quickfix_location="topleft" " Show quickfix window at the top
+  let g:flake8_error_marker='●'            " Set error marker
+  let g:flake8_warning_marker='●'          " Set warning marker
+  let g:flake8_pyflake_marker=''           " Disable PyFlakes warnings
+  let g:flake8_complexity_marker=''        " Disable McCabe complexity warnings
+  let g:flake8_naming_marker=''            " Disable naming warnings
+  highlight link Flake8_Error   ErrorMsg
+  highlight link Flake8_Warning WarningMsg
+  autocmd BufWritePost *.py call Flake8()  " Call Flake8 when writing a Python file
+endif
