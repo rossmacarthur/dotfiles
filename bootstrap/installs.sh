@@ -2,14 +2,13 @@
 
 . utils.sh
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PARENTDIR="$(dirname "$DIR")"
-
+BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIRECTORY="$(dirname "${BOOTSTRAP_DIRECTORY}")"
 
 symlink() {
   create_directory "$(dirname "${HOME}/${2}")"
-  execute "ln -fs '${PARENTDIR}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
-  sleep 0.25
+  execute "ln -fs '${DOTFILES_DIRECTORY}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
+  sleep 0.1
 }
 
 
@@ -105,7 +104,6 @@ clone_git_repository() {
 check_package_installed() {
   local name=$1
   local command=$2
-
   dpkg -s "${command}" > /dev/null 2>&1
   if [ $? -eq 0 ]; then
     ask_for_confirmation "${name} is already installed. Reinstall?"

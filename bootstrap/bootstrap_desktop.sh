@@ -74,6 +74,5 @@ else
   symlink "bin/capslock.py"             ".local/bin/capslock"
   symlink "bin/femtocom.sh"             ".local/bin/femtocom"
   symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
-  symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
   symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
 fi

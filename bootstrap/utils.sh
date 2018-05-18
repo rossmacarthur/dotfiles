@@ -3,8 +3,12 @@
 
 ask_for_sudo() {
   if [[ $EUID -ne 0 ]]; then
-    sudo -v &> /dev/null
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    if [ -z "$SUDO_REQUESTED" ]; then
+      sudo -v &> /dev/null
+      [ $? -ne 0 ] && return 1
+      while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+      SUDO_REQUESTED=true
+    fi
   fi
 }
 
@@ -58,7 +62,7 @@ subheading() {
 
 
 print_error() {
-  print_in_red "   [✖] ${1}\n"
+  print_in_red "\n   [✖] ${1}\n"
 }
 
 
