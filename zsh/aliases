@@ -14,6 +14,11 @@ alias -- -="cd -"
 # List hidden
 alias lh="ls -a | egrep '^\.'"
 
+# Use hub for git commands if it is installed
+if hash hub >/dev/null 2>&1; then
+  alias git=hub
+fi
+
 # So that Vim colors look correct in tmux
 alias tmux="export TERM=xterm-256color; tmux"
 

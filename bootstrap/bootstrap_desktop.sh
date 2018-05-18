@@ -11,6 +11,7 @@ update_package_manager
 if os_is "darwin"; then
   install_package "cURL"            "curl"
   install_package "Git"             "git"
+  install_package "Hub"             "hub"
   install_package "htop"            "htop"
   install_package "Python 2"        "python@2"
   install_package "Python 3"        "python@3"
