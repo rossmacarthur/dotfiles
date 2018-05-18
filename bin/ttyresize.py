@@ -5,36 +5,52 @@
 import os
 import sys
 import fcntl
-import struct
 import re
-import termios
 import select
+import struct
+import termios
+import tty
 
-fd = sys.stdin.fileno()
 
-tty = open('/dev/tty', 'r+')
-tty.write('\033[7\033[r\033[999;999H\033[6n')
-tty.flush()
+# Save the terminal state
+fileno = sys.stdin.fileno()
+stty_old = termios.tcgetattr(sys.stdin)
+fc_old = fcntl.fcntl(fileno, fcntl.F_GETFL)
 
-oldterm = termios.tcgetattr(fd)
-newattr = oldterm[:]
-newattr[3] = newattr[3] & ~termios.ICANON & ~termios.ECHO
-termios.tcsetattr(fd, termios.TCSANOW, newattr)
+if sys.version_info < (3, 0):
+    ttyfd = open('/dev/tty', 'r+')
+else:
+    # Python 3 needs extra flags set, which requires a 2-step open process:
+    fd = os.open('/dev/tty', os.O_RDWR | os.O_NOCTTY)
+    ttyfd = open(fd, 'wb+', buffering=0)
 
-oldflags = fcntl.fcntl(fd, fcntl.F_GETFL)
-fcntl.fcntl(fd, fcntl.F_SETFL, oldflags | os.O_NONBLOCK)
+# Turn off echo.
+stty_new = termios.tcgetattr(sys.stdin)
+stty_new[3] = stty_new[3] & ~termios.ECHO
+termios.tcsetattr(sys.stdin, termios.TCSADRAIN, stty_new)
+
+ttyfd.write(b'\033[7\033[r\033[999;999H\033[6n')
+ttyfd.flush()
+
+# Put stdin into cbreak mode.
+# Python 2 can use fd here, but in Python 3 we have to get sys.stdin.fileno.
+tty.setcbreak(sys.stdin)
+
+# Nonblocking mode.
+fcntl.fcntl(fileno, fcntl.F_SETFL, fc_old | os.O_NONBLOCK)
 
 try:
     while True:
-        read, _, _ = select.select([fd], [], [])
-        if read:
+        if select.select([ttyfd], [], [])[0]:
             output = sys.stdin.read()
             break
 finally:
-    termios.tcsetattr(fd, termios.TCSAFLUSH, oldterm)
-    fcntl.fcntl(fd, fcntl.F_SETFL, oldflags)
+    # Reset the terminal back to normal cooked mode
+    termios.tcsetattr(fileno, termios.TCSAFLUSH, stty_old)
+    fcntl.fcntl(fileno, fcntl.F_SETFL, fc_old)
 
 rows, cols = list(map(int, re.findall(r'\d+', output)))
-fcntl.ioctl(fd, termios.TIOCSWINSZ, struct.pack("HHHH", rows, cols, 0, 0))
-termios.tcflush(sys.stdin, termios.TCIOFLUSH)
-print '\bReset the terminal to {} rows, {} cols.\n'.format(rows, cols)
+
+fcntl.ioctl(ttyfd, termios.TIOCSWINSZ, struct.pack('HHHH', rows, cols, 0, 0))
+
+sys.stdout.write('set the terminal to {} rows, {} cols\n\n'.format(rows, cols))
