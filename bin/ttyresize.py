@@ -17,17 +17,18 @@ fileno = sys.stdin.fileno()
 stty_old = termios.tcgetattr(sys.stdin)
 fc_old = fcntl.fcntl(fileno, fcntl.F_GETFL)
 
+# Turn off echo
+stty_new = stty_old[:]
+stty_new[3] = stty_new[3] & ~termios.ECHO
+
 if sys.version_info < (3, 0):
     ttyfd = open('/dev/tty', 'r+')
+    termios.tcsetattr(ttyfd, termios.TCSANOW, stty_new)
 else:
     # Python 3 needs extra flags set, which requires a 2-step open process:
     fd = os.open('/dev/tty', os.O_RDWR | os.O_NOCTTY)
     ttyfd = open(fd, 'wb+', buffering=0)
-
-# Turn off echo.
-stty_new = termios.tcgetattr(sys.stdin)
-stty_new[3] = stty_new[3] & ~termios.ECHO
-termios.tcsetattr(sys.stdin, termios.TCSADRAIN, stty_new)
+    termios.tcsetattr(sys.stdin, termios.TCSADRAIN, stty_new)
 
 ttyfd.write(b'\033[7\033[r\033[999;999H\033[6n')
 ttyfd.flush()
