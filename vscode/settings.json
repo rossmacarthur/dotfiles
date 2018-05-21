@@ -1,0 +1,50 @@
+{
+    "editor.folding": false,
+    "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 15,
+    "editor.lineHeight": 21,
+    "editor.renderIndentGuides": true,
+    "editor.renderWhitespace": "all",
+    "files.exclude": {
+        "**/*.pyc": true,
+        "**/.egg-info": true,
+        "**/__pycache__": true
+    },
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "gitlens.advanced.messages": {
+        "suppressShowKeyBindingsNotice": true
+    },
+    "gitlens.blame.toggleMode": "window",
+    "gitlens.codeLens.enabled": false,
+    "gitlens.historyExplorer.enabled": true,
+    "python.envFile": "${workspaceFolder}/.venv",
+    "python.linting.flake8Enabled": true,
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+    "terminal.integrated.fontFamily": "'Source Code Pro'",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeight": "normal",
+    "terminal.integrated.fontWeightBold": "normal",
+    "vim.cursorStylePerMode": {
+        "normal": "line"
+    },
+    "vim.otherModesKeyBindings": [
+        {
+            "before": ["j"],
+            "after": ["h"]
+        },
+        {
+            "before": ["k"],
+            "after": ["j"]
+        },
+        {
+            "before": ["h"],
+            "after": ["k"]
+        }
+    ],
+    "window.zoomLevel": -1,
+    "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "One Dark Pro"
+}

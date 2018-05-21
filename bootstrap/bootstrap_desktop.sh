@@ -70,6 +70,8 @@ subheading "Scripts"
 
 if os_is "darwin"; then
   symlink "bin/gensshkey.sh"            ".local/bin/gensshkey"
+  symlink "vscode/settings.json"        "Library/Application Support/Code/User/settings.json"
+  simlink "vscode/keybindings.json"     "Library/Application Support/Code/User/keybindings.json"
   symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
 else
   symlink "bin/capslock.py"             ".local/bin/capslock"
