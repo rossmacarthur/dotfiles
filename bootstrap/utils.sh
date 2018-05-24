@@ -4,8 +4,11 @@
 ask_for_sudo() {
   if [[ $EUID -ne 0 ]]; then
     if [ -z "$SUDO_REQUESTED" ]; then
-      sudo -v &> /dev/null
-      [ $? -ne 0 ] && return 1
+      if ! sudo -n -v &> /dev/null; then
+        subheading "Root privileges are required to continue"
+        sudo -v &> /dev/null
+        [ $? -ne 0 ] && return 1
+      fi
       while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
       SUDO_REQUESTED=true
     fi
