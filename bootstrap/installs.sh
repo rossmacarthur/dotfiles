@@ -12,6 +12,13 @@ symlink() {
 }
 
 
+sync() {
+  create_directory "$(dirname "${HOME}/${2}")"
+  execute "rsync '${DOTFILES_DIRECTORY}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
+  sleep 0.1
+}
+
+
 if os_is "darwin"; then
   update_package_manager() {
     if ! command_exists brew; then

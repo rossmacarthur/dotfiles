@@ -62,6 +62,7 @@ symlink "git/gitignore_global"        ".gitignore_global"
 symlink "tmux/tmux.conf"              ".tmux.conf"
 symlink "vim/vimrc"                   ".vimrc"
 if os_is "darwin"; then
+  sync    "iterm2/iterm2.plist"       "Library/Preferences/com.googlecode.iterm2.plist"
   symlink "vscode/settings.json"      "Library/Application Support/Code/User/settings.json"
   symlink "vscode/keybindings.json"   "Library/Application Support/Code/User/keybindings.json"
 else
