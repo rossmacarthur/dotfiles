@@ -3,12 +3,17 @@
     "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
     "editor.lineHeight": 21,
+    // "editor.lineNumbers": "relative",
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "all",
+    "editor.rulers": [100],
+    "extensions.ignoreRecommendations": true,
     "files.exclude": {
         "**/*.pyc": true,
-        "**/.egg-info": true,
-        "**/__pycache__": true
+        "**/*.egg-info": true,
+        "**/__pycache__": true,
+        "**/venv/": true,
+        "**/.vscode": true,
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -19,6 +24,7 @@
     "gitlens.blame.toggleMode": "window",
     "gitlens.codeLens.enabled": false,
     "gitlens.historyExplorer.enabled": true,
+    "markdown.preview.fontSize": 19,
     "python.envFile": "${workspaceFolder}/.venv",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
@@ -30,6 +36,7 @@
     "vim.cursorStylePerMode": {
         "normal": "line"
     },
+    "vim.disableExtension": true,
     "vim.otherModesKeyBindings": [
         {
             "before": ["j"],
@@ -46,5 +53,5 @@
     ],
     "window.zoomLevel": -1,
     "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "One Dark Pro"
+    "workbench.colorTheme": "One Monokai"
 }
