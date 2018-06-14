@@ -35,30 +35,6 @@ unobf() {
   cat - | xxd -ps -r | xz -d | base64 --decode | xor $1
 }
 
-# IP addresses
-ips() {
-  ifconfig -a | python -c "
-import re
-import sys
-
-try:
-    from itertools import izip_longest as zip_longest
-except ImportError:
-    from itertools import zip_longest
-
-matches = iter(re.split(r'((?:^|(?<=\n))[A-z0-9]+(?=:\s|\s+))', sys.stdin.read(), re.DOTALL)[1:])
-
-interfaces = list()
-for r in list(zip_longest(matches, matches)):
-    ip_address = re.search(r'(?:(?<=inet addr:)|(?<=inet\s))\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', r[1])
-    if ip_address:
-        interfaces.append((r[0], ip_address.group(0)))
-
-maximum_length = max(len(interface[0]) for interface in interfaces)
-for interface in interfaces:
-    sys.stdout.write('{1:<{0}}  {2}\n'.format(maximum_length, *interface))"
-}
-
 # Dev command
 dev() {
   ttyresize

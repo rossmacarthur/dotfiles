@@ -75,9 +75,9 @@ symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
 symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
-
 if ! os_is "darwin"; then
   symlink "bin/capslock.py" ".local/bin/capslock"
   symlink "bin/femtocom.sh" ".local/bin/femtocom"
 fi
 symlink "bin/gensshkey.sh"  ".local/bin/gensshkey"
+symlink "bin/ips.py"        ".local/bin/ips"
