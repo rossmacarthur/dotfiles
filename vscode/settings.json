@@ -4,14 +4,27 @@
     "editor.fontSize": 15,
     "editor.lineHeight": 21,
     // "editor.lineNumbers": "relative",
+    "editor.tokenColorCustomizations": {
+        "[One Monokai]": {
+            "textMateRules": [
+                {
+                    "scope":"string.quoted.docstring.multi.python",
+                    "settings": {
+                        "foreground": "#5c6370"
+                    }
+                }
+            ]
+        }
+    },
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "all",
-    "editor.rulers": [100],
+    "editor.rulers": [99],
     "extensions.ignoreRecommendations": true,
     "files.exclude": {
         "**/*.pyc": true,
         "**/*.egg-info": true,
         "**/__pycache__": true,
+        "**/.pytest_cache": true,
         "**/venv/": true,
         "**/.vscode": true,
     },
