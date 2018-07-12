@@ -18,8 +18,13 @@ bash -c "$(wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/boots
 
 ### Manual
 
+Clone the repository with
 ```bash
 git clone git@github.com:rossmacarthur/dotfiles.git
+```
+
+And run the bootstrap script using
+```
 ./dotfiles/bootstrap/bootstrap.sh
 ```
 
