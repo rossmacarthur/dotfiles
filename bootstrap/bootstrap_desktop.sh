@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-. installs.sh
-
+source installs.sh
 
 heading "Installs"
 

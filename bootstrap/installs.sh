@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
 
-. utils.sh
+source utils.sh
 
 BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES_DIRECTORY="$(dirname "${BOOTSTRAP_DIRECTORY}")"
+DOTFILES_DIRECTORY="$(dirname "$BOOTSTRAP_DIRECTORY")"
+
 
 symlink() {
-  create_directory "$(dirname "${HOME}/${2}")"
-  execute "ln -fs '${DOTFILES_DIRECTORY}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
+  create_directory "$(dirname "$HOME/$2")"
+  execute "ln -fs '$DOTFILES_DIRECTORY/$1' '$HOME/$2'" "$1 → ~/$2"
   sleep 0.1
 }
 
 
 sync() {
-  create_directory "$(dirname "${HOME}/${2}")"
-  execute "rsync '${DOTFILES_DIRECTORY}/${1}' '${HOME}/${2}'" "${1} → ~/${2}"
+  create_directory "$(dirname "$HOME/$2")"
+  execute "rsync '$DOTFILES_DIRECTORY/$1' '$HOME/$2'" "$1 → ~/$2"
   sleep 0.1
 }
 
@@ -35,11 +36,11 @@ fi
 
 if os_is "darwin"; then
   install_package() {
-    execute "brew install ${2} || brew upgrade ${2}" "${1}"
+    execute "brew install $2 || brew upgrade $2" "$1"
   }
 else
   install_package() {
-    execute "sudo apt -y install ${2}" "${1}"
+    execute "sudo apt -y install $2" "$1"
   }
 fi
 
@@ -68,22 +69,22 @@ install_pip3() {
 
 if os_is "darwin"; then
   install_pip2_package() {
-    execute "pip2 install ${2}" "${1}"
+    execute "pip2 install $2" "$1"
   }
 else
   install_pip2_package() {
-    execute "pip2 install --user ${2}" "${1}"
+    execute "pip2 install --user $2" "$1"
   }
 fi
 
 
 if os_is "darwin"; then
   install_pip3_package() {
-    execute "pip3 install ${2}" "${1}"
+    execute "pip3 install $2" "$1"
   }
 else
   install_pip3_package() {
-    execute "pip3 install --user ${2}" "${1}"
+    execute "pip3 install --user $2" "$1"
   }
 fi
 
@@ -92,18 +93,17 @@ clone_git_repository() {
   local name=$1
   local url=$2
   local folder=$3
-  local install=1
-  if [ -d "${folder}" ]; then
-    ask_for_confirmation "${name} is already installed. Reinstall?"
-    if answer_is_yes; then
-      remove_directory "${folder}"
-      install=0
+  local install=false
+  if [ -d "$folder" ]; then
+    if ask_for_confirmation "$name is already installed. Reinstall?"; then
+      remove_directory "$folder"
+      install=true
     fi
   else
-    install=0
+    install=true
   fi
-  if [ $install -eq 0 ]; then
-    execute "git clone --depth=1 ${url} ${folder}" "Clone ${name}"
+  if [ "$install" = true ]; then
+    execute "git clone --depth=1 $url $folder" "Clone $name"
   fi
 }
 
@@ -111,47 +111,43 @@ clone_git_repository() {
 check_package_installed() {
   local name=$1
   local command=$2
-  dpkg -s "${command}" > /dev/null 2>&1
-  if [ $? -eq 0 ]; then
-    ask_for_confirmation "${name} is already installed. Reinstall?"
-    if answer_is_yes; then
-      execute "sudo apt -y remove ${command}" "Remove current ${name}"
-      return 0
+  if dpkg -s "$command" > /dev/null 2>&1; then
+    if ask_for_confirmation "$name is already installed. Reinstall?"; then
+      execute "sudo apt -y remove $command" "Remove current $name" && return 0 || return 1
     fi
   else
     return 0
   fi
-  return 1
 }
 
 
 clone_oh_my_zsh() {
-  if [ ! -n "${ZSH}" ]; then
+  if [ ! -n "$ZSH" ]; then
     ZSH=~/.oh-my-zsh
   fi
   clone_git_repository "Oh My Zsh" \
     "https://github.com/robbyrussell/oh-my-zsh.git" \
-    "${ZSH}"
+    "$ZSH"
 }
 
 
 clone_base16_shell_theme() {
   clone_git_repository "Base16 Shell" \
     "https://github.com/chriskempson/base16-shell" \
-    "${HOME}/.config/base16-shell"
+    "$HOME/.config/base16-shell"
 }
 
 
 clone_vim_flake8_plugin() {
   clone_git_repository "Flake8" \
     "https://github.com/nvie/vim-flake8.git" \
-    "${HOME}/.vim/bundle/flake8"
+    "$HOME/.vim/bundle/flake8"
 }
 
 
 clone_vim_base16_themes() {
   clone_git_repository "Base16" \
     "https://github.com/chriskempson/base16-vim" \
-    "${HOME}/.vim/colors/base16"
-  execute "cp ${HOME}/.vim/colors/base16/colors/*.vim ${HOME}/.vim/colors/" "Copy Base16 color schemes to ~/.vim/colors/"
+    "$HOME/.vim/colors/base16"
+  execute "cp $HOME/.vim/colors/base16/colors/*.vim $HOME/.vim/colors/" "Copy Base16 color schemes to ~/.vim/colors/"
 }
