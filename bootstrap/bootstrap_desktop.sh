@@ -69,10 +69,10 @@ else
   symlink "vscode/keybindings.json"   ".config/Code/User/keybindings.json"
 fi
 symlink "zsh/zshrc"                   ".zshrc"
-symlink "zsh/aliases"                 ".aliases"
-symlink "zsh/aliases.${PLATFORM}"     ".aliases.os"
+symlink "zsh/plugins/all"             ".plugins"
+symlink "zsh/plugins/${PLATFORM}"     ".plugins.os"
 symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
-symlink "zsh/rossmacarthur.zsh-theme" ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+symlink "zsh/themes/rossmacarthur"    ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
 
 subheading "Scripts"
 if ! os_is "darwin"; then

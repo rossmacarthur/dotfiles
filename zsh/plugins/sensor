@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# Dev command
+dev() {
+  resize
+  dmesg -n 1 && echo 'set dmesg level to 1\n'
+}

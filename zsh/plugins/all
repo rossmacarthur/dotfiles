@@ -34,10 +34,3 @@ obf() {
 unobf() {
   cat - | xxd -ps -r | xz -d | base64 --decode | xor $1
 }
-
-# Dev command
-dev() {
-  resize
-  dmesg -n 1 && echo 'set dmesg level to 1\n'
-  stty speed 115200 -F /dev/ttyS1 >/dev/null && echo 'set /dev/ttyS1 speed to 115200\n'
-}

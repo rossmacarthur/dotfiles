@@ -18,7 +18,8 @@ if [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ]; then
 fi
 
 # Custom
-[ -f "$HOME/.aliases"     ] && source "$HOME/.aliases"
-[ -f "$HOME/.aliases.os"  ] && source "$HOME/.aliases.os"
-[ -f "$HOME/.aliases.pvt" ] && source "$HOME/.aliases.pvt"
+[ -f "$HOME/.plugins"     ] && source "$HOME/.plugins"
+[ -f "$HOME/.plugins.bs"  ] && source "$HOME/.plugins.bs"
+[ -f "$HOME/.plugins.os"  ] && source "$HOME/.plugins.os"
+[ -f "$HOME/.plugins.pvt" ] && source "$HOME/.plugins.pvt"
 export EDITOR='vim'

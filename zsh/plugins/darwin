@@ -18,3 +18,8 @@ sync_iterm2_config() {
   plutil -convert xml1 ~/.dotfiles/iterm2/iterm2.plist
   echo "Synced ~/Library/Preferences/com.googlecode.iterm2.plist to ~/.dotfiles/iterm2/iterm2.plist"
 }
+
+# If there are no SSH keys in the agent, then call `ssh-add`
+if ! ssh-add -l >/dev/null; then
+  ssh-add >/dev/null 2>&1
+fi
