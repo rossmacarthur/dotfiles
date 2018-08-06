@@ -34,3 +34,13 @@ obf() {
 unobf() {
   cat - | xxd -ps -r | xz -d | base64 --decode | xor $1
 }
+
+# Get ip netns information
+ip_netns_prompt_info() {
+  if (( $+commands[ip] )); then
+    local ref="$(ip netns identify $$)"
+    if [[ ! -z "$ref" ]]; then
+      echo "($ref) "
+    fi
+  fi
+}
