@@ -9,7 +9,12 @@ fi
 local context="%{$fg_bold[grey]%}%m%{$reset_color%} "
 local ret_status="%(?:%{$fg_bold[green]%}:%{$fg_bold[red]%})${user_symbol}%{$reset_color%} "
 local directory="%{$fg_bold[blue]%}%~%{$reset_color%} "
-PROMPT='$(ip_netns_prompt_info)${context}${directory}$(git_prompt_info)${ret_status}'
+
+PROMPT='${context}${directory}$(git_prompt_info)${ret_status}'
+
+if (( $+commands[ip_netns_prompt_info] )); then
+  PROMPT='$(ip_netns_prompt_info)''$PROMPT'
+fi
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "

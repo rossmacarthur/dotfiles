@@ -56,23 +56,22 @@ clone_vim_base16_themes
 heading "Create symbolic links"
 
 subheading "Configurations"
-symlink "git/gitconfig"               ".gitconfig"
-symlink "git/gitignore_global"        ".gitignore_global"
-symlink "tmux/tmux.conf"              ".tmux.conf"
-symlink "vim/vimrc"                   ".vimrc"
+symlink "git/gitconfig"             ".gitconfig"
+symlink "git/gitignore_global"      ".gitignore_global"
+symlink "tmux/tmux.conf"            ".tmux.conf"
+symlink "vim/vimrc"                 ".vimrc"
 if os_is "darwin"; then
-  sync    "iterm2/iterm2.plist"       "Library/Preferences/com.googlecode.iterm2.plist"
-  symlink "vscode/settings.json"      "Library/Application Support/Code/User/settings.json"
-  symlink "vscode/keybindings.json"   "Library/Application Support/Code/User/keybindings.json"
+  sync    "iterm2/iterm2.plist"     "Library/Preferences/com.googlecode.iterm2.plist"
+  symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
+  symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
 else
-  symlink "vscode/settings.json"      ".config/Code/User/settings.json"
-  symlink "vscode/keybindings.json"   ".config/Code/User/keybindings.json"
+  symlink "vscode/settings.json"    ".config/Code/User/settings.json"
+  symlink "vscode/keybindings.json" ".config/Code/User/keybindings.json"
 fi
-symlink "zsh/zshrc"                   ".zshrc"
-symlink "zsh/plugins/all"             ".plugins"
-symlink "zsh/plugins/${PLATFORM}"     ".plugins.os"
-symlink "zsh/completions/passthesalt" ".oh-my-zsh/completions/_passthesalt"
-symlink "zsh/themes/rossmacarthur"    ".oh-my-zsh/themes/rossmacarthur.zsh-theme"
+symlink "zsh/aliases/${PLATFORM}"   ".aliases"
+symlink "zsh/plugins/desktop"       ".plugins"
+symlink "zsh/plugins/${PLATFORM}"   ".plugins.os"
+symlink "zsh/zshrc"                 ".zshrc"
 
 subheading "Scripts"
 if ! os_is "darwin"; then

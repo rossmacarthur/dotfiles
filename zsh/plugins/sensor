@@ -1,12 +1,7 @@
-#!/usr/bin/env zsh
-
-# Dev command
-dev() {
-  resize
-  dmesg -n 1 && echo 'set dmesg level to 1\n'
-}
-
-# ip netns aliases
-alias ethernet="ip netns exec ethernet"
-alias wifi="ip netns exec wifi"
-alias mobile="ip netns exec mobile"
+cargo
+git
+ip-netns
+obfuscate
+pip
+python
+rust
