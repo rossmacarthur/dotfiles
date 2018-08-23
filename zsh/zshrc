@@ -33,10 +33,5 @@ for aliases_file ($HOME/.aliases*); do
   source $aliases_file
 done
 
-# If there are no SSH keys in the agent, then call `ssh-add`
-if ! ssh-add -l >/dev/null; then
-  ssh-add >/dev/null 2>&1
-fi
-
 # Set default editor to Vim
 export EDITOR='vim'

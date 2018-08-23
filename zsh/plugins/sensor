@@ -5,3 +5,4 @@ obfuscate
 pip
 python
 rust
+ssh-agent
