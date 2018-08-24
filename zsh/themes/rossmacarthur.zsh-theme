@@ -12,8 +12,8 @@ local directory="%{$fg_bold[blue]%}%~%{$reset_color%} "
 
 PROMPT='${context}${directory}$(git_prompt_info)${ret_status}'
 
-if (( $+commands[ip_netns_prompt_info] )); then
-  PROMPT='$(ip_netns_prompt_info)''$PROMPT'
+if (( ${plugins[(I)ip-netns]} )); then
+  PROMPT='$(ip_netns_prompt_info)'$PROMPT
 fi
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[magenta]%}"
