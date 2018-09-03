@@ -24,11 +24,20 @@ check_file_exists() {
 
 check_file_exists ~/.ssh/id_rsa
 check_file_exists ~/.ssh/id_rsa.pub
-
 mkdir -p ~/.ssh
 
-printf "Enter your email address: "
+# get email address from user else use git config email
+git_email=$(git config --get user.email)
+printf "Enter your email address"
+if [ -z "$git_email" ]; then
+  printf ": "
+else
+  printf " [$git_email]: "
+fi
 read email
+email=${email:-$git_email}
+
+# generate the SSH key
 ssh-keygen -t rsa -b 4096 -C "${email}" -N "" <<EOF
 
 EOF
