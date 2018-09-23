@@ -1,9 +1,26 @@
-# If the SSH agent is not running, then start it.
-if ! ps x $SSH_AGENT_PID >/dev/null 2>&1; then
-  eval "$(ssh-agent -s)"
+_is_ssh_key_added() {
+  local result
+
+  result=$(ssh-add -l 2>&1)
+
+  if (( ? == 0 )); then
+    return 0
+  fi
+
+  if [ "$result" = "The agent has no identities." ]; then
+    return 1
+  elif [ "$result" = "Error connecting to agent*" ]; then
+    return 2
+  fi
+}
+
+_is_ssh_key_added
+_is_ssh_key_added_code=$?
+
+if (( _is_ssh_key_added_code == 2 )); then
+  eval "$(ssh-agent -s)" >/dev/null 2>&1
 fi
 
-# If there are no SSH keys in the agent, then call `ssh-add`
-if ! ssh-add -l >/dev/null 2>&1; then
+if (( _is_ssh_key_added_code != 0 )); then
   ssh-add >/dev/null 2>&1
 fi
