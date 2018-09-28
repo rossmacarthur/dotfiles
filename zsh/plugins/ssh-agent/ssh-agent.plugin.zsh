@@ -9,7 +9,8 @@ _is_ssh_key_added() {
 
   if [ "$result" = "The agent has no identities." ]; then
     return 1
-  elif [ "$result" = "Error connecting to agent*" ]; then
+  elif [ "$result" = "Error connecting to agent*" ] ||
+       [ "$result" = "Could not open a connection to your authentication agent." ]; then
     return 2
   fi
 }
