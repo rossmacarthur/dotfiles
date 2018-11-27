@@ -18,7 +18,8 @@
     },
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "all",
-    "editor.rulers": [80, 100],
+    "editor.rulers": [100],
+    "editor.wordBasedSuggestions": false,
     "extensions.ignoreRecommendations": true,
     "files.exclude": {
         "**/*.pyc": true,
@@ -39,33 +40,26 @@
     "gitlens.historyExplorer.enabled": true,
     "markdown.extension.toc.levels": "2..6",
     "markdown.preview.fontSize": 19,
-    "python.envFile": "${workspaceFolder}/.venv",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+    "python.unitTest.nosetestsEnabled": false,
+    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.unittestEnabled": false,
+
     "terminal.integrated.fontFamily": "'Source Code Pro'",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.fontWeight": "normal",
     "terminal.integrated.fontWeightBold": "normal",
-    "vim.cursorStylePerMode": {
-        "normal": "line"
-    },
-    "vim.disableExtension": true,
-    "vim.otherModesKeyBindings": [
-        {
-            "before": ["j"],
-            "after": ["h"]
-        },
-        {
-            "before": ["k"],
-            "after": ["j"]
-        },
-        {
-            "before": ["h"],
-            "after": ["k"]
-        }
-    ],
     "window.zoomLevel": -1,
     "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "One Monokai"
+    "workbench.colorTheme": "One Monokai",
+    "[python]": {
+        "editor.rulers": [80, 100],
+    },
+    "[markdown]": {
+        "editor.rulers": [80],
+    },
+    "[restructuredtext]": {
+        "editor.rulers": [80],
+    }
 }
