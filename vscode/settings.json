@@ -1,14 +1,36 @@
 {
+    "[markdown]": {
+        "editor.rulers": [
+            80
+        ]
+    },
+    "[python]": {
+        "editor.rulers": [
+            80,
+            100
+        ]
+    },
+    "[restructuredtext]": {
+        "editor.rulers": [
+            80
+        ]
+    },
+    "editor.cursorWidth": 4,
     "editor.folding": false,
     "editor.fontFamily": "'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 15,
-    "editor.lineHeight": 21,
-    // "editor.lineNumbers": "relative",
+    "editor.lineHeight": 22,
+    "editor.renderIndentGuides": true,
+    "editor.renderWhitespace": "all",
+    "editor.rulers": [
+        100
+    ],
+    "editor.smoothScrolling": true,
     "editor.tokenColorCustomizations": {
         "[One Monokai]": {
             "textMateRules": [
                 {
-                    "scope":"string.quoted.docstring.multi.python",
+                    "scope": "string.quoted.docstring.multi.python",
                     "settings": {
                         "foreground": "#5c6370"
                     }
@@ -16,18 +38,15 @@
             ]
         }
     },
-    "editor.renderIndentGuides": true,
-    "editor.renderWhitespace": "all",
-    "editor.rulers": [100],
     "editor.wordBasedSuggestions": false,
     "extensions.ignoreRecommendations": true,
     "files.exclude": {
-        "**/*.pyc": true,
         "**/*.egg-info": true,
-        "**/__pycache__": true,
+        "**/*.pyc": true,
         "**/.pytest_cache": true,
-        "**/venv/": true,
         "**/.vscode": true,
+        "**/__pycache__": true,
+        "**/target": true
     },
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
@@ -37,15 +56,15 @@
     },
     "gitlens.blame.toggleMode": "window",
     "gitlens.codeLens.enabled": false,
-    "gitlens.historyExplorer.enabled": true,
+    "gitlens.views.fileHistory.enabled": true,
+    "gitlens.views.lineHistory.enabled": true,
     "markdown.extension.toc.levels": "2..6",
-    "markdown.preview.fontSize": 19,
+    "python.jediEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.unitTest.nosetestsEnabled": false,
-    "python.unitTest.pyTestEnabled": true,
+    "python.unitTest.pyTestEnabled": false,
     "python.unitTest.unittestEnabled": false,
-
     "terminal.integrated.fontFamily": "'Source Code Pro'",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.fontWeight": "normal",
@@ -53,13 +72,5 @@
     "window.zoomLevel": -1,
     "workbench.activityBar.visible": false,
     "workbench.colorTheme": "One Monokai",
-    "[python]": {
-        "editor.rulers": [80, 100],
-    },
-    "[markdown]": {
-        "editor.rulers": [80],
-    },
-    "[restructuredtext]": {
-        "editor.rulers": [80],
-    }
+    "workbench.tree.horizontalScrolling": true
 }
