@@ -126,7 +126,7 @@ clone_oh_my_zsh() {
     ZSH=~/.oh-my-zsh
   fi
   clone_git_repository "Oh My Zsh" \
-    "https://github.com/robbyrussell/oh-my-zsh.git" \
+    "https://github.com/rossmacarthur/oh-my-zsh.git" \
     "$ZSH"
 }
 

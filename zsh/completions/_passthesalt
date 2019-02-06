@@ -7,13 +7,13 @@ _passthesalt() {
 
   case $state in
   command)
-    _arguments "1: :(add diff get ls mv pull push rm)"
+    _arguments "1: :(add diff encrypt get ls mv pull push rm)"
   ;;
   *)
     case $words[2] in
-      add|get|ls|mv|rm)
+      add|encrypt|get|ls|mv|rm)
         if [ -f ~/.passthesalt ]; then
-          IFS=$'\n' raw=($(pts ls))
+          IFS=$'\n' raw=($(pts ls --no-header))
           _multi_parts -M "m:{[:lower:][:upper:]}={[:upper:][:lower:]}" -i / raw
         fi
       ;;
