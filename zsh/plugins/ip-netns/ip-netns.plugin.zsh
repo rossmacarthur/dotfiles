@@ -3,7 +3,7 @@ ip_netns_prompt_info() {
   if (( $+commands[ip] )); then
     local ref="$(ip netns identify $$)"
     if [[ ! -z "$ref" ]]; then
-      echo "($ref) "
+      echo "${ZSH_THEME_IP_NETNS_PREFIX:=(}${ref}${ZSH_THEME_IP_NETNS_SUFFIX:=)}"
     fi
   fi
 }
