@@ -12,6 +12,10 @@ local directory="%{$fg_bold[blue]%}%~%{$reset_color%} "
 
 PROMPT='${context}${directory}$(git_prompt_info)${ret_status}'
 
+if (( ${plugins[(I)virtualenv]} )); then
+  PROMPT='$(virtualenv_prompt_info)'$PROMPT
+fi
+
 if (( ${plugins[(I)ip-netns]} )); then
   PROMPT='$(ip_netns_prompt_info)'$PROMPT
 fi
@@ -20,3 +24,5 @@ ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg_bold[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%} "
 ZSH_THEME_GIT_PROMPT_DIRTY="*"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
+ZSH_THEME_VIRTUALENV_PREFIX="("
+ZSH_THEME_VIRTUALENV_SUFFIX=") "

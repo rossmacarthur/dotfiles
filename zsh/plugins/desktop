@@ -9,4 +9,5 @@ pyenv
 python
 rust
 ssh-agent
+virtualenv
 wd
