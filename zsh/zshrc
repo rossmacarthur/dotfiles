@@ -16,22 +16,25 @@ plugins=(general wd)
 typeset -aU plugins
 
 # Read extra plugins from files
-for plugin_file ($HOME/.plugins*); do
-  plugins+=($(<$plugin_file))
-done
+if [ -f "$HOME/.plugins" ]
+then
+  plugins+=($(<"$HOME/.plugins"))
+fi
 
 source "$ZSH/oh-my-zsh.sh"
 
 # Base16 Shell
 export BASE16_SHELL=$HOME/.config/base16-shell/
-if [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ]; then
+if [ -n "$PS1" ] && [ -s "$BASE16_SHELL/profile_helper.sh" ]
+then
   eval "$("$BASE16_SHELL/profile_helper.sh")"
 fi
 
 # Source any extra aliases
-for aliases_file ($HOME/.aliases*); do
-  source $aliases_file
-done
+if [ -f "$HOME/.aliases" ]
+then
+  source "$HOME/.aliases"
+fi
 
 # Set default editor to Vim
 export EDITOR='vim'
