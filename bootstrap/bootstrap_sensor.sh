@@ -1,8 +1,21 @@
 #!/usr/bin/env bash
 
-source installs.sh
+install_pip() {
+  if command_exists pip; then
+    execute "pip install --upgrade pip" "PIP 2"
+  else
+    execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
+    execute "sudo python get-pip.py" "PIP"
+    rm -f get-pip.py
+  fi
+}
 
-heading "Installs"
+install_pip_package() {
+  local msg=${2:-$1}
+  execute "pip install --upgrade $1" "$msg"
+}
+
+request_sudo || abort
 
 subheading "System packages"
 execute "sudo apt update" "APT (update)"
@@ -13,22 +26,19 @@ install_package "tmux"     "tmux"
 install_package "Vim"      "vim"
 install_package "Zsh"      "zsh"
 
-subheading "Python 2 packages"
-install_pip2
-install_pip2_package "Nanocom"    "nanocom"
-install_pip2_package "Virtualenv" "virtualenv"
+subheading "Python packages"
+install_pip
+install_pip_package "nanocom"
+install_pip_package "setuptools"
+install_pip_package "virtualenv"
+install_pip_package "wheel"
 
-subheading "Oh My Zsh"
+subheading "Remote repositories"
 clone_oh_my_zsh
-
-subheading "Base16 Shell Theme"
 clone_base16_shell_theme
 
 subheading "Vim plugins"
 clone_vim_base16_themes
-
-
-heading "Create symbolic links"
 
 subheading "Configurations"
 symlink "git/gitconfig"        ".gitconfig"

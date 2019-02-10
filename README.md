@@ -23,12 +23,12 @@ to update the dotfiles.
 
 Clone the repository with
 ```bash
-git clone https://github.com/rossmacarthur/dotfiles.git
+git clone https://github.com/rossmacarthur/dotfiles.git ~/.dotfiles
 ```
 
 And run the bootstrap script using
 ```
-./dotfiles/bootstrap/bootstrap.sh
+~/.dotfiles/bootstrap/bootstrap.sh
 ```
 
 ## Customization
@@ -41,7 +41,7 @@ Simply:
   and call it `bootstrap_custom.sh` (anything of the form `bootstrap_xxxxx.sh`
   will work).
 * Modify it to your liking. You can use the install functions in
-  [installs.sh][installs].
+  [utils.sh][utils].
 * Change the top line of [remote.sh][remote] to reference your own fork as well
   as the code snippet at the top of this README.
 * Run the bootstrap script and your custom bootstrap will be presented as a
@@ -57,6 +57,6 @@ Inspired by [Cătălin Mariș's][alrra] [dotfiles][alrra_dotfiles].
 
 [alrra]: https://github.com/alrra
 [alrra_dotfiles]: https://github.com/alrra/dotfiles
-[installs]: bootstrap/installs.sh
 [remote]: bootstrap/remote.sh
 [sensor]: bootstrap/bootstrap_sensor.sh
+[utils]: bootstrap/installs.sh

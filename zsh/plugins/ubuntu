@@ -3,6 +3,7 @@ copybuffer
 docker
 git
 github
+ip-netns
 obfuscate
 pip
 pyenv
