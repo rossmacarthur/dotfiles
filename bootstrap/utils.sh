@@ -555,6 +555,8 @@ install_pyenv() {
   then
     execute "curl https://pyenv.run | bash" "Install pyenv and friends"
   fi
+
+  symlink "pyenv/virtualenv/after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
 }
 
 install_pyenv_python2() {
@@ -593,7 +595,12 @@ install_rustup_component() {
   execute "$HOME/.cargo/bin/rustup component add $1" "$msg"
 }
 
+
 install_cargo_package() {
   local msg=${2:-$1}
-  execute "$HOME/.cargo/bin/cargo install --force $1" "$msg"
+
+  if ! "$HOME/.cargo/bin/cargo" install --list | grep "$1"
+  then
+    execute "$HOME/.cargo/bin/cargo install --force $1" "$msg"
+  fi
 }
