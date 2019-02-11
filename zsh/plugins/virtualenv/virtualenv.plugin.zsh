@@ -1,5 +1,7 @@
 virtualenv_prompt_info() {
-  local venv=${VIRTUAL_ENV:t}
+  local pyenv_version=$(pyenv version-name 2>/dev/null)
+  local virtualenv_version=$(basename "$VIRTUAL_ENV" 2>/dev/null)
+  local venv=${virtualenv_version:=$pyenv_version}
 
   if [[ ! -z "$venv" ]] && [ "$venv" != "global" ]; then
     echo "${ZSH_THEME_VIRTUALENV_PREFIX:=(}${venv}${ZSH_THEME_VIRTUALENV_SUFFIX:=)}"
