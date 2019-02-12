@@ -574,7 +574,7 @@ install_pyenv() {
   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
   echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
 
-  symlink "pyenv/virtualenv/after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
+  symlink "pyenv/pyenv-virtualenv-after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
 }
 
 install_pyenv_python2() {
