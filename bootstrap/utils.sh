@@ -556,6 +556,9 @@ install_pyenv() {
     execute "curl https://pyenv.run | bash" "Install pyenv and friends"
   fi
 
+  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
+  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
+
   symlink "pyenv/virtualenv/after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
 }
 
