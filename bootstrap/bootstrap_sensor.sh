@@ -26,6 +26,7 @@ subheading "Vim plugins"
 clone_vim_base16_themes
 
 subheading "Configurations"
+symlink "curl/curlrc"          ".curlrc"
 symlink "git/gitconfig"        ".gitconfig"
 symlink "git/gitignore_global" ".gitignore_global"
 symlink "tmux/tmux.conf"       ".tmux.conf"
