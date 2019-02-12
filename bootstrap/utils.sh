@@ -616,7 +616,7 @@ install_rustup_component() {
 install_cargo_package() {
   local msg=${2:-$1}
 
-  if ! "$HOME/.cargo/bin/cargo" install --list | grep "$1"
+  if ! "$HOME/.cargo/bin/cargo" install --list | grep "$1" >/dev/null 2>&1
   then
     execute "$HOME/.cargo/bin/cargo install --force $1" "$msg"
   fi
