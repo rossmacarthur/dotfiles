@@ -387,10 +387,10 @@ download() {
   local url=$1
   local output=$2
 
-  if command -v curl
+  if exists curl
   then
     execute "curl -LsSo '$output' '$url'" "Download $url"
-  elif command -v wget
+  elif exists wget
   then
     execute "wget -qO '$output' '$url'" "Download $url"
   else
@@ -550,6 +550,21 @@ clone_vim_base16_themes() {
     "Copy Base16 color schemes to ~/.vim/colors/"
 }
 
+install_pip() {
+  if command_exists pip; then
+    execute "pip install --upgrade pip" "PIP"
+  else
+    execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
+    execute "sudo python get-pip.py" "PIP"
+    rm -f get-pip.py
+  fi
+}
+
+install_pip_package() {
+  local msg=${2:-$1}
+  execute "pip install --upgrade $1" "$msg"
+}
+
 install_pyenv() {
   if check_directory "$HOME/.pyenv" "pyenv is already installed. Reinstall?"
   then
@@ -597,7 +612,6 @@ install_rustup_component() {
   local msg=${2:-$1}
   execute "$HOME/.cargo/bin/rustup component add $1" "$msg"
 }
-
 
 install_cargo_package() {
   local msg=${2:-$1}
