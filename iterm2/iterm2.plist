@@ -500,21 +500,21 @@
 	<key>NSWindow Frame SUUpdateAlert</key>
 	<string>970 769 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>252 907 796 473 0 0 2560 1417 </string>
+	<string>1050 916 918 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1281 4 1277 1413 0 0 2560 1417 </string>
+	<string>1283 0 1274 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>561 598 650 452 0 0 2560 1417 </string>
+	<string>3 0 1274 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
-	<string>1283 965 650 452 0 0 2560 1417 </string>
+	<string>3 0 1274 1417 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
-	<string>1283 977 650 452 0 0 2560 1440 </string>
+	<string>501 143 810 877 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 4</key>
-	<string>1142 798 650 452 0 0 2560 1417 </string>
+	<string>843 0 834 1027 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 5</key>
-	<string>427 89 650 452 0 0 2560 1417 </string>
+	<string>230 0 810 877 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 6</key>
-	<string>1275 654 650 452 0 0 2560 1417 </string>
+	<string>688 0 810 877 0 0 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 7</key>
 	<string>469 43 650 452 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 8</key>
@@ -1076,7 +1076,7 @@
 			<key>Screen</key>
 			<integer>-1</integer>
 			<key>Scrollback Lines</key>
-			<integer>1000</integer>
+			<integer>0</integer>
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -1128,7 +1128,7 @@
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
-			<integer>0</integer>
+			<integer>12</integer>
 			<key>Working Directory</key>
 			<string>/Users/ross</string>
 		</dict>
@@ -1201,7 +1201,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2018-06-14T07:55:36Z</date>
+	<date>2019-02-13T17:02:52Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
@@ -1219,6 +1219,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.1.6</string>
+	<string>3.2.7</string>
 </dict>
 </plist>
