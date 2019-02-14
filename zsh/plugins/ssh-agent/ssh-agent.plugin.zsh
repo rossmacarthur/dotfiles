@@ -16,12 +16,14 @@ _is_ssh_key_added() {
 }
 
 _is_ssh_key_added
-_is_ssh_key_added_code=$?
+is_ssh_key_added=$?
 
-if (( _is_ssh_key_added_code == 2 )); then
+if (( is_ssh_key_added == 2 )); then
   eval "$(ssh-agent -s)" >/dev/null 2>&1
 fi
 
-if (( _is_ssh_key_added_code != 0 )); then
+if (( is_ssh_key_added != 0 )); then
   ssh-add >/dev/null 2>&1
 fi
+
+unset is_ssh_key_added
