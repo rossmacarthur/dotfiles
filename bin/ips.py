@@ -23,21 +23,53 @@ def is_executable(name):
 
 def ips_from_ifconfig():
     """
-    Parse interfaces and IP address from ifconfig. This function should work on macOS and Linux.
+    Parse interfaces and IP address from `ifconfig`.
+
+    This function should work on macOS and Linux.
     """
     returncode, stdout, _ = cmd('ifconfig -a')
 
     if returncode != 0:
-        print('Error: ifconfig returncode {}'.format(returncode))
+        sys.stderr.write('Error: `ifconfig` returned {}\n'.format(returncode))
         sys.exit(2)
 
     matches = iter(re.split(r'((?:^|(?<=\n))[A-z0-9]+(?=:\s|\s+))', stdout, re.DOTALL)[1:])
 
-    interfaces = list()
-    for r in list(zip_longest(matches, matches)):
-        ip = re.search(r'(?:(?<=inet addr:)|(?<=inet\s))\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}', r[1])
-        if ip:
-            interfaces.append((r[0], ip.group(0)))
+    interfaces = []
+
+    for name, info in zip_longest(matches, matches):
+        match = re.search(
+            r'(?:(?<=inet addr:)|(?<=inet\s))(?P<ip_address>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})',
+            info
+        )
+
+        if match:
+            interfaces.append((name, match.groupdict()['ip_address']))
+
+    return interfaces
+
+
+def ips_from_ip_address():
+    """
+    Parse interface and IP address from `ip address show`.
+    """
+    returncode, stdout, _ = cmd('ip address show')
+
+    if returncode != 0:
+        sys.stderr.write('Error: `ip address show` returned {}\n'.format(returncode))
+        sys.exit(2)
+
+    interfaces = []
+
+    for line in stdout.split('\n'):
+        match = re.search(
+            r'inet\s(?P<ip_address>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}).*\s(?P<name>.*)$',
+            line
+        )
+
+        if match:
+            d = match.groupdict()
+            interfaces.append((d['name'], d['ip_address']))
 
     return interfaces
 
@@ -45,15 +77,17 @@ def ips_from_ifconfig():
 def main():
     if is_executable('ifconfig'):
         ips = ips_from_ifconfig()
+    elif is_executable('ip'):
+        ips = ips_from_ip_address()
     else:
-        print('Error: Not supported; `ifconfig` is required.')
+        sys.stderr.write('Error: Not supported; `ifconfig` or `ip` is required.\n')
         sys.exit(1)
 
     if ips:
         maximum_length = max(len(interface) for interface, _ in ips)
+
         for ip in ips:
             sys.stdout.write('{1:<{0}}  {2}\n'.format(maximum_length, *ip))
-
 
 
 if __name__ == '__main__':
