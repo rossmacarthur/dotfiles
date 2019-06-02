@@ -1,1 +1,6 @@
+# macOS specific
 .DS_Store
+
+# autoenv files (see https://github.com/zpm-zsh/autoenv)
+.in
+.out
