@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Get ip netns information
 ip_netns_prompt_info() {
   if (( $+commands[ip] )); then

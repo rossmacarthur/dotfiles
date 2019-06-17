@@ -33,10 +33,6 @@ install_package "reattach-to-user-namespace" "tmux-pasteboard"
 install_package "vim" "Vim"
 install_package "zsh" "Zsh"
 
-subheading "Remote repositories"
-clone_oh_my_zsh
-clone_base16_shell_theme
-
 subheading "Vim plugins"
 clone_vim_flake8_plugin
 clone_vim_base16_themes
@@ -49,9 +45,14 @@ symlink "tmux/tmux.conf"          ".tmux.conf"
 symlink "vim/vimrc"               ".vimrc"
 symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
-symlink "zsh/aliases/macos"       ".aliases"
-symlink "zsh/plugins/macos"       ".plugins"
-symlink "zsh/zshrc"               ".zshrc"
+symlink "zsh/plugins.toml"         ".zsh/plugins.toml"
+symlink "zsh/zshrc"                ".zshrc"
+symlink_zsh_plugin "aliases"
+symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
+symlink_zsh_plugin "iterm2"
+symlink_zsh_plugin "obfuscate"
+symlink_zsh_plugin "pyenv"
+symlink_zsh_plugin "ssh-agent"
 
 subheading "Scripts"
 symlink "bin/gensshkey.sh" ".local/bin/gensshkey"
@@ -99,4 +100,5 @@ then
   install_rustup_component "clippy"
   install_rustup_component "rustfmt"
   install_cargo_package "cargo-edit"
+  install_cargo_package "sheldon"
 fi

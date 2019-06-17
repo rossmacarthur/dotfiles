@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # So these commands can be executed with sudo
 alias sudo="sudo "
 
@@ -7,10 +9,9 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~"
-alias -- -="cd -"
 
-# List hidden
+# List directory contents
+alias l='ls -lah'
+alias la='ls -lAh'
 alias lh="ls -a | egrep '^\.'"
-
-# So that Vim colors look correct in tmux
-alias tmux="export TERM=xterm-256color; tmux"
+alias ll='ls -lh'
