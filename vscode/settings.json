@@ -20,6 +20,7 @@
             80
         ]
     },
+    "breadcrumbs.enabled": false,
     "editor.cursorWidth": 4,
     "editor.folding": false,
     "editor.fontFamily": "'Source Code Pro for Powerline', Menlo, Monaco, 'Courier New', monospace",
@@ -68,7 +69,7 @@
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.testing.pyTestEnabled": true,
+    "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "terminal.integrated.fontFamily": "'Source Code Pro for Powerline'",
     "terminal.integrated.fontSize": 14,
