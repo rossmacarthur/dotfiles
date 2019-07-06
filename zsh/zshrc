@@ -16,7 +16,7 @@ fpath=( "$HOME/.zsh/functions" $fpath )
 export HIST_STAMPS="yyyy-mm-dd"
 
 # Source all our plugins,
-source <(sheldon -q source)
+source <(sheldon source)
 
 # Load the 'pure' prompt!
 promptinit

@@ -8,7 +8,6 @@ alias = { value = '{{ name }}() { source {{ filename }} }', each = true }
 function = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/{{ name }}"', each = true }
 prompt = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/prompt_{{ name }}_setup"', each = true }
 
-# Pre-compinit plugins
 [plugins.async]
 github = 'mafredri/zsh-async'
 apply = ['function']
@@ -17,9 +16,6 @@ use = ['{{ name }}.zsh']
 [plugins.pure]
 github = 'rossmacarthur/pure'
 apply = ['prompt']
-
-[plugins.dotfiles]
-local = '~/.zsh/plugins'
 
 [plugins.autoenv]
 github = 'zpm-zsh/autoenv'
@@ -38,6 +34,9 @@ apply = ['fpath']
 [plugins.docker-compose]
 remote = 'https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose'
 apply = ['fpath']
+
+[plugins.dotfiles]
+local = '~/.zsh/plugins'
 
 [plugins.oh-my-zsh]
 github = 'robbyrussell/oh-my-zsh'
@@ -63,14 +62,12 @@ github = 'zsh-users/zsh-autosuggestions'
 tag = 'v0.5.2'
 use = ['{{ name }}.zsh']
 
-# This is a bit of a hack to call `compinit`
-# in between plugin source generation
+# This is a bit of a hack to call `compinit` before the `git` plugin is sourced.
 [plugins.compinit]
 local = '~'
 use = []
 apply = ['compinit']
 
-# Post-compinit plugins
 [plugins.git]
 github = 'robbyrussell/oh-my-zsh'
 directory = 'plugins/{{ name }}'
