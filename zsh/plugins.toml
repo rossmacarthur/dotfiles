@@ -3,71 +3,69 @@
 # See https://github.com/rossmacarthur/sheldon
 
 [templates]
-compinit = 'compinit'
 alias = { value = '{{ name }}() { source {{ filename }} }', each = true }
 function = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/{{ name }}"', each = true }
 prompt = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/prompt_{{ name }}_setup"', each = true }
 
 [plugins.async]
-github = 'mafredri/zsh-async'
-apply = ['function']
-use = ['{{ name }}.zsh']
+github = "mafredri/zsh-async"
+apply = ["function"]
+use = ["{{ name }}.zsh"]
 
 [plugins.pure]
-github = 'rossmacarthur/pure'
-apply = ['prompt']
+github = "rossmacarthur/pure"
+apply = ["prompt"]
 
 [plugins.autoenv]
-github = 'zpm-zsh/autoenv'
+github = "zpm-zsh/autoenv"
+branch = "master"
 
 [plugins.base16]
-github = 'chriskempson/base16-shell'
+github = "chriskempson/base16-shell"
 
 [plugins.copybuffer]
-github = 'robbyrussell/oh-my-zsh'
-directory = 'plugins/{{ name }}'
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
 
 [plugins.docker]
-remote = 'https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker'
-apply = ['fpath']
+remote = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker"
+apply = ["fpath"]
 
 [plugins.docker-compose]
-remote = 'https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose'
-apply = ['fpath']
+remote = "https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
+apply = ["fpath"]
 
 [plugins.dotfiles]
-local = '~/.zsh/plugins'
+local = "~/.zsh/plugins"
 
 [plugins.oh-my-zsh]
-github = 'robbyrussell/oh-my-zsh'
-directory = 'lib'
-use = ['key-bindings.zsh', 'git.zsh', 'history.zsh']
+github = "robbyrussell/oh-my-zsh"
+directory = "lib"
+use = ["key-bindings.zsh", "git.zsh", "history.zsh"]
 
 [plugins.pip]
-github = 'robbyrussell/oh-my-zsh'
-directory = 'plugins/{{ name }}'
-apply = ['fpath']
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
+apply = ["fpath"]
 
 [plugins.rust]
-local = '~/.rustup/toolchains/stable-x86_64-apple-darwin/share/zsh/site-functions'
-apply = ['fpath']
+local = "~/.rustup/toolchains/stable-*/share/zsh/site-functions"
+apply = ["fpath"]
 
 [plugins.wd]
-github = 'mfaerevaag/wd'
-tag = 'v0.4.6'
-apply = ['alias', 'fpath']
+github = "mfaerevaag/wd"
+tag = "v0.4.6"
+apply = ["alias", "fpath"]
 
 [plugins.zsh-autosuggestions]
-github = 'zsh-users/zsh-autosuggestions'
-tag = 'v0.5.2'
-use = ['{{ name }}.zsh']
+github = "zsh-users/zsh-autosuggestions"
+tag = "v0.5.2"
+use = ["{{ name }}.zsh"]
 
-# This is a bit of a hack to call `compinit` before the `git` plugin is sourced.
+# The `git` plugin requires `compinit` to have been called before being sourced.
 [plugins.compinit]
-local = '~'
-use = []
-apply = ['compinit']
+inline = "compinit"
 
 [plugins.git]
-github = 'robbyrussell/oh-my-zsh'
-directory = 'plugins/{{ name }}'
+github = "robbyrussell/oh-my-zsh"
+directory = "plugins/{{ name }}"
