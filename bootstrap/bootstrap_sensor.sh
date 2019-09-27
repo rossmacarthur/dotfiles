@@ -18,10 +18,6 @@ install_pip_package "setuptools"
 install_pip_package "virtualenv"
 install_pip_package "wheel"
 
-subheading "Remote repositories"
-clone_oh_my_zsh
-clone_base16_shell_theme
-
 subheading "Vim plugins"
 clone_vim_base16_themes
 

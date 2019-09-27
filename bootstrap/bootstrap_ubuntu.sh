@@ -28,10 +28,6 @@ install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
 
-subheading "Remote repositories"
-clone_oh_my_zsh
-clone_base16_shell_theme
-
 subheading "Vim plugins"
 clone_vim_flake8_plugin
 clone_vim_base16_themes
