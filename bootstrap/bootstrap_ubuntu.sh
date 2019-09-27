@@ -49,9 +49,9 @@ symlink "zsh/zshrc"               ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "ip-netns"
-symlink_zsh_plugin "obfuscate"
 symlink_zsh_plugin "pyenv"
 symlink_zsh_plugin "ssh-agent"
+create_directory "$HOME/.zsh/functions"
 
 subheading "Scripts"
 symlink "bin/femtocom.sh"  ".local/bin/femtocom"
@@ -76,7 +76,6 @@ then
 
   subheading "Packages"
   install_python_package "awscli"
-  install_python_package "flake8" "Flake8"
   install_python_package "nanocom" "Nanocom"
   install_python_package "passthesalt" "PassTheSalt"
 fi
