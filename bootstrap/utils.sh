@@ -542,6 +542,21 @@ clone_vim_base16_themes() {
     "Copy Base16 color schemes to ~/.vim/colors/"
 }
 
+install_sheldon() {
+  if exists sheldon && ! confirm "Sheldon is already downloaded. Reinstall?"
+  then
+    return
+  fi
+
+  if exists cargo
+  then
+    execute "cargo install sheldon --force" "Sheldon"
+  else
+    execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | \
+             sh -s -- --repo 'rossmacarthur/sheldon' --to /usr/local/bin" "Sheldon"
+  fi
+}
+
 install_pip() {
   if exists pip; then
     execute "pip install --upgrade pip" "PIP"

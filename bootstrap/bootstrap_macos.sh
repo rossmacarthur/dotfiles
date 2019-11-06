@@ -33,6 +33,9 @@ install_package "reattach-to-user-namespace" "tmux-pasteboard"
 install_package "vim" "Vim"
 install_package "zsh" "Zsh"
 
+subheading "Binary downloads"
+install_sheldon
+
 subheading "Vim plugins"
 clone_vim_flake8_plugin
 clone_vim_base16_themes

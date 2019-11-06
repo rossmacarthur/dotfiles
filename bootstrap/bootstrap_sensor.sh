@@ -18,6 +18,9 @@ install_pip_package "setuptools"
 install_pip_package "virtualenv"
 install_pip_package "wheel"
 
+subheading "Binary downloads"
+install_sheldon
+
 subheading "Vim plugins"
 clone_vim_base16_themes
 
@@ -33,7 +36,7 @@ symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "sensor/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "ip-netns"
 symlink_zsh_plugin "ssh-agent"
-create_directory ".zsh/functions"
+create_directory "$HOME/.zsh/functions"
 
 subheading "Scripts"
 symlink "bin/femtocom.sh"  ".local/bin/femtocom"
