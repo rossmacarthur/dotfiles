@@ -553,7 +553,7 @@ install_sheldon() {
     execute "cargo install sheldon --force" "Sheldon"
   else
     execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | \
-             sh -s -- --repo 'rossmacarthur/sheldon' --to /usr/local/bin" "Sheldon"
+             bash -s -- --repo 'rossmacarthur/sheldon' --to /usr/local/bin" "Sheldon"
   fi
 }
 
