@@ -20,9 +20,6 @@ apply = ["prompt"]
 github = "zpm-zsh/autoenv"
 branch = "master"
 
-[plugins.base16]
-github = "chriskempson/base16-shell"
-
 [plugins.copybuffer]
 github = "robbyrussell/oh-my-zsh"
 directory = "plugins/{{ name }}"
@@ -41,15 +38,11 @@ local = "~/.zsh/plugins"
 [plugins.oh-my-zsh]
 github = "robbyrussell/oh-my-zsh"
 directory = "lib"
-use = ["key-bindings.zsh", "git.zsh", "history.zsh"]
+use = ["completion.zsh", "key-bindings.zsh", "git.zsh", "history.zsh"]
 
 [plugins.pip]
 github = "robbyrussell/oh-my-zsh"
 directory = "plugins/{{ name }}"
-apply = ["fpath"]
-
-[plugins.rust]
-local = "~/.rustup/toolchains/stable-*/share/zsh/site-functions"
 apply = ["fpath"]
 
 [plugins.wd]
