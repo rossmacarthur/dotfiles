@@ -424,7 +424,7 @@ remove_directory() {
 #   $2 the file destination relative to the $HOME directory
 symlink() {
   create_directory "$(dirname "$HOME/$2")"
-  execute "ln -fs '$DOTFILES_DIRECTORY/$1' '$HOME/$2'" "$1 → ~/$2"
+  execute "ln -fs '$DOTFILES_DIRECTORY/src/$1' '$HOME/$2'" "$1 → ~/$2"
   sleep 0.1
 }
 
@@ -445,7 +445,7 @@ symlink_zsh_plugin() {
 #   $2 the directory source relative to the $HOME directory
 sync_directory() {
   create_directory "$(dirname "$HOME/$2")"
-  execute "rsync '$DOTFILES_DIRECTORY/$1' '$HOME/$2'" "$1 → ~/$2"
+  execute "rsync '$DOTFILES_DIRECTORY/src/$1' '$HOME/$2'" "$1 → ~/$2"
   sleep 0.1
 }
 
