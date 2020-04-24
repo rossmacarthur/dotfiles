@@ -243,7 +243,7 @@ prompt_choice() {
     then
       newline
       return 1
-    elif [ ! -z "${!ichoice}" ] && (( ichoice!=0 ))
+    elif [ -n "$ichoice" ] && (( ichoice != 0 )) && [ -n "${!ichoice}" ]
     then
       export USER_CHOICE="${!ichoice}"
       newline
@@ -468,7 +468,6 @@ else
   update_package_manager() {
     execute "sudo apt update" "APT (update)"
     execute "sudo apt -y upgrade" "APT (upgrade)"
-    execute "sudo apt -y dist-upgrade" "APT (dist-upgrade)"
     execute "sudo apt -y autoremove" "APT (autoremove)"
   }
 fi
@@ -525,23 +524,6 @@ clone_git_repository() {
   fi
 }
 
-clone_vim_flake8_plugin() {
-  clone_git_repository \
-    "Vim Flake8" \
-    "https://github.com/nvie/vim-flake8.git" \
-    "$HOME/.vim/bundle/flake8"
-}
-
-clone_vim_base16_themes() {
-  clone_git_repository \
-    "Vim Base16" \
-    "https://github.com/chriskempson/base16-vim.git" \
-    "$HOME/.vim/colors/base16"
-  execute \
-    "cp $HOME/.vim/colors/base16/colors/*.vim $HOME/.vim/colors/" \
-    "Copy Base16 color schemes to ~/.vim/colors/"
-}
-
 install_sheldon() {
   if exists sheldon && ! confirm "Sheldon is already downloaded. Reinstall?"
   then
@@ -550,10 +532,10 @@ install_sheldon() {
 
   if exists cargo
   then
-    execute "cargo install sheldon --force" "Sheldon"
+    execute "cargo install sheldon" "Sheldon"
   else
     execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | \
-             bash -s -- --repo 'rossmacarthur/sheldon' --to /usr/local/bin" "Sheldon"
+             bash -s -- --repo 'rossmacarthur/sheldon' --to $HOME/.local/bin" "Sheldon"
   fi
 }
 
@@ -590,7 +572,7 @@ install_pyenv_python2() {
 }
 
 install_pyenv_python3() {
-  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.7' | tail -1 | xargs)
+  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.8' | tail -1 | xargs)
   execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
 }
 
@@ -600,7 +582,7 @@ create_pyenv_virtualenv() {
     return
   fi
 
-  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.7' | tail -1 | xargs)
+  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.8' | tail -1 | xargs)
   execute \
     "$HOME/.pyenv/bin/pyenv virtualenv --force $version global && $HOME/.pyenv/bin/pyenv global global" \
     "Global virtualenv"
@@ -622,9 +604,5 @@ install_rustup_component() {
 
 install_cargo_package() {
   local msg=${2:-$1}
-
-  if ! "$HOME/.cargo/bin/cargo" install --list | grep "$1" >/dev/null 2>&1
-  then
-    execute "$HOME/.cargo/bin/cargo install --force $1" "$msg"
-  fi
+  execute "$HOME/.cargo/bin/cargo install $1" "$msg"
 }

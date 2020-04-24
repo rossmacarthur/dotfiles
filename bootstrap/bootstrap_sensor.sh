@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 
+# ---------------------------------------------------------------------------- #
+heading "Installs"
+# ---------------------------------------------------------------------------- #
+
 request_sudo || abort
 
 subheading "System packages"
-execute "sudo apt update" "APT (update)"
+update_package_manager
 install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "python" "Python 2"
@@ -21,10 +25,11 @@ install_pip_package "wheel"
 subheading "Binary downloads"
 install_sheldon
 
-subheading "Vim plugins"
-clone_vim_base16_themes
+# ---------------------------------------------------------------------------- #
+heading "Configurations"
+# ---------------------------------------------------------------------------- #
 
-subheading "Configurations"
+subheading "General"
 symlink "curl/curlrc"          ".curlrc"
 symlink "git/gitconfig"        ".gitconfig"
 symlink "git/gitignore_global" ".gitignore_global"
