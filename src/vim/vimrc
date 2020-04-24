@@ -1,14 +1,9 @@
 filetype plugin on       " Enable filetype detection
 filetype indent on       " Set indent for current filetype
 syntax enable            " Enable syntax highlighting
-let base16colorspace=256 " Access colors present in 256 colorspace
-set t_Co=256             " 256 color mode
-set background=dark      " Dark background
-
-" Try set colorscheme based on current base16 shell theme
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-endif
+set termguicolors        " Fixes colors under tmux
+set background=dark      " Use dark background
+colorscheme night-owl    " Set color scheme to 'night-owl'
 
 " Create undo directory if it doesn't exist
 silent !mkdir -p ~/.vim/vimundo > /dev/null 2>&1
