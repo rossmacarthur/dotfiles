@@ -6,6 +6,12 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
 
+[diff]
+	tool = vscode
+
+[difftool "vscode"]
+	cmd = code -n --wait --diff $LOCAL $REMOTE
+
 [user]
 	name = Ross MacArthur
 	email = ross@macarthur.io
