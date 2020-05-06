@@ -4,7 +4,9 @@
 export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 
 # Set default editor to Vim
-export EDITOR='vim'
+if [ -z "$EDITOR" ]; then
+    export EDITOR="vim"
+fi
 
 # Load required modules
 autoload -U compinit promptinit
@@ -17,7 +19,3 @@ export HIST_STAMPS="yyyy-mm-dd"
 
 # Source all our plugins,
 source <(sheldon source)
-
-# Load the 'pure' prompt!
-promptinit
-prompt pure
