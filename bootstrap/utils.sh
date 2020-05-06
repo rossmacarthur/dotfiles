@@ -558,10 +558,9 @@ install_pyenv() {
   if check_directory "$HOME/.pyenv" "pyenv is already installed. Reinstall?"
   then
     execute "curl https://pyenv.run | bash" "Install pyenv and friends"
+    echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
+    echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
   fi
-
-  echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zprofile
-  echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zprofile
 
   symlink "pyenv/pyenv-virtualenv-after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
 }
@@ -595,6 +594,11 @@ install_python_package() {
 
 install_rustup() {
   execute "curl https://sh.rustup.rs -sSf | bash -s - -y" "Rustup"
+}
+
+install_rust_version() {
+  local toolchain=$1
+  execute "$HOME/.cargo/bin/rustup update $toolchain" "Rust ($toolchain)"
 }
 
 install_rustup_component() {

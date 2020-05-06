@@ -54,6 +54,8 @@ heading "Rust development"
 
 subheading "Environment"
 install_rustup
+install_rust_version "stable"
+install_rust_version "beta"
 
 subheading "Packages"
 install_cargo_package "cargo-edit"
