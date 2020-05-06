@@ -3,9 +3,10 @@
 # See https://github.com/rossmacarthur/sheldon
 
 [templates]
-alias = { value = '{{ name }}() { source {{ filename }} }', each = true }
-function = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/{{ name }}"', each = true }
-prompt = { value = 'ln -sf "{{ filename }}" "{{ root }}/functions/prompt_{{ name }}_setup"', each = true }
+alias = { value = '{{ name }}() { source {{ file }} }', each = true }
+function = { value = 'ln -sf "{{ file }}" "{{ root }}/functions/{{ name }}"', each = true }
+prompt_setup = { value = 'ln -sf "{{ file }}" "{{ root }}/functions/prompt_{{ name }}_setup"', each = true }
+prompt_load = "promptinit\nprompt {{ name }}"
 
 [plugins.async]
 github = "mafredri/zsh-async"
@@ -14,7 +15,7 @@ use = ["{{ name }}.zsh"]
 
 [plugins.pure]
 github = "rossmacarthur/pure"
-apply = ["prompt"]
+apply = ["prompt_setup", "prompt_load"]
 
 [plugins.autoenv]
 github = "zpm-zsh/autoenv"
@@ -22,7 +23,7 @@ branch = "master"
 
 [plugins.copybuffer]
 github = "robbyrussell/oh-my-zsh"
-directory = "plugins/{{ name }}"
+dir = "plugins/{{ name }}"
 
 [plugins.docker]
 remote = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker"
@@ -35,14 +36,22 @@ apply = ["fpath"]
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
 
+# The `git` plugin requires `compinit` to have been called before being sourced.
+[plugins.compinit]
+inline = "compinit"
+
+[plugins.git]
+github = "robbyrussell/oh-my-zsh"
+dir = "plugins/{{ name }}"
+
 [plugins.oh-my-zsh]
 github = "robbyrussell/oh-my-zsh"
-directory = "lib"
+dir = "lib"
 use = ["completion.zsh", "key-bindings.zsh", "git.zsh", "history.zsh"]
 
 [plugins.pip]
 github = "robbyrussell/oh-my-zsh"
-directory = "plugins/{{ name }}"
+dir = "plugins/{{ name }}"
 apply = ["fpath"]
 
 [plugins.wd]
@@ -54,11 +63,3 @@ apply = ["alias", "fpath"]
 github = "zsh-users/zsh-autosuggestions"
 tag = "v0.5.2"
 use = ["{{ name }}.zsh"]
-
-# The `git` plugin requires `compinit` to have been called before being sourced.
-[plugins.compinit]
-inline = "compinit"
-
-[plugins.git]
-github = "robbyrussell/oh-my-zsh"
-directory = "plugins/{{ name }}"
