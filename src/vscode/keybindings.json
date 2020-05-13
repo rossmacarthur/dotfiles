@@ -23,4 +23,14 @@
         "command": "workbench.action.openGlobalKeybindingsFile",
         "key": "cmd+k cmd+,"
     },
+    {
+        "key": "ctrl+cmd+]",
+        "command": "workbench.action.terminal.resizePaneRight",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+cmd+[",
+        "command": "workbench.action.terminal.resizePaneLeft",
+        "when": "terminalFocus"
+    }
 ]
