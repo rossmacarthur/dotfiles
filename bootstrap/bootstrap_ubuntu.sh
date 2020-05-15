@@ -25,10 +25,11 @@ subheading "Binary downloads"
 install_sheldon
 
 subheading "Scripts"
-symlink "bin/femtocom.sh"  ".local/bin/femtocom"
-symlink "bin/gensshkey.sh" ".local/bin/gensshkey"
-symlink "bin/ips.py"       ".local/bin/ips"
-symlink "bin/pdfshrink.sh" ".local/bin/pdfshrink"
+symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
+symlink "bin/femtocom.sh"    ".local/bin/femtocom"
+symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
+symlink "bin/ips.py"         ".local/bin/ips"
+symlink "bin/pdfshrink.sh"   ".local/bin/pdfshrink"
 
 # ---------------------------------------------------------------------------- #
 heading "Python development"
