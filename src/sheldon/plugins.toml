@@ -2,47 +2,15 @@
 #
 # See https://github.com/rossmacarthur/sheldon
 
-[templates]
-function = { value = 'ln -sf "{{ file }}" "$HOME/.zsh/functions/{{ name }}"', each = true }
-prompt_setup = { value = 'ln -sf "{{ file }}" "$HOME/.zsh/functions/prompt_{{ name }}_setup"', each = true }
-prompt_load = "promptinit\nprompt {{ name }}"
-
-[plugins.async]
-github = "mafredri/zsh-async"
-apply = ["function"]
-use = ["{{ name }}.zsh"]
-
-[plugins.pure]
-github = "rossmacarthur/pure"
-apply = ["prompt_setup", "prompt_load"]
-
 [plugins.autoenv]
 github = "zpm-zsh/autoenv"
-
-[plugins.copybuffer]
-github = "rossmacarthur/oh-my-zsh"
-dir = "plugins/{{ name }}"
-
-[plugins.docker]
-remote = "https://raw.githubusercontent.com/docker/cli/master/contrib/completion/zsh/_docker"
-apply = ["fpath"]
-
-[plugins.docker-compose]
-remote = "https://raw.githubusercontent.com/docker/compose/master/contrib/completion/zsh/_docker-compose"
-apply = ["fpath"]
 
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
 
-[plugins.oh-my-zsh]
-github = "rossmacarthur/oh-my-zsh"
-dir = "lib"
-use = ["clipboard.zsh", "completion.zsh", "key-bindings.zsh", "git.zsh", "history.zsh"]
-
-[plugins.pip]
-github = "rossmacarthur/oh-my-zsh"
-dir = "plugins/{{ name }}"
-apply = ["fpath", "source"]
+[plugins.pure]
+github = "rossmacarthur/pure"
+use = ["async.zsh", "pure.zsh"]
 
 [plugins.wd]
 github = "mfaerevaag/wd"
@@ -52,11 +20,6 @@ apply = ["fpath", "source"]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 
-# The `git` plugin requires `compinit` to have been called before being sourced.
-# This also needs to be called after the `wd` plugin has been added to fpath.
-[plugins.compinit]
-inline = "compinit"
-
-[plugins.git]
-github = "rossmacarthur/oh-my-zsh"
-dir = "plugins/{{ name }}"
+# Things just work best if this is sourced last.
+[plugins.ohmyzsh]
+github = "ohmyzsh/ohmyzsh"

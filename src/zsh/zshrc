@@ -8,14 +8,17 @@ if [ -z "$EDITOR" ]; then
     export EDITOR="vim"
 fi
 
-# Load required modules
-autoload -U compinit promptinit
-
-# Add the function directory to fpath for the 'pure' prompt
-fpath=( "$HOME/.zsh/functions" $fpath )
-
+# Oh My Zsh location
+export ZSH="$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 # For Oh My Zsh lib/history.zsh
 export HIST_STAMPS="yyyy-mm-dd"
+
+# Oh My Zsh plugins
+plugins=(
+    copybuffer
+    git
+    pip
+)
 
 # Source all our plugins,
 source <(sheldon source)
