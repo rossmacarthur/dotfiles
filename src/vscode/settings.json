@@ -23,7 +23,9 @@
         ]
     },
     "[rust]": {
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4
     },
     "[toml]": {
         "editor.rulers": [
@@ -41,7 +43,9 @@
     "editor.fontFamily": "Source Code Pro for Powerline",
     "editor.fontLigatures": true,
     "editor.fontSize": 13,
+    "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
+    "editor.mouseWheelScrollSensitivity": 2,
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
@@ -121,6 +125,7 @@
     "markdown.extension.toc.levels": "2..6",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
+    "rust-analyzer.inlayHints.enable": false,
     "search.quickOpen.includeHistory": false,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
@@ -129,8 +134,10 @@
     },
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
     "terminal.integrated.fontSize": 14,
+    "terminal.integrated.mouseWheelScrollSensitivity": 2,
     "window.zoomLevel": 0,
     "workbench.colorCustomizations": {
+        "rust_analyzer.inlayHint": "#565F89",
         "terminal.ansiBlack": "#24283B",
         "terminal.ansiBlue": "#7AA2F7",
         "terminal.ansiBrightBlack": "#657B83",
@@ -153,6 +160,7 @@
         "terminalCursor.foreground": "#A9B1D6"
     },
     "workbench.colorTheme": "Tokyo Night Storm",
+    "workbench.editor.enablePreview": true,
     "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"
