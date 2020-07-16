@@ -75,9 +75,8 @@ symlink "vscode/settings.json"    "Library/Application Support/Code/User/setting
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
 
 subheading "Zsh"
-symlink "zsh/zshrc"                ".zshrc"
+symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"
-create_directory "$HOME/.zsh/functions"
