@@ -76,7 +76,7 @@
 			<key>keyword</key>
 			<string>gs</string>
 			<key>text</key>
-			<string>GitHub Support issues</string>
+			<string>GitHub &gt; Asimmetric &gt; Support &gt; issues</string>
 			<key>url</key>
 			<string>https://github.com/Asimmetric/support/issues/assigned/rossmacarthur</string>
 			<key>utf8</key>
@@ -115,9 +115,9 @@
 			<key>keyword</key>
 			<string>crates</string>
 			<key>text</key>
-			<string>Search Lib.rs for '{query}'</string>
+			<string>Search Crates.io for '{query}'</string>
 			<key>url</key>
-			<string>https://lib.rs/search?q={query}</string>
+			<string>https://crates.io/search?q={query}</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -131,19 +131,6 @@
 			<string>Search GitHub for '{query}'</string>
 			<key>url</key>
 			<string>https://github.com/search?utf8=%E2%9C%93&amp;q={query}</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>6086897C-6228-4780-8BAC-57E947E660AF</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>dotfiles</string>
-			<key>text</key>
-			<string>GitHub Dotfiles</string>
-			<key>url</key>
-			<string>https://github.com/rossmacarthur/dotfiles</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
@@ -175,6 +162,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>88DD7633-20D0-42CF-9882-A4DC47183E4C</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>gn</string>
+			<key>text</key>
+			<string>GitHub &gt; Notifications</string>
+			<key>url</key>
+			<string>https://github.com/notifications</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>9ACDEA02-4DCF-4ACF-A1B2-98909215185D</key>
 		<dict>
 			<key>enabled</key>
@@ -195,7 +195,7 @@
 			<key>keyword</key>
 			<string>ghcs</string>
 			<key>text</key>
-			<string>Search GitHub Asimmetric for '{query}'</string>
+			<string>Search GitHub &gt; Asimmetric for '{query}'</string>
 			<key>url</key>
 			<string>https://github.com/search?q=org%3AAsimmetric+{query}&amp;type=Code</string>
 			<key>utf8</key>
@@ -214,6 +214,32 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>CDF51F6A-2B40-4C82-929F-E6955B81824F</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>lib</string>
+			<key>text</key>
+			<string>Lib.rs &gt; Crate &gt; {query}</string>
+			<key>url</key>
+			<string>https://lib.rs/crates/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>D649921E-66FD-4E10-8193-A761A4C8B81C</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>libs</string>
+			<key>text</key>
+			<string>Search Lib.rs for '{query}'</string>
+			<key>url</key>
+			<string>https://lib.rs/search?q={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>D8732FD6-52DE-4D52-9645-378E79CC4A1B</key>
 		<dict>
 			<key>enabled</key>
@@ -221,7 +247,7 @@
 			<key>keyword</key>
 			<string>backend</string>
 			<key>text</key>
-			<string>Open Cape backend</string>
+			<string>Cape backend</string>
 			<key>url</key>
 			<string>https://backend.capenetworks.io</string>
 			<key>utf8</key>
@@ -260,9 +286,9 @@
 			<key>keyword</key>
 			<string>crate</string>
 			<key>text</key>
-			<string>Lib.rs &gt; Crate &gt;</string>
+			<string>Crates.io &gt; Crate &gt; {query}</string>
 			<key>url</key>
-			<string>https://lib.rs/crates/{query}</string>
+			<string>https://crates.io/crates/{query}</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
