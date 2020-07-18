@@ -610,3 +610,16 @@ install_cargo_package() {
   local msg=${2:-$1}
   execute "$HOME/.cargo/bin/cargo install $1" "$msg"
 }
+
+_install_launch_agent() {
+  symlink "$src" "$dst" || return 1
+  launchctl unload "$HOME/$dst" &>/dev/null
+  launchctl load $HOME/$dst || return 1
+}
+
+install_launch_agent() {
+  local label=${2:-$1}
+  local src="launchd/$1.plist"
+  local dst="Library/LaunchAgents/$label.plist"
+  execute "_install_launch_agent" "Load $src → $dst"
+}

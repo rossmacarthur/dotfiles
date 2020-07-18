@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>io.macarthur.ross.keymap</string>
+    <key>ProgramArguments</key>
+    <array>
+        <!-- Note: we execute the script using `sh` so that
+             tilde (~) is resolved to the user's home directory -->
+        <string>sh</string>
+        <string>-c</string>
+        <string>~/.dotfiles/src/launchd/keymap.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+</dict>
+</plist>

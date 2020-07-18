@@ -74,6 +74,9 @@ symlink "vim/vimrc"               ".vimrc"
 symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
 
+subheading "Launch Agents"
+install_launch_agent "keymap" "io.macarthur.ross.keymap"
+
 subheading "Zsh"
 symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
