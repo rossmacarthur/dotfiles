@@ -1,8 +1,8 @@
 {
     "[git-commit]": {
         "editor.rulers": [
-            72,
-            50
+            50,
+            72
         ],
         "editor.wordWrap": "off"
     },
@@ -50,64 +50,9 @@
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
-    "editor.tokenColorCustomizations": {
-        "[Tokyo Night Storm]": {
-            "textMateRules": [
-                {
-                    "scope": "string.quoted.docstring.multi.python",
-                    "settings": {
-                        "fontStyle": "italic",
-                        "foreground": "#565F89"
-                    }
-                },
-                {
-                    "scope": "string.quoted.docstring.multi.python punctuation.definition.string",
-                    "settings": {
-                        "fontStyle": "italic",
-                        "foreground": "#565F89"
-                    }
-                },
-                {
-                    "scope": "entity.name.type.class.python",
-                    "settings": {
-                        "foreground": "#89DDFF"
-                    }
-                },
-                {
-                    "scope": "entity.name.function.decorator.python",
-                    "settings": {
-                        "foreground": "#89DDFF"
-                    }
-                },
-                {
-                    "scope": "constant.other.boolean.toml",
-                    "settings": {
-                        "foreground": "#FF9E64"
-                    }
-                },
-                {
-                    "scope": "variable.parameter.function.language.special.self.python",
-                    "settings": {
-                        "foreground": "#F7768E"
-                    }
-                },
-                {
-                    "scope": "variable.parameter.function-call.python",
-                    "settings": {
-                        "foreground": "#A9B1D6"
-                    }
-                },
-                {
-                    "scope": "meta.function-call.arguments.python",
-                    "settings": {
-                        "foreground": "#A9B1D6"
-                    }
-                }
-            ]
-        }
-    },
     "explorer.openEditors.visible": 0,
     "files.associations": {
+        "*.plist": "xml",
         "Dockerfile.*": "dockerfile"
     },
     "files.exclude": {
@@ -128,6 +73,7 @@
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "rust-analyzer.inlayHints.enable": false,
+    "rust-client.engine": "rust-analyzer",
     "search.quickOpen.includeHistory": false,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
@@ -138,30 +84,6 @@
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
     "window.zoomLevel": 0,
-    "workbench.colorCustomizations": {
-        "rust_analyzer.inlayHint": "#565F89",
-        "terminal.ansiBlack": "#24283B",
-        "terminal.ansiBlue": "#7AA2F7",
-        "terminal.ansiBrightBlack": "#657B83",
-        "terminal.ansiBrightBlue": "#7AA2F7",
-        "terminal.ansiBrightCyan": "#89DDFF",
-        "terminal.ansiBrightGreen": "#9ECE6A",
-        "terminal.ansiBrightMagenta": "#BB9AF7",
-        "terminal.ansiBrightRed": "#F7768E",
-        "terminal.ansiBrightWhite": "#A9B1D6",
-        "terminal.ansiBrightYellow": "#ffeb95",
-        "terminal.ansiCyan": "#89DDFF",
-        "terminal.ansiGreen": "#9ECE6A",
-        "terminal.ansiMagenta": "#BB9AF7",
-        "terminal.ansiRed": "#F7768E",
-        "terminal.ansiWhite": "#A9B1D6",
-        "terminal.ansiYellow": "#ffeb95",
-        "terminal.background": "#24283B",
-        "terminal.foreground": "#A9B1D6",
-        "terminalCursor.background": "#A9B1D6",
-        "terminalCursor.foreground": "#A9B1D6"
-    },
-    "workbench.colorTheme": "Tokyo Night Storm",
     "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"

@@ -24,13 +24,18 @@
         "key": "cmd+k cmd+,"
     },
     {
-        "key": "ctrl+cmd+]",
         "command": "workbench.action.terminal.resizePaneRight",
+        "key": "ctrl+cmd+]",
         "when": "terminalFocus"
     },
     {
-        "key": "ctrl+cmd+[",
         "command": "workbench.action.terminal.resizePaneLeft",
+        "key": "ctrl+cmd+[",
         "when": "terminalFocus"
+    },
+    {
+        "command": "-markdown.extension.editing.toggleBold",
+        "key": "cmd+b",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
     }
 ]
