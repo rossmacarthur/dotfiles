@@ -47,10 +47,6 @@ Simply:
 * Run the bootstrap script and your custom bootstrap will be presented as a
   bootstrap option.
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file.
-
 ## Acknowledgements
 
 Inspired by [Cătălin Mariș's][alrra] [dotfiles][alrra_dotfiles].
@@ -59,4 +55,14 @@ Inspired by [Cătălin Mariș's][alrra] [dotfiles][alrra_dotfiles].
 [alrra_dotfiles]: https://github.com/alrra/dotfiles
 [remote]: bootstrap/remote.sh
 [sensor]: bootstrap/bootstrap_sensor.sh
-[utils]: bootstrap/installs.sh
+[utils]: bootstrap/utils.sh
+
+## License
+
+Licensed under either of
+
+- Apache License, Version 2.0 ([LICENSE-APACHE](LICENSE-APACHE) or
+  http://www.apache.org/licenses/LICENSE-2.0)
+- MIT license ([LICENSE-MIT](LICENSE-MIT) or http://opensource.org/licenses/MIT)
+
+at your option.
