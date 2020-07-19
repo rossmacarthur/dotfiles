@@ -131,6 +131,9 @@ print() {
     cyan)
       color=$(tput setaf 6 2>/dev/null)
       ;;
+    grey)
+      color=$(tput setaf 8 2>/dev/null)
+      ;;
     *)
       echo "print: invalid color -- $color"
       return 1
@@ -189,6 +192,42 @@ abort() {
   local msg=${1:-Aborted!}
   error --before 1 --after 2 "$msg"
   exit 1
+}
+
+# Check if an array contains a particular element.
+#
+# Arguments:
+#   $1 the variable name of the global array to check
+#   $2 the element to check for
+contains() {
+  local match=$2
+  for e in "${!1}"; do
+    if [ "$e" == "$match" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+# Print a heading if it is configured.
+#
+# Arguments:
+#   $1 the heading text
+#
+# Returns:
+#   0 the section is configured
+#   1 the section is not configured
+section_configured() {
+  local normalized
+  normalized=$(echo "$1" | tr '[:upper:]' '[:lower:]')
+  if { [ -z "${BOOTSTRAP_FILTER[*]}" ] || contains "BOOTSTRAP_FILTER" "$normalized"; } \
+  && { [ -z "${BOOTSTRAP_EXCLUDE[*]}" ] || ! contains "BOOTSTRAP_EXCLUDE" "$normalized"; }; then
+    heading "$1"
+    return 0
+  else
+    heading "Skipped section: $1" --color grey
+    return 1
+  fi
 }
 
 # Prompt the user to enter data. The data will be stored in USER_ANSWER.

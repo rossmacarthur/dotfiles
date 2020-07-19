@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ---------------------------------------------------------------------------- #
-heading "Installs"
+if section_configured "Installs"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Brew packages"
@@ -24,8 +24,9 @@ symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Python development"
+if section_configured "Python development"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Brew packages"
@@ -46,8 +47,9 @@ install_python_package "awscli"
 install_python_package "nanocom" "Nanocom"
 install_python_package "passthesalt" "PassTheSalt"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Rust development"
+if section_configured "Rust development"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Environment"
@@ -60,8 +62,9 @@ install_cargo_package "cargo-edit"
 install_cargo_package "just"
 install_cargo_package "ripgrep"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Configurations"
+if section_configured "Configurations"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "General"
@@ -84,3 +87,5 @@ symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "cargo-target"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"
+
+fi
