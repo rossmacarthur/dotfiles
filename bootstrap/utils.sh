@@ -495,12 +495,6 @@ sync_directory() {
 if os_is "darwin"
 then
   update_package_manager() {
-    if ! exists brew
-    then
-      execute \
-        "echo | ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)'" \
-        "Homebrew (install)"
-    fi
     execute "brew update" "Homebrew (update)"
   }
 else
