@@ -14,20 +14,21 @@ Usage:
     bootstrap.sh [OPTIONS]
 
 Options:
-  -h, --help                Show this message and exit.
-  -b, --bootstrap <NAME>    Specify the bootstrap script to run.
-  -f, --filter <SECTION>    Specify a section to run (multiple are allowed).
-  -x, --exclude <SECTION>   Specify a section to skip (multiple are allowed).
+  -h, --help              Show this message and exit.
+  -b, --bootstrap <NAME>  Specify the bootstrap script to run.
+      --only <SECTION>    Specify a section to run (can be supplied multiple times).
+      --skip <SECTION>    Specify a section to exclude (can be supplied multiple times).
 EOF
 }
 
 main() {
   export BOOTSTRAP_OPTIONS
   export BOOTSTRAP_CHOICE
-  export BOOTSTRAP_FILTER=()
-  export BOOTSTRAP_EXCLUDE=()
+  export BOOTSTRAP_SECTION_FILTER=()
+  export BOOTSTRAP_SECTION_EXCLUDE=()
 
-  while test $# -gt 0; do
+  while test $# -gt 0
+  do
     case $1 in
       -b|--bootstrap)
         shift
@@ -38,23 +39,23 @@ main() {
         fi
         BOOTSTRAP_CHOICE="$1"
         ;;
-      -f|--filter)
+      --only)
         shift
         if [ -z "$1" ]; then
-          printf "Error: --filter option requires an argument\n\n"
+          printf "Error: --only option requires an argument\n\n"
           usage
           exit 1
         fi
-        BOOTSTRAP_FILTER+=("$1")
+        BOOTSTRAP_SECTION_FILTER+=("$1")
         ;;
-      -x|--exclude)
+      --skip)
         shift
         if [ -z "$1" ]; then
-          printf "Error: --exclude option requires an argument\n\n"
+          printf "Error: --skip option requires an argument\n\n"
           usage
           exit 1
         fi
-        BOOTSTRAP_EXCLUDE+=("$1")
+        BOOTSTRAP_SECTION_EXCLUDE+=("$1")
         ;;
       -h|--help)
         usage
@@ -91,6 +92,10 @@ main() {
   # Run the bootstrap script
   source bootstrap_$BOOTSTRAP_CHOICE.sh
 
+  if [ -n "$DOTFILES_RETURNCODE" ]; then
+    heading --after 2 "There were failures 💔 😢 💔"
+    exit 1
+  fi
   heading --after 2 "Complete! ✨ 🍰 ✨"
 }
 

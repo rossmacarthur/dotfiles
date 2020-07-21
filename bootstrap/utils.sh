@@ -20,12 +20,12 @@ exists() {
 # Check if the current operating system is equal to the given one.
 #
 # Arguments:
-#   $1 the platform name
+#   $1 the platform name, e.g. "darwin", "linux"
 #
 # Returns:
 #   0 if the platform is the same
 #   1 if the platform is not the same
-os_is() {
+is_platform() {
   if [ -z "$PLATFORM" ]
   then
     PLATFORM=$(uname -s | tr '[:upper:]' '[:lower:]')
@@ -41,7 +41,6 @@ os_is() {
 repeat() {
   local str=$1
   local count=${2:-0}
-
   for ((i=0; i<count; i++))
   do
     printf "%s" "$str"
@@ -51,7 +50,7 @@ repeat() {
 # A custom print function.
 #
 # Options:
-#   -c, --color   the color (none, red, green, yellow, blue, magenta, cyan)
+#   -c, --color   the color (none, red, green, yellow, blue, magenta, cyan, grey)
 #   -i, --indent  the indent count (default: $INDENT)
 #   -p, --prefix  text to prefix the primary text
 #   -s, --suffix  text to suffix the primary text
@@ -63,8 +62,8 @@ repeat() {
 #   Text
 #
 # Returns:
-#   1 if invalid options or extra arguments were given
 #   0 the print was successful
+#   1 if invalid options or extra arguments were given
 print() {
   local color="none"
   local indent=INDENT
@@ -75,7 +74,7 @@ print() {
   local reset=$(tput sgr0 2>/dev/null)
   local rest=()
 
-  while [ -n "$1" ]
+  while test $# -gt 0
   do
     case "$1" in
       -c|--color)
@@ -201,28 +200,46 @@ abort() {
 #   $2 the element to check for
 contains() {
   local match=$2
-  for e in "${!1}"; do
-    if [ "$e" == "$match" ]; then
+  for e in "${!1}"
+  do
+    if [ "$e" == "$match" ]
+    then
       return 0
     fi
   done
   return 1
 }
 
-# Print a heading if it is configured.
+# Whether or not a section is configured.
 #
 # Arguments:
-#   $1 the heading text
+#   $1 the section tag.
 #
 # Returns:
 #   0 the section is configured
 #   1 the section is not configured
-section_configured() {
-  local normalized
-  normalized=$(echo "$1" | tr '[:upper:]' '[:lower:]')
-  if { [ -z "${BOOTSTRAP_FILTER[*]}" ] || contains "BOOTSTRAP_FILTER" "$normalized"; } \
-  && { [ -z "${BOOTSTRAP_EXCLUDE[*]}" ] || ! contains "BOOTSTRAP_EXCLUDE" "$normalized"; }; then
-    heading "$1"
+is_section_configured() {
+  { [ -z "${BOOTSTRAP_SECTION_FILTER[*]}" ] || contains "BOOTSTRAP_SECTION_FILTER" "$1"; } \
+      && { [ -z "${BOOTSTRAP_SECTION_EXCLUDE[*]}" ] || ! contains "BOOTSTRAP_SECTION_EXCLUDE" "$1"; }
+}
+
+# Print a heading if it is configured.
+#
+# Arguments:
+#   $1 the heading text
+#   $2 the section tag that this heading corresponds to (defaults to $1)
+#
+# Returns:
+#   0 the heading is configured
+#   1 the heading is not configured
+heading_if() {
+  local text=$1
+  local name=${2:-$1}
+  local tag
+  tag=$(echo "$name" | tr '[:upper:]' '[:lower:]')
+  if is_section_configured "$tag"
+  then
+    heading "$text"
     return 0
   else
     heading "Skipped section: $1" --color grey
@@ -247,8 +264,8 @@ prompt() {
   }
 }
 
-# Prompt the user with a list of choices. Loops forever until a valid option is chosen. The result
-# will be stored in USER_CHOICE.
+# Prompt the user with a list of choices. Loops forever until a valid option is
+# chosen. The result will be stored in USER_CHOICE.
 #
 # Arguments:
 #   $1 the prompt description
@@ -294,9 +311,9 @@ prompt_choice() {
 
 # Request root privileges and background a process to reset the sudo timer.
 #
-# Warning: this function backgrounds a process to reset the sudo timer. Since sudo accesses
-# /dev/tty you might not be able to use something like read while this is running.
-# See https://unix.stackexchange.com/a/499433/278207.
+# Warning: this function backgrounds a process to reset the sudo timer. Since
+# sudo accesses /dev/tty you might not be able to use something like read while
+# this is running. See https://unix.stackexchange.com/a/499433/278207.
 #
 # Returns:
 #   0 if we have sudo access
@@ -334,7 +351,8 @@ request_sudo() {
   return 0
 }
 
-# Prompt the user with a yes or no question. Times out defaulting to 'No' after 10 seconds.
+# Prompt the user with a yes or no question. Times out defaulting to 'No' after
+# 10 seconds.
 #
 # Arguments:
 #   $1 the prompt text
@@ -350,7 +368,8 @@ confirm() {
   [[ "$USER_ANSWER" =~ ^[Yy]$ ]]
 }
 
-# Execute a command and display a loading spinner until the command is completed.
+# Execute a command and display a loading spinner until the command is
+# completed.
 #
 # Arguments:
 #   $1 the command to execute
@@ -396,20 +415,29 @@ execute() {
 
   local cmd=$1
   local text=${2:-$1}
+  local temp_file
 
   # Actually start running the command
-  eval "$cmd" >/dev/null 2>&1 &
+  temp_file=$(mktemp)
+  eval "$cmd" &>"$temp_file" &
   local pid=$!
 
   # Setup a spinner to display while the command is running.
   trap 'aborter $pid "$text"' SIGINT
   spinner "$pid" "$text"
   # If the command executed with 0.
-  if wait $pid
+  if wait "$pid"
   then
     success --indent 0 "$text"
+    rm -f "$temp_file"
+    return 0
   else
     error --indent 0 "$text"
+    export DOTFILES_RETURNCODE=1
+    # Print the command's output indented.
+    print --color grey --indent 0 --after 2 "$(sed "s/^/$(repeat " " "$INDENT")/g" "$temp_file")"
+    rm -f "$temp_file"
+    return 1
   fi
 }
 
@@ -462,9 +490,17 @@ remove_directory() {
 #   $1 the file source relative to the dotfiles directory
 #   $2 the file destination relative to the $HOME directory
 symlink() {
-  create_directory "$(dirname "$HOME/$2")"
-  execute "ln -fs '$DOTFILES_DIRECTORY/src/$1' '$HOME/$2'" "$1 → ~/$2"
-  sleep 0.1
+  local src="$DOTFILES_DIRECTORY/src/$1"
+  local dst="$HOME/$2"
+  execute "_symlink '$src' '$dst'" "$1 → ~/$2"
+}
+_symlink() {
+  local src=$1
+  local dst=$2
+  [ -f "$src" ] || { echo "Error: $src does not exist" >&2 && return 1; }
+  create_directory "$(dirname "$dst")" || return 1
+  ln -fs "$src" "$dst" || return 1
+  sleep 0.05
 }
 
 # Symlink a Zsh plugin.
@@ -492,7 +528,7 @@ sync_directory() {
 # Update the system package manager.
 #
 # This is a `brew update` on macOS and a `sudo apt update` otherwise.
-if os_is "darwin"
+if is_platform "darwin"
 then
   update_package_manager() {
     execute "brew update" "Homebrew (update)"
@@ -506,7 +542,7 @@ else
 fi
 
 # Install a package using the system package manager.
-if os_is "darwin"
+if is_platform "darwin"
 then
   install_package() {
     local msg=${2:-$1}
@@ -527,6 +563,8 @@ install_packages() {
   done
 }
 
+# Check whether a directory exists, and prompt user as to whether we can remove
+# it.
 check_directory() {
   local directory=$1
   local prompt=$2
@@ -573,7 +611,8 @@ install_sheldon() {
 }
 
 install_pip() {
-  if exists pip; then
+  if exists pip
+  then
     execute "pip install --upgrade pip" "PIP"
   else
     execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
@@ -644,15 +683,14 @@ install_cargo_package() {
   execute "$HOME/.cargo/bin/cargo install $1" "$msg"
 }
 
-_install_launch_agent() {
-  symlink "$src" "$dst" || return 1
-  launchctl unload "$HOME/$dst" &>/dev/null
-  launchctl load $HOME/$dst || return 1
-}
-
 install_launch_agent() {
   local label=${2:-$1}
   local src="launchd/$1.plist"
   local dst="Library/LaunchAgents/$label.plist"
   execute "_install_launch_agent" "Load $src → $dst"
+}
+_install_launch_agent() {
+  symlink "$src" "$dst" || return 1
+  launchctl unload "$HOME/$dst" &>/dev/null
+  launchctl load "$HOME/$dst" || return 1
 }

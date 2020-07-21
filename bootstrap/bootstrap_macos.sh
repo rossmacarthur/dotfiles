@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ---------------------------------------------------------------------------- #
-if section_configured "Installs"; then
+if heading_if "Installs"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Brew packages"
@@ -12,12 +12,16 @@ install_package "git" "Git"
 install_package "htop" "htop"
 install_package "jq"
 install_package "tmux"
+install_package "tree" "Tree"
 install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
 
 subheading "Binary downloads"
 install_sheldon
+
+subheading "Launch Agents"
+install_launch_agent "keymap" "io.macarthur.ross.keymap"
 
 subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
@@ -26,7 +30,7 @@ symlink "bin/ips.py"         ".local/bin/ips"
 
 fi
 # ---------------------------------------------------------------------------- #
-if section_configured "Python development"; then
+if heading_if "Python development" "python"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Brew packages"
@@ -49,7 +53,7 @@ install_python_package "passthesalt" "PassTheSalt"
 
 fi
 # ---------------------------------------------------------------------------- #
-if section_configured "Rust development"; then
+if heading_if "Rust development" "rust"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Environment"
@@ -58,13 +62,14 @@ install_rust_version "stable"
 install_rust_version "beta"
 
 subheading "Packages"
+install_cargo_package "bat"
 install_cargo_package "cargo-edit"
 install_cargo_package "just"
 install_cargo_package "ripgrep"
 
 fi
 # ---------------------------------------------------------------------------- #
-if section_configured "Configurations"; then
+if heading_if "Configurations" "config"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "General"
@@ -76,9 +81,6 @@ symlink "tmux/tmux.conf"          ".tmux.conf"
 symlink "vim/vimrc"               ".vimrc"
 symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
-
-subheading "Launch Agents"
-install_launch_agent "keymap" "io.macarthur.ross.keymap"
 
 subheading "Zsh"
 symlink "zsh/zshrc" ".zshrc"
