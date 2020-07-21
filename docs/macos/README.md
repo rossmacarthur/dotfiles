@@ -6,8 +6,9 @@ try to keep this up to date with the latest tools and apps that I am using.
 
 See also
 
-- [Workspace volume](Workspace.md)
-- [GNU Privacy Guard](GnuPG.md)
+- [Setup Workspace volume](workspace.md)
+- [Setup GNU Privacy Guard](../gnupg.md)
+- [Setup Visual Studio Code extensions](../vscode.md)
 
 ## Package manager
 
@@ -80,6 +81,11 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew cask install balenaetcher
   ```
 
+- [ExpressVPN](https://www.expressvpn.com/)
+  ```
+  brew cask install expressvpn
+  ```
+
 - [Firefox](https://www.mozilla.org/en-ZA/firefox/new/): Better Safari.
   ```
   brew cask install firefox
@@ -148,11 +154,12 @@ export NVM_DIR="$HOME/.nvm"
 - System Preferences > Bluetooth > Show Bluetooth in menu bar: ✅
 - System Preferences > Dock > Size: Small
 - System Preferences > Dock > Automatically hide and show the Dock: ✅
-- System Preferenced > General > Recent items: None
-- System Preferences > Keyboard > Touch Bar shows: Expanded Control strip
-- System Preferences > Keyboard > Key Repeat: Fast
-- System Preferences > Keyboard > delay Until Repeat: Short
-- System Preferences > Keyboard > Shortcuts > Mission Control
+- System Preferences > General > Recent items: None
+- System Preferences > Keyboard > Text: *Remove all abbreviations*
+- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control strip
+- System Preferences > Keyboard > Keyboard > Key Repeat: Fast
+- System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
+- System Preferences > Keyboard > Keyboard > Shortcuts > Mission Control
   - Switch to Desktop 1: ✅
   - Switch to Desktop 2: ✅
   - Switch to Desktop 3: ✅
