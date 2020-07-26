@@ -3,6 +3,8 @@
 BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 cd "$BOOTSTRAP_DIRECTORY" || exit 1
+
+# shellcheck disable=SC1091
 source utils.sh
 
 usage() {
