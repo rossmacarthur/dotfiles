@@ -4,30 +4,13 @@ Install packages and and my personal dotfiles on a new system.
 
 ## Getting started
 
-### One liner
-
-```bash
-bash -c "$(curl -LsS https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/remote.sh)"
-```
-
-**or**
-
-```bash
-bash -c "$(wget -qO - https://raw.github.com/rossmacarthur/dotfiles/master/bootstrap/remote.sh)"
-```
-
-### With repository
-
-It is nice to install with the repository, because then you can just `git pull`
-to update the dotfiles.
-
 Clone the repository with
 ```bash
 git clone https://github.com/rossmacarthur/dotfiles.git ~/.dotfiles
 ```
 
 And run the bootstrap script using
-```
+```bash
 ~/.dotfiles/bootstrap/bootstrap.sh
 ```
 
@@ -42,8 +25,6 @@ Simply:
   will work).
 * Modify it to your liking. You can use the install functions in
   [utils.sh][utils].
-* Change the top line of [remote.sh][remote] to reference your own fork as well
-  as the code snippet at the top of this README.
 * Run the bootstrap script and your custom bootstrap will be presented as a
   bootstrap option.
 

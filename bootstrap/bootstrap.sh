@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DOTFILES_DIRECTORY="$(dirname "$BOOTSTRAP_DIRECTORY")"
 
 cd "$BOOTSTRAP_DIRECTORY" || exit 1
 source utils.sh
@@ -90,7 +89,8 @@ main() {
   fi
 
   # Run the bootstrap script
-  source bootstrap_$BOOTSTRAP_CHOICE.sh
+  # shellcheck disable=SC1090
+  source "bootstrap_$BOOTSTRAP_CHOICE.sh"
 
   if [ -n "$DOTFILES_RETURNCODE" ]; then
     heading --after 2 "There were failures 💔 😢 💔"

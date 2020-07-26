@@ -71,8 +71,10 @@ print() {
   local suffix
   local before=0
   local after=1
-  local reset=$(tput sgr0 2>/dev/null)
+  local reset
   local rest=()
+
+  reset=$(tput sgr0 2>/dev/null)
 
   while test $# -gt 0
   do
@@ -149,7 +151,7 @@ print() {
 
 # Print a newline.
 newline() {
-  print --indent 0 "$@"
+  print --indent 0
 }
 
 # Print a heading.
@@ -635,22 +637,24 @@ install_pyenv() {
 }
 
 install_pyenv_python2() {
-  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+2.7' | tail -1 | xargs)
+  local version
+  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+2.7' | tail -1 | xargs)
   execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
 }
 
 install_pyenv_python3() {
-  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.8' | tail -1 | xargs)
+  local version
+  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.8' | tail -1 | xargs)
   execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
 }
 
 create_pyenv_virtualenv() {
+  local version
   if [ -f "$HOME/.pyenv/versions/global" ] && ! confirm "Global virtualenv already exists. Reinstall?"
   then
     return
   fi
-
-  local version=$($HOME/.pyenv/bin/pyenv install --list | grep '^\s\+3.8' | tail -1 | xargs)
+  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.8' | tail -1 | xargs)
   execute \
     "$HOME/.pyenv/bin/pyenv virtualenv --force $version global && $HOME/.pyenv/bin/pyenv global global" \
     "Global virtualenv"
