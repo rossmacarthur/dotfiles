@@ -12,6 +12,9 @@
 [difftool "vscode"]
 	cmd = code -n --wait --diff $LOCAL $REMOTE
 
+[pull]
+	ff = only
+
 [user]
 	name = Ross MacArthur
 	email = ross@macarthur.io
