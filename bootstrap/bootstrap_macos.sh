@@ -27,6 +27,7 @@ subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
+symlink "bin/keymap.sh"      ".local/bin/keymap"
 
 fi
 # ---------------------------------------------------------------------------- #

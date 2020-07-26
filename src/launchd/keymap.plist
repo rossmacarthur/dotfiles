@@ -10,7 +10,7 @@
              tilde (~) is resolved to the user's home directory -->
         <string>sh</string>
         <string>-c</string>
-        <string>~/.dotfiles/src/launchd/keymap.sh</string>
+        <string>~/.local/bin/keymap</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
