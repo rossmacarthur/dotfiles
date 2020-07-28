@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC2155
+export BOOTSTRAP_DIRECTORY="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck disable=SC2155
+export DOTFILES_DIRECTORY="$(dirname "$BOOTSTRAP_DIRECTORY")"
 
 cd "$BOOTSTRAP_DIRECTORY" || exit 1
 
