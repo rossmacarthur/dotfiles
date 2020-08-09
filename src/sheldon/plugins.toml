@@ -12,9 +12,17 @@ local = "~/.zsh/plugins"
 github = "rossmacarthur/pure"
 use = ["async.zsh", "pure.zsh"]
 
+[plugins.syntax-highlighting]
+github = 'zdharma/fast-syntax-highlighting'
+
 [plugins.wd]
 github = "mfaerevaag/wd"
 apply = ["fpath", "source"]
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+dir = "src"
+apply = ["fpath"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
