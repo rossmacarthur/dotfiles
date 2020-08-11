@@ -28,6 +28,9 @@ apply = ["fpath"]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 
+[plugins.zsh-you-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+
 # Things just work best if this is sourced last.
 [plugins.ohmyzsh]
 github = "ohmyzsh/ohmyzsh"
