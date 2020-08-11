@@ -6,7 +6,11 @@
         ],
         "editor.wordWrap": "off"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[markdown]": {
+        "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.formatOnSave": true,
         "editor.rulers": [
             80
@@ -68,12 +72,11 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
-    "markdown.extension.toc.levels": "2..6",
+    "markdown.extension.toc.level": "2..6",
     "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "rust-analyzer.inlayHints.enable": false,
-    "rust-client.engine": "rust-analyzer",
+    "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
     "search.quickOpen.includeHistory": false,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
@@ -84,6 +87,9 @@
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
     "window.zoomLevel": 0,
+    "workbench.colorCustomizations": {
+        "terminal.ansiBlue": "#569cd6"
+    },
     "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"
