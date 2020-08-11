@@ -103,6 +103,11 @@ line tools and macOS apps using the `brew` command line tool. From the
   - Setup up MEGAsync and to sync to ~/Cloud.
   - Preferences > Advanced > Disable overlay icons: ✅
 
+- [Postman](https://www.postman.com/)
+  ```
+  brew cask install postman
+  ```
+
 - [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
   shortcuts or snap areas.
   ```
@@ -129,9 +134,20 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ### Command line tools
 
-```
-brew install shellcheck
-```
+- [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools.html)
+  ```
+  brew cask install android-platform-tools
+  ```
+
+- [Pidcat](https://github.com/JakeWharton/pidcat)
+  ```
+  brew install pidcat
+  ```
+
+- [ShellCheck](https://www.shellcheck.net/)
+  ```
+  brew install shellcheck
+  ```
 
 ## NVM
 
@@ -154,6 +170,7 @@ export NVM_DIR="$HOME/.nvm"
 - System Preferences > Bluetooth > Show Bluetooth in menu bar: ✅
 - System Preferences > Dock > Size: Small
 - System Preferences > Dock > Automatically hide and show the Dock: ✅
+- System Preferences > Energy > Automatic Graphics Switching: ❌
 - System Preferences > General > Recent items: None
 - System Preferences > Keyboard > Text: *Remove all abbreviations*
 - System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control strip
@@ -169,6 +186,9 @@ export NVM_DIR="$HOME/.nvm"
 - System Preferences > Mission Control > Mission Control: Automatically
   rearrange spaces based on recent use: ❌
 - System Preferences > Siri > Enable Ask Siri: ❌
+- System Preferences > Sound > Sound Effects > Show volume in menu bar: ✅
+
+- Click on battery in Menu Bar, then click Show Percentage.
 
 Run the following to remove all presistent Dock apps:
 
@@ -176,6 +196,8 @@ Run the following to remove all presistent Dock apps:
 defaults write com.apple.dock persistent-apps -array
 killall Dock
 ```
+
+- Finder > Preferences > Advanced > Show all filename extensions: ✅
 
 ### Terminal (iTerm 2)
 
