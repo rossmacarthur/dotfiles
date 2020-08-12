@@ -2,27 +2,46 @@
 #
 # See https://github.com/rossmacarthur/sheldon
 
+# By default plugin sourcing is deferred
+apply = ["defer"]
+
+[templates]
+defer = { value = 'zsh-defer source "{{ file }}"', each = true }
+
+# Sourced
+# -------
+
+[plugins.pure]
+github = "rossmacarthur/pure"
+use = ["async.zsh", "pure.zsh"]
+apply = ["source"]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+apply = ["source"]
+
+# fpath only
+# ----------
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+dir = "src"
+apply = ["fpath"]
+
+# Deferred
+# --------
+
 [plugins.autoenv]
 github = "zpm-zsh/autoenv"
 
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
 
-[plugins.pure]
-github = "rossmacarthur/pure"
-use = ["async.zsh", "pure.zsh"]
-
 [plugins.syntax-highlighting]
 github = 'zdharma/fast-syntax-highlighting'
 
 [plugins.wd]
 github = "mfaerevaag/wd"
-apply = ["fpath", "source"]
-
-[plugins.zsh-completions]
-github = "zsh-users/zsh-completions"
-dir = "src"
-apply = ["fpath"]
+apply = ["fpath", "defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
