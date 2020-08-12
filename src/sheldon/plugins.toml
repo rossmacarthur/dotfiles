@@ -7,18 +7,7 @@ apply = ["defer"]
 
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-
-# Sourced
-# -------
-
-[plugins.pure]
-github = "rossmacarthur/pure"
-use = ["async.zsh", "pure.zsh"]
-apply = ["source"]
-
-[plugins.zsh-defer]
-github = "romkatv/zsh-defer"
-apply = ["source"]
+defer-more = { value = 'zsh-defer -t 0.5 source "{{ file }}"', each = true }
 
 # fpath only
 # ----------
@@ -26,6 +15,28 @@ apply = ["source"]
 github = "zsh-users/zsh-completions"
 dir = "src"
 apply = ["fpath"]
+
+# Sourced
+# -------
+
+# The history plugin doesn't like being deferred, not sure why.
+[plugins.history]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+apply = ["source"]
+
+[plugins.pure]
+github = "rossmacarthur/pure"
+use = ["async.zsh", "pure.zsh"]
+apply = ["source"]
+
+[plugins.wd]
+github = "mfaerevaag/wd"
+apply = ["fpath", "source"]
+
+[plugins.zsh-defer]
+github = "romkatv/zsh-defer"
+apply = ["source"]
 
 # Deferred
 # --------
@@ -35,21 +46,32 @@ github = "zpm-zsh/autoenv"
 
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
+use = ["{!compinit,!pyenv,*}.plugin.zsh"]
 
-[plugins.syntax-highlighting]
-github = 'zdharma/fast-syntax-highlighting'
+[plugins.ohmyzsh-lib]
+github = "ohmyzsh/ohmyzsh"
+dir = "lib"
+use = ["{clipboard,completion,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
 
-[plugins.wd]
-github = "mfaerevaag/wd"
+[plugins.ohmyzsh-plugins]
+github = "ohmyzsh/ohmyzsh"
+dir = "plugins"
+use = ["{copybuffer,git,pip}/*.plugin.zsh"]
 apply = ["fpath", "defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 
-[plugins.zsh-you-should-use]
-github = "MichaelAquilina/zsh-you-should-use"
+[plugins.zsh-syntax-highlighting]
+github = 'zsh-users/zsh-syntax-highlighting'
 
-# Things just work best if this is sourced last.
-[plugins.ohmyzsh]
-github = "ohmyzsh/ohmyzsh"
+[plugins.compinit]
+local = "~/.zsh/plugins"
+
+# Deferred even more
+# ------------------
+
+[plugins.pyenv]
+local = "~/.zsh/plugins"
+apply = ["defer-more"]

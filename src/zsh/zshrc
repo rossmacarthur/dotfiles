@@ -6,19 +6,11 @@ export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
 # Set default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
-# Oh My Zsh
-# ---------
-export ZSH="$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh"
-export DISABLE_AUTO_UPDATE=true
+# Oh My Zsh / lib / history.zsh
+# -----------------------------
 export HIST_STAMPS="yyyy-mm-dd"
 export HISTSIZE=250000
 export SAVESIZE=25000
-
-plugins=(
-    copybuffer
-    git
-    pip
-)
 
 # You Should Use
 # --------------

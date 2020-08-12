@@ -88,6 +88,7 @@ symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "cargo-target"
+symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"
 

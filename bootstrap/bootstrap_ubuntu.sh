@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # ---------------------------------------------------------------------------- #
-heading "Installs"
+if heading_if "Installs"; then
 # ---------------------------------------------------------------------------- #
 
 request_sudo || abort
@@ -30,8 +30,9 @@ symlink "bin/femtocom.sh"    ".local/bin/femtocom"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Python development"
+if heading_if "Python development" "python"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "System packages"
@@ -50,8 +51,9 @@ install_python_package "awscli"
 install_python_package "nanocom" "Nanocom"
 install_python_package "passthesalt" "PassTheSalt"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Rust development"
+if heading_if "Rust development" "rust"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Environment"
@@ -64,8 +66,9 @@ install_cargo_package "cargo-edit"
 install_cargo_package "just"
 install_cargo_package "ripgrep"
 
+fi
 # ---------------------------------------------------------------------------- #
-heading "Configurations"
+if heading_if "Configurations" "config"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "General"
@@ -83,5 +86,8 @@ symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "cargo-target"
+symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"
+
+fi

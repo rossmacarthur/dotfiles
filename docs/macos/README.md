@@ -149,19 +149,6 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew install shellcheck
   ```
 
-## NVM
-
-```
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-```
-
-Add the following to `.zshrc`
-
-```sh
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-```
-
 ## Preferences
 
 ### General
