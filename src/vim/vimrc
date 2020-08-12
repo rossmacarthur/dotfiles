@@ -3,7 +3,7 @@ filetype indent on       " Set indent for current filetype
 syntax enable            " Enable syntax highlighting
 set termguicolors        " Fixes colors under tmux
 set background=dark      " Use dark background
-colorscheme night-owl    " Set color scheme to 'night-owl'
+colorscheme slate
 
 " Create undo directory if it doesn't exist
 silent !mkdir -p ~/.vim/vimundo > /dev/null 2>&1
