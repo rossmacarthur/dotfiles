@@ -59,6 +59,9 @@ dir = "plugins"
 use = ["{copybuffer,git,pip}/*.plugin.zsh"]
 apply = ["fpath", "defer"]
 
+[plugins.zsh-you-should-use]
+github = "MichaelAquilina/zsh-you-should-use"
+
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
