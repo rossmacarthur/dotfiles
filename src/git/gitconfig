@@ -12,6 +12,9 @@
 [difftool "vscode"]
 	cmd = code -n --wait --diff $LOCAL $REMOTE
 
+[log]
+	showSignature = true
+
 [pull]
 	ff = only
 
