@@ -12,8 +12,9 @@
         <string>-c</string>
         <string>~/.local/bin/remap-keys</string>
     </array>
+    <key>RunAtLoad</key>
+    <true/>
     <key>StartInterval</key>
     <integer>300</integer>
-    <true/>
 </dict>
 </plist>
