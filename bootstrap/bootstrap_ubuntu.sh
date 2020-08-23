@@ -68,7 +68,7 @@ install_cargo_package "ripgrep"
 
 fi
 # ---------------------------------------------------------------------------- #
-if heading_if "Configurations" "config"; then
+if heading_if "Configurations" "configs"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "General"
@@ -85,7 +85,6 @@ subheading "Zsh"
 symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
-symlink_zsh_plugin "cargo-target"
 symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"

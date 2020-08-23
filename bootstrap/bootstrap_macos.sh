@@ -4,21 +4,19 @@
 if heading_if "Installs"; then
 # ---------------------------------------------------------------------------- #
 
-subheading "Brew packages"
+subheading "Homebrew packages"
 update_package_manager
 install_package "bash" "Bash"
 install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "htop" "htop"
 install_package "jq"
+install_package "sheldon"
 install_package "tmux"
 install_package "tree" "Tree"
 install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
-
-subheading "Binary downloads"
-install_sheldon
 
 subheading "Launch Agents"
 install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
@@ -70,7 +68,7 @@ install_cargo_package "ripgrep"
 
 fi
 # ---------------------------------------------------------------------------- #
-if heading_if "Configurations" "config"; then
+if heading_if "Configurations" "configs"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "General"
@@ -87,7 +85,6 @@ subheading "Zsh"
 symlink "zsh/zshrc" ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
-symlink_zsh_plugin "cargo-target"
 symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "pyenv"
