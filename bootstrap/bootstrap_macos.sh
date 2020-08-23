@@ -21,13 +21,13 @@ subheading "Binary downloads"
 install_sheldon
 
 subheading "Launch Agents"
-install_launch_agent "keymap" "io.macarthur.ross.keymap"
+install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
 
 subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
-symlink "bin/keymap.sh"      ".local/bin/keymap"
+symlink "bin/remap-keys.sh"  ".local/bin/remap-keys"
 
 fi
 # ---------------------------------------------------------------------------- #

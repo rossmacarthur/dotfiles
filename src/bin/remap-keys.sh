@@ -7,7 +7,7 @@ usage() {
 Remap keyboard keys.
 
 Usage:
-    keymap.sh [OPTIONS]
+    remap-keys [OPTIONS]
 
 Options:
   -h, --help   Show this message and exit.
@@ -59,7 +59,7 @@ main() {
   while test $# -gt 0
   do
     case $1 in
-      --reset)
+      -r|-R|--reset|--RESET)
         reset=true
         ;;
       -h|--help)
