@@ -81,11 +81,6 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew cask install balenaetcher
   ```
 
-- [ExpressVPN](https://www.expressvpn.com/)
-  ```
-  brew cask install expressvpn
-  ```
-
 - [Firefox](https://www.mozilla.org/en-ZA/firefox/new/): Better Safari.
   ```
   brew cask install firefox
@@ -106,6 +101,11 @@ line tools and macOS apps using the `brew` command line tool. From the
 - [Postman](https://www.postman.com/)
   ```
   brew cask install postman
+  ```
+
+- [QR Journal](https://www.joshjacob.com/mac-development/qrjournal.php)
+  ```
+  brew cask install qr-journal
   ```
 
 - [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
@@ -137,6 +137,16 @@ line tools and macOS apps using the `brew` command line tool. From the
 - [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools.html)
   ```
   brew cask install android-platform-tools
+  ```
+
+- [CMake](https://cmake.org/)
+  ```
+  brew install cmake
+  ```
+
+- [Ninja](https://ninja-build.org/)
+  ```
+  brew install ninja
   ```
 
 - [Pidcat](https://github.com/JakeWharton/pidcat)
@@ -177,7 +187,7 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 - Click on battery in Menu Bar, then click Show Percentage.
 
-Run the following to remove all presistent Dock apps:
+Run the following to remove all persistent Dock apps:
 
 ```sh
 defaults write com.apple.dock persistent-apps -array
