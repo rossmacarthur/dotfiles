@@ -429,7 +429,7 @@
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 0 1920 1177 0 0 1920 1177 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>0 0 1920 1177 0 0 1920 1177 </string>
+	<string>0 988 650 429 0 0 2560 1417 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -574,13 +574,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.83921568627450982</real>
+				<real>0.82522135972976685</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.61176470588235299</real>
+				<real>0.53133517503738403</real>
 				<key>Red Component</key>
-				<real>0.33725490196078434</real>
+				<real>0.17120525240898132</real>
 			</dict>
 			<key>Ansi 5 Color</key>
 			<dict>
@@ -1354,14 +1354,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {2560, 1440}}</string>
 		<key>topLeft</key>
-		<string>{1123, 1329}</string>
+		<string>{289, 850}</string>
 	</dict>
 	<key>NoSyncInstallationId</key>
 	<string>A7F2110C-4069-4140-B823-6CBA6C4DBD4D</string>
 	<key>NoSyncLastTipTime</key>
 	<real>616968443.21727705</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>15</integer>
+	<integer>18</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -2134,7 +2134,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-08-01T18:04:35Z</date>
+	<date>2020-08-15T14:21:43Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
