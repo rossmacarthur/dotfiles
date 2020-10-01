@@ -30,6 +30,9 @@
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
+        "editor.rulers": [
+            80
+        ],
         "editor.tabSize": 4
     },
     "[toml]": {
@@ -48,12 +51,23 @@
     "editor.fontFamily": "Source Code Pro for Powerline",
     "editor.fontLigatures": true,
     "editor.fontSize": 13,
+    "editor.formatOnSave": false,
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
     "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "boundary",
     "editor.smoothScrolling": true,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#6A9955"
+                }
+            }
+        ]
+    },
     "explorer.openEditors.visible": 0,
     "files.associations": {
         "*.plist": "xml",
@@ -73,7 +87,6 @@
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
     "markdown.extension.toc.level": "2..6",
-    "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
