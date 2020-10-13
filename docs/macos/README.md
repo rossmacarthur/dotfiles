@@ -134,7 +134,8 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ### Command line tools
 
-- [Android Platform Tools](https://developer.android.com/studio/releases/platform-tools.html)
+- [Android Platform
+  Tools](https://developer.android.com/studio/releases/platform-tools.html)
   ```
   brew cask install android-platform-tools
   ```
@@ -170,7 +171,8 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Preferences > Energy > Automatic Graphics Switching: ❌
 - System Preferences > General > Recent items: None
 - System Preferences > Keyboard > Text: *Remove all abbreviations*
-- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control strip
+- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control
+  strip
 - System Preferences > Keyboard > Keyboard > Key Repeat: Fast
 - System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
 - System Preferences > Keyboard > Keyboard > Shortcuts > Mission Control
@@ -201,20 +203,25 @@ killall Dock
 Install dotfiles by following main [README](../../README.md) in this repo. After
 starting a new terminal if you get error: "Insecure completion-dependent
 directories detected" then run
+
 ```sh
 compaudit | xargs chmod g-w,o-w
 ```
 
 Install Powerline fonts.
 
-- `git clone https://github.com/powerline/fonts.git`
-- Open the "Font Book" app, click the Plus (+) and open the fonts/SourceCodePro
-  directory.
+```sh
+git clone https://github.com/powerline/fonts.git`
+```
+
+Open the "Font Book" app, click the Plus (+) and open the fonts/SourceCodePro
+directory.
 
 Compile terminfo
+
 ```sh
 tic ~/.dotfiles/src/terminfo/xterm-256color.terminfo
 ```
 
 Set iTerm 2 > Preferences > Preferences > Load preferences from a custom folder
-  or URL to `~/.dotfiles/src/iterm2`
+or URL to `~/.dotfiles/src/iterm2`
