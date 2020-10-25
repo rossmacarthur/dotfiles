@@ -187,6 +187,12 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Preferences > Siri > Enable Ask Siri: ❌
 - System Preferences > Sound > Sound Effects > Show volume in menu bar: ✅
 
+- Run the following to disable keyboard Click and Hold
+
+```sh
+defaults write -g ApplePressAndHoldEnabled -bool false
+```
+
 - Click on battery in Menu Bar, then click Show Percentage.
 
 Run the following to remove all persistent Dock apps:
@@ -197,6 +203,15 @@ killall Dock
 ```
 
 - Finder > Preferences > Advanced > Show all filename extensions: ✅
+- Finder > Preferences > Advanced > Keep folders on top > In windows when sorting by name: ✅
+- Finder > Preferences > Sidebar > Tags: ❌
+- Finder > Preferences > Sidebar > Favourites:
+  - Applications: ✅
+  - Documents: ✅
+  - Downloads: ✅
+  - Pictures: ✅
+  - ross: ✅
+- Finder > Preferences > Sidebar > Locations: *select all*
 
 ### Terminal (iTerm 2)
 
