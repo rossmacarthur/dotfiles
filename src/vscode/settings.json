@@ -13,10 +13,14 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true
     },
     "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features"
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true,
+        "editor.insertSpaces": true
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
@@ -112,6 +116,12 @@
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
     },
+    "workbench.editorAssociations": [
+        {
+            "filenamePattern": "git-rebase-todo",
+            "viewType": "default"
+        }
+    ],
     "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"
