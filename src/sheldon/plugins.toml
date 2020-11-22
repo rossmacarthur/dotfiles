@@ -1,20 +1,22 @@
-# sheldon configuration file
+# Sheldon configuration file
 #
-# See https://github.com/rossmacarthur/sheldon
-
-# By default plugin sourcing is deferred
-apply = ["defer"]
+# See https://rossmacarthur.github.io/sheldon/
 
 [templates]
 defer = { value = 'zsh-defer source "{{ file }}"', each = true }
 defer-more = { value = 'zsh-defer -t 0.5 source "{{ file }}"', each = true }
 
-# fpath only
-# ----------
+# Completions
+# -----------
+
+[plugins.docker-zsh-completion]
+github = "greymd/docker-zsh-completion"
+
+[plugins.rust-zsh-completions]
+github = "ryutok/rust-zsh-completions"
+
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
-dir = "src"
-apply = ["fpath"]
 
 # Sourced
 # -------
@@ -23,12 +25,10 @@ apply = ["fpath"]
 [plugins.history]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
-apply = ["source"]
 
 [plugins.pure]
 github = "rossmacarthur/pure"
-use = ["async.zsh", "pure.zsh"]
-apply = ["source"]
+use = ["{async,pure}.zsh"]
 
 [plugins.wd]
 github = "mfaerevaag/wd"
@@ -36,44 +36,51 @@ apply = ["fpath", "source"]
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
-apply = ["source"]
 
-# Deferred
-# --------
+# Deferred plugins
+# ----------------
 
 [plugins.autoenv]
 github = "zpm-zsh/autoenv"
+apply = ["defer"]
 
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
 use = ["{!compinit,!pyenv,*}.plugin.zsh"]
+apply = ["defer"]
 
 [plugins.ohmyzsh-lib]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
 use = ["{clipboard,completion,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
+apply = ["defer"]
 
 [plugins.ohmyzsh-plugins]
 github = "ohmyzsh/ohmyzsh"
 dir = "plugins"
 use = ["{copybuffer,git,pip}/*.plugin.zsh"]
-apply = ["fpath", "defer"]
+apply = ["defer"]
 
 [plugins.zsh-you-should-use]
 github = "MichaelAquilina/zsh-you-should-use"
+apply = ["defer"]
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
+apply = ["defer"]
 
 [plugins.zsh-syntax-highlighting]
 github = 'zsh-users/zsh-syntax-highlighting'
+apply = ["defer"]
 
+# This works best if it is placed last.
 [plugins.compinit]
 local = "~/.zsh/plugins"
+apply = ["defer"]
 
-# Deferred even more
-# ------------------
+# Plugins that are even more deferred
+# -----------------------------------
 
 [plugins.pyenv]
 local = "~/.zsh/plugins"

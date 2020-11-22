@@ -16,5 +16,5 @@ export SAVESIZE=25000
 # --------------
 export YSU_MODE=ALL
 
-# Source all our plugins,
+# Source all our plugins
 source <(sheldon source)
