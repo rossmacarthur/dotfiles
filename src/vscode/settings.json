@@ -103,6 +103,7 @@
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
+    "rust-client.engine": "rust-analyzer",
     "search.quickOpen.includeHistory": false,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
@@ -116,6 +117,7 @@
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
     },
+    "workbench.editor.showTabs": true,
     "workbench.editorAssociations": [
         {
             "filenamePattern": "git-rebase-todo",
