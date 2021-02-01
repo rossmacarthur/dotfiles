@@ -16,6 +16,9 @@ alias la='ls -lAh'
 alias lh="ls -a | egrep '^\.'"
 alias ll='ls -lh'
 
+# Alias for a common typo
+alias jsut=just
+
 # Copy of `ggp` in Oh My Zsh Git plugin to push to my usual fork name.
 function ggpf() {
   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
