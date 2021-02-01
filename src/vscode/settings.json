@@ -58,6 +58,11 @@
             80
         ]
     },
+    "[yaml]": {
+        "editor.rulers": [
+            80
+        ]
+    },
     "breadcrumbs.enabled": false,
     "editor.cursorWidth": 4,
     "editor.folding": false,
@@ -105,6 +110,7 @@
     "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
     "rust-client.engine": "rust-analyzer",
     "search.quickOpen.includeHistory": false,
+    "tabnine.experimentalAutoImports": true,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
@@ -117,7 +123,6 @@
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
     },
-    "workbench.editor.showTabs": true,
     "workbench.editorAssociations": [
         {
             "filenamePattern": "git-rebase-todo",
