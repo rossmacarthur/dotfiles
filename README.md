@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Build Status](https://github.com/rossmacarthur/dotfiles/workflows/build/badge.svg)](https://github.com/rossmacarthur/dotfiles/actions?query=workflow%3Abuild)
+
 Install packages and and my personal dotfiles on a new system.
 
 ## Getting started
