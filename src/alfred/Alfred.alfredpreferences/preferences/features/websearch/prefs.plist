@@ -227,6 +227,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>D586378F-E4E7-4ACA-B240-D781F4A8CDD2</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>gip</string>
+			<key>text</key>
+			<string>GitHub &gt; Issues &amp; Pull Requests</string>
+			<key>url</key>
+			<string>https://github.com/issues?q=is%3Aopen+user%3Arossmacarthur+archived%3Afalse+-author%3Arossmacarthur+</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>D649921E-66FD-4E10-8193-A761A4C8B81C</key>
 		<dict>
 			<key>enabled</key>
