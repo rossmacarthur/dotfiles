@@ -105,12 +105,11 @@
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
     "markdown.extension.toc.level": "2..6",
+    "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
     "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
-    "rust-client.engine": "rust-analyzer",
     "search.quickOpen.includeHistory": false,
-    "tabnine.experimentalAutoImports": true,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
@@ -119,7 +118,6 @@
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
-    "window.zoomLevel": 0,
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
     },
