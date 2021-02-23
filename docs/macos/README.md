@@ -21,54 +21,54 @@ line tools and macOS apps using the `brew` command line tool. From the
 - [1Password](https://1password.com/downloads/mac): Password storage and
   management.
   ```
-  brew cask install 1password
+  brew install --cask 1password
   ```
 
 - [Docker for
   Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
   ```
-  brew cask install docker
+  brew install --cask docker
   ```
 
 - [iTerm2](https://iterm2.com): Better Terminal.
   ```
-  brew cask install iterm2
+  brew install --cask iterm2
   ```
 
 - [Visual Studio Code](https://code.visualstudio.com): Integrated development
   environment for all things.
   ```
-  brew cask install visual-studio-code
+  brew install --cask visual-studio-code
   ```
 
 ## Communication apps
 
 - Microsoft Outlook
   ```
-  brew cask install microsoft-outlook
+  brew install --cask microsoft-outlook
+  ```
+
+- [Signal](https://signal.org/install)
+  ```
+  brew install --cask signal
   ```
 
 - [Slack](https://slack.com/intl/en-za/downloads/mac)
   ```
-  brew cask install slack
-  ```
-
-- [WhatsApp](https://www.whatsapp.com/): Necessary evil.
-  ```
-  brew cask install whatsapp
+  brew install --cask slack
   ```
 
 - [Zoom](https://www.zoom.us/)
   ```
-  brew cask install zoomus
-  brew cask install zoomus-outlook-plugin
+  brew install --cask zoomus
+  brew install --cask zoomus-outlook-plugin
   ```
 
 ## Other apps
 
 - [Alfred 4](http://alfredapp.com/): Better Spotlight.
   ```
-  brew cask install alfred
+  brew install --cask alfred
   ```
   - System Preferences > Keyboard > Shortcuts > Disable Spotlight
   - Alfred
@@ -78,58 +78,59 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 - [Etcher](https://www.balena.io/etcher/): Flash OS images to SD cards.
   ```
-  brew cask install balenaetcher
+  brew install --cask balenaetcher
   ```
 
 - [Firefox](https://www.mozilla.org/en-ZA/firefox/new/): Better Safari.
   ```
-  brew cask install firefox
+  brew install --cask firefox
   ```
 
 - [Kap](https://getkap.co/): Screen recorder (GIF / MP4 etc).
   ```
-  brew cask install kap
+  brew install --cask kap
   ```
 
-- [MEGAsync](https://mega.nz/)
+- [MEGAsync](https://mega.nz/): Better iCloud.
   ```
-  brew cask install megasync
+  brew install --cask megasync
   ```
   - Setup up MEGAsync and to sync to ~/Cloud.
   - Preferences > Advanced > Disable overlay icons: ✅
 
-- [Postman](https://www.postman.com/)
+- [Postman](https://www.postman.com/): API development tool.
   ```
-  brew cask install postman
+  brew install --cask postman
   ```
 
-- [QR Journal](https://www.joshjacob.com/mac-development/qrjournal.php)
+- [QR Journal](https://www.joshjacob.com/mac-development/qrjournal.php): QR code
+  scanning on macOS.
   ```
-  brew cask install qr-journal
+  brew install --cask qr-journal
   ```
 
 - [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
   shortcuts or snap areas.
   ```
-  brew cask install rectangle
+  brew install --cask rectangle
   ```
 
-- [Scroll Reverser](https://pilotmoon.com/scrollreverser/): allows you to have a
+- [Scroll Reverser](https://pilotmoon.com/scrollreverser/): Allows you to have a
   different scroll direction on trackpad and external mouse.
   ```
-  brew cask install scroll-reverser
+  brew install --cask scroll-reverser
   ```
   For natural for trackpad and non natural for mouse. Select "Reverse Vertical"
   and "Reverse Mouse" only.
 
-- [Spotify](https://www.spotify.com/za/download/mac/)
+- [Spotify](https://www.spotify.com/za/download/mac/): Better Apple Music.
   ```
-  brew cask install spotify
+  brew install --cask spotify
   ```
 
 - [VLC](https://www.videolan.org/index.html): Better Quicktime.
   ```
-  brew cask install vlc
+  brew install --cask vlc
   ```
 
 ### Command line tools
@@ -137,7 +138,7 @@ line tools and macOS apps using the `brew` command line tool. From the
 - [Android Platform
   Tools](https://developer.android.com/studio/releases/platform-tools.html)
   ```
-  brew cask install android-platform-tools
+  brew install --cask android-platform-tools
   ```
 
 - [CMake](https://cmake.org/)
@@ -193,7 +194,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Preferences > Sound > Sound Effects > Show volume in menu bar: ✅
 
 - Run the following to disable keyboard Click and Hold
-
 ```sh
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
@@ -201,7 +201,6 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 - Click on battery in Menu Bar, then click Show Percentage.
 
 Run the following to remove all persistent Dock apps:
-
 ```sh
 defaults write com.apple.dock persistent-apps -array
 killall Dock
@@ -223,13 +222,11 @@ killall Dock
 Install dotfiles by following main [README](../../README.md) in this repo. After
 starting a new terminal if you get error: "Insecure completion-dependent
 directories detected" then run
-
 ```sh
 compaudit | xargs chmod g-w,o-w
 ```
 
 Install Powerline fonts.
-
 ```sh
 git clone https://github.com/powerline/fonts.git`
 ```
@@ -238,7 +235,6 @@ Open the "Font Book" app, click the Plus (+) and open the fonts/SourceCodePro
 directory.
 
 Compile terminfo
-
 ```sh
 tic ~/.dotfiles/src/terminfo/xterm-256color.terminfo
 ```
