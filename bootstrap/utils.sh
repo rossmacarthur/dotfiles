@@ -175,6 +175,18 @@ error() {
   return 1
 }
 
+# Print a debug message.
+if [ "$DEBUG" = true ]
+then
+  debug() {
+    print --color grey --prefix "DEBUG: " "$@"
+  }
+else
+  debug() {
+    true
+  }
+fi
+
 # Abort the current process.
 #
 # Arguments:
@@ -411,6 +423,7 @@ execute() {
 
   # Actually start running the command
   temp_file=$(mktemp)
+  debug "$cmd"
   eval "$cmd" &>"$temp_file" &
   local pid=$!
 
@@ -539,21 +552,6 @@ check_directory() {
   return 1
 }
 
-install_sheldon() {
-  if exists sheldon && ! confirm "Sheldon is already downloaded. Reinstall?"
-  then
-    return
-  fi
-
-  if exists cargo
-  then
-    execute "cargo install sheldon" "Sheldon"
-  else
-    execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | \
-             bash -s -- --repo 'rossmacarthur/sheldon' --to $HOME/.local/bin" "Sheldon"
-  fi
-}
-
 install_pyenv() {
   if check_directory "$HOME/.pyenv" "pyenv is already installed. Reinstall?"
   then
@@ -589,14 +587,22 @@ install_rustup() {
   execute "curl https://sh.rustup.rs -sSf | bash -s - -y --no-modify-path" "Rustup"
 }
 
-install_rust_version() {
+install_rust_toolchain() {
   local toolchain=$1
-  execute "$HOME/.cargo/bin/rustup update $toolchain" "Rust ($toolchain)"
+  execute "$HOME/.cargo/bin/rustup update $toolchain" "Rust toolchain ($toolchain)"
 }
 
 install_cargo_package() {
   local msg=${2:-$1}
   execute "$HOME/.cargo/bin/cargo install $1" "$msg"
+}
+
+install_crate() {
+  local repo=$1
+  local name=${repo#*/}
+  shift
+  execute "curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh | \
+           bash -s -- --repo $repo --to $HOME/.local/bin --force $*" "$name"
 }
 
 install_launch_agent() {

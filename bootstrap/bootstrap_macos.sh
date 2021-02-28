@@ -11,12 +11,19 @@ install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "htop" "htop"
 install_package "jq"
-install_package "sheldon"
 install_package "tmux"
 install_package "tree" "Tree"
 install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
+
+subheading "Binaries"
+install_crate "sharkdp/bat"
+install_crate "rust-embedded/cross"
+install_crate "sharkdp/hyperfine"
+install_crate "casey/just"
+install_crate "BurntSushi/ripgrep" --bin rg
+install_crate "rossmacarthur/sheldon"
 
 subheading "Launch Agents"
 install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
@@ -56,14 +63,11 @@ if heading_if "Rust development" "rust"; then
 
 subheading "Environment"
 install_rustup
-install_rust_version "stable"
-install_rust_version "beta"
+install_rust_toolchain "stable"
+install_rust_toolchain "beta"
 
 subheading "Packages"
-install_cargo_package "bat"
 install_cargo_package "cargo-edit"
-install_cargo_package "just"
-install_cargo_package "ripgrep"
 
 fi
 # ---------------------------------------------------------------------------- #
