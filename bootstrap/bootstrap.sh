@@ -84,8 +84,16 @@ main() {
 
   # If --bootstrap wasn't passed in
   if [ -z "$BOOTSTRAP_CHOICE" ]; then
-    prompt_choice "Please select a bootstrap type" "${BOOTSTRAP_OPTIONS[@]}" || abort
-    BOOTSTRAP_CHOICE=$USER_CHOICE
+    if is_platform "darwin"
+    then
+      BOOTSTRAP_CHOICE="macos"
+    elif is_platform "linux"
+    then
+      BOOTSTRAP_CHOICE="ubuntu"
+    else
+        printf "Error: unsupported platform '%s'\n" "$PLATFORM"
+        exit 1
+    fi
   # Otherwise check if the given --bootstrap value is a valid choice
   elif ! contains "BOOTSTRAP_OPTIONS" "$BOOTSTRAP_CHOICE"; then
     printf "Error: unrecognized bootstrap type '%s'\n\n" "$BOOTSTRAP_CHOICE"

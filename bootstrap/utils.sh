@@ -251,68 +251,6 @@ heading_if() {
   fi
 }
 
-# Prompt the user to enter data. The data will be stored in USER_ANSWER.
-#
-# Arguments:
-#   $1 the prompt text
-#
-# Returns:
-#   0 if the prompt succeeded
-#   1 the read timed out
-prompt() {
-  unset USER_ANSWER
-  print --color yellow --after 0 --prefix "[?] " --suffix " " "$@"
-  read -r -t 10 USER_ANSWER || {
-    newline
-    return 1
-  }
-}
-
-# Prompt the user with a list of choices. Loops forever until a valid option is
-# chosen. The result will be stored in USER_CHOICE.
-#
-# Arguments:
-#   $1 the prompt description
-#   $x each option as an argument
-#
-# Returns:
-#   0 if the user chose one of the options
-#   1 if the user chose to exit
-prompt_choice() {
-  unset USER_CHOICE
-  local ichoice
-  local indent="    "
-  local index=1
-
-  # First print the prompt, and the list of choices with their indexes.
-  print --color yellow --before 1 --prefix "[?] " "$1"
-  shift
-  for choice in "$@"
-  do
-    print --color yellow --prefix "$indent" "$index) $choice"
-    index=$(( index+1 ))
-  done
-  print --color yellow --prefix "$indent" "x) exit"
-
-  # Loop until the user inputs a valid choice.
-  while true
-  do
-    print --after 0 --prefix "$indent"
-    read -r -n 1 ichoice
-    if [ "$ichoice" == "x" ]
-    then
-      newline
-      return 1
-    elif [ -n "$ichoice" ] && (( ichoice != 0 )) && [ -n "${!ichoice}" ]
-    then
-      export USER_CHOICE="${!ichoice}"
-      newline
-      return 0
-    fi
-    print --color red --indent 1 "is an invalid selection"
-  done
-}
-
 # Request root privileges and background a process to reset the sudo timer.
 #
 # Warning: this function backgrounds a process to reset the sudo timer. Since
