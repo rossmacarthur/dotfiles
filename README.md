@@ -22,7 +22,7 @@ The install script is designed to be very easy to create your own bootstrap.
 Simply:
 
 * Fork this repository and modify the dotfiles to suit you.
-* Copy one of the other bootstrap scripts such as [bootstrap_sensor.sh][sensor]
+* Copy one of the other bootstrap scripts such as [bootstrap_ubuntu.sh][ubuntu]
   and call it `bootstrap_custom.sh` (anything of the form `bootstrap_xxxxx.sh`
   will work).
 * Modify it to your liking. You can use the install functions in
@@ -37,7 +37,7 @@ Inspired by [Cătălin Mariș's][alrra] [dotfiles][alrra_dotfiles].
 [alrra]: https://github.com/alrra
 [alrra_dotfiles]: https://github.com/alrra/dotfiles
 [remote]: bootstrap/remote.sh
-[sensor]: bootstrap/bootstrap_sensor.sh
+[ubuntu]: bootstrap/bootstrap_ubuntu.sh
 [utils]: bootstrap/utils.sh
 
 ## License
