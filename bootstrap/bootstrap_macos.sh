@@ -41,7 +41,6 @@ install_package "zlib"
 
 subheading "Environment"
 install_pyenv
-install_pyenv_python2
 install_pyenv_python3
 create_pyenv_virtualenv
 

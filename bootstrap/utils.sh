@@ -164,16 +164,6 @@ subheading() {
   print --color blue --before 1 --after 2 "$@"
 }
 
-# Print an info message.
-info() {
-  print --color cyan --prefix "[i] " "$@"
-}
-
-# Print an warning message.
-warning() {
-  print --color magenta --prefix "[!] " "$@"
-}
-
 # Print an success message.
 success() {
   print --color green --prefix "[✔] " "$@"
@@ -443,30 +433,6 @@ execute() {
   fi
 }
 
-# Download the given file.
-#
-# Arguments:
-#   $1 the url of the file to download
-#   $2 the output file
-#
-# Returns:
-#   0 if the file was downloaded
-#   1 if the download failed or `curl` or `wget` commands does not exist
-download() {
-  local url=$1
-  local output=$2
-
-  if exists curl
-  then
-    execute "curl -LsSo '$output' '$url'" "Download $url"
-  elif exists wget
-  then
-    execute "wget -qO '$output' '$url'" "Download $url"
-  else
-    return 1
-  fi
-}
-
 # Creates the given directory.
 #
 # Arguments:
@@ -514,18 +480,6 @@ symlink_zsh_plugin() {
   local name=${2:-$1}
   symlink "zsh/plugins/$1.plugin.zsh" ".zsh/plugins/$name.plugin.zsh"
 }
-
-# Sync an entire directory to another.
-#
-# Arguments:
-#   $1 the directory source relative to the dotfiles directory
-#   $2 the directory source relative to the $HOME directory
-sync_directory() {
-  create_directory "$(dirname "$HOME/$2")"
-  execute "rsync '$DOTFILES_DIRECTORY/src/$1' '$HOME/$2'" "$1 → ~/$2"
-  sleep 0.1
-}
-
 
 # Update the system package manager.
 #
@@ -585,18 +539,6 @@ check_directory() {
   return 1
 }
 
-# Clone a git repository to the given location.
-clone_git_repository() {
-  local name=$1
-  local url=$2
-  local directory=$3
-
-  if check_directory "$directory" "$name is already installed. Reinstall?"
-  then
-    execute "git clone --depth=1 $url $directory" "Clone $name"
-  fi
-}
-
 install_sheldon() {
   if exists sheldon && ! confirm "Sheldon is already downloaded. Reinstall?"
   then
@@ -612,34 +554,12 @@ install_sheldon() {
   fi
 }
 
-install_pip() {
-  if exists pip
-  then
-    execute "pip install --upgrade pip" "PIP"
-  else
-    execute "curl -LsSo get-pip.py https://bootstrap.pypa.io/get-pip.py" "Download get-pip.py"
-    execute "sudo python get-pip.py" "PIP"
-    rm -f get-pip.py
-  fi
-}
-
-install_pip_package() {
-  local msg=${2:-$1}
-  execute "pip install --upgrade $1" "$msg"
-}
-
 install_pyenv() {
   if check_directory "$HOME/.pyenv" "pyenv is already installed. Reinstall?"
   then
     execute "curl https://pyenv.run | bash" "Install pyenv and friends"
   fi
   symlink "pyenv/pyenv-virtualenv-after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
-}
-
-install_pyenv_python2() {
-  local version
-  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+2.7' | tail -1 | xargs)
-  execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
 }
 
 install_pyenv_python3() {
@@ -672,11 +592,6 @@ install_rustup() {
 install_rust_version() {
   local toolchain=$1
   execute "$HOME/.cargo/bin/rustup update $toolchain" "Rust ($toolchain)"
-}
-
-install_rustup_component() {
-  local msg=${2:-$1}
-  execute "$HOME/.cargo/bin/rustup component add $1" "$msg"
 }
 
 install_cargo_package() {

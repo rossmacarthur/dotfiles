@@ -42,7 +42,6 @@ install_packages "libbz2-dev" "libffi-dev" "liblzma-dev" "libncurses5-dev" "libr
 
 subheading "Environment"
 install_pyenv
-install_pyenv_python2
 install_pyenv_python3
 create_pyenv_virtualenv
 
