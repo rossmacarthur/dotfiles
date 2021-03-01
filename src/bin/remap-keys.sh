@@ -19,7 +19,7 @@ set_key_mapping() {
   # Internal Keyboard
   # - Remap Caps Lock to Backspace.
   # - Remap Section sign to Back tick.
-  hidutil property --matching '{"VendorID": 0x5ac, "ProductID": 0x27c}' --set '
+  hidutil property --matching '{"VendorID": 0x5ac, "ProductID": 0x27e}' --set '
   {
     "UserKeyMapping": [
       {
@@ -33,26 +33,11 @@ set_key_mapping() {
     ]
   }' >/dev/null
   echo "Remapped internal keyboard"
-
-  # External USB keyboard
-  # - Remap Caps Lock to Backspace.
-  hidutil property --matching '{"VendorID": 0x4d9, "ProductID": 0x269}' --set '
-  {
-    "UserKeyMapping": [
-      {
-        "HIDKeyboardModifierMappingSrc": 0x700000039,
-        "HIDKeyboardModifierMappingDst": 0x70000002A
-      }
-    ]
-  }' >/dev/null
-  echo "Remapped USB keyboard"
 }
 
 reset_key_mapping() {
-  hidutil property --matching '{"VendorID": 0x5ac, "ProductID": 0x27c}' --set '{"UserKeyMapping": []}' >/dev/null
+  hidutil property --matching '{"VendorID": 0x5ac, "ProductID": 0x27e}' --set '{"UserKeyMapping": []}' >/dev/null
   echo "Reset internal keyboard"
-  hidutil property --matching '{"VendorID": 0x4d9, "ProductID": 0x269}' --set '{"UserKeyMapping": []}' >/dev/null
-  echo "Reset USB keyboard"
 }
 
 main() {
