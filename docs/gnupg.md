@@ -3,19 +3,16 @@
 The following installs are required.
 
 ```sh
-brew install gnupg
-brew install pinentry-mac
+brew install gnupg pinentry-mac
 ```
 
-Restore a `~/.gnupg` folder backup.
+Now restore a `~/.gnupg` folder backup. For example given a `dot.gnupg.tar.gz`
+file.
 
 ```sh
-mkdir -p ~/.gnupg
-
-cp pubring.kbx ~/.gnupg/pubring.kbx
-cp private-keys-v1.d/* ~/.gnupg/private-keys-v1.d
-cp gpg-agent.conf ~/.gnupg/gpg-agent.conf
-cp sshcontrol ~/.gnupg/sshcontrol
+cd ~
+mv path/to/dot.gnupg.tar.gz dot.gnupg.tar.gz
+tar xvf dot.gnupg.tar.gz
 ```
 
 Note: fix any permission issues by running the following.
@@ -30,15 +27,6 @@ List the keys.
 
 ```sh
 gpg --list-keys
-```
-
-Edit the key and ultimately trust the Ross MacArthur key
-
-```sh
-gpg --edit-key CEC05F5D492F2823749DB8E5005277386AA61DCD
-> trust
-> 5
-> save
 ```
 
 Finally reload the agent.
