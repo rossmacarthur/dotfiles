@@ -7,10 +7,13 @@ if heading_if "Installs"; then
 subheading "Homebrew packages"
 update_package_manager
 install_package "bash" "Bash"
+install_package "cmake"
 install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "htop" "htop"
 install_package "jq"
+install_package "ninja"
+install_package "shellcheck"
 install_package "tmux"
 install_package "tree" "Tree"
 install_package "vim" "Vim"

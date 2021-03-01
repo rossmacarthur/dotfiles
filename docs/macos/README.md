@@ -141,29 +141,14 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew install --cask android-platform-tools
   ```
 
-- [CMake](https://cmake.org/)
-  ```
-  brew install cmake
-  ```
-
 - [Minikube](https://minikube.sigs.k8s.io)
   ```
   brew install minikube
   ```
 
-- [Ninja](https://ninja-build.org/)
-  ```
-  brew install ninja
-  ```
-
 - [Pidcat](https://github.com/JakeWharton/pidcat)
   ```
   brew install pidcat
-  ```
-
-- [ShellCheck](https://www.shellcheck.net/)
-  ```
-  brew install shellcheck
   ```
 
 ## Preferences
