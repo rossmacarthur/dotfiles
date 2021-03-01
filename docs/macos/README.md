@@ -18,12 +18,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ## Core apps
 
-- [1Password](https://1password.com/downloads/mac): Password storage and
-  management.
-  ```
-  brew install --cask 1password
-  ```
-
 - [Docker for
   Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
   ```
@@ -43,10 +37,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ## Communication apps
 
-- Microsoft Outlook
-  ```
-  brew install --cask microsoft-outlook
-  ```
 
 - [Signal](https://signal.org/install)
   ```
@@ -56,12 +46,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 - [Slack](https://slack.com/intl/en-za/downloads/mac)
   ```
   brew install --cask slack
-  ```
-
-- [Zoom](https://www.zoom.us/)
-  ```
-  brew install --cask zoomus
-  brew install --cask zoomus-outlook-plugin
   ```
 
 ## Other apps
@@ -155,35 +139,31 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ### General
 
-- System Preferences > Accessibility > Display > Reduce motion: ✅
-- System Preferences > Bluetooth > Show Bluetooth in menu bar: ✅
-- System Preferences > Dock > Size: Small
-- System Preferences > Dock > Automatically hide and show the Dock: ✅
-- System Preferences > Energy > Automatic Graphics Switching: ❌
 - System Preferences > General > Recent items: None
-- System Preferences > Keyboard > Text: *Remove all abbreviations*
-- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control
-  strip
+- System Preferences > Mission Control > Mission Control: Automatically
+  rearrange spaces based on recent use: ❌
+- System Preferences > Dock & Menu Bar > Dock > Size: Small
+- System Preferences > Dock & Menu Bar > Dock > Automatically hide and show the Dock: ✅
+- System Preferences > Dock & Menu Bar > Wi-Fi > Show in Menu Bar: ❌
+- System Preferences > Dock & Menu Bar > Bluetooth > Show in Menu Bar: ❌
+- System Preferences > Dock & Menu Bar > Sound > Show in Menu Bar: ❌
+- System Preferences > Dock & Menu Bar > Battery > Show Percentage: ✅
+- System Preferences > Siri > Enable Ask Siri: ❌
+- System Preferences > Accessibility > Display > Reduce motion: ✅
 - System Preferences > Keyboard > Keyboard > Key Repeat: Fast
 - System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
-- System Preferences > Keyboard > Keyboard > Shortcuts > Mission Control
+- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control
+  strip
+- System Preferences > Keyboard > Text: *Remove all abbreviations*
+- System Preferences > Keyboard > Shortcuts > Mission Control
   - Switch to Desktop 1: ✅
   - Switch to Desktop 2: ✅
   - Switch to Desktop 3: ✅
-  - Switch to Desktop 4: ✅
-- System Preferences > Mission Control > Mission Control > Secondary button:
-  Mouse Button 5
-- System Preferences > Mission Control > Mission Control: Automatically
-  rearrange spaces based on recent use: ❌
-- System Preferences > Siri > Enable Ask Siri: ❌
-- System Preferences > Sound > Sound Effects > Show volume in menu bar: ✅
 
 - Run the following to disable keyboard Click and Hold
 ```sh
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
-
-- Click on battery in Menu Bar, then click Show Percentage.
 
 Run the following to remove all persistent Dock apps:
 ```sh
@@ -191,8 +171,10 @@ defaults write com.apple.dock persistent-apps -array
 killall Dock
 ```
 
-- Finder > Preferences > Advanced > Show all filename extensions: ✅
-- Finder > Preferences > Advanced > Keep folders on top > In windows when sorting by name: ✅
+### Finder
+
+- Finder > General > Show these items on the desktop: *deselect all*
+- Finder > General > New Finder windows show: *home*
 - Finder > Preferences > Sidebar > Tags: ❌
 - Finder > Preferences > Sidebar > Favourites:
   - Applications: ✅
@@ -201,19 +183,17 @@ killall Dock
   - Pictures: ✅
   - ross: ✅
 - Finder > Preferences > Sidebar > Locations: *select all*
+- Finder > Preferences > Sidebar > Tags: *deselect all*
+- Finder > Preferences > Advanced > Show all filename extensions: ✅
+- Finder > Preferences > Advanced > Keep folders on top > In windows when sorting by name: ✅
 
-### Terminal (iTerm 2)
+### iTerm 2
 
-Install dotfiles by following main [README](../../README.md) in this repo. After
-starting a new terminal if you get error: "Insecure completion-dependent
-directories detected" then run
-```sh
-compaudit | xargs chmod g-w,o-w
-```
+Install dotfiles by following the main [README](../../README.md) in this repo.
 
 Install Powerline fonts.
 ```sh
-git clone https://github.com/powerline/fonts.git`
+git clone https://github.com/powerline/fonts.git
 ```
 
 Open the "Font Book" app, click the Plus (+) and open the fonts/SourceCodePro

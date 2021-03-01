@@ -16,29 +16,10 @@ And run the bootstrap script using
 ~/.dotfiles/bootstrap/bootstrap.sh
 ```
 
-## Customization
-
-The install script is designed to be very easy to create your own bootstrap.
-Simply:
-
-* Fork this repository and modify the dotfiles to suit you.
-* Copy one of the other bootstrap scripts such as [bootstrap_ubuntu.sh][ubuntu]
-  and call it `bootstrap_custom.sh` (anything of the form `bootstrap_xxxxx.sh`
-  will work).
-* Modify it to your liking. You can use the install functions in
-  [utils.sh][utils].
-* Run the bootstrap script and your custom bootstrap will be presented as a
-  bootstrap option.
-
 ## Acknowledgements
 
-Inspired by [Cătălin Mariș's][alrra] [dotfiles][alrra_dotfiles].
-
-[alrra]: https://github.com/alrra
-[alrra_dotfiles]: https://github.com/alrra/dotfiles
-[remote]: bootstrap/remote.sh
-[ubuntu]: bootstrap/bootstrap_ubuntu.sh
-[utils]: bootstrap/utils.sh
+Inspired by [Cătălin Mariș's](https://github.com/alrra)
+[dotfiles](https://github.com/alrra/dotfiles).
 
 ## License
 
