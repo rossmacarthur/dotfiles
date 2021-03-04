@@ -88,6 +88,7 @@
     },
     "explorer.openEditors.visible": 0,
     "files.associations": {
+        "*.env.*": "shellscript",
         "*.plist": "xml",
         "Dockerfile.*": "dockerfile"
     },
@@ -116,7 +117,7 @@
         "GIT_EDITOR": "code --wait"
     },
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
-    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontSize": 13,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
