@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 usage() {
     cat 1>&2 <<EOF
@@ -35,10 +35,14 @@ main() {
 
   if [ -n "$reset" ]; then
     kb-remap --name "Apple Internal Keyboard / Trackpad" --reset
-    kb-remap --name "USB Keyboard" --reset
+    if kb-remap | grep "USB Keyboard" &>/dev/null; then
+      kb-remap --name "USB Keyboard" --reset
+    fi
   else
-    kb-remap --name "Apple Internal Keyboard / Trackpad" --map /capslock/delete/ --swap '/0x64/`'
-    kb-remap --name "USB Keyboard" --map /capslock/delete/
+    kb-remap --name "Apple Internal Keyboard / Trackpad" --map capslock:delete --swap '0x64:`'
+    if kb-remap | grep "USB Keyboard" &>/dev/null; then
+      kb-remap --name "USB Keyboard" --map capslock:delete
+    fi
   fi
 }
 
