@@ -150,6 +150,7 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Preferences > Dock & Menu Bar > Battery > Show Percentage: ✅
 - System Preferences > Siri > Enable Ask Siri: ❌
 - System Preferences > Accessibility > Display > Reduce motion: ✅
+- System Preferences > Accessibility > Display > Reduce transparency: ✅
 - System Preferences > Keyboard > Keyboard > Key Repeat: Fast
 - System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
 - System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control
