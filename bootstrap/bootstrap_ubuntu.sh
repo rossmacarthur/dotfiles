@@ -89,6 +89,7 @@ symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
+symlink_zsh_plugin "path"
 symlink_zsh_plugin "pyenv"
 
 fi
