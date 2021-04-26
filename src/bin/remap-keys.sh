@@ -13,6 +13,11 @@ Options:
 EOF
 }
 
+# Just in case ~/.cargo/bin is not in PATH
+kb-remap() {
+  ~/.cargo/bin/kb-remap "$@"
+}
+
 main() {
   while test $# -gt 0
   do
