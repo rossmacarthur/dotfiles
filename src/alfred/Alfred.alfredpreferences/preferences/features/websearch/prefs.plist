@@ -69,45 +69,6 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
-		<key>28D70B31-9B4F-4BF4-8AB4-C0C35CF9D9BA</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>gs</string>
-			<key>text</key>
-			<string>GitHub &gt; Asimmetric &gt; Support &gt; issues</string>
-			<key>url</key>
-			<string>https://github.com/Asimmetric/support/issues/assigned/rossmacarthur</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>3C78816C-7FB0-4EC3-83E2-8233A2CC9877</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>cape</string>
-			<key>text</key>
-			<string>Search Cape backend for '{query}'</string>
-			<key>url</key>
-			<string>https://backend.capenetworks.io/redirect/{query}</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>45EADA98-C7F0-49ED-9146-BB533A93D609</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>dash</string>
-			<key>text</key>
-			<string>Cape Dashboard</string>
-			<key>url</key>
-			<string>https://dashboard.capenetworks.com</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
 		<key>5321EC92-3289-4076-8B80-5E4BB772699A</key>
 		<dict>
 			<key>enabled</key>
@@ -188,32 +149,6 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
-		<key>AB091EE9-E068-480B-98AB-CE5BB15A0A0A</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>ghcs</string>
-			<key>text</key>
-			<string>Search GitHub &gt; Asimmetric for '{query}'</string>
-			<key>url</key>
-			<string>https://github.com/search?q=org%3AAsimmetric+{query}&amp;type=Code</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>C55288AC-DCDA-42F6-A2A6-C68344682AF9</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>ghc</string>
-			<key>text</key>
-			<string>GitHub &gt; Asimmetric &gt;</string>
-			<key>url</key>
-			<string>https://github.com/Asimmetric/{query}</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
 		<key>CDF51F6A-2B40-4C82-929F-E6955B81824F</key>
 		<dict>
 			<key>enabled</key>
@@ -250,32 +185,6 @@
 			<string>Search Lib.rs for '{query}'</string>
 			<key>url</key>
 			<string>https://lib.rs/search?q={query}</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>D8732FD6-52DE-4D52-9645-378E79CC4A1B</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>backend</string>
-			<key>text</key>
-			<string>Cape backend</string>
-			<key>url</key>
-			<string>https://backend.capenetworks.io</string>
-			<key>utf8</key>
-			<true/>
-		</dict>
-		<key>DAF1332A-EA7F-4677-8DC8-1C6E72365BE4</key>
-		<dict>
-			<key>enabled</key>
-			<true/>
-			<key>keyword</key>
-			<string>bigquery</string>
-			<key>text</key>
-			<string>Open BigQuery</string>
-			<key>url</key>
-			<string>https://console.cloud.google.com/bigquery</string>
 			<key>utf8</key>
 			<true/>
 		</dict>

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>bundleid</key>
-	<string>io.macarthur.ross</string>
+	<string>io.macarthur.ross.tmux</string>
 	<key>connections</key>
 	<dict>
 		<key>B11B132B-4A61-4C05-8F4F-2111F454E6C6</key>
@@ -105,7 +105,7 @@ EOF</string>
 		<key>D5A05B0E-4E14-444B-9806-54B5841D8FB8</key>
 		<dict>
 			<key>xpos</key>
-			<integer>220</integer>
+			<integer>225</integer>
 			<key>ypos</key>
 			<integer>50</integer>
 		</dict>
