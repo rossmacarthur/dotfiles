@@ -6,15 +6,17 @@ if heading_if "Installs"; then
 
 subheading "Homebrew packages"
 update_package_manager
+install_package "awscli" "AWS CLI"
 install_package "bash" "Bash"
-install_package "cmake"
+install_package "cmake" "CMake"
 install_package "curl" "cURL"
+install_package "gh" "GitHub CLI"
 install_package "git" "Git"
 install_package "gnupg" "GnuPG"
 install_package "htop" "htop"
 install_package "jq"
-install_package "ninja"
-install_package "shellcheck"
+install_package "ninja" "Ninja"
+install_package "shellcheck" "ShellCheck"
 install_package "tmux"
 install_package "pinentry-mac" "PINEntry"
 install_package "tree" "Tree"
@@ -36,6 +38,7 @@ install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
 subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
+symlink "bin/gif2mp4.sh"     ".local/bin/gif2mp4"
 symlink "bin/ips.py"         ".local/bin/ips"
 symlink "bin/remap-keys.sh"  ".local/bin/remap-keys"
 
@@ -57,7 +60,6 @@ install_pyenv_python3
 create_pyenv_virtualenv
 
 subheading "Packages"
-install_python_package "awscli"
 install_python_package "nanocom" "Nanocom"
 install_python_package "passthesalt" "PassTheSalt"
 
