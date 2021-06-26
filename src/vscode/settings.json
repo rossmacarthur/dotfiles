@@ -6,6 +6,12 @@
         ],
         "editor.wordWrap": "off"
     },
+    "[go]": {
+        "editor.rulers": [
+            100,
+            120
+        ]
+    },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
@@ -24,10 +30,7 @@
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.formatOnSave": true,
-        "editor.rulers": [
-            80
-        ]
+        "editor.formatOnSave": true
     },
     "[python]": {
         "editor.rulers": [
@@ -35,46 +38,27 @@
             100
         ]
     },
-    "[restructuredtext]": {
-        "editor.rulers": [
-            80
-        ]
-    },
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
-        "editor.rulers": [
-            80
-        ],
         "editor.tabSize": 4
-    },
-    "[toml]": {
-        "editor.rulers": [
-            80
-        ]
-    },
-    "[typescript]": {
-        "editor.rulers": [
-            80
-        ]
-    },
-    "[yaml]": {
-        "editor.rulers": [
-            80
-        ]
     },
     "breadcrumbs.enabled": false,
     "editor.cursorWidth": 4,
     "editor.folding": false,
     "editor.fontFamily": "Source Code Pro for Powerline",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
-    "editor.formatOnSave": false,
+    "editor.fontSize": 13.5,
+    "editor.formatOnType": true,
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
     "editor.renderIndentGuides": true,
-    "editor.renderWhitespace": "boundary",
+    "editor.renderWhitespace": "selection",
+    "editor.rulers": [
+        80
+    ],
+    "editor.semanticHighlighting.enabled": false,
     "editor.smoothScrolling": true,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
@@ -90,7 +74,8 @@
     "files.associations": {
         "*.env.*": "shellscript",
         "*.plist": "xml",
-        "Dockerfile.*": "dockerfile"
+        "Dockerfile.*": "dockerfile",
+        "{.in,.out}": "shellscript"
     },
     "files.exclude": {
         "**/*.egg-info": true,
@@ -105,12 +90,24 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
+    "go.toolsManagement.autoUpdate": true,
+    "gopls": {
+        "ui.navigation.importShortcut": "Definition"
+    },
     "markdown.extension.toc.level": "2..6",
+    "python.defaultInterpreterPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
     "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "python.pythonPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
+    "rust-analyzer.completion.autoimport.enable": true,
+    "rust-analyzer.diagnostics.disabled": [
+        "inactive-code"
+    ],
+    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.lens.implementations": false,
+    "rust-analyzer.updates.askBeforeDownload": false,
     "search.quickOpen.includeHistory": false,
+    "security.workspace.trust.enabled": false,
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
@@ -122,12 +119,9 @@
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6"
     },
-    "workbench.editorAssociations": [
-        {
-            "filenamePattern": "git-rebase-todo",
-            "viewType": "default"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "git-rebase-todo": "default"
+    },
     "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"

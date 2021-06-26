@@ -1,5 +1,10 @@
 [
     {
+        "command": "rust-analyzer.onEnter",
+        "key": "enter",
+        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == rust"
+    },
+    {
         "command": "workbench.action.previousEditor",
         "key": "ctrl+pageup"
     },
@@ -24,18 +29,17 @@
         "key": "cmd+k cmd+,"
     },
     {
-        "command": "workbench.action.terminal.resizePaneRight",
-        "key": "ctrl+cmd+]",
-        "when": "terminalFocus"
-    },
-    {
-        "command": "workbench.action.terminal.resizePaneLeft",
-        "key": "ctrl+cmd+[",
-        "when": "terminalFocus"
-    },
-    {
         "command": "-markdown.extension.editing.toggleBold",
         "key": "cmd+b",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
+    },
+    {
+        "command": "editor.action.referenceSearch.trigger",
+        "key": "cmd+shift+d",
+        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor"
+    },
+    {
+        "command": "workbench.action.openWorkspaceSettingsFile",
+        "key": "cmd+k cmd+s"
     }
 ]
