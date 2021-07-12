@@ -26,20 +26,20 @@ load_pyenv() {
   # The root folder for pyenv
   export PYENV_ROOT="$HOME/.pyenv"
 
-  # Add pyenv to PATH
-  export PATH="$PYENV_ROOT/bin:$PATH"
-
   # Disables pyenv prompt changing
   export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
-  # Initialize pyenv
+  path_push "$PYENV_ROOT/bin"
+
   if (( $+commands[pyenv] )); then
     eval "$(pyenv init - --no-rehash zsh)"
+    path_push "$PYENV_ROOT/shims"
     if [ -f "$PYENV_ROOT/plugins/pyenv-virtualenv/bin/pyenv-virtualenv-init" ]; then
       if [[ -z $precmd_functions[(r)_pyenv_virtualenv_hook_wrap] ]]; then
         eval "$(pyenv virtualenv-init - zsh)"
         shift precmd_functions
         precmd_functions=(_pyenv_virtualenv_hook_wrap $precmd_functions)
+        path_push "$PYENV_ROOT/plugins/pyenv-virtualenv/shims"
       fi
     fi
   fi

@@ -26,6 +26,9 @@ github = "zsh-users/zsh-completions"
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
 
+[plugins.path]
+local = "~/.zsh/plugins"
+
 [plugins.pure]
 github = "rossmacarthur/pure"
 use = ["{async,pure}.zsh"]
@@ -46,7 +49,7 @@ apply = ["defer"]
 
 [plugins.dotfiles]
 local = "~/.zsh/plugins"
-use = ["{!compinit,!pyenv,*}.plugin.zsh"]
+use = ["*.plugin.zsh", "!{compinit,path,pyenv}.plugin.zsh"]
 apply = ["defer"]
 
 [plugins.ohmyzsh-lib]
