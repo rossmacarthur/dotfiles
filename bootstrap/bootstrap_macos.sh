@@ -100,6 +100,5 @@ symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "path"
 symlink_zsh_plugin "pyenv"
-symlink_zsh_plugin "tfenv"
 
 fi
