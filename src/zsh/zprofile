@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+
+# Set default editor to Vim
+export EDITOR=${EDITOR:-vim}
+
+# Some path additions
+export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"

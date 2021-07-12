@@ -1,11 +1,5 @@
 #!/usr/bin/env zsh
 
-# Add some custom paths to PATH
-export PATH="$HOME/.cargo/bin:$HOME/.local/bin:$PATH"
-
-# Set default editor to Vim
-export EDITOR=${EDITOR:-vim}
-
 # Oh My Zsh / lib / history.zsh
 # -----------------------------
 export HIST_STAMPS="yyyy-mm-dd"
