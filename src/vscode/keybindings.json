@@ -1,5 +1,28 @@
 [
     {
+        "command": "workbench.action.openWorkspaceSettingsFile",
+        "key": "cmd+k cmd+s"
+    },
+    {
+        "command": "editor.action.goToReferences",
+        "key": "shift+cmd+7",
+        "when": "editorHasReferenceProvider && editorTextFocus"
+    },
+    {
+        "command": "editor.action.goToImplementation",
+        "key": "shift+cmd+8",
+        "when": "editorHasImplementationProvider && editorTextFocus"
+    },
+    {
+        "command": "editor.action.revealDefinition",
+        "key": "shift+cmd+9",
+        "when": "editorHasDefinitionProvider && editorTextFocus"
+    },
+    {
+        "command": "-markdown.extension.editing.toggleBold",
+        "key": "cmd+b"
+    },
+    {
         "command": "rust-analyzer.onEnter",
         "key": "enter",
         "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == rust"
@@ -27,19 +50,5 @@
     {
         "command": "workbench.action.openGlobalKeybindingsFile",
         "key": "cmd+k cmd+,"
-    },
-    {
-        "command": "-markdown.extension.editing.toggleBold",
-        "key": "cmd+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'markdown'"
-    },
-    {
-        "command": "editor.action.referenceSearch.trigger",
-        "key": "cmd+shift+d",
-        "when": "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor"
-    },
-    {
-        "command": "workbench.action.openWorkspaceSettingsFile",
-        "key": "cmd+k cmd+s"
     }
 ]
