@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -e
+
 usage() {
     cat 1>&2 <<EOF
 Builds the project, run's tests, and run's grcov.
@@ -17,34 +19,34 @@ EOF
 run() {
     local open=$1
     local clean=$2
+    local workspace
+
+    workspace=$(cargo +nightly metadata --format-version=1 | jq -r .workspace_root)
 
     export CARGO_INCREMENTAL=0
-    export CARGO_TARGET_DIR=target/grcov
+    export CARGO_TARGET_DIR=$workspace/target/grcov
     export RUSTFLAGS="-Zprofile -Ccodegen-units=1 -Copt-level=0 -Clink-dead-code -Coverflow-checks=off -Zpanic_abort_tests -Cpanic=abort"
     export RUSTDOCFLAGS="-Cpanic=abort"
 
     if [ "$clean" = true ]; then
         cargo +nightly clean
     fi
-    cargo +nightly build || return 1
-    cargo +nightly test || return 1
+    cargo +nightly build --workspace || return 1
+    cargo +nightly test  --workspace || return 1
 
     grcov \
         --branch \
         --ignore-not-existing \
         --llvm \
-        --source-dir src \
+        --source-dir . \
         --output-type html \
-        --output-file $CARGO_TARGET_DIR/cov \
-        --excl-start 'mod tests \{' \
-        --excl-line '#\[derive\(' \
-        --excl-br-line '#\[derive\(' \
-        $CARGO_TARGET_DIR/debug \
+        --output-file "$CARGO_TARGET_DIR/cov" \
+        "$CARGO_TARGET_DIR/debug" \
         || return 1
 
 
     if [ "$open" = true ]; then
-        open $CARGO_TARGET_DIR/cov/index.html
+        open "$CARGO_TARGET_DIR/cov/index.html"
     fi
 }
 
