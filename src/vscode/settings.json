@@ -17,7 +17,8 @@
         "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
@@ -31,7 +32,11 @@
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+            80,
+            100
+        ]
     },
     "[python]": {
         "editor.rulers": [
@@ -42,9 +47,11 @@
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
+        "editor.rulers": [
+            80
+        ],
         "editor.tabSize": 4
     },
-    "breadcrumbs.enabled": false,
     "editor.cursorWidth": 4,
     "editor.folding": false,
     "editor.fontFamily": "Source Code Pro for Powerline",
@@ -54,23 +61,17 @@
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
-    "editor.renderIndentGuides": true,
     "editor.renderWhitespace": "selection",
-    "editor.rulers": [
-        80
-    ],
-    "editor.smoothScrolling": true,
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": "string.quoted.docstring.multi.python",
-                "settings": {
-                    "foreground": "#6A9955"
-                }
+    "editor.semanticTokenColorCustomizations": {
+        "rules": {
+            "*.mutable": {
+                "underline": false
             }
-        ]
+        }
     },
+    "editor.smoothScrolling": true,
     "explorer.openEditors.visible": 0,
+    "extensions.ignoreRecommendations": true,
     "files.associations": {
         "*.env.*": "shellscript",
         "*.plist": "xml",
@@ -102,17 +103,47 @@
     "rust-analyzer.assist.importEnforceGranularity": true,
     "rust-analyzer.assist.importGranularity": "module",
     "rust-analyzer.assist.importPrefix": "crate",
+    "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.completion.autoimport.enable": true,
+    "rust-analyzer.completion.snippets": {
+        "arc": {
+            "body": [
+                "Arc::new(${receiver})"
+            ],
+            "postfix": "arc",
+            "requires": "std::sync::Arc",
+            "scope": "expr"
+        },
+        "mutex": {
+            "body": [
+                "Arc::new(Mutex::new(${receiver}))"
+            ],
+            "postfix": "mutex",
+            "requires": [
+                "std::sync::Arc",
+                "std::sync::Mutex"
+            ],
+            "scope": "expr"
+        },
+        "rc": {
+            "body": [
+                "Rc::new(${receiver})"
+            ],
+            "postfix": "rc",
+            "requires": "std::rc::Rc",
+            "scope": "expr"
+        }
+    },
     "rust-analyzer.diagnostics.disabled": [
         "inactive-code"
     ],
-    "rust-analyzer.diagnostics.enableExperimental": false,
+    "rust-analyzer.diagnostics.enableExperimental": true,
     "rust-analyzer.experimental.procAttrMacros": true,
     "rust-analyzer.inlayHints.enable": false,
-    "rust-analyzer.lens.implementations": false,
     "rust-analyzer.updates.askBeforeDownload": false,
     "search.quickOpen.includeHistory": false,
     "security.workspace.trust.enabled": false,
+    "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.cursorStyle": "underline",
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
