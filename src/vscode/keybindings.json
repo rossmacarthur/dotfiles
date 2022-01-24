@@ -23,11 +23,6 @@
         "key": "cmd+b"
     },
     {
-        "command": "rust-analyzer.onEnter",
-        "key": "enter",
-        "when": "editorTextFocus && !suggestWidgetVisible && editorLangId == rust"
-    },
-    {
         "command": "workbench.action.previousEditor",
         "key": "ctrl+pageup"
     },

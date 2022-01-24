@@ -140,6 +140,9 @@
     "rust-analyzer.diagnostics.enableExperimental": true,
     "rust-analyzer.experimental.procAttrMacros": true,
     "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.server.extraEnv": {
+        "CARGO_TARGET_DIR": "target/rust-analyzer"
+    },
     "rust-analyzer.updates.askBeforeDownload": false,
     "search.quickOpen.includeHistory": false,
     "security.workspace.trust.enabled": false,
