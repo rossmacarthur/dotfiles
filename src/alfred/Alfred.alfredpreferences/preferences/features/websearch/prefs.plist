@@ -30,6 +30,19 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>19575E55-293D-4B37-B4EB-6105E75C892E</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>deploy</string>
+			<key>text</key>
+			<string>Jenkins Deploy &gt; {query}</string>
+			<key>url</key>
+			<string>https://jenkins.build.luno.com/job/Deployer-gitlab/parambuild/?SERVICE={query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
 		<key>1A598F15-A101-4433-9406-6515ACF89AD9</key>
 		<dict>
 			<key>enabled</key>
@@ -53,6 +66,19 @@
 			<string>Open Netflix</string>
 			<key>url</key>
 			<string>https://www.netflix.com</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>9F54E066-D754-488B-9C39-185EC614CE5B</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>build</string>
+			<key>text</key>
+			<string>Jenkins Build &gt; {query}</string>
+			<key>url</key>
+			<string>https://jenkins.build.luno.com/job/Builder-gitlab/parambuild/?App={query}</string>
 			<key>utf8</key>
 			<true/>
 		</dict>
