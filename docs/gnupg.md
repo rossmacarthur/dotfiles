@@ -1,4 +1,6 @@
-# How to setup GNU Privacy Guard (from backup)
+# GNU Privacy Guard
+
+## How to setup GNU Privacy Guard (from backup)
 
 The following installs are required.
 
@@ -34,3 +36,15 @@ Finally reload the agent.
 ```sh
 gpgconf --reload gpg-agent
 ```
+
+## Renewing keys
+
+```sh
+gpg --list-keys
+```
+
+```sh
+expire
+```
+
+Extend expire to `1y`.
