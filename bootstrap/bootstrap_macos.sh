@@ -37,6 +37,7 @@ install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
 
 subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
+symlink "bin/gbDs.sh"        ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/gif2mp4.sh"     ".local/bin/gif2mp4"
 symlink "bin/ips.py"         ".local/bin/ips"

@@ -32,6 +32,7 @@ install_crate "rossmacarthur/sheldon"
 subheading "Scripts"
 symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/femtocom.sh"    ".local/bin/femtocom"
+symlink "bin/gbDs.sh"        ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
 
