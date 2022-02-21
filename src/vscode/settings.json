@@ -156,13 +156,13 @@
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
     "workbench.colorCustomizations": {
-        "terminal.ansiBlue": "#569cd6"
+        "terminal.ansiBlue": "#569cd6",
+        "terminal.background": "#1e1e1e"
     },
     "workbench.editor.languageDetection": false,
     "workbench.editorAssociations": {
         "git-rebase-todo": "default"
     },
-    "workbench.panel.defaultLocation": "right",
     "workbench.sideBar.location": "right",
     "workbench.startupEditor": "readme"
 }
