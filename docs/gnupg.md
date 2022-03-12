@@ -1,28 +1,36 @@
 # GNU Privacy Guard
 
-## How to setup GNU Privacy Guard (from backup)
-
 The following installs are required.
 
 ```sh
 brew install gnupg pinentry-mac
 ```
 
-Now restore a `~/.gnupg` folder backup. For example given a `dot.gnupg.tar.gz`
+## Backup
+
+```sh
+cd ~/.gnupg
+tar cvfz gnupg.tar.gz gpg-agent.conf private-keys-v1.d pubring.kbx sshcontrol tofu.db trustdb.gpg
+```
+
+## Restore
+
+Now restore a `~/.gnupg` folder backup. For example given a `gnupg.tar.gz`
 file.
 
 ```sh
-cd ~
-mv path/to/dot.gnupg.tar.gz dot.gnupg.tar.gz
-tar xvf dot.gnupg.tar.gz
+mkdir -p ~/.gnupg
+cd ~/.gnupg
+mv path/to/gnupg.tar.gz .
+tar xvf gnupg.tar.gz
 ```
 
-Note: fix any permission issues by running the following.
+Fix any permission issues by running the following.
 
 ```sh
-chown -R $(whoami) ~/.gnupg/
-find ~/.gnupg -type f -exec chmod 600 {} \;
-find ~/.gnupg -type d -exec chmod 700 {} \;
+chown -R $(whoami) .
+find . -type f -exec chmod 600 {} \;
+find . -type d -exec chmod 700 {} \;
 ```
 
 List the keys.
