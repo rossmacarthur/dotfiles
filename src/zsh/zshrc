@@ -1,14 +1,12 @@
 #!/usr/bin/env zsh
 
 # Oh My Zsh / lib / history.zsh
-# -----------------------------
 export HIST_STAMPS="yyyy-mm-dd"
 export HISTSIZE=250000
 export SAVESIZE=25000
 
 # You Should Use
-# --------------
 export YSU_MODE=ALL
 
-# Source all our plugins
+# Source all the things ✨
 eval "$(sheldon source)"
