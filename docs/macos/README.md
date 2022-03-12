@@ -28,6 +28,9 @@ line tools and macOS apps using the `brew` command line tool. From the
   ```
   brew install --cask iterm2
   ```
+  - iTerm2 > Preferences > General > Preferences > Load preferences from a custom
+    folder or URL: *set to ~/.dotfiles/src/iterm2*
+    Save changes: When quitting
 
 - [Visual Studio Code](https://code.visualstudio.com): Integrated development
   environment for all things.
@@ -36,7 +39,6 @@ line tools and macOS apps using the `brew` command line tool. From the
   ```
 
 ## Communication apps
-
 
 - [Signal](https://signal.org/install)
   ```
@@ -56,7 +58,7 @@ line tools and macOS apps using the `brew` command line tool. From the
   ```
   - System Preferences > Keyboard > Shortcuts > Disable Spotlight
   - Alfred
-    - Set Advanced > Preferences folder to the `~/.dotfiles/src/alfred` folder.
+    - Set Advanced > Set preferences folder > `~/.dotfiles/src/alfred`.
     - Set key shortcut to ⌘ + Space.
     - Set Appearance to Alfred macOS.
 
@@ -75,7 +77,7 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew install --cask kap
   ```
 
-- [MEGAsync](https://mega.nz/): Better iCloud.
+- [MEGA](https://mega.nz/): Better iCloud.
   ```
   brew install --cask megasync
   ```
@@ -98,6 +100,7 @@ line tools and macOS apps using the `brew` command line tool. From the
   ```
   brew install --cask rectangle
   ```
+  - Rectangle > Settings > Hide menu bar icon: ✅
 
 - [Scroll Reverser](https://pilotmoon.com/scrollreverser/): Allows you to have a
   different scroll direction on trackpad and external mouse.
@@ -144,39 +147,32 @@ line tools and macOS apps using the `brew` command line tool. From the
   rearrange spaces based on recent use: ❌
 - System Preferences > Dock & Menu Bar > Dock > Size: Small
 - System Preferences > Dock & Menu Bar > Dock > Automatically hide and show the Dock: ✅
-- System Preferences > Dock & Menu Bar > Wi-Fi > Show in Menu Bar: ❌
-- System Preferences > Dock & Menu Bar > Bluetooth > Show in Menu Bar: ❌
-- System Preferences > Dock & Menu Bar > Sound > Show in Menu Bar: ❌
+- System Preferences > Dock & Menu Bar > Wi-Fi > Show in Menu Bar: ✅
+- System Preferences > Dock & Menu Bar > Bluetooth > Show in Menu Bar: ✅
+- System Preferences > Dock & Menu Bar > Sound > Show in Menu Bar: ✅
 - System Preferences > Dock & Menu Bar > Battery > Show Percentage: ✅
 - System Preferences > Siri > Enable Ask Siri: ❌
 - System Preferences > Accessibility > Display > Reduce motion: ✅
 - System Preferences > Accessibility > Display > Reduce transparency: ✅
 - System Preferences > Keyboard > Keyboard > Key Repeat: Fast
 - System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
-- System Preferences > Keyboard > Keyboard > Touch Bar shows: Expanded Control
-  strip
 - System Preferences > Keyboard > Text: *Remove all abbreviations*
 - System Preferences > Keyboard > Shortcuts > Mission Control
   - Switch to Desktop 1: ✅
   - Switch to Desktop 2: ✅
   - Switch to Desktop 3: ✅
+- System Preferences > Mouse > Secondary click > Click on right side
 
 - Run the following to disable keyboard Click and Hold
 ```sh
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
-Run the following to remove all persistent Dock apps:
-```sh
-defaults write com.apple.dock persistent-apps -array
-killall Dock
-```
-
 ### Finder
 
-- Finder > General > Show these items on the desktop: *deselect all*
-- Finder > General > New Finder windows show: *home*
-- Finder > Preferences > Sidebar > Tags: ❌
+- Finder > Preferences > General > Show these items on the desktop: *deselect all*
+- Finder > Preferences > General > New Finder windows show: *home*
+- Finder > Preferences > Sidebar > Tags: *deselect all*
 - Finder > Preferences > Sidebar > Favourites:
   - Applications: ✅
   - Documents: ✅

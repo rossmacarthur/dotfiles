@@ -17,7 +17,8 @@ is to create a separate Workspace volume for Git clones and work related stuff.
 - Leave size options as the default.
 - Click "Add".
 
-Note: make sure you store the password in the login keychain.
+Unmount and mount the volume once making sure to select "Store password in
+keychain".
 
 ## Permanently mount it at `~/Workspace`
 
@@ -38,3 +39,6 @@ You can check if it is working without rebooting by running the following.
 ```
 sudo mount -av
 ```
+
+If you get permission denied it likely means the password wasn't stored in the
+keychain.
