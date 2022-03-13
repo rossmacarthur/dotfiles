@@ -6,31 +6,23 @@ if heading_if "Installs"; then
 
 subheading "Homebrew packages"
 update_package_manager
-install_package "awscli" "AWS CLI"
 install_package "bash" "Bash"
-install_package "cmake" "CMake"
+install_package "bat"
 install_package "curl" "cURL"
-install_package "gh" "GitHub CLI"
+install_package "docker" "Docker"
 install_package "git" "Git"
 install_package "gnupg" "GnuPG"
-install_package "htop" "htop"
+install_package "hyperfine"
 install_package "jq"
-install_package "ninja" "Ninja"
 install_package "shellcheck" "ShellCheck"
 install_package "tmux"
 install_package "pinentry-mac" "PINEntry"
+install_package "ripgrep"
+install_package "sheldon"
 install_package "tree" "Tree"
 install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
-
-subheading "Binaries"
-install_crate "sharkdp/bat"
-install_crate "rust-embedded/cross"
-install_crate "sharkdp/hyperfine"
-install_crate "casey/just"
-install_crate "BurntSushi/ripgrep" --bin rg
-install_crate "rossmacarthur/sheldon"
 
 subheading "Launch Agents"
 install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
@@ -42,6 +34,14 @@ symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/gif2mp4.sh"     ".local/bin/gif2mp4"
 symlink "bin/ips.py"         ".local/bin/ips"
 symlink "bin/remap-keys.sh"  ".local/bin/remap-keys"
+
+fi
+# ---------------------------------------------------------------------------- #
+if heading_if "Go development" "go"; then
+# ---------------------------------------------------------------------------- #
+
+subheading "Brew packages"
+install_package "go"
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -60,10 +60,6 @@ install_pyenv
 install_pyenv_python3
 create_pyenv_virtualenv
 
-subheading "Packages"
-install_python_package "nanocom" "Nanocom"
-install_python_package "passthesalt" "PassTheSalt"
-
 fi
 # ---------------------------------------------------------------------------- #
 if heading_if "Rust development" "rust"; then
@@ -76,6 +72,7 @@ install_rust_toolchain "beta"
 
 subheading "Packages"
 install_cargo_package "cargo-edit"
+install_cargo_package "kb-remap"
 
 fi
 # ---------------------------------------------------------------------------- #

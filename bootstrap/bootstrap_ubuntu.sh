@@ -10,9 +10,7 @@ subheading "System packages"
 update_package_manager
 install_package "bash" "Bash"
 install_package "curl" "cURL"
-install_package "docker" "Docker"
 install_package "git" "Git"
-install_package "make"
 install_package "tmux"
 install_package "python"
 install_package "python3"
@@ -50,11 +48,6 @@ subheading "Environment"
 install_pyenv
 install_pyenv_python3
 create_pyenv_virtualenv
-
-subheading "Packages"
-install_python_package "awscli"
-install_python_package "nanocom" "Nanocom"
-install_python_package "passthesalt" "PassTheSalt"
 
 fi
 # ---------------------------------------------------------------------------- #
