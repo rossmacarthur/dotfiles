@@ -15,7 +15,7 @@ EOF
 
 # Just in case ~/.cargo/bin is not in PATH
 kb-remap() {
-  ~/.cargo/bin/kb-remap "$@"
+  /Users/ross/.cargo/bin/kb-remap "$@"
 }
 
 main() {
@@ -40,12 +40,14 @@ main() {
 
   if [ -n "$reset" ]; then
     kb-remap --name "Apple Internal Keyboard / Trackpad" --reset
-    if kb-remap | grep "USB Keyboard" &>/dev/null; then
+    if kb-remap --list | grep "USB Keyboard" &>/dev/null; then
+      echo
       kb-remap --name "USB Keyboard" --reset
     fi
   else
     kb-remap --name "Apple Internal Keyboard / Trackpad" --map capslock:delete --swap '0x64:`'
-    if kb-remap | grep "USB Keyboard" &>/dev/null; then
+    if kb-remap --list | grep "USB Keyboard" &>/dev/null; then
+      echo
       kb-remap --name "USB Keyboard" --map capslock:delete
     fi
   fi
