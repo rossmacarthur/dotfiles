@@ -19,13 +19,12 @@ alias ll='ls -lh'
 # Alias for a common typo
 alias jsut=just
 
-# Copy of `ggp` in Oh My Zsh Git plugin to push to my usual fork name.
 function ggpf() {
   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push rossmacarthur "${*}"
+    git push origin "${*}" --force
   else
     [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push rossmacarthur "${b:=$1}"
+    git push origin "${b:=$1}" --force
   fi
 }
-compdef _git ggp=git-checkout
+compdef _git ggpf=git-checkout
