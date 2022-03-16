@@ -1,5 +1,8 @@
 #!/usr/bin/env zsh
 
+# Locale
+export LC_ALL=${LC_ALL:-en_US.UTF-8}
+
 # Default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
@@ -14,3 +17,4 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # Go
 export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
