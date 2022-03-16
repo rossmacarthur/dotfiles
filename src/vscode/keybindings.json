@@ -1,7 +1,13 @@
 [
     {
-        "command": "workbench.action.openWorkspaceSettingsFile",
-        "key": "cmd+k cmd+s"
+        "command": "editor.action.rename",
+        "key": "shift+cmd+2",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "command": "-editor.action.rename",
+        "key": "f2",
+        "when": "editorHasRenameProvider && editorTextFocus && !editorReadonly"
     },
     {
         "command": "editor.action.goToReferences",
@@ -39,11 +45,24 @@
         "key": "cmd+,"
     },
     {
-        "command": "-workbench.action.openGlobalKeybindings",
+        "command": "workbench.action.openGlobalKeybindingsFile",
+        "key": "cmd+k cmd+,"
+    },
+    {
+        "command": "workbench.action.openWorkspaceSettingsFile",
         "key": "cmd+k cmd+s"
     },
     {
-        "command": "workbench.action.openGlobalKeybindingsFile",
-        "key": "cmd+k cmd+,"
+        "command": "workbench.action.decreaseViewSize",
+        "key": "ctrl+cmd+-"
+    },
+    {
+        "command": "workbench.action.increaseViewSize",
+        "key": "ctrl+cmd+="
+    },
+    {
+        "command": "workbench.action.terminal.toggleTerminal",
+        "key": "shift+cmd+i",
+        "when": "terminal.active"
     }
 ]

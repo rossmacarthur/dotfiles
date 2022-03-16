@@ -3,14 +3,6 @@
         "editor.rulers": [
             50,
             72
-        ],
-        "editor.wordWrap": "off"
-    },
-    "[go]": {
-        "editor.rulers": [
-            80,
-            100,
-            120
         ]
     },
     "[html]": {
@@ -32,24 +24,11 @@
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.formatOnSave": true,
-        "editor.rulers": [
-            80,
-            100
-        ]
-    },
-    "[python]": {
-        "editor.rulers": [
-            80,
-            100
-        ]
+        "editor.formatOnSave": true
     },
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
-        "editor.rulers": [
-            80
-        ],
         "editor.tabSize": 4
     },
     "editor.cursorWidth": 4,
@@ -62,6 +41,9 @@
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
     "editor.renderWhitespace": "selection",
+    "editor.rulers": [
+        100
+    ],
     "editor.semanticTokenColorCustomizations": {
         "rules": {
             "*.mutable": {
@@ -70,6 +52,7 @@
         }
     },
     "editor.smoothScrolling": true,
+    "editor.wordWrap": "off",
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
     "files.associations": {
@@ -143,7 +126,6 @@
     "rust-analyzer.server.extraEnv": {
         "CARGO_TARGET_DIR": "target/rust-analyzer"
     },
-    "rust-analyzer.updates.askBeforeDownload": false,
     "search.quickOpen.includeHistory": false,
     "security.workspace.trust.enabled": false,
     "terminal.external.osxExec": "iTerm.app",
@@ -155,10 +137,12 @@
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
+    "workbench.activityBar.visible": false,
     "workbench.colorCustomizations": {
         "terminal.ansiBlue": "#569cd6",
         "terminal.background": "#1e1e1e"
     },
+    "workbench.colorTheme": "Default Dark+",
     "workbench.editor.languageDetection": false,
     "workbench.editorAssociations": {
         "git-rebase-todo": "default"
