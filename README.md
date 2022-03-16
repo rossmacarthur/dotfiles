@@ -16,6 +16,10 @@ And run the bootstrap script using
 ~/.dotfiles/bootstrap/bootstrap.sh
 ```
 
+The dotfiles script makes some assumptions about the environment, for example on
+macOS it expects Homebrew to be installed. For a brand new setup it's best to
+follow the [docs](./docs/macos/README.md).
+
 ## Acknowledgements
 
 Inspired by [Cătălin Mariș's](https://github.com/alrra)

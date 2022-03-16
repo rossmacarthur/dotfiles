@@ -168,6 +168,11 @@ line tools and macOS apps using the `brew` command line tool. From the
 defaults write -g ApplePressAndHoldEnabled -bool false
 ```
 
+Change the computer host name
+```
+sudo scutil --set HostName lt-ross
+```
+
 ### Finder
 
 - Finder > Preferences > General > Show these items on the desktop: *deselect all*
@@ -186,7 +191,15 @@ defaults write -g ApplePressAndHoldEnabled -bool false
 
 ### iTerm 2
 
-Install dotfiles by following the main [README](../../README.md) in this repo.
+Install dotfiles by cloning the repository.
+```bash
+git clone https://github.com/rossmacarthur/dotfiles.git ~/.dotfiles
+```
+
+And running the bootstrap script.
+```bash
+~/.dotfiles/bootstrap/bootstrap.sh
+```
 
 Install Powerline fonts.
 ```sh
