@@ -6,14 +6,14 @@ export LC_ALL=${LC_ALL:-en_US.UTF-8}
 # Default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
-# Cargo env
-[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-
 # Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Local bin
 export PATH="$HOME/.local/bin:$PATH"
+
+# Cargo env
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 
 # Go
 export GOPATH="$HOME/.go"
