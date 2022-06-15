@@ -61,8 +61,7 @@
         "key": "ctrl+cmd+="
     },
     {
-        "command": "workbench.action.terminal.toggleTerminal",
+        "command": "workbench.action.terminal.focus",
         "key": "shift+cmd+i",
-        "when": "terminal.active"
     }
 ]

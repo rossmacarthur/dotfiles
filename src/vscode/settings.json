@@ -24,19 +24,28 @@
     },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": true,
+        "editor.rulers": [
+            80
+        ]
     },
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
+        "editor.rulers": [
+            80
+        ],
         "editor.tabSize": 4
     },
     "editor.cursorWidth": 4,
-    "editor.folding": false,
-    "editor.fontFamily": "Source Code Pro for Powerline",
+    "editor.folding": true,
+    "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 14,
+    "editor.fontSize": 13,
     "editor.formatOnType": true,
+    "editor.inlayHints.enabled": false,
+    "editor.inlayHints.fontSize": 10,
+    "editor.language.colorizedBracketPairs": [],
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
@@ -83,21 +92,9 @@
     "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "rust-analyzer.assist.importEnforceGranularity": true,
-    "rust-analyzer.assist.importGranularity": "module",
-    "rust-analyzer.assist.importPrefix": "crate",
     "rust-analyzer.cargo.allFeatures": true,
-    "rust-analyzer.completion.autoimport.enable": true,
-    "rust-analyzer.completion.snippets": {
-        "arc": {
-            "body": [
-                "Arc::new(${receiver})"
-            ],
-            "postfix": "arc",
-            "requires": "std::sync::Arc",
-            "scope": "expr"
-        },
-        "mutex": {
+    "rust-analyzer.completion.snippets.custom": {
+        "Mutex::arc": {
             "body": [
                 "Arc::new(Mutex::new(${receiver}))"
             ],
@@ -107,22 +104,9 @@
                 "std::sync::Mutex"
             ],
             "scope": "expr"
-        },
-        "rc": {
-            "body": [
-                "Rc::new(${receiver})"
-            ],
-            "postfix": "rc",
-            "requires": "std::rc::Rc",
-            "scope": "expr"
         }
     },
-    "rust-analyzer.diagnostics.disabled": [
-        "inactive-code"
-    ],
-    "rust-analyzer.diagnostics.enableExperimental": true,
-    "rust-analyzer.experimental.procAttrMacros": true,
-    "rust-analyzer.inlayHints.enable": false,
+    "rust-analyzer.diagnostics.experimental.enable": true,
     "rust-analyzer.server.extraEnv": {
         "CARGO_TARGET_DIR": "target/rust-analyzer"
     },
@@ -137,12 +121,13 @@
     "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
-    "workbench.activityBar.visible": false,
+    "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
-        "terminal.ansiBlue": "#569cd6",
-        "terminal.background": "#1e1e1e"
+        "editorGutter.background": "#252525",
+        "editorInlayHint.background": "#1e1e1e",
+        "editorInlayHint.foreground": "#6a6a6a",
+        "terminal.ansiBlue": "#569cd6"
     },
-    "workbench.colorTheme": "Default Dark+",
     "workbench.editor.languageDetection": false,
     "workbench.editorAssociations": {
         "git-rebase-todo": "default"
