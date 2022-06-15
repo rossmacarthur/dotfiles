@@ -45,5 +45,7 @@ load_pyenv() {
   fi
 }
 
-load_pyenv
-unfunction load_pyenv
+if [[ "$TERMINAL_EMULATOR" != *JetBrains* ]]; then
+  load_pyenv
+  unfunction load_pyenv
+fi
