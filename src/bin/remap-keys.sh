@@ -48,7 +48,7 @@ main() {
     kb-remap --name "Apple Internal Keyboard / Trackpad" --map capslock:delete --swap '0x64:`'
     if kb-remap --list | grep "USB Keyboard" &>/dev/null; then
       echo
-      kb-remap --name "USB Keyboard" --map capslock:delete
+      kb-remap --name "USB Keyboard" --map capslock:delete --swap command:option
     fi
   fi
 }
