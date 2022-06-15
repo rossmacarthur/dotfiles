@@ -161,6 +161,11 @@ line tools and macOS apps using the `brew` command line tool. From the
   - Switch to Desktop 1: ✅
   - Switch to Desktop 2: ✅
   - Switch to Desktop 3: ✅
+- System Preferences > Keyboard > Shortcuts > Screenshots
+  - Save picture of screen as a file: ⌃⇧⌘3
+  - Copy picture of screen to clipboard: ⇧⌘3
+  - Save picture of selected area as a file: ⌃⇧⌘4
+  - Copy picture of selected area to clipboard: ⇧⌘4
 - System Preferences > Mouse > Secondary click > Click on right side
 
 - Run the following to disable keyboard Click and Hold
