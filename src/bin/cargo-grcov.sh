@@ -4,7 +4,7 @@ set -e
 
 usage() {
     cat 1>&2 <<EOF
-Builds the project, run's tests, and run's grcov.
+Builds the project, runs tests, and runs grcov.
 
 USAGE:
     cargo grcov [FLAGS]
@@ -30,6 +30,8 @@ run() {
 
     if [ "$clean" = true ]; then
         cargo +nightly clean
+    else
+        rm -rf "$CARGO_TARGET_DIR"
     fi
     cargo +nightly build --workspace || return 1
     cargo +nightly test  --workspace || return 1
