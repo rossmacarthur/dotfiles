@@ -58,9 +58,7 @@ subheading "Environment"
 install_rustup
 install_rust_toolchain "stable"
 install_rust_toolchain "beta"
-
-subheading "Packages"
-install_cargo_package "cargo-edit"
+install_rust_toolchain "nightly"
 
 fi
 # ---------------------------------------------------------------------------- #

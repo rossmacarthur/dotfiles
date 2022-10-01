@@ -69,9 +69,9 @@ subheading "Environment"
 install_rustup
 install_rust_toolchain "stable"
 install_rust_toolchain "beta"
+install_rust_toolchain "nightly"
 
 subheading "Packages"
-install_cargo_package "cargo-edit"
 install_cargo_package "kb-remap"
 
 fi
