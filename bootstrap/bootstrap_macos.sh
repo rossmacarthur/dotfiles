@@ -81,8 +81,8 @@ if heading_if "Configurations" "configs"; then
 
 subheading "General"
 symlink "curl/curlrc"             ".curlrc"
-symlink "git/gitconfig"           ".gitconfig"
-symlink "git/gitignore_global"    ".gitignore_global"
+symlink "git/config"              ".config/git/config"
+symlink "git/ignore"              ".config/git/ignore"
 symlink "sheldon/plugins.toml"    ".config/sheldon/plugins.toml"
 symlink "tmux/tmux.conf"          ".tmux.conf"
 symlink "vim/vimrc"               ".vimrc"
