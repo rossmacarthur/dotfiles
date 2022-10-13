@@ -1,10 +1,10 @@
 # Sheldon configuration file
 #
-# See https://rossmacarthur.github.io/sheldon/
+# See https://sheldon.cli.rs
 
 [templates]
-defer = { value = 'zsh-defer source "{{ file }}"', each = true }
-defer-more = { value = 'zsh-defer -t 0.5 source "{{ file }}"', each = true }
+defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
+defer-more = "{% for file in files %}zsh-defer -t 0.5 source \"{{ file }}\"\n{% endfor %}"
 
 # Completions
 # -----------
@@ -47,9 +47,17 @@ github = "romkatv/zsh-defer"
 github = "zpm-zsh/autoenv"
 apply = ["defer"]
 
-[plugins.dotfiles]
+[plugins.aliases]
 local = "~/.zsh/plugins"
-use = ["*.plugin.zsh", "!{compinit,path,pyenv}.plugin.zsh"]
+apply = ["defer"]
+
+[plugins.gpg-agent]
+local = "~/.zsh/plugins"
+apply = ["defer"]
+
+[plugins.jetbrains]
+profiles = ["jetbrains"]
+local = "~/.zsh/plugins"
 apply = ["defer"]
 
 [plugins.ohmyzsh-lib]
