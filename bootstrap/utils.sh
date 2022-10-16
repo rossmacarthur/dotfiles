@@ -330,7 +330,7 @@ execute() {
     local text=$2
     local length=$(( ${#text}+4 ))
 
-    tput civis -- invisible
+    tput civis
     print --after 0
     while ps -p "$pid" >/dev/null 2>&1
     do
@@ -340,14 +340,14 @@ execute() {
       sleep 0.075
       repeat $'\b' "$length"
     done
-    tput cnorm -- normal
+    tput cnorm
   }
 
   # Abort the script, reset the cursor to display on, and kill the given PID.
   aborter() {
     local pid=$1
     local text=$2
-    tput cnorm -- normal
+    tput cnorm
     kill -s HUP "$1" >/dev/null 2>&1 && {
       print --color magenta --before 1 --prefix "[!] " "$text killed";
     }
