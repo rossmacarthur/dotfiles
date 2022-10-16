@@ -8,27 +8,20 @@ request_sudo || abort
 
 subheading "System packages"
 update_package_manager
-install_package "bash" "Bash"
 install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "tmux"
-install_package "python"
-install_package "python3"
-install_package "xclip"
 install_package "vim" "Vim"
 install_package "wget" "Wget"
 install_package "zsh" "Zsh"
 
 subheading "Binaries"
 install_crate "sharkdp/bat"
-install_crate "rust-embedded/cross"
-install_crate "sharkdp/hyperfine"
 install_crate "casey/just"
 install_crate "BurntSushi/ripgrep" --bin rg
 install_crate "rossmacarthur/sheldon"
 
 subheading "Scripts"
-symlink "bin/cargo-grcov.sh" ".local/bin/cargo-grcov"
 symlink "bin/femtocom.sh"    ".local/bin/femtocom"
 symlink "bin/gbDs.sh"        ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
