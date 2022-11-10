@@ -3,8 +3,8 @@
 # See https://sheldon.cli.rs
 
 [templates]
-defer = "{% for file in files %}zsh-defer source \"{{ file }}\"\n{% endfor %}"
-defer-more = "{% for file in files %}zsh-defer -t 0.5 source \"{{ file }}\"\n{% endfor %}"
+defer = """{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}"""
+defer-more = """{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}"""
 
 # Completions
 # -----------
