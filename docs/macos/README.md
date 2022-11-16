@@ -6,7 +6,7 @@ try to keep this up to date with the latest tools and apps that I am using.
 
 See also
 
-- [Setup Workspace volume](workspace.md)
+- [Setup dev volume](./dev.md)
 - [Setup GNU Privacy Guard](../gnupg.md)
 - [Setup Visual Studio Code extensions](../vscode.md)
 
