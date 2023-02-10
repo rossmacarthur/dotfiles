@@ -41,9 +41,9 @@
     "editor.folding": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13,
+    "editor.fontSize": 13.5,
     "editor.formatOnType": true,
-    "editor.inlayHints.enabled": false,
+    "editor.inlayHints.enabled": "off",
     "editor.inlayHints.fontSize": 10,
     "editor.language.colorizedBracketPairs": [],
     "editor.lineHeight": 0,
@@ -61,6 +61,7 @@
         }
     },
     "editor.smoothScrolling": true,
+    "editor.unicodeHighlight.includeStrings": false,
     "editor.wordWrap": "off",
     "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
@@ -92,7 +93,6 @@
     "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
     "python.linting.pylintEnabled": false,
-    "rust-analyzer.cargo.allFeatures": true,
     "rust-analyzer.completion.snippets.custom": {
         "Mutex::arc": {
             "body": [
@@ -107,6 +107,7 @@
         }
     },
     "rust-analyzer.diagnostics.experimental.enable": true,
+    "rust-analyzer.imports.granularity.group": "item",
     "rust-analyzer.server.extraEnv": {
         "CARGO_TARGET_DIR": "target/rust-analyzer"
     },
@@ -114,6 +115,7 @@
     "security.workspace.trust.enabled": false,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.cursorStyle": "underline",
+    "terminal.integrated.enableMultiLinePasteWarning": false,
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
         "GIT_EDITOR": "code --wait"
