@@ -19,6 +19,9 @@ alias ll='ls -lh'
 # Alias for a common typo
 alias jsut=just
 
+# Change ripgrep default
+alias rg="rg --no-heading"
+
 function ggpf() {
   if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
     git push origin "${*}" --force
