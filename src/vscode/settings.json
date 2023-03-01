@@ -29,6 +29,9 @@
             80
         ]
     },
+    "[python]": {
+        "editor.formatOnType": true
+    },
     "[rust]": {
         "editor.formatOnSave": true,
         "editor.insertSpaces": true,
@@ -45,6 +48,7 @@
     "editor.formatOnType": true,
     "editor.inlayHints.enabled": "off",
     "editor.inlayHints.fontSize": 10,
+    "editor.inlineSuggest.enabled": true,
     "editor.language.colorizedBracketPairs": [],
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
@@ -84,11 +88,12 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "gitlens.codeLens.enabled": false,
-    "go.toolsManagement.autoUpdate": true,
+    "go.toolsEnvVars": {
+        "GO111MODULE": "on"
+    },
     "gopls": {
         "ui.navigation.importShortcut": "Definition"
     },
-    "markdown.extension.toc.level": "2..6",
     "python.defaultInterpreterPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
     "python.languageServer": "Pylance",
     "python.linting.flake8Enabled": true,
