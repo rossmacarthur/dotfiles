@@ -21,6 +21,9 @@
 [log]
 	showSignature = true
 
+[merge]
+	conflictstyle = diff3
+
 [pull]
 	ff = only
 
