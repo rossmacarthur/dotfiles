@@ -12,7 +12,6 @@ install_package "curl" "cURL"
 install_package "git" "Git"
 install_package "tmux"
 install_package "vim" "Vim"
-install_package "wget" "Wget"
 install_package "zsh" "Zsh"
 
 subheading "Binaries"

@@ -500,7 +500,7 @@ install_pyenv() {
 
 install_pyenv_python3() {
   local version
-  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.9.\d' | tail -1 | xargs)
+  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.11.\d' | tail -1 | xargs)
   execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
 }
 
@@ -510,7 +510,7 @@ create_pyenv_virtualenv() {
   then
     return
   fi
-  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.9.\d' | tail -1 | xargs)
+  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.11.\d' | tail -1 | xargs)
   execute \
     "$HOME/.pyenv/bin/pyenv virtualenv --force $version global && $HOME/.pyenv/bin/pyenv global global" \
     "Global virtualenv"
