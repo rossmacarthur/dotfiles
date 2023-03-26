@@ -17,7 +17,7 @@ is to create a separate volume for Git clones and work related stuff.
 - Leave size options as the default.
 - Click "Add".
 
-Unmount and mount the volume once making sure to select "Store password in
+**Unmount and mount the volume once** making sure to select "Store password in
 keychain".
 
 ## Permanently mount it at `~/dev`

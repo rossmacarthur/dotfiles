@@ -33,6 +33,12 @@ find . -type f -exec chmod 600 {} \;
 find . -type d -exec chmod 700 {} \;
 ```
 
+Double check that any paths in `gpgagent.conf` will work for the new system.
+
+```sh
+cat gpgagent.conf
+```
+
 List the keys.
 
 ```sh

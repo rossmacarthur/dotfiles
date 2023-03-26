@@ -18,12 +18,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ## Core apps
 
-- [Docker for
-  Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
-  ```
-  brew install --cask docker
-  ```
-
 - [iTerm2](https://iterm2.com): Better Terminal.
   ```
   brew install --cask iterm2
@@ -31,6 +25,14 @@ line tools and macOS apps using the `brew` command line tool. From the
   - iTerm2 > Preferences > General > Preferences > Load preferences from a custom
     folder or URL: *set to ~/.dotfiles/src/iterm2*
     Save changes: When quitting
+
+- [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
+  shortcuts or snap areas.
+  ```
+  brew install --cask rectangle
+  ```
+  - Rectangle > Preferences > Launch on login: ✓
+  - Rectangle > Preferences > Hide menu bar icon: ✓
 
 - [Visual Studio Code](https://code.visualstudio.com): Integrated development
   environment for all things.
@@ -52,15 +54,21 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ## Other apps
 
-- [Alfred 4](http://alfredapp.com/): Better Spotlight.
+- [Alfred](http://alfredapp.com/): Better Spotlight.
   ```
   brew install --cask alfred
   ```
-  - System Preferences > Keyboard > Shortcuts > Disable Spotlight
+  - System Preferences > Keyboard > Keyboard Shortcuts > Disable Spotlight
   - Alfred
     - Set Advanced > Set preferences folder > `~/.dotfiles/src/alfred`.
     - Set key shortcut to ⌘ + Space.
     - Set Appearance to Alfred macOS.
+
+- [Docker for
+  Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
+  ```
+  brew install --cask docker
+  ```
 
 - [Etcher](https://www.balena.io/etcher/): Flash OS images to SD cards.
   ```
@@ -72,35 +80,12 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew install --cask firefox
   ```
 
-- [Kap](https://getkap.co/): Screen recorder (GIF / MP4 etc).
-  ```
-  brew install --cask kap
-  ```
-
 - [MEGA](https://mega.nz/): Better iCloud.
   ```
   brew install --cask megasync
   ```
   - Setup up MEGAsync and to sync to ~/Cloud.
   - Preferences > Advanced > Disable overlay icons: ✅
-
-- [Postman](https://www.postman.com/): API development tool.
-  ```
-  brew install --cask postman
-  ```
-
-- [QR Journal](https://www.joshjacob.com/mac-development/qrjournal.php): QR code
-  scanning on macOS.
-  ```
-  brew install --cask qr-journal
-  ```
-
-- [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
-  shortcuts or snap areas.
-  ```
-  brew install --cask rectangle
-  ```
-  - Rectangle > Settings > Hide menu bar icon: ✅
 
 - [Scroll Reverser](https://pilotmoon.com/scrollreverser/): Allows you to have a
   different scroll direction on trackpad and external mouse.
@@ -142,31 +127,32 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ### General
 
-- System Preferences > General > Recent items: None
-- System Preferences > Mission Control > Mission Control: Automatically
-  rearrange spaces based on recent use: ❌
-- System Preferences > Dock & Menu Bar > Dock > Size: Small
-- System Preferences > Dock & Menu Bar > Dock > Automatically hide and show the Dock: ✅
-- System Preferences > Dock & Menu Bar > Wi-Fi > Show in Menu Bar: ✅
-- System Preferences > Dock & Menu Bar > Bluetooth > Show in Menu Bar: ✅
-- System Preferences > Dock & Menu Bar > Sound > Show in Menu Bar: ✅
-- System Preferences > Dock & Menu Bar > Battery > Show Percentage: ✅
-- System Preferences > Siri > Enable Ask Siri: ❌
-- System Preferences > Accessibility > Display > Reduce motion: ✅
-- System Preferences > Accessibility > Display > Reduce transparency: ✅
-- System Preferences > Keyboard > Keyboard > Key Repeat: Fast
-- System Preferences > Keyboard > Keyboard > Delay Until Repeat: Short
-- System Preferences > Keyboard > Text: *Remove all abbreviations*
-- System Preferences > Keyboard > Shortcuts > Mission Control
-  - Switch to Desktop 1: ✅
-  - Switch to Desktop 2: ✅
-  - Switch to Desktop 3: ✅
-- System Preferences > Keyboard > Shortcuts > Screenshots
+- System Settings > General > Language & Region > Number Format: 1,234,567.89
+- System Settings > Accessibility > Display > Reduce motion: ✓
+- System Settings > Accessibility > Display > Reduce transparency: ✓
+- System Settings > Control Centre > Wi-Fi: Show in Menu Bar
+- System Settings > Control Centre > Bluetooth: Show in Menu Bar
+- System Settings > Control Centre > Sound: Show in Menu Bar
+- System Settings > Control Centre > Battery > Show Percentage: ✓
+- System Settings > Desktop & Dock > Size: Small
+- System Settings > Desktop & Dock > Automatically hide and show the Dock: ✓
+- System Settings > Desktop & Dock > Menu Bar > Recent documents, applications and servers: None
+- System Settings > Desktop & Dock > Mission Control: Automatically
+  rearrange spaces based on recent use: ✗
+- System Settings > Displays > More Space: ✓
+- System Settings > Keyboard > Key Repeat: Fast
+- System Settings > Keyboard > Delay Until Repeat: Short
+- System Settings > Keyboard > Text replacements...: *Remove all*
+- System Preferences > Keyboard > Keyboard Shortcuts > Screenshots
   - Save picture of screen as a file: ⌃⇧⌘3
   - Copy picture of screen to clipboard: ⇧⌘3
   - Save picture of selected area as a file: ⌃⇧⌘4
   - Copy picture of selected area to clipboard: ⇧⌘4
-- System Preferences > Mouse > Secondary click > Click on right side
+- System Preferences > Keyboard > Keyboard Shortcuts > Mission Control
+  - Switch to Desktop 1: ✓
+  - Switch to Desktop 2: ✓
+  - Switch to Desktop 3: ✓
+
 
 - Run the following to disable keyboard Click and Hold
 ```sh
@@ -194,6 +180,18 @@ sudo scutil --set HostName lt-ross
 - Finder > Preferences > Advanced > Show all filename extensions: ✅
 - Finder > Preferences > Advanced > Keep folders on top > In windows when sorting by name: ✅
 
+### Fonts
+
+**Fira Code**
+
+Download from https://github.com/tonsky/FiraCode/releases/latest
+
+**Powerline**
+
+```sh
+git clone https://github.com/powerline/fonts.git
+```
+
 ### iTerm 2
 
 Install dotfiles by cloning the repository.
@@ -205,14 +203,6 @@ And running the bootstrap script.
 ```bash
 ~/.dotfiles/bootstrap/bootstrap.sh
 ```
-
-Install Powerline fonts.
-```sh
-git clone https://github.com/powerline/fonts.git
-```
-
-Open the "Font Book" app, click the Plus (+) and open the fonts/SourceCodePro
-directory.
 
 Compile terminfo
 ```sh
