@@ -3,8 +3,8 @@
 # See https://sheldon.cli.rs
 
 [templates]
-defer = """{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}"""
-defer-more = """{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}"""
+defer = """{{ hooks | get: "pre" | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks | get: "post" | nl }}"""
+defer-more = """{{ hooks | get: "pre" | nl }}{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}{{ hooks | get: "post" | nl }}"""
 
 # Completions
 # -----------
@@ -25,6 +25,11 @@ github = "zsh-users/zsh-completions"
 [plugins.history]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
+hooks.pre = """
+export HIST_STAMPS="yyyy-mm-dd"
+export HISTSIZE=250000
+export SAVESIZE=25000
+"""
 
 [plugins.path]
 local = "~/.zsh/plugins"
@@ -63,7 +68,7 @@ apply = ["defer"]
 [plugins.ohmyzsh-lib]
 github = "ohmyzsh/ohmyzsh"
 dir = "lib"
-use = ["{clipboard,completion,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
+use = ["{clipboard,completion,functions,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
 apply = ["defer"]
 
 [plugins.ohmyzsh-plugins]
@@ -75,6 +80,7 @@ apply = ["defer"]
 [plugins.zsh-you-should-use]
 github = "MichaelAquilina/zsh-you-should-use"
 apply = ["defer"]
+hooks.pre = "export YSU_MODE=ALL"
 
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
@@ -92,6 +98,10 @@ apply = ["defer"]
 
 # Plugins that are even more deferred
 # -----------------------------------
+
+[plugins.nvm]
+local = "~/.zsh/plugins"
+apply = ["defer-more"]
 
 [plugins.pyenv]
 local = "~/.zsh/plugins"

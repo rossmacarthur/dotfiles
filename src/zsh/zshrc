@@ -3,24 +3,22 @@
 # Default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
-# Oh My Zsh / lib / history.zsh
-export HIST_STAMPS="yyyy-mm-dd"
-export HISTSIZE=250000
-export SAVESIZE=25000
-
-# You Should Use
-export YSU_MODE=ALL
-
 # Source all the things ✨
 eval "$(sheldon source)"
 
 # Local bin
-[ -d "$HOME/.local/bin" ] && path_push "$HOME/.local/bin"
+if [ -d "$HOME/.local/bin" ]; then
+    path_push "$HOME/.local/bin"
+fi
 
 # Cargo env
-[ -d "$HOME/.cargo" ] && path_push "$HOME/.cargo/bin"
+if [ -d "$HOME/.cargo" ]; then
+    path_push "$HOME/.cargo/bin"
+fi
 
 # Go env
 export GO111MODULE=on
 export GOPATH="$HOME/.go"
-[ -d "$GOPATH" ] && path_push "$GOPATH/bin"
+if [ -d "$GOPATH" ]; then
+    path_push "$GOPATH/bin"
+fi
