@@ -3,8 +3,8 @@
 # See https://sheldon.cli.rs
 
 [templates]
-defer = """{{ hooks | get: "pre" | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks | get: "post" | nl }}"""
-defer-more = """{{ hooks | get: "pre" | nl }}{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}{{ hooks | get: "post" | nl }}"""
+defer = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
+defer-more = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
 
 # Completions
 # -----------
@@ -44,6 +44,9 @@ apply = ["fpath", "source"]
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
+
+[plugins.iterm2-shell-integration]
+remote = "https://iterm2.com/shell_integration/zsh"
 
 # Deferred plugins
 # ----------------
