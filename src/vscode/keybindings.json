@@ -62,6 +62,14 @@
     },
     {
         "command": "workbench.action.terminal.focus",
-        "key": "shift+cmd+i",
+        "key": "shift+cmd+i"
+    },
+    {
+        "command": "-chat.action.askQuickQuestion",
+        "key": "shift+cmd+i"
+    },
+    {
+        "command": "-workbench.action.quickchat.toggle",
+        "key": "shift+cmd+i"
     }
 ]

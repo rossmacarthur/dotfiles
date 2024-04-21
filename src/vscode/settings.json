@@ -5,6 +5,9 @@
             72
         ]
     },
+    "[go]": {
+        "editor.tabSize": 4
+    },
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
@@ -30,6 +33,7 @@
         ]
     },
     "[python]": {
+        "editor.formatOnSave": true,
         "editor.formatOnType": true
     },
     "[rust]": {
@@ -40,13 +44,19 @@
         ],
         "editor.tabSize": 4
     },
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    "cSpell.language": "en-GB",
+    "diffEditor.codeLens": true,
+    "editor.accessibilitySupport": "off",
     "editor.cursorWidth": 4,
     "editor.folding": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontSize": 13.5,
     "editor.formatOnType": true,
-    "editor.inlayHints.enabled": "off",
+    "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.inlayHints.fontSize": 10,
     "editor.inlineSuggest.enabled": true,
     "editor.language.colorizedBracketPairs": [],
@@ -65,6 +75,22 @@
         }
     },
     "editor.smoothScrolling": true,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#6A9955"
+                }
+            },
+            {
+                "scope": "punctuation.definition.interpolation.just",
+                "settings": {
+                    "foreground": "#ff0000"
+                }
+            }
+        ]
+    },
     "editor.unicodeHighlight.includeStrings": false,
     "editor.wordWrap": "off",
     "explorer.openEditors.visible": 0,
@@ -87,17 +113,30 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "git.openRepositoryInParentFolders": "never",
+    "github.copilot.enable": {
+        "*": true
+    },
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true
+    },
     "gitlens.codeLens.enabled": false,
     "go.toolsEnvVars": {
         "GO111MODULE": "on"
     },
+    "go.toolsManagement.autoUpdate": true,
     "gopls": {
         "ui.navigation.importShortcut": "Definition"
     },
-    "python.defaultInterpreterPath": "${env:HOME}/.pyenv/versions/${workspaceFolderBasename}/bin/python",
+    "keyboard.dispatch": "keyCode",
+    "markdown.extension.toc.levels": "2..6",
+    "markdown.preview.scrollEditorWithPreview": false,
+    "markdown.preview.scrollPreviewWithEditor": false,
+    "python.analysis.addImport.exactMatchOnly": true,
     "python.languageServer": "Pylance",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
+    "python.terminal.activateEnvironment": false,
+    "python.testing.pytestEnabled": true,
+    "redhat.telemetry.enabled": false,
     "rust-analyzer.completion.snippets.custom": {
         "Mutex::arc": {
             "body": [
@@ -113,6 +152,7 @@
     },
     "rust-analyzer.diagnostics.experimental.enable": true,
     "rust-analyzer.imports.granularity.group": "item",
+    "rust-analyzer.inlayHints.parameterHints.enable": false,
     "rust-analyzer.server.extraEnv": {
         "CARGO_TARGET_DIR": "target/rust-analyzer"
     },
@@ -125,12 +165,10 @@
         "EDITOR": "code --wait",
         "GIT_EDITOR": "code --wait"
     },
-    "terminal.integrated.fontFamily": "Source Code Pro for Powerline",
+    "terminal.integrated.fontFamily": "Fira Code",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
-    "workbench.activityBar.visible": true,
     "workbench.colorCustomizations": {
-        "editorGutter.background": "#252525",
         "editorInlayHint.background": "#1e1e1e",
         "editorInlayHint.foreground": "#6a6a6a",
         "terminal.ansiBlue": "#569cd6"
