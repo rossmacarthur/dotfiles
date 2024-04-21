@@ -55,9 +55,7 @@ gpgconf --reload gpg-agent
 
 ```sh
 gpg --list-keys
-```
-
-```sh
+gpg --edit-key <key>
 expire
 ```
 
