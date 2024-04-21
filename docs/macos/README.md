@@ -70,11 +70,6 @@ line tools and macOS apps using the `brew` command line tool. From the
   brew install --cask docker
   ```
 
-- [Etcher](https://www.balena.io/etcher/): Flash OS images to SD cards.
-  ```
-  brew install --cask balenaetcher
-  ```
-
 - [Firefox](https://www.mozilla.org/en-ZA/firefox/new/): Better Safari.
   ```
   brew install --cask firefox
@@ -86,14 +81,6 @@ line tools and macOS apps using the `brew` command line tool. From the
   ```
   - Setup up MEGAsync and to sync to ~/Cloud.
   - Preferences > Advanced > Disable overlay icons: ✅
-
-- [Scroll Reverser](https://pilotmoon.com/scrollreverser/): Allows you to have a
-  different scroll direction on trackpad and external mouse.
-  ```
-  brew install --cask scroll-reverser
-  ```
-  For natural for trackpad and non natural for mouse. Select "Reverse Vertical"
-  and "Reverse Mouse" only.
 
 - [Spotify](https://www.spotify.com/za/download/mac/): Better Apple Music.
   ```
@@ -167,18 +154,21 @@ sudo scutil --set HostName lt-ross
 ### Finder
 
 - Finder > Preferences > General > Show these items on the desktop: *deselect all*
-- Finder > Preferences > General > New Finder windows show: *home*
-- Finder > Preferences > Sidebar > Tags: *deselect all*
+- Finder > Preferences > General > New Finder windows show: *~*
+- Finder > Preferences > Tags: *deselect all*
 - Finder > Preferences > Sidebar > Favourites:
   - Applications: ✅
   - Documents: ✅
   - Downloads: ✅
   - Pictures: ✅
-  - ross: ✅
-- Finder > Preferences > Sidebar > Locations: *select all*
+  - ~: ✅
+- Finder > Preferences > Sidebar > Locations:
+  - Hard disks: ✅
+  - External disks: ✅
 - Finder > Preferences > Sidebar > Tags: *deselect all*
 - Finder > Preferences > Advanced > Show all filename extensions: ✅
 - Finder > Preferences > Advanced > Keep folders on top > In windows when sorting by name: ✅
+- Finder > Preferences > Advanced > When performing a search: Search the Current Folder
 
 ### Fonts
 
