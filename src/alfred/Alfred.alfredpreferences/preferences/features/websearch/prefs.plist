@@ -56,6 +56,17 @@
 			<key>utf8</key>
 			<true/>
 		</dict>
+		<key>815973BA-70DB-48AE-A2A8-EF28E5666F56</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>linear</string>
+			<key>text</key>
+			<string>Open Linear</string>
+			<key>url</key>
+			<string>https://linear.app</string>
+		</dict>
 		<key>9ACDEA02-4DCF-4ACF-A1B2-98909215185D</key>
 		<dict>
 			<key>enabled</key>

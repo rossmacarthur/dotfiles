@@ -110,6 +110,8 @@ EOF</string>
 			<integer>50</integer>
 		</dict>
 	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
 	<key>webaddress</key>
 	<string></string>
 </dict>
