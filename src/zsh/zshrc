@@ -3,6 +3,8 @@
 # Default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
+fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+
 # Source all the things ✨
 eval "$(sheldon source)"
 
