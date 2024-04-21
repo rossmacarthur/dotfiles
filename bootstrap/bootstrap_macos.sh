@@ -25,14 +25,13 @@ install_package "vim" "Vim"
 install_package "zsh" "Zsh"
 
 subheading "Launch Agents"
-install_launch_agent "remap-keys" "io.macarthur.ross.remap-keys"
+install_launch_agent "kb-remap" "io.macarthur.ross.kb-remap"
 
 subheading "Scripts"
-symlink "bin/gbDs.sh"        ".local/bin/gbDs"
-symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
-symlink "bin/gif2mp4.sh"     ".local/bin/gif2mp4"
-symlink "bin/ips.py"         ".local/bin/ips"
-symlink "bin/remap-keys.sh"  ".local/bin/remap-keys"
+symlink "bin/gbDs.sh"      ".local/bin/gbDs"
+symlink "bin/gensshkey.sh" ".local/bin/gensshkey"
+symlink "bin/gif2mp4.sh"   ".local/bin/gif2mp4"
+symlink "bin/ips.py"       ".local/bin/ips"
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -87,6 +86,8 @@ symlink "tmux/tmux.conf"          ".config/tmux/tmux.conf"
 symlink "vim/vimrc"               ".vimrc"
 symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
+symlink "vscode/settings.json"    "Library/Application Support/Code - Insiders/User/settings.json"
+symlink "vscode/keybindings.json" "Library/Application Support/Code - Insiders/User/keybindings.json"
 
 subheading "Zsh"
 symlink "zsh/zprofile" ".zprofile"
