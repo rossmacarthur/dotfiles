@@ -490,37 +490,6 @@ check_directory() {
   return 1
 }
 
-install_pyenv() {
-  if check_directory "$HOME/.pyenv" "pyenv is already installed. Reinstall?"
-  then
-    execute "curl https://pyenv.run | bash" "Install pyenv and friends"
-  fi
-  symlink "pyenv/pyenv-virtualenv-after.bash" ".pyenv/plugins/pyenv-virtualenv/etc/pyenv.d/virtualenv/after.bash"
-}
-
-install_pyenv_python3() {
-  local version
-  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.11.\d' | tail -1 | xargs)
-  execute "$HOME/.pyenv/bin/pyenv install --skip-existing $version" "Python $version"
-}
-
-create_pyenv_virtualenv() {
-  local version
-  if [ -f "$HOME/.pyenv/versions/global" ] && ! confirm "Global virtualenv already exists. Reinstall?"
-  then
-    return
-  fi
-  version=$("$HOME/.pyenv/bin/pyenv" install --list | grep '^\s\+3.11.\d' | tail -1 | xargs)
-  execute \
-    "$HOME/.pyenv/bin/pyenv virtualenv --force $version global && $HOME/.pyenv/bin/pyenv global global" \
-    "Global virtualenv"
-}
-
-install_python_package() {
-  local msg=${2:-$1}
-  execute "PYENV_VERSION=global $HOME/.pyenv/bin/pyenv exec pip install --upgrade $1" "$msg"
-}
-
 install_rustup() {
   execute "curl https://sh.rustup.rs -sSf | bash -s - -y --no-modify-path" "Rustup"
 }

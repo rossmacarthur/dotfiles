@@ -36,10 +36,6 @@ install_packages "build-essential" "llvm"
 install_packages "libbz2-dev" "libffi-dev" "liblzma-dev" "libncurses5-dev" "libreadline-dev" \
                   "libsqlite3-dev" "libssl-dev" "libxml2-dev" "libxmlsec1-dev" "zlib1g-dev"
 
-subheading "Environment"
-install_pyenv
-install_pyenv_python3
-create_pyenv_virtualenv
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -76,6 +72,5 @@ symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "nvm"
 symlink_zsh_plugin "path"
-symlink_zsh_plugin "pyenv"
 
 fi

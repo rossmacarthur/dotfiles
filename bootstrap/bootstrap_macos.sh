@@ -50,13 +50,9 @@ subheading "Brew packages"
 install_package "openssl" "OpenSSL"
 install_package "readline" "Readline"
 install_package "sqlite3" "SQLite"
+install_package "uv"
 install_package "xz" "XZ"
 install_package "zlib"
-
-subheading "Environment"
-install_pyenv
-install_pyenv_python3
-create_pyenv_virtualenv
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -99,6 +95,5 @@ symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "jetbrains"
 symlink_zsh_plugin "nvm"
 symlink_zsh_plugin "path"
-symlink_zsh_plugin "pyenv"
 
 fi
