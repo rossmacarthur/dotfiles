@@ -60,3 +60,9 @@ expire
 ```
 
 Extend expire to `1y`.
+
+## Exporting Public SSH Key
+
+```sh
+gpg --export-ssh-key ross@macarthur.io
+```
