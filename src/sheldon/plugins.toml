@@ -2,9 +2,10 @@
 #
 # See https://sheldon.cli.rs
 
+shell = "zsh"
+
 [templates]
 defer = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
-defer-more = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer -t 0.5 source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
 
 # Completions
 # -----------
@@ -98,14 +99,3 @@ apply = ["defer"]
 [plugins.compinit]
 local = "~/.zsh/plugins"
 apply = ["defer"]
-
-# Plugins that are even more deferred
-# -----------------------------------
-
-[plugins.nvm]
-local = "~/.zsh/plugins"
-apply = ["defer-more"]
-
-[plugins.pyenv]
-local = "~/.zsh/plugins"
-apply = ["defer-more"]
