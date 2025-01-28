@@ -344,6 +344,7 @@ execute() {
   }
 
   # Abort the script, reset the cursor to display on, and kill the given PID.
+  # shellcheck disable=SC2317
   aborter() {
     local pid=$1
     local text=$2
