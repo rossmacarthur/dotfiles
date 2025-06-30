@@ -491,6 +491,10 @@ check_directory() {
   return 1
 }
 
+install_uv() {
+  execute "curl -LsSf https://astral.sh/uv/install.sh | bash -s - --no-modify-path" "UV"
+}
+
 install_rustup() {
   execute "curl https://sh.rustup.rs -sSf | bash -s - -y --no-modify-path" "Rustup"
 }

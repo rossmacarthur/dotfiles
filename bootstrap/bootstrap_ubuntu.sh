@@ -9,7 +9,9 @@ request_sudo || abort
 subheading "System packages"
 update_package_manager
 install_package "curl" "cURL"
+install_package "fd" "fd-find"
 install_package "git" "Git"
+install_package "ripgrep"
 install_package "tmux"
 install_package "vim" "Vim"
 install_package "zsh" "Zsh"
@@ -21,7 +23,6 @@ install_crate "BurntSushi/ripgrep" --bin rg
 install_crate "rossmacarthur/sheldon"
 
 subheading "Scripts"
-symlink "bin/femtocom.sh"    ".local/bin/femtocom"
 symlink "bin/gbDs.sh"        ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"   ".local/bin/gensshkey"
 symlink "bin/ips.py"         ".local/bin/ips"
@@ -31,11 +32,8 @@ fi
 if heading_if "Python development" "python"; then
 # ---------------------------------------------------------------------------- #
 
-subheading "System packages"
-install_packages "build-essential" "llvm"
-install_packages "libbz2-dev" "libffi-dev" "liblzma-dev" "libncurses5-dev" "libreadline-dev" \
-                  "libsqlite3-dev" "libssl-dev" "libxml2-dev" "libxmlsec1-dev" "zlib1g-dev"
-
+subheading "Binaries"
+install_uv
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -70,7 +68,6 @@ symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
-symlink_zsh_plugin "nvm"
 symlink_zsh_plugin "path"
 
 fi

@@ -10,6 +10,7 @@ install_package "bash" "Bash"
 install_package "bat"
 install_package "curl" "cURL"
 install_package "docker" "Docker"
+install_package "fd"
 install_package "git" "Git"
 install_package "gnupg" "GnuPG"
 install_package "hyperfine"
@@ -17,7 +18,6 @@ install_package "jq"
 install_package "shellcheck" "ShellCheck"
 install_package "tmux"
 install_package "pinentry-mac" "PINEntry"
-install_package "pipx"
 install_package "ripgrep"
 install_package "sheldon"
 install_package "tree" "Tree"
@@ -47,12 +47,7 @@ if heading_if "Python development" "python"; then
 # ---------------------------------------------------------------------------- #
 
 subheading "Brew packages"
-install_package "openssl" "OpenSSL"
-install_package "readline" "Readline"
-install_package "sqlite3" "SQLite"
 install_package "uv"
-install_package "xz" "XZ"
-install_package "zlib"
 
 fi
 # ---------------------------------------------------------------------------- #
@@ -93,7 +88,6 @@ symlink_zsh_plugin "macos/aliases" "aliases_bootstrap"
 symlink_zsh_plugin "compinit"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "jetbrains"
-symlink_zsh_plugin "nvm"
 symlink_zsh_plugin "path"
 
 fi
