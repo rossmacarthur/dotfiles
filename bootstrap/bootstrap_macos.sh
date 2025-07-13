@@ -28,10 +28,11 @@ subheading "Launch Agents"
 install_launch_agent "kb-remap" "io.macarthur.ross.kb-remap"
 
 subheading "Scripts"
-symlink "bin/gbDs.sh"      ".local/bin/gbDs"
-symlink "bin/gensshkey.sh" ".local/bin/gensshkey"
-symlink "bin/gif2mp4.sh"   ".local/bin/gif2mp4"
-symlink "bin/ips.py"       ".local/bin/ips"
+symlink "bin/gbDs.sh"         ".local/bin/gbDs"
+symlink "bin/gensshkey.sh"    ".local/bin/gensshkey"
+symlink "bin/gif2mp4.sh"      ".local/bin/gif2mp4"
+symlink "bin/gpg-faketime.sh" ".local/bin/gpg-faketime"
+symlink "bin/ips.py"          ".local/bin/ips"
 
 fi
 # ---------------------------------------------------------------------------- #
