@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+autoload -U compinit
+
 # So these commands can be executed with sudo
 alias sudo="sudo "
 

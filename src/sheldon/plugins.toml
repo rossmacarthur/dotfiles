@@ -5,7 +5,11 @@
 shell = "zsh"
 
 [templates]
-defer = """{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source "{{ file }}"\n{% endfor %}{{ hooks?.post | nl }}"""
+defer = '''
+    {{- hooks?.pre | nl }}
+    {%- for file in files %}zsh-defer source "{{ file }}"{{ "\n" }}
+    {%- endfor %}
+    {{- hooks?.post | nl }}'''
 
 # Completions
 # -----------
@@ -22,21 +26,12 @@ github = "zsh-users/zsh-completions"
 # Sourced
 # -------
 
-# The history plugin doesn't like being deferred, not sure why.
-[plugins.history]
-github = "ohmyzsh/ohmyzsh"
-dir = "lib"
-hooks.pre = """
-export HIST_STAMPS="yyyy-mm-dd"
-export HISTSIZE=250000
-export SAVESIZE=25000
-"""
-
-[plugins.path]
+[plugins.local-0]
 local = "~/.zsh/plugins"
+use = ["{history,path}.plugin.zsh"]
 
 [plugins.pure]
-github = "rossmacarthur/pure"
+github = "sindresorhus/pure"
 use = ["{async,pure}.zsh"]
 
 [plugins.wd]
@@ -46,9 +41,6 @@ apply = ["fpath", "source"]
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
 
-[plugins.iterm2-shell-integration]
-remote = "https://iterm2.com/shell_integration/zsh"
-
 # Deferred plugins
 # ----------------
 
@@ -56,29 +48,9 @@ remote = "https://iterm2.com/shell_integration/zsh"
 github = "zpm-zsh/autoenv"
 apply = ["defer"]
 
-[plugins.aliases]
+[plugins.local-1]
 local = "~/.zsh/plugins"
-apply = ["defer"]
-
-[plugins.gpg-agent]
-local = "~/.zsh/plugins"
-apply = ["defer"]
-
-[plugins.jetbrains]
-profiles = ["jetbrains"]
-local = "~/.zsh/plugins"
-apply = ["defer"]
-
-[plugins.ohmyzsh-lib]
-github = "ohmyzsh/ohmyzsh"
-dir = "lib"
-use = ["{clipboard,completion,functions,git,key-bindings,termsupport,theme-and-appearance}.zsh"]
-apply = ["defer"]
-
-[plugins.ohmyzsh-plugins]
-github = "ohmyzsh/ohmyzsh"
-dir = "plugins"
-use = ["{copybuffer,git,pip}/*.plugin.zsh"]
+use = ["{aliases*,gpg-agent,git,keybindings}.plugin.zsh"]
 apply = ["defer"]
 
 [plugins.zsh-you-should-use]
@@ -89,10 +61,6 @@ hooks.pre = "export YSU_MODE=ALL"
 [plugins.zsh-autosuggestions]
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
-apply = ["defer"]
-
-[plugins.zsh-syntax-highlighting]
-github = 'zsh-users/zsh-syntax-highlighting'
 apply = ["defer"]
 
 # This works best if it is placed last.
