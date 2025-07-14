@@ -1,0 +1,26 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  {
+    "context": "Workspace",
+    "bindings": {
+      "cmd-shift-I": "terminal_panel::ToggleFocus",
+      "cmd-1": ["workspace::ActivatePane", 0],
+      "cmd-2": ["workspace::ActivatePane", 1],
+      "ctrl-`": "workspace::ToggleRightDock"
+    }
+  },
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-@": "editor::Rename",
+      "cmd-shift-I": "terminal_panel::ToggleFocus"
+    }
+  }
+]

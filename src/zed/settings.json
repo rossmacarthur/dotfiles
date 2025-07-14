@@ -1,0 +1,68 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "always_allow_tool_actions": true,
+    "model_parameters": [],
+    "default_model": {
+      "provider": "openrouter",
+      "model": "anthropic/claude-opus-4"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "file_types": {
+    "xml": ["*.plist"],
+    "nginx": ["*.conf"],
+    "dockerfile": ["Dockerfile.*"],
+    "shellscript": ["*.env.*", "{.in,.out}"],
+    "markdown": ["*.mdx"]
+  },
+  "wrap_guides": [72, 100],
+  "scroll_sensitivity": 2.0,
+  "edit_predictions": {
+    "mode": "eager"
+  },
+  "ui_font_family": "Fira Code",
+  "terminal": {
+    "dock": "right",
+    "cursor_shape": "underline",
+    "env": {
+      "EDITOR": "zed --wait",
+      "GIT_EDITOR": "zed --wait"
+    },
+    "font_size": 14.0,
+    "font_family": "Fira Code"
+  },
+  "lsp": {
+    "rust-analyzer": {
+      "initialization_options": {
+        "completion": {
+          "postfix": { "enable": true },
+          "snippets": {
+            "custom": {
+              "Mutex::arc": {
+                "body": ["Arc::new(Mutex::new(${receiver}))"],
+                "postfix": "mutex",
+                "requires": ["std::sync::Arc", "std::sync::Mutex"],
+                "scope": "expr"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "VSCode Dark Polished",
+    "dark": "Catppuccin Mocha"
+  }
+}

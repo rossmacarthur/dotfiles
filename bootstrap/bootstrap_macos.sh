@@ -80,6 +80,8 @@ symlink "vscode/settings.json"    "Library/Application Support/Code/User/setting
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
 symlink "vscode/settings.json"    "Library/Application Support/Code - Insiders/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code - Insiders/User/keybindings.json"
+symlink "zed/keymap.json"         ".config/zed/keymap.json"
+symlink "zed/settings.json"       ".config/zed/settings.json"
 
 subheading "Zsh"
 symlink "zsh/zprofile" ".zprofile"
