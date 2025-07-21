@@ -12,17 +12,17 @@
         "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.formatOnSave": true
     },
     "[json]": {
         "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true,
+        // "editor.formatOnSave": true,
         "editor.insertSpaces": true
     },
     "[jsonc]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        // "editor.formatOnSave": true,
         "editor.insertSpaces": true
     },
     "[markdown]": {
@@ -47,6 +47,14 @@
     "[sql]": {
         "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
     },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
     "cSpell.language": "en-GB",
     "diffEditor.codeLens": true,
     "editor.accessibilitySupport": "off",
@@ -54,8 +62,9 @@
     "editor.folding": true,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
-    "editor.fontSize": 13.5,
+    "editor.fontSize": 14,
     "editor.formatOnType": true,
+    "editor.gotoLocation.multipleDefinitions": "goto",
     "editor.inlayHints.enabled": "offUnlessPressed",
     "editor.inlayHints.fontSize": 10,
     "editor.inlineSuggest.enabled": true,
@@ -93,21 +102,21 @@
     },
     "editor.unicodeHighlight.includeStrings": false,
     "editor.wordWrap": "off",
-    "explorer.openEditors.visible": 0,
     "extensions.ignoreRecommendations": true,
     "files.associations": {
+        "{.in,.out}": "shellscript",
         "*.env.*": "shellscript",
+        "*.mdx": "markdown",
         "*.plist": "xml",
-        "Dockerfile.*": "dockerfile",
-        "{.in,.out}": "shellscript"
+        "Dockerfile.*": "dockerfile"
     },
     "files.exclude": {
-        "**/*.egg-info": true,
-        "**/*.pyc": true,
-        "**/__pycache__": true,
         ".*_cache": true,
         ".coverage*": true,
         ".python-version": true,
+        "**/__pycache__": true,
+        "**/*.egg-info": true,
+        "**/*.pyc": true,
         "target": true
     },
     "files.insertFinalNewline": true,
@@ -115,7 +124,9 @@
     "files.trimTrailingWhitespace": true,
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.enable": {
-        "*": true
+        "*": true,
+        "plaintext": false,
+        "scminput": false
     },
     "gitlens.advanced.messages": {
         "suppressLineUncommittedWarning": true
@@ -160,7 +171,7 @@
     "security.workspace.trust.enabled": false,
     "terminal.external.osxExec": "iTerm.app",
     "terminal.integrated.cursorStyle": "underline",
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "never",
     "terminal.integrated.env.osx": {
         "EDITOR": "code --wait",
         "GIT_EDITOR": "code --wait"
@@ -171,7 +182,8 @@
     "workbench.colorCustomizations": {
         "editorInlayHint.background": "#1e1e1e",
         "editorInlayHint.foreground": "#6a6a6a",
-        "terminal.ansiBlue": "#569cd6"
+        "terminal.ansiBlue": "#569cd6",
+        "terminal.background": "#1d1d1d"
     },
     "workbench.editor.languageDetection": false,
     "workbench.editorAssociations": {

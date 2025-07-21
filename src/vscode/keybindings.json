@@ -69,7 +69,19 @@
         "key": "shift+cmd+i"
     },
     {
+        "command": "-workbench.action.chat.open",
+        "key": "ctrl+cmd+i"
+    },
+    {
         "command": "-workbench.action.quickchat.toggle",
         "key": "shift+cmd+i"
+    },
+    {
+        "args": {
+            "text": "\\\r\n"
+        },
+        "command": "workbench.action.terminal.sendSequence",
+        "key": "shift+enter",
+        "when": "terminalFocus"
     }
 ]
