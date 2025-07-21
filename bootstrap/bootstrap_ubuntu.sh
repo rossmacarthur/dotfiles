@@ -9,7 +9,7 @@ request_sudo || abort
 subheading "System packages"
 update_package_manager
 install_package "curl" "cURL"
-install_package "fd" "fd-find"
+install_package "fd-find" "fd"
 install_package "git" "Git"
 install_package "ripgrep"
 install_package "tmux"
