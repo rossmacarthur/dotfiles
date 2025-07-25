@@ -14,7 +14,7 @@
 # git commit -S -m "Your commit message"
 
 if [ -z "$GPG_FAKETIME" ]; then
-    exec /opt/homebrew/bin/gpg "$@"
+    exec gpg "$@"
 else
-    exec /opt/homebrew/bin/gpg --faked-system-time "$GPG_FAKETIME" "$@"
+    exec gpg --faked-system-time "$GPG_FAKETIME" "$@"
 fi
