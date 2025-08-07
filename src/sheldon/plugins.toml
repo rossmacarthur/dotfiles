@@ -30,9 +30,8 @@ github = "zsh-users/zsh-completions"
 local = "~/.zsh/plugins"
 use = ["{history,path}.plugin.zsh"]
 
-[plugins.pure]
-github = "sindresorhus/pure"
-use = ["{async,pure}.zsh"]
+[plugins.starship]
+inline = 'eval "$(starship init zsh)"'
 
 [plugins.wd]
 github = "mfaerevaag/wd"
