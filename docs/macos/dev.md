@@ -42,3 +42,21 @@ sudo mount -av
 
 If you get permission denied it likely means the password wasn't stored in the
 keychain.
+
+## Environment variables
+
+Some tools prefer their cache to exist on the same volume. Set up
+
+`~/dev/.in`
+```
+export UV_CACHE_DIR=~/dev/.uv/cache
+export UV_PYTHON_INSTALL_DIR=~/dev/.uv/python
+export UV_PYTHON_PREFERENCE=only-managed
+```
+
+`~/dev/.out`
+```
+unset UV_CACHE_DIR
+unset UV_PYTHON_INSTALL_DIR
+unset UV_PYTHON_PREFERENCE
+```
