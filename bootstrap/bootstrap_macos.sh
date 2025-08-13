@@ -32,6 +32,7 @@ subheading "Scripts"
 symlink "bin/gbDs.sh"         ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"    ".local/bin/gensshkey"
 symlink "bin/gif2mp4.sh"      ".local/bin/gif2mp4"
+symlink "bin/gpg-ez.sh"       ".local/bin/gpg-ez"
 symlink "bin/gpg-faketime.sh" ".local/bin/gpg-faketime"
 symlink "bin/ips.py"          ".local/bin/ips"
 

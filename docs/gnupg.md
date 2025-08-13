@@ -6,62 +6,38 @@ The following installs are required.
 brew install gnupg pinentry-mac
 ```
 
-## Backup
+Then use [`gpg-ez.sh`](../src/bin/gpg-ez.sh) to manage GPG.
 
-```sh
-cd ~/.gnupg
-tar cvfz gnupg.tar.gz gpg-agent.conf private-keys-v1.d pubring.kbx sshcontrol tofu.db trustdb.gpg
+## Config
+
+Make sure the PINEntry program is specified in `~/.gnupg/gpg-agent.conf`
+```
+pinentry-program /opt/homebrew/bin/pinentry-mac
 ```
 
-## Restore
+## SSH control
 
-Now restore a `~/.gnupg` folder backup. For example given a `gnupg.tar.gz`
-file.
+Use GPG Agent for SSH:
 
+Make sure that the keygrip for the auth sub key is listed in
+`~/.gnupg/sshcontrol`. You can find the keygrip like this:
 ```sh
-mkdir -p ~/.gnupg
-cd ~/.gnupg
-mv path/to/gnupg.tar.gz .
-tar xvf gnupg.tar.gz
+gpg --list-secret-keys --with-keygrip
 ```
 
-Fix any permission issues by running the following.
+Make sure to kick the agent after changing.
 
 ```sh
-chown -R $(whoami) .
-find . -type f -exec chmod 600 {} \;
-find . -type d -exec chmod 700 {} \;
+gpgconf --kill gpg-agent
 ```
 
-Double check that any paths in `gpgagent.conf` will work for the new system.
+## Exporting public GPG key
 
 ```sh
-cat gpgagent.conf
+gpg --armor --export ross@macarthur.io
 ```
 
-List the keys.
-
-```sh
-gpg --list-keys
-```
-
-Finally reload the agent.
-
-```sh
-gpgconf --reload gpg-agent
-```
-
-## Renewing keys
-
-```sh
-gpg --list-keys
-gpg --edit-key <key>
-expire
-```
-
-Extend expire to `1y`.
-
-## Exporting Public SSH Key
+## Exporting public SSH key
 
 ```sh
 gpg --export-ssh-key ross@macarthur.io
