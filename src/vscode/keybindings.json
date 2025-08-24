@@ -83,5 +83,14 @@
         "command": "workbench.action.terminal.sendSequence",
         "key": "shift+enter",
         "when": "terminalFocus"
+    },
+    {
+        "key": "tab",
+        "command": "-editor.action.inlineSuggest.commit",
+    },
+    {
+        "key": "cmd+right",
+        "command": "editor.action.accessibleViewAcceptInlineCompletion",
+        "when": "(cursorBeforeGhostText && inlineSuggestionVisible) || (cursorAtInlineEdit && suggestionMakesTextEdit)"
     }
 ]
