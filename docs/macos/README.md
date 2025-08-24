@@ -19,96 +19,46 @@ line tools and macOS apps using the `brew` command line tool. From the
 ## Core apps
 
 - [iTerm2](https://iterm2.com): Better Terminal.
-  ```
-  brew install --cask iterm2
-  ```
-  - iTerm2 > Preferences > General > Preferences > Load preferences from a custom
+  - iTerm2 > Preferences > General > Settings > Load settings from a custom
     folder or URL: *set to ~/.dotfiles/src/iterm2*
-    Save changes: When quitting
+    > 💡 Use Cmd+Shift+. to show hidden files in Finder
+
+  - iTerm2 > Preferences > General > Settings > Save changes: When quitting
 
 - [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
   shortcuts or snap areas.
-  ```
-  brew install --cask rectangle
-  ```
   - Rectangle > Preferences > Launch on login: ✓
   - Rectangle > Preferences > Hide menu bar icon: ✓
 
 - [Visual Studio Code](https://code.visualstudio.com): Integrated development
   environment for all things.
-  ```
-  brew install --cask visual-studio-code
-  ```
 
 ## Communication apps
 
 - [Signal](https://signal.org/install)
-  ```
-  brew install --cask signal
-  ```
 
 - [Slack](https://slack.com/intl/en-za/downloads/mac)
-  ```
-  brew install --cask slack
-  ```
 
 ## Other apps
 
 - [Alfred](http://alfredapp.com/): Better Spotlight.
-  ```
-  brew install --cask alfred
-  ```
   - System Preferences > Keyboard > Keyboard Shortcuts > Disable Spotlight
   - Alfred
-    - Set Advanced > Set preferences folder > `~/.dotfiles/src/alfred`.
-    - Set key shortcut to ⌘ + Space.
-    - Set Appearance to Alfred macOS.
+    - Set Advanced > Set preferences folder > `~/.dotfiles/src/alfred`
+    - Set key shortcut to ⌘ + Space
+    - Set Appearance to Alfred macOS
 
-- [Docker for
-  Mac](https://hub.docker.com/editions/community/docker-ce-desktop-mac)
-  ```
-  brew install --cask docker
-  ```
+- [Docker for Mac](https://docs.docker.com/desktop/setup/install/mac-install/)
 
 - [Firefox](https://www.mozilla.org/en-ZA/firefox/new/): Better Safari.
-  ```
-  brew install --cask firefox
-  ```
 
 - [MEGA](https://mega.nz/): Better iCloud.
-  ```
-  brew install --cask megasync
-  ```
   - Setup up MEGAsync and to sync to ~/Cloud.
   - Preferences > Advanced > Disable overlay icons: ✅
 
 - [Spotify](https://www.spotify.com/za/download/mac/): Better Apple Music.
-  ```
-  brew install --cask spotify
-  ```
 
 - [VLC](https://www.videolan.org/index.html): Better Quicktime.
-  ```
-  brew install --cask vlc
-  ```
-
-### Command line tools
-
-- [Android Platform
-  Tools](https://developer.android.com/studio/releases/platform-tools.html)
-  ```
-  brew install --cask android-platform-tools
-  ```
-
-- [Minikube](https://minikube.sigs.k8s.io)
-  ```
-  brew install minikube
-  ```
-
-- [Pidcat](https://github.com/JakeWharton/pidcat)
-  ```
-  brew install pidcat
-  ```
 
 ## Preferences
 
@@ -130,12 +80,13 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Settings > Keyboard > Key Repeat: Fast
 - System Settings > Keyboard > Delay Until Repeat: Short
 - System Settings > Keyboard > Text replacements...: *Remove all*
-- System Preferences > Keyboard > Keyboard Shortcuts > Screenshots
+- System Settings > Keyboard > Keyboard brightness: Scroll to off
+- System Settings > Keyboard > Keyboard Shortcuts > Screenshots
   - Save picture of screen as a file: ⌃⇧⌘3
   - Copy picture of screen to clipboard: ⇧⌘3
   - Save picture of selected area as a file: ⌃⇧⌘4
   - Copy picture of selected area to clipboard: ⇧⌘4
-- System Preferences > Keyboard > Keyboard Shortcuts > Mission Control
+- System Settings > Keyboard > Keyboard Shortcuts > Mission Control
   - Switch to Desktop 1: ✓
   - Switch to Desktop 2: ✓
   - Switch to Desktop 3: ✓
@@ -176,28 +127,9 @@ sudo scutil --set HostName lt-ross
 
 Download from https://github.com/tonsky/FiraCode/releases/latest
 
-**Powerline**
-
-```sh
-git clone https://github.com/powerline/fonts.git
-```
-
 ### iTerm 2
-
-Install dotfiles by cloning the repository.
-```bash
-git clone https://github.com/rossmacarthur/dotfiles.git ~/.dotfiles
-```
-
-And running the bootstrap script.
-```bash
-~/.dotfiles/bootstrap/bootstrap.sh
-```
 
 Compile terminfo
 ```sh
 tic ~/.dotfiles/src/terminfo/xterm-256color.terminfo
 ```
-
-Set iTerm 2 > Preferences > Preferences > Load preferences from a custom folder
-or URL to `~/.dotfiles/src/iterm2`
