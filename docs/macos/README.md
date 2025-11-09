@@ -79,7 +79,6 @@ line tools and macOS apps using the `brew` command line tool. From the
 - System Settings > Displays > More Space: ✓
 - System Settings > Keyboard > Key Repeat: Fast
 - System Settings > Keyboard > Delay Until Repeat: Short
-- System Settings > Keyboard > Text replacements...: *Remove all*
 - System Settings > Keyboard > Keyboard brightness: Scroll to off
 - System Settings > Keyboard > Keyboard Shortcuts > Screenshots
   - Save picture of screen as a file: ⌃⇧⌘3
@@ -90,7 +89,10 @@ line tools and macOS apps using the `brew` command line tool. From the
   - Switch to Desktop 1: ✓
   - Switch to Desktop 2: ✓
   - Switch to Desktop 3: ✓
-
+- System Settings > Keyboard > Text Input > Edit:
+  - Correct spelling automatically: ✗
+  - Capitalise words automatically: ✗
+- System Settings > Keyboard > Text Input > Text replacements...: *Remove all*
 
 - Run the following to disable keyboard Click and Hold
 ```sh
