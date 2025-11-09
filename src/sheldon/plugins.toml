@@ -26,9 +26,9 @@ github = "zsh-users/zsh-completions"
 # Sourced
 # -------
 
-[plugins.local-0]
+[plugins.history]
 local = "~/.zsh/plugins"
-use = ["{history,path}.plugin.zsh"]
+use = ["history.plugin.zsh"]
 
 [plugins.starship]
 inline = 'eval "$(starship init zsh)"'

@@ -1,26 +1,28 @@
 #!/usr/bin/env zsh
 
+# Add a directory to the PATH environment variable.
+path_push() {
+    if [ ! -d "$1" ]; then return; fi
+    PATH=${PATH//":$1:"/":"} # delete any instances in the middle
+    PATH=${PATH/#"$1:"/} # delete any instance at the beginning
+    PATH=${PATH/%":$1"/} # delete any instance in the at the end
+    PATH=$1:$PATH # prepend
+}
+
 # Default editor to Vim
 export EDITOR=${EDITOR:-vim}
 
+# Completions!
 fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
-
-# Source all the things ✨
-eval "$(sheldon source)"
-
-# Local bin
-if [ -d "$HOME/.local/bin" ]; then
-    path_push "$HOME/.local/bin"
-fi
-
-# Cargo env
-if [ -d "$HOME/.cargo" ]; then
-    path_push "$HOME/.cargo/bin"
-fi
 
 # Go env
 export GO111MODULE=on
 export GOPATH="$HOME/.go"
-if [ -d "$GOPATH" ]; then
-    path_push "$GOPATH/bin"
-fi
+
+# Extra paths
+path_push "$HOME/.local/bin"
+path_push "$HOME/.cargo/bin"
+path_push "$GOPATH/bin"
+
+# Source all the things ✨
+eval "$(sheldon source)"

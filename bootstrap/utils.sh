@@ -442,11 +442,18 @@ then
     execute "brew update" "Homebrew (update)"
   }
 else
-  update_package_manager() {
-    execute "sudo apt update" "APT (update)"
-    execute "sudo apt -y upgrade" "APT (upgrade)"
-    execute "sudo apt -y autoremove" "APT (autoremove)"
-  }
+  if command -v sudo &>/dev/null
+  then
+    update_package_manager() {
+      execute "sudo apt-get update" "APT (update)"
+      execute "sudo apt-get -y upgrade" "APT (upgrade)"
+      execute "sudo apt-get -y autoremove" "APT (autoremove)"
+    }
+  else
+    update_package_manager() {
+      execute "apt-get update" "APT (update)"
+    }
+  fi
 fi
 
 # Install a package using the system package manager.
@@ -457,10 +464,18 @@ then
     execute "brew install $1 || brew upgrade $1" "$msg"
   }
 else
-  install_package() {
-    local msg=${2:-$1}
-    execute "sudo apt -y install $1" "$msg"
-  }
+  if command -v sudo &>/dev/null
+  then
+    install_package() {
+      local msg=${2:-$1}
+      execute "sudo apt-get -y install $1" "$msg"
+    }
+  else
+    install_package() {
+      local msg=${2:-$1}
+      execute "apt-get -y install $1" "$msg"
+    }
+  fi
 fi
 
 # Install multiple packages using the system package manager.

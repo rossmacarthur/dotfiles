@@ -89,7 +89,12 @@ main() {
       BOOTSTRAP_CHOICE="macos"
     elif is_platform "linux"
     then
-      BOOTSTRAP_CHOICE="ubuntu"
+      if [ "$REMOTE_CONTAINERS" = true ]
+      then
+        BOOTSTRAP_CHOICE="devcontainer"
+      else
+        BOOTSTRAP_CHOICE="ubuntu"
+      fi
     else
         printf "Error: unsupported platform '%s'\n" "$PLATFORM"
         exit 1
@@ -106,7 +111,7 @@ main() {
   source "bootstrap_$BOOTSTRAP_CHOICE.sh"
 
   if [ -n "$DOTFILES_RETURNCODE" ]; then
-    heading --after 2 "There were failures 💔 😢 💔"
+    heading --after 2 "Completed, with failures 💔 😢 💔"
     exit 1
   fi
   heading --after 2 "Complete! ✨ 🍰 ✨"

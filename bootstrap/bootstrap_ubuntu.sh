@@ -42,6 +42,11 @@ fi
 if heading_if "Rust development" "rust"; then
 # ---------------------------------------------------------------------------- #
 
+subheading "Packages"
+install_package "build-essential"
+install_package "libssl-dev"
+install_package "pkg-config"
+
 subheading "Environment"
 install_rustup
 install_rust_toolchain "stable"
@@ -65,7 +70,6 @@ symlink "vscode/settings.json"    ".config/Code/User/settings.json"
 symlink "vscode/keybindings.json" ".config/Code/User/keybindings.json"
 
 subheading "Zsh"
-symlink "zsh/zprofile" ".zprofile"
 symlink "zsh/zshrc"    ".zshrc"
 symlink_zsh_plugin "aliases"
 symlink_zsh_plugin "ubuntu/aliases" "aliases_bootstrap"
