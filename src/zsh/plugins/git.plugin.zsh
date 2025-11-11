@@ -336,6 +336,16 @@ function ggp() {
 }
 compdef _git ggp=git-checkout
 
+function ggpf() {
+  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
+    git push origin "${*}" --force-with-lease
+  else
+    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+    git push origin "${b:=$1}" --force-with-lease
+  fi
+}
+compdef _git ggpf=git-checkout
+
 alias gpu='git push upstream'
 alias grb='git rebase'
 alias grba='git rebase --abort'

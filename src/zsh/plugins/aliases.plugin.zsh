@@ -23,13 +23,3 @@ alias jsut=just
 
 # Change ripgrep default
 alias rg="rg --no-heading"
-
-function ggpf() {
-  if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-    git push origin "${*}" --force
-  else
-    [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-    git push origin "${b:=$1}" --force
-  fi
-}
-compdef _git ggpf=git-checkout
