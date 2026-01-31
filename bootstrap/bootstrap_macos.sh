@@ -25,9 +25,6 @@ install_package "tree" "Tree"
 install_package "vim" "Vim"
 install_package "zsh" "Zsh"
 
-subheading "Launch Agents"
-install_launch_agent "kb-remap" "io.macarthur.ross.kb-remap"
-
 subheading "Scripts"
 symlink "bin/gbDs.sh"         ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"    ".local/bin/gensshkey"
