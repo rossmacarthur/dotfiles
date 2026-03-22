@@ -93,6 +93,5 @@ symlink_zsh_plugin "git"
 symlink_zsh_plugin "gpg-agent"
 symlink_zsh_plugin "history"
 symlink_zsh_plugin "keybindings"
-symlink_zsh_plugin "path"
 
 fi
