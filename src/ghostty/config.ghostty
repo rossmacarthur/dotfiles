@@ -1,0 +1,8 @@
+font-family = "FiraCode Nerd Font"
+font-size = 14
+font-thicken = true
+font-thicken-strength = 64
+adjust-cell-height = 20%
+adjust-cell-width = -2%
+theme = Dark+
+window-decoration = false

@@ -70,6 +70,7 @@ if heading_if "Configurations" "configs"; then
 
 subheading "General"
 symlink "curl/curlrc"             ".curlrc"
+symlink "ghostty/config.ghostty"  ".config/ghostty/config.ghostty"
 symlink "git/config"              ".config/git/config"
 symlink "git/ignore"              ".config/git/ignore"
 symlink "sheldon/plugins.toml"    ".config/sheldon/plugins.toml"
