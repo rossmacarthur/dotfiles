@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != /private/tmp/com.apple.launchd* ]]; then
+if [[ -n "$SSH_AUTH_SOCK" && "$SSH_AUTH_SOCK" != */com.apple.launchd* ]]; then
   return &>/dev/null || exit 0
 fi
 
