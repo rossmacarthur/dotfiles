@@ -34,5 +34,8 @@
 	email = ross@macarthur.io
 	signingkey = D3EB48818A9BA268
 
+[commit]
+	gpgsign = true
+
 [gpg]
 	program = gpg-faketime
