@@ -19,7 +19,6 @@ install_package "zsh" "Zsh"
 subheading "Binaries"
 install_crate "sharkdp/bat"
 install_crate "casey/just"
-install_crate "BurntSushi/ripgrep" --bin rg
 install_crate "rossmacarthur/sheldon"
 install_crate "starship/starship"
 
