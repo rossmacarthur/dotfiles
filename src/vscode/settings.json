@@ -5,26 +5,6 @@
             72
         ]
     },
-    "[go]": {
-        "editor.tabSize": 4
-    },
-    "[html]": {
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-        // "editor.formatOnSave": true
-    },
-    "[json]": {
-        "editor.defaultFormatter": "vscode.json-language-features",
-        // "editor.formatOnSave": true,
-        "editor.insertSpaces": true
-    },
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        // "editor.formatOnSave": true,
-        "editor.insertSpaces": true
-    },
     "[markdown]": {
         "editor.defaultFormatter": "yzhang.markdown-all-in-one",
         "editor.formatOnSave": true,
@@ -32,43 +12,31 @@
             80
         ]
     },
-    "[python]": {
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true
-    },
     "[rust]": {
         "editor.formatOnSave": true,
-        "editor.insertSpaces": true,
         "editor.rulers": [
             80
-        ],
-        "editor.tabSize": 4
+        ]
     },
-    "[sql]": {
-        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
-    },
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-        "editor.formatOnSave": true
+    "chat.agent.codeBlockProgress": false,
+    "chat.tools.terminal.autoApprove": {
+        "docker run": true,
+        "uv": true
     },
     "cSpell.language": "en-GB",
     "diffEditor.codeLens": true,
     "editor.accessibilitySupport": "off",
+    "editor.bracketPairColorization.enabled": false,
     "editor.cursorWidth": 4,
-    "editor.folding": true,
-    "editor.fontFamily": "Fira Code",
+    "editor.folding": false,
+    "editor.fontFamily": "FiraCode Nerd Font",
     "editor.fontLigatures": true,
     "editor.fontSize": 14,
-    "editor.formatOnType": true,
     "editor.gotoLocation.multipleDefinitions": "goto",
     "editor.inlayHints.enabled": "offUnlessPressed",
-    "editor.inlayHints.fontSize": 10,
+    "editor.inlayHints.fontSize": 12,
+    "editor.inlineSuggest.edits.showCollapsed": true,
     "editor.inlineSuggest.enabled": true,
-    "editor.language.colorizedBracketPairs": [],
     "editor.lineHeight": 0,
     "editor.minimap.enabled": false,
     "editor.mouseWheelScrollSensitivity": 2,
@@ -84,10 +52,17 @@
         }
     },
     "editor.smoothScrolling": true,
+    "editor.stickyScroll.enabled": false,
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
                 "scope": "string.quoted.docstring.multi.python",
+                "settings": {
+                    "foreground": "#6A9955"
+                }
+            },
+            {
+                "scope": "string.quoted.docstring.raw.multi.python",
                 "settings": {
                     "foreground": "#6A9955"
                 }
@@ -108,6 +83,8 @@
         "*.env.*": "shellscript",
         "*.mdx": "markdown",
         "*.plist": "xml",
+        "*.sls": "yaml",
+        "*.tac": "python",
         "Dockerfile.*": "dockerfile"
     },
     "files.exclude": {
@@ -122,16 +99,16 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
+    "git.blame.editorDecoration.enabled": true,
+    "git.blame.editorDecoration.template": "${authorName}, ${authorDateAgo} • ${subject}",
+    "git.blame.statusBarItem.enabled": true,
     "git.openRepositoryInParentFolders": "never",
     "github.copilot.enable": {
         "*": true,
-        "plaintext": false,
+        "markdown": false,
+        "plaintext": true,
         "scminput": false
     },
-    "gitlens.advanced.messages": {
-        "suppressLineUncommittedWarning": true
-    },
-    "gitlens.codeLens.enabled": false,
     "go.toolsEnvVars": {
         "GO111MODULE": "on"
     },
@@ -144,10 +121,13 @@
     "markdown.preview.scrollEditorWithPreview": false,
     "markdown.preview.scrollPreviewWithEditor": false,
     "python.analysis.addImport.exactMatchOnly": true,
+    "python.analysis.diagnosticMode": "openFilesOnly",
+    "python.analysis.inlayHints.functionReturnTypes": true,
     "python.languageServer": "Pylance",
     "python.terminal.activateEnvironment": false,
     "python.testing.pytestEnabled": true,
-    "redhat.telemetry.enabled": false,
+    "remote.autoForwardPortsSource": "hybrid",
+    "rust-analyzer.cargo.targetDir": true,
     "rust-analyzer.completion.snippets.custom": {
         "Mutex::arc": {
             "body": [
@@ -163,10 +143,6 @@
     },
     "rust-analyzer.diagnostics.experimental.enable": true,
     "rust-analyzer.imports.granularity.group": "item",
-    "rust-analyzer.inlayHints.parameterHints.enable": false,
-    "rust-analyzer.server.extraEnv": {
-        "CARGO_TARGET_DIR": "target/rust-analyzer"
-    },
     "search.quickOpen.includeHistory": false,
     "security.workspace.trust.enabled": false,
     "terminal.external.osxExec": "iTerm.app",
@@ -176,15 +152,20 @@
         "EDITOR": "code --wait",
         "GIT_EDITOR": "code --wait"
     },
-    "terminal.integrated.fontFamily": "Fira Code",
+    "terminal.integrated.fontFamily": "FiraCode Nerd Font",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.mouseWheelScrollSensitivity": 2,
+    "terminal.integrated.scrollback": 100000,
+    "terminal.integrated.shellIntegration.history": 0,
+    "terminal.integrated.shellIntegration.showCommandGuide": false,
+    "terminal.integrated.stickyScroll.enabled": false,
     "workbench.colorCustomizations": {
         "editorInlayHint.background": "#1e1e1e",
         "editorInlayHint.foreground": "#6a6a6a",
         "terminal.ansiBlue": "#569cd6",
         "terminal.background": "#1d1d1d"
     },
+    "workbench.colorTheme": "Dark+",
     "workbench.editor.languageDetection": false,
     "workbench.editorAssociations": {
         "git-rebase-todo": "default"
