@@ -46,3 +46,4 @@ style = "yellow"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
+detect_extensions = []
