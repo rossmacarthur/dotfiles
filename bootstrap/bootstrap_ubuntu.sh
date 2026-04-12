@@ -23,7 +23,6 @@ install_crate "rossmacarthur/sheldon"
 install_crate "starship/starship"
 
 subheading "Scripts"
-symlink "bin/gbDs.sh"         ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"    ".local/bin/gensshkey"
 symlink "bin/gpg-faketime.sh" ".local/bin/gpg-faketime"
 symlink "bin/ips.py"          ".local/bin/ips"

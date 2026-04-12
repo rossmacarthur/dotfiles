@@ -26,7 +26,6 @@ install_package "vim" "Vim"
 install_package "zsh" "Zsh"
 
 subheading "Scripts"
-symlink "bin/gbDs.sh"         ".local/bin/gbDs"
 symlink "bin/gensshkey.sh"    ".local/bin/gensshkey"
 symlink "bin/gif2mp4.sh"      ".local/bin/gif2mp4"
 symlink "bin/gpg-ez.sh"       ".local/bin/gpg-ez"

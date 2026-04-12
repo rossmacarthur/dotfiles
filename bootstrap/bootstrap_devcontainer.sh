@@ -18,9 +18,6 @@ install_crate "rossmacarthur/sheldon"
 install_crate "starship/starship"
 install_uv
 
-subheading "Scripts"
-symlink "bin/gbDs.sh" ".local/bin/gbDs"
-
 fi
 # ---------------------------------------------------------------------------- #
 if heading_if "Configurations" "configs"; then

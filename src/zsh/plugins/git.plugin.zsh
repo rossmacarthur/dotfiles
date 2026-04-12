@@ -151,6 +151,73 @@ function gbds() {
     done
 }
 
+# Remove local branches that have been squash-merged to the main branch on the remote
+function gbDs() {
+  local remote=${1:-origin}
+  local main_branch=$(git_main_branch)
+
+  local branches=()
+
+  git for-each-ref refs/heads/ "--format=%(refname:short)" \
+    | while read -r branch; do
+        local merge_base=$(git merge-base "$remote/$main_branch" $branch)
+        local temp=$(git commit-tree $(git rev-parse $branch^{tree}) -p $merge_base -m _)
+        [[ $(git cherry origin/$main_branch $temp) == "-"* ]] && branches+=("${branch#$remote/}")
+      done
+
+  if [[ ${#branches[@]} -eq 0 ]]; then
+    echo "No branches to delete"
+    return 0
+  fi
+
+  echo "The following branches will be deleted:"
+  for branch in "${branches[@]}"; do
+    echo "  $branch"
+  done
+
+  read "answer?Do you want to continue? [y/N] "
+  if [[ $answer != [yY] ]]; then
+    echo "Aborting"
+    return 0
+  fi
+
+  git branch --delete "${branches[@]}"
+}
+
+# Remove remote branches that have been squash-merged to the main branch on the remote
+function gbDDs() {
+  local remote=${1:-origin}
+  local main_branch=$(git_main_branch)
+  local branches=()
+
+  git for-each-ref --format='%(refname:short) %(authoremail)' "refs/remotes/$remote" \
+    | grep -F "$(git config get user.email)" \
+    | cut -d' ' -f1 \
+    | while IFS= read -r branch; do
+        local merge_base=$(git merge-base "$remote/$main_branch" "$branch")
+        local temp=$(git commit-tree $(git rev-parse $branch^{tree}) -p $merge_base -m _)
+        [[ $(git cherry "$remote/$main_branch" $temp) == "-"* ]] && branches+=("${branch#$remote/}")
+      done
+
+  if [[ ${#branches[@]} -eq 0 ]]; then
+    echo "No branches to delete"
+    return 0
+  fi
+
+  echo "The following branches will be deleted:"
+  for branch in "${branches[@]}"; do
+    echo "  $branch"
+  done
+
+  read "answer?Do you want to continue? [y/N] "
+  if [[ $answer != [yY] ]]; then
+    echo "Aborting"
+    return 0
+  fi
+
+  git push "$remote" --delete "${branches[@]}"
+}
+
 alias gbgd='LANG=C git branch --no-color -vv | grep ": gone\]" | cut -c 3- | awk '"'"'{print $1}'"'"' | xargs git branch -d'
 alias gbgD='LANG=C git branch --no-color -vv | grep ": gone\]" | cut -c 3- | awk '"'"'{print $1}'"'"' | xargs git branch -D'
 alias gbm='git branch --move'
