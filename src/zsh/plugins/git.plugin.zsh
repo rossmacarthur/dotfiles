@@ -215,7 +215,7 @@ function gbDDs() {
     return 0
   fi
 
-  git push "$remote" --delete "${branches[@]}"
+  git push "$remote" --force-with-lease --delete "${branches[@]}"
 }
 
 alias gbgd='LANG=C git branch --no-color -vv | grep ": gone\]" | cut -c 3- | awk '"'"'{print $1}'"'"' | xargs git branch -d'
