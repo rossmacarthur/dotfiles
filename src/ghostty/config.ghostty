@@ -5,4 +5,9 @@ font-thicken-strength = 64
 adjust-cell-height = 20%
 adjust-cell-width = -2%
 theme = Dark+
-window-decoration = false
+unfocused-split-opacity = 1.0
+# color29 from pallete: ghostty +show-config | grep '= 29='
+split-divider-color = #00875f
+scrollback-limit = 1000000000
+keybind = super+t=unbind
+window-decoration = none
