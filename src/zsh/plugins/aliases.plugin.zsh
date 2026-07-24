@@ -22,4 +22,7 @@ alias ll='ls -lh'
 alias jsut=just
 
 # Change ripgrep default
-alias rg="rg --no-heading"
+alias rg="rg --no-heading --hidden"
+
+# Change fd default
+alias fd="fd --hidden --exclude .git --exclude node_modules --exclude .venv"
