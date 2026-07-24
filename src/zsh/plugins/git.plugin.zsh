@@ -181,7 +181,7 @@ function gbDs() {
     return 0
   fi
 
-  git branch --delete "${branches[@]}"
+  git branch -D "${branches[@]}"
 }
 
 # Remove remote branches that have been squash-merged to the main branch on the remote
