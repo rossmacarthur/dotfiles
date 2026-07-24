@@ -9,20 +9,42 @@ path_push() {
     PATH=$1:$PATH # prepend
 }
 
-# Default editor to Vim
-export EDITOR=${EDITOR:-vim}
+# Default directories
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Default editor
+if [ -z "${EDITOR+x}" ]; then
+    for editor in nvim vim vi; do
+        if (( $+commands[$editor] )); then
+            export EDITOR=$editor
+            break
+        fi
+    done
+fi
 
 # Completions!
-fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+if [ -n "${HOMEBREW_PREFIX+x}" ]; then
+    fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
+fi
 
 # Go env
 export GO111MODULE=on
 export GOPATH="$HOME/.go"
 
+# Python env
+export UV_PYTHON_PREFERENCE=only-managed
+
 # Extra paths
 path_push "$HOME/.local/bin"
 path_push "$HOME/.cargo/bin"
 path_push "$GOPATH/bin"
+
+if (( $+commands[mise] )); then
+    eval "$(mise activate zsh)"
+fi
 
 # Source all the things ✨
 eval "$(sheldon source)"
