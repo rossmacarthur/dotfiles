@@ -346,7 +346,9 @@ extend_cmd() {
 
     gpg_import "$backup"
     key=$(gpg_primary_fgr)
-    gpg --quick-set-expire "$key" "$subkey_expiry" '*'
+    # shellcheck disable=SC2207
+    subkeys=($(gpg_subkey_fgrs "$key"))
+    gpg --quick-set-expire "$key" "$subkey_expiry" "${subkeys[@]}"
     gpg_export "$backup"
 }
 
@@ -487,6 +489,10 @@ EOF
 
 gpg_primary_fgr() {
     gpg --list-keys --with-colons | awk -F: '$1=="pub"{getline; if($1=="fpr"){print $10; exit}}'
+}
+
+gpg_subkey_fgrs() {
+    gpg --list-keys --with-colons "$1" | awk -F: '$1=="sub"{getline; if($1=="fpr")print $10}'
 }
 
 gpg_add_sub_keys() {
