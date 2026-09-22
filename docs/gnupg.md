@@ -42,3 +42,15 @@ gpg --armor --export ross@macarthur.io
 ```sh
 gpg --export-ssh-key ross@macarthur.io
 ```
+
+## Extending GPG key expiration with backup
+
+- Plug in armory / backup
+- Extend the expiry using
+```
+gpg-ez extend /Volumes/BACKUP/gnupg --expiry MMDD
+```
+- Re-import the keys locally
+```
+gpg-ez import /Volumes/BACKUP/gnupg
+```
