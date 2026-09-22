@@ -10,5 +10,6 @@ unfocused-split-opacity = 1.0
 # color29 from pallete: ghostty +show-config | grep '= 29='
 split-divider-color = #00875f
 scrollback-limit = 1000000000
+term = xterm-256color
 keybind = super+t=unbind
 window-decoration = none
