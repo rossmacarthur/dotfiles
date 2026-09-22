@@ -37,6 +37,9 @@ export GOPATH="$HOME/.go"
 # Python env
 export UV_PYTHON_PREFERENCE=only-managed
 
+# Docker env
+export DOCKER_CLI_HINTS=false
+
 # Extra paths
 path_push "$HOME/.local/bin"
 path_push "$HOME/.cargo/bin"
