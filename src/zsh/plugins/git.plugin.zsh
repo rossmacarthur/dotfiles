@@ -190,10 +190,10 @@ function gbDDs() {
   local main_branch=$(git_main_branch)
   local branches=()
 
-  git for-each-ref --format='%(refname:short) %(authoremail)' "refs/remotes/$remote" \
+  git for-each-ref --format='%(refname:short)|%(symref)|%(authoremail)' "refs/remotes/$remote" \
     | grep -F "$(git config get user.email)" \
-    | cut -d' ' -f1 \
-    | while IFS= read -r branch; do
+    | while IFS='|' read -r branch symref email; do
+        [[ -n "$symref" ]] && continue
         local merge_base=$(git merge-base "$remote/$main_branch" "$branch")
         local temp=$(git commit-tree $(git rev-parse $branch^{tree}) -p $merge_base -m _)
         [[ $(git cherry "$remote/$main_branch" $temp) == "-"* ]] && branches+=("${branch#$remote/}")
