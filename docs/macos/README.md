@@ -18,12 +18,7 @@ line tools and macOS apps using the `brew` command line tool. From the
 
 ## Core apps
 
-- [iTerm2](https://iterm2.com): Better Terminal.
-  - iTerm2 > Preferences > General > Settings > Load settings from a custom
-    folder or URL: *set to ~/.dotfiles/src/iterm2*
-    > 💡 Use Cmd+Shift+. to show hidden files in Finder
-
-  - iTerm2 > Preferences > General > Settings > Save changes: When quitting
+- [Ghostty](https://ghostty.org/): Better Terminal
 
 - [Rectangle](https://rectangleapp.com/): Move and resize windows using keyboard
   shortcuts or snap areas.
@@ -128,10 +123,3 @@ sudo scutil --set HostName lt-ross
 **Fira Code**
 
 Download from https://github.com/tonsky/FiraCode/releases/latest
-
-### iTerm 2
-
-Compile terminfo
-```sh
-tic ~/.dotfiles/src/terminfo/xterm-256color.terminfo
-```
