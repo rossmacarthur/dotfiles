@@ -12,8 +12,10 @@ $character"""
 
 [directory]
 style = "blue"
-truncation_length = -1
+truncation_symbol = '…/'
+truncation_length = 3
 truncate_to_repo = false
+fish_style_pwd_dir_length = 1
 
 [character]
 success_symbol = "[❯](purple)"
@@ -27,12 +29,12 @@ style = "bright-black"
 [git_status]
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
-conflicted = "​"
-untracked = "​"
-modified = "​"
-staged = "​"
-renamed = "​"
-deleted = "​"
+conflicted = " \b"
+untracked = " \b"
+modified = " \b"
+staged = " \b"
+renamed = " \b"
+deleted = " \b"
 stashed = "≡"
 
 [git_state]
@@ -40,10 +42,10 @@ format = '\([$state( $progress_current/$progress_total)]($style)\) '
 style = "bright-black"
 
 [cmd_duration]
-format = "[$duration]($style) "
+format = " [$duration]($style) "
 style = "yellow"
 
 [python]
-format = "[$virtualenv]($style) "
+format = "[$virtualenv]($style)"
 style = "bright-black"
 detect_extensions = []
