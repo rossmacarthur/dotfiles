@@ -1,14 +1,9 @@
 #!/usr/bin/env zsh
 
 # Locale
-export LC_ALL=${LC_ALL:-en_US.UTF-8}
+export LANG=${LANG:-en_US.UTF-8}
 
 # Homebrew env
 if [ -f /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-# Docker Desktop
-if [ -f "$HOME"/.docker/bin ]; then
-    export PATH="$PATH:$HOME/.docker/bin"
 fi
