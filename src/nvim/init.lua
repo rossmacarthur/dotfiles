@@ -5,7 +5,9 @@ vim.g.mapleader = " "
 vim.opt.clipboard = "unnamedplus"
 vim.opt.number = true
 vim.opt.cursorline = true
+vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.cmd.colorscheme("theme")
 
 -- Load plugins
 if have_lazy then
