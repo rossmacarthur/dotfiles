@@ -155,10 +155,12 @@ local groups = {
     ["@boolean"] = { link = "Boolean" },
     ["@constant"] = { link = "Constant" },
     ["@constant.builtin"] = { link = "Boolean" },
+    ["@constant.builtin.rust"] = { link = "Constant" },
 
     ["@variable"] = { link = "Identifier" },
     ["@variable.builtin"] = { link = "Keyword" },
     ["@variable.anonymous"] = { link = "Operator" },
+    ["@variable.anonymous.rust"] = { link = "Identifier" },
     ["@variable.parameter"] = { link = "Identifier" },
     ["@variable.member"] = { link = "Identifier" },
     ["@property"] = { link = "Identifier" },
@@ -180,6 +182,7 @@ local groups = {
 
     ["@keyword"] = { link = "Keyword" },
     ["@keyword.function"] = { link = "Keyword" },
+    ["@keyword.macro.rust"] = { link = "Keyword" },
     ["@keyword.type"] = { link = "Keyword" },
     ["@keyword.operator"] = { link = "Keyword" },
     ["@keyword.coroutine"] = { link = "Statement" },
@@ -189,6 +192,7 @@ local groups = {
     ["@keyword.return"] = { link = "Statement" },
     ["@keyword.exception"] = { link = "Statement" },
     ["@keyword.import"] = { link = "Statement" },
+    ["@keyword.import.rust"] = { link = "Keyword" },
 
     ["@operator"] = { link = "Operator" },
     ["@operator.regex"] = { link = "@string.regexp" },
@@ -200,7 +204,39 @@ local groups = {
     ["@punctuation.special.python"] = { link = "Keyword" },
 
     ["@attribute"] = { link = "Function" },
+    ["@attribute.rust"] = { link = "Keyword" },
     ["@attribute.builtin"] = { link = "Function" },
+    ["@attribute.builtin.rust"] = { link = "Keyword" },
+    ["@attribute.builtin.name.rust"] = { link = "Operator" },
+  },
+
+  -- Language server
+  lsp = {
+    ["@lsp.type.string.python"] = {},
+    ["@lsp.type.variable.python"] = {},
+
+    ["@lsp.typemod.property.readonly.python"] = {},
+    ["@lsp.typemod.string.documentation.python"] = {},
+    ["@lsp.typemod.variable.readonly.python"] = {},
+
+    ["@lsp.type.const.rust"] = { link = "Constant" },
+    ["@lsp.type.constParameter.rust"] = { link = "Type" },
+    ["@lsp.type.enum.rust"] = { link = "Type" },
+    ["@lsp.type.formatSpecifier.rust"] = { link = "Keyword" },
+    ["@lsp.type.macro.rust"] = { link = "Keyword" },
+    ["@lsp.type.namespace.rust"] = { link = "Type" },
+    ["@lsp.type.number.rust"] = { link = "Number" },
+    ["@lsp.type.typeAlias.rust"] = { link = "Type" },
+
+    ["@lsp.typemod.constParameter.declaration.rust"] = { fg = c.fg },
+    ["@lsp.typemod.keyword.controlFlow.rust"] = { link = "Statement" },
+    ["@lsp.typemod.selfKeyword.mutable.rust"] = { italic = true },
+    ["@lsp.typemod.variable.mutable.rust"] = { italic = true },
+
+    ["@lsp.mod.mutable.rust"] = {},
+
+    ["DiagnosticUnnecessary"] = { dim = true },
+    ["DiagnosticUnderlineHint"] = {},
   },
 }
 

@@ -17,4 +17,24 @@ return {
       })
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      vim.lsp.config("rust_analyzer", {
+        capabilities = {
+          -- Request full semantic tokens so format-string numbers are included
+          -- Treesitter does not highlight format strings for some reason
+          textDocument = { semanticTokens = { augmentsSyntaxTokens = false } },
+        },
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = { targetDir = true },
+            diagnostics = { experimental = { enable = true } },
+            imports = { granularity = { group = "item" } },
+          },
+        },
+      })
+      vim.lsp.enable({ "ty", "rust_analyzer" })
+    end,
+  },
 }
