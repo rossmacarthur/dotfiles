@@ -7,13 +7,13 @@ vim.opt.number = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("theme")
+vim.cmd.colorscheme("darkport")
 
 -- Load plugins
 if have_lazy then
   require("lazy").setup({
     spec = { { import = "plugins" } },
-    install = { colorscheme = { "default" } },
+    install = { colorscheme = { "darkport", "default" } },
     change_detection = { notify = false },
     rocks = { enabled = false },
   })

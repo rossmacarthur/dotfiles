@@ -1,17 +1,33 @@
+-- darkport palette and highlight mappings
+-- 
 -- Theme colors and highlighting adapted from VSCode Dark+:
 -- https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_plus.json
 
-vim.cmd("highlight clear")
-vim.g.colors_name = "theme"
-
 -- Palette
+local gray = {
+  "#0A0A0A", -- 1
+  "#1E1E1E", -- 2
+  "#252525", -- 3
+  "#333333", -- 4
+  "#454545", -- 5
+  "#5A5A5A", -- 6
+  "#707070", -- 7
+  "#858585", -- 8
+  "#A0A0A0", -- 9
+  "#B8B8B8", -- 10
+  "#D4D4D4", -- 11
+  "#E8E8E8", -- 12
+  "#FFFFFF", -- 13
+}
 local c = {
+  gray = gray,
+
   -- Base
-  bg = "#1E1E1E",
-  fg = "#D4D4D4",
-  panel = "#252526",
-  border = "#454545",
-  muted = "#858585",
+  bg = gray[2],
+  fg = gray[11],
+  panel = gray[3],
+  border = gray[5],
+  muted = gray[8],
 
   -- Editor UI
   line = "#282828",
@@ -24,7 +40,7 @@ local c = {
 
   -- Statusline & completion
   statusline_bg = "#007ACC",
-  statusline_fg = "#FFFFFF",
+  statusline_fg = gray[13],
   completion_selection = "#04395E",
 
   -- Diagnostics
@@ -240,9 +256,4 @@ local groups = {
   },
 }
 
--- Apply all highlight groups
-for _, category in pairs(groups) do
-  for name, opts in pairs(category) do
-    vim.api.nvim_set_hl(0, name, opts)
-  end
-end
+return { palette = c, groups = groups }
