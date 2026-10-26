@@ -85,6 +85,8 @@ local groups = {
     StatusLine = { fg = c.statusline_fg, bg = c.statusline_bg },
     StatusLineNC = { fg = c.fg, bg = c.panel },
     Folded = { fg = c.muted, bg = c.panel },
+    IblIndent = { fg = c.border },
+    IblScope = { fg = c.border },
 
     -- Links
     NormalNC = { link = "Normal" },
