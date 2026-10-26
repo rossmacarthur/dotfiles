@@ -1,5 +1,11 @@
 return {
   {
+    "stevearc/oil.nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {},
+  },
+  {
     "nvim-telescope/telescope.nvim",
     version = "*",
     dependencies = {
@@ -12,6 +18,7 @@ return {
     },
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
+      { "<leader>fv", "<cmd>Telescope git_files<cr>", desc = "Telescope find Git files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
@@ -134,7 +141,7 @@ return {
       { "<leader>]", "<Plug>(cokeline-focus-next)", desc = "Next buffer" },
       { "<leader>bp", "<Plug>(cokeline-pick-focus)", desc = "Pick buffer" },
       {
-        "<leader>bd",
+        "<leader>q",
         function()
           require("cokeline.buffers").get_current():delete()
         end,
