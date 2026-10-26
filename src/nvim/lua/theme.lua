@@ -1,5 +1,5 @@
 -- darkport palette and highlight mappings
--- 
+--
 -- Theme colors and highlighting adapted from VSCode Dark+:
 -- https://github.com/microsoft/vscode/blob/main/extensions/theme-defaults/themes/dark_plus.json
 
@@ -45,6 +45,12 @@ local c = {
 
   -- Diagnostics
   warning = "#CCA700",
+
+  -- Diff
+  git_add = "#414A2F",
+  git_del = "#4B1818",
+  git_add_br = "#4B5A2A",
+  git_del_br = "#6F1313",
 
   -- Syntax
   blue = "#569CD6",
@@ -116,6 +122,22 @@ local groups = {
     NonText = { fg = c.muted },
     Whitespace = { fg = c.muted },
     FoldColumn = { fg = c.muted },
+  },
+
+  -- Gitsigns
+  gitsigns = {
+    GitSignsAdd = { fg = c.green },
+    GitSignsChange = { fg = c.blue },
+    GitSignsDelete = { fg = c.red },
+  },
+
+  -- CodeDiff
+  diff = {
+    DiffAdd = { bg = c.git_add },
+    DiffDelete = { bg = c.git_del },
+    DiffCharAdd = { bg = c.git_add_br },
+    DiffCharDelete = { bg = c.git_del_br },
+    ExplorerDirectorySmall = { fg = c.muted },
   },
 
   -- Syntax
