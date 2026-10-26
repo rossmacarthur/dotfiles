@@ -1,5 +1,16 @@
 return {
   {
+    "NMAC427/guess-indent.nvim",
+    version = "*",
+    opts = {},
+  },
+  {
+    "windwp/nvim-autopairs",
+    version = "*",
+    event = "InsertEnter",
+    config = true,
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     build = ":TSUpdate",
