@@ -20,7 +20,6 @@ return {
         function()
           require("sideterm").toggle()
         end,
-        mode = { "n", "t" },
         desc = "Show/hide tab terminal",
       },
       {
