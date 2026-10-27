@@ -48,4 +48,56 @@ return {
       vim.lsp.enable({ "ty", "rust_analyzer" })
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    event = { "BufWritePre" },
+    cmd = { "ConformInfo" },
+    keys = {
+      {
+        "<leader>cf",
+        function()
+          require("conform").format({ async = true })
+        end,
+        mode = "n",
+        desc = "Format buffer",
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "ruff" },
+        rust = { "rustfmt" },
+      },
+      format_on_save = { timeout_ms = 500 },
+    },
+  },
+  {
+    "saghen/blink.cmp",
+    version = "v1.*",
+    opts = {
+      keymap = {
+        preset = "super-tab",
+        ["<CR>"] = { "select_and_accept", "fallback" },
+      },
+      completion = {
+        menu = {
+          max_height = 8,
+          draw = {
+            components = {
+              label = {
+                width = { max = 30 },
+                ellipsis = true,
+              },
+            },
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 300,
+        },
+        ghost_text = { enabled = true },
+      },
+      signature = { enabled = true },
+    },
+  },
 }
