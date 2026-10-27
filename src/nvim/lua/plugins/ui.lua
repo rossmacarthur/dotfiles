@@ -148,9 +148,25 @@ return {
       {
         "<leader>q",
         function()
-          require("cokeline.buffers").get_current():delete()
+          local buffer = require("cokeline.buffers").get_current()
+          if buffer then
+            buffer:delete()
+          end
         end,
         desc = "Close buffer",
+      },
+      {
+        "<leader>wq",
+        function()
+          local buffer = require("cokeline.buffers").get_current()
+          if not buffer then
+            return
+          end
+          vim.cmd.write()
+          buffer:delete()
+        end,
+        mode = "n",
+        desc = "Save and close buffer",
       },
     },
   },
