@@ -203,8 +203,10 @@ local groups = {
     ["@variable.anonymous.rust"] = { link = "Identifier" },
     ["@variable.parameter"] = { link = "Identifier" },
     ["@variable.member"] = { link = "Identifier" },
+
     ["@property"] = { link = "Identifier" },
     ["@property.regex"] = { link = "Keyword" },
+    ["@property.yaml"] = { link = "Keyword" },
 
     ["@function"] = { link = "Function" },
     ["@function.call"] = { link = "Function" },
