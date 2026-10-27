@@ -4,11 +4,15 @@ local have_lazy = require("bootstrap.lazy")
 vim.g.mapleader = " "
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-vim.opt.clipboard = "unnamedplus"
-vim.opt.number = true
+
+vim.opt.undofile = true
+vim.opt.undolevels = 1000
+
 vim.opt.cursorline = true
+vim.opt.number = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
+vim.opt.wrap = false
 
 vim.opt.autoindent = true
 vim.opt.smartindent = true
@@ -22,7 +26,6 @@ vim.cmd.colorscheme("darkport")
 if have_lazy then
   require("lazy").setup({
     spec = { { import = "plugins" } },
-    install = { colorscheme = { "darkport", "default" } },
     change_detection = { notify = false },
     rocks = { enabled = false },
   })
