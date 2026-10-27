@@ -9,10 +9,13 @@
 	excludesfile = ~/.config/git/ignore
 
 [diff]
-	tool = vscode
+	tool = codediff
 
 [difftool "vscode"]
 	cmd = code -n --wait --diff $LOCAL $REMOTE
+
+[difftool "codediff"]
+	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff --exit-on-close file $LOCAL $REMOTE\"
 
 [fetch]
 	prune = true
@@ -24,7 +27,10 @@
 	showSignature = true
 
 [merge]
-	conflictstyle = diff3
+	tool = codediff
+
+[mergetool "codediff"]
+	cmd = nvim \"$MERGED\" -c \"CodeDiff --exit-on-close merge \\\"$MERGED\\\"\"
 
 [pull]
 	ff = only
