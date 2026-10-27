@@ -8,6 +8,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     version = "*",
+    cmd = "Telescope",
     dependencies = {
       "nvim-lua/plenary.nvim",
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
@@ -16,6 +17,10 @@ return {
       defaults = { file_ignore_patterns = { "^%.git/" } },
       pickers = { find_files = { hidden = true } },
     },
+    config = function(_, opts)
+      require("telescope").setup(opts)
+      require("telescope").load_extension("fzf")
+    end,
     keys = {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
       { "<leader>fv", "<cmd>Telescope git_files<cr>", desc = "Telescope find Git files" },
@@ -152,6 +157,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     version = "*",
+    event = { "BufReadPost", "BufNewFile" },
     main = "ibl",
     opts = {
       indent = { char = "▏" },

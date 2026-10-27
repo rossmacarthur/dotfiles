@@ -31,6 +31,8 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     version = "*",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = "Gitsigns",
     opts = {
       signs = {
         add = { text = "🮇" },

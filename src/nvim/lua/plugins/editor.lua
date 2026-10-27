@@ -2,6 +2,8 @@ return {
   {
     "NMAC427/guess-indent.nvim",
     version = "*",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = "GuessIndent",
     opts = {},
   },
   {
@@ -30,6 +32,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    ft = { "python", "rust" },
     config = function()
       vim.lsp.config("rust_analyzer", {
         capabilities = {
@@ -56,10 +59,13 @@ return {
       {
         "<leader>cf",
         function()
+          if vim.api.nvim_get_mode().mode == "\22" then
+            return vim.notify("Formatting block selections is not supported", vim.log.levels.INFO)
+          end
           require("conform").format({ async = true })
         end,
-        mode = "n",
-        desc = "Format buffer",
+        mode = { "n", "x" },
+        desc = "Format buffer or selection",
       },
     },
     opts = {
@@ -74,9 +80,11 @@ return {
   {
     "saghen/blink.cmp",
     version = "v1.*",
+    event = { "InsertEnter", "CmdlineEnter" },
     opts = {
       keymap = {
         preset = "super-tab",
+        ["<C-space>"] = false,
         ["<CR>"] = { "select_and_accept", "fallback" },
       },
       completion = {
