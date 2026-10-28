@@ -4,6 +4,3 @@
 # autoenv files (see https://github.com/zpm-zsh/autoenv)
 .in
 .out
-
-# tfenv
-.terraform-version
