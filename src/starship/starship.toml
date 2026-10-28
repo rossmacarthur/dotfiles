@@ -2,6 +2,7 @@ format = """
 $username\
 $hostname\
 $directory\
+[\u200c](none)\
 $git_branch\
 $git_state\
 $git_status\
