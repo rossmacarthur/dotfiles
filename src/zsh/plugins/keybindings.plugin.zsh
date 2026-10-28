@@ -36,7 +36,7 @@ if [[ -n "${terminfo[knp]}" ]]; then
   bindkey -M vicmd "${terminfo[knp]}" down-line-or-history
 fi
 
-# Start typing + [Up-Arrow] - fuzzy find history forward
+# Start typing + [Up-Arrow] - search backward through matching history
 autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
 
@@ -49,7 +49,7 @@ if [[ -n "${terminfo[kcuu1]}" ]]; then
   bindkey -M vicmd "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
 
-# Start typing + [Down-Arrow] - fuzzy find history backward
+# Start typing + [Down-Arrow] - search forward through matching history
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
@@ -115,12 +115,15 @@ bindkey -M emacs '^[[1;5D' backward-word
 bindkey -M viins '^[[1;5D' backward-word
 bindkey -M vicmd '^[[1;5D' backward-word
 
-
-bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
-bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
-bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-bindkey ' ' magic-space                               # [Space] - don't do history expansion
-
+# [Esc-w] - Kill from the cursor to the mark
+bindkey '\ew' kill-region                             
+ # [Esc-l] - run command: ls
+bindkey -s '\el' 'ls\n'                              
+# [Ctrl-r] - Search backward incrementally for a specified string.
+# The string may begin with ^ to anchor the search to the beginning of the line.
+bindkey '^r' history-incremental-search-backward      
+ # [Space] - perform history expansion
+bindkey ' ' magic-space                              
 
 # Edit the current command line in $EDITOR
 autoload -U edit-command-line
@@ -129,22 +132,3 @@ bindkey '\C-x\C-e' edit-command-line
 
 # file rename magick
 bindkey "^[m" copy-prev-shell-word
-
-# consider emacs keybindings:
-
-#bindkey -e  ## emacs key bindings
-#
-#bindkey '^[[A' up-line-or-search
-#bindkey '^[[B' down-line-or-search
-#bindkey '^[^[[C' emacs-forward-word
-#bindkey '^[^[[D' emacs-backward-word
-#
-#bindkey -s '^X^Z' '%-^M'
-#bindkey '^[e' expand-cmd-path
-#bindkey '^[^I' reverse-menu-complete
-#bindkey '^X^N' accept-and-infer-next-history
-#bindkey '^W' kill-region
-#bindkey '^I' complete-word
-## Fix weird sequence that rxvt produces
-#bindkey -s '^[[Z' '\t'
-#
