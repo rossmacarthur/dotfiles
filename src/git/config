@@ -5,7 +5,7 @@
 	lgnbr = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --no-show-signature --reverse
 
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.config/git/ignore
 
 [diff]
