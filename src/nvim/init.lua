@@ -10,6 +10,7 @@ vim.opt.undolevels = 1000
 
 vim.opt.cursorline = true
 vim.opt.number = true
+vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 vim.opt.wrap = false
@@ -21,6 +22,12 @@ vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 
 vim.cmd.colorscheme("darkport")
+
+-- Custom filetype mappings
+vim.filetype.add({
+  extension = { tac = "python" }, -- Twisted
+  pattern = { [".*%.arc.*"] = "json" }, -- arcanist
+})
 
 -- Load plugins
 if have_lazy then
