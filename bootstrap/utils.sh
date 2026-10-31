@@ -364,7 +364,10 @@ execute() {
   # Actually start running the command
   temp_file=$(mktemp)
   debug "$cmd"
-  eval "$cmd" &>"$temp_file" &
+  (
+    set -o pipefail
+    eval "$cmd"
+  ) &>"$temp_file" &
   local pid=$!
 
   # Setup a spinner to display while the command is running.
