@@ -405,11 +405,11 @@ remove_directory() {
   execute "rm -rf $1" "Remove directory ${1/#$HOME/~}"
 }
 
-# Create a symlink between two files.
+# Create a symlink to a file or directory.
 #
 # Arguments:
-#   $1 the file source relative to the dotfiles directory
-#   $2 the file destination relative to the $HOME directory
+#   $1 the source file or directory relative to the dotfiles src directory
+#   $2 the destination path relative to the $HOME directory
 symlink() {
   local src="$DOTFILES_DIRECTORY/src/$1"
   local dst="$HOME/$2"
@@ -418,10 +418,14 @@ symlink() {
 _symlink() {
   local src=$1
   local dst=$2
-  [ -f "$src" ] || { echo "Error: $src does not exist" >&2 && return 1; }
+  [ -f "$src" ] || [ -d "$src" ] || { echo "Error: $src does not exist" >&2 && return 1; }
+  if [ -d "$dst" ] && [ ! -L "$dst" ]
+  then
+    echo "Error: $dst is an existing directory" >&2
+    return 1
+  fi
   create_directory "$(dirname "$dst")" || return 1
-  ln -fs "$src" "$dst" || return 1
-  sleep 0.05
+  ln -sfn "$src" "$dst" || return 1
 }
 
 # Symlink a Zsh plugin.
