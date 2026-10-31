@@ -1,13 +1,13 @@
 #!/usr/bin/env zsh
 
+# Ensure fd works
+alias fd="fdfind"
+
 # Lock screen
 alias afk="gnome-screensaver-command -l"
 
 # Copy to clipboard
 alias copy="xclip -selection clipboard"
-
-# Shortcut for capslock toggle script
-alias cl="capslock"
 
 # Set keyboard to Colemak
 cm() {
