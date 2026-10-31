@@ -203,8 +203,9 @@ abort() {
 #   $1 the variable name of the global array to check
 #   $2 the element to check for
 contains() {
+  local arr="$1[@]"
   local match=$2
-  for e in "${!1}"
+  for e in "${!arr}"
   do
     if [ "$e" == "$match" ]
     then
