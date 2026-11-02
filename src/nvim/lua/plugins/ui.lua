@@ -1,3 +1,12 @@
+local with_current_buffer = function(f)
+  return function()
+    local buffer = require("cokeline.buffers").get_current()
+    if buffer then
+      f(buffer)
+    end
+  end
+end
+
 return {
   {
     "stevearc/oil.nvim",
@@ -27,6 +36,8 @@ return {
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
+      { "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Telescope find in buffer" },
+      { "grr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope find function references" },
     },
   },
   {
@@ -151,27 +162,24 @@ return {
       { "<leader>]", "<Plug>(cokeline-focus-next)", desc = "Next buffer" },
       { "<leader>bp", "<Plug>(cokeline-pick-focus)", desc = "Pick buffer" },
       {
-        "<leader>q",
-        function()
-          local buffer = require("cokeline.buffers").get_current()
-          if buffer then
-            buffer:delete()
-          end
-        end,
-        desc = "Close buffer",
+        "<leader>w",
+        vim.cmd.write,
+        desc = "Save buffer",
       },
       {
-        "<leader>wq",
-        function()
-          local buffer = require("cokeline.buffers").get_current()
-          if not buffer then
-            return
-          end
+        "<leader>x",
+        with_current_buffer(function(buffer)
           vim.cmd.write()
           buffer:delete()
-        end,
-        mode = "n",
-        desc = "Save and close buffer",
+        end),
+        desc = "Save and delete buffer",
+      },
+      {
+        "<leader>bd",
+        with_current_buffer(function(buffer)
+          buffer:delete()
+        end),
+        desc = "Delete buffer",
       },
     },
   },
