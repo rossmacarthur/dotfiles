@@ -71,7 +71,7 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        python = { "ruff" },
+        python = { "ruff_fix", "ruff_format" },
         rust = { "rustfmt" },
       },
       format_on_save = { timeout_ms = 500 },
@@ -82,6 +82,9 @@ return {
     version = "v1.*",
     event = { "InsertEnter", "CmdlineEnter" },
     opts = {
+      enabled = function()
+        return vim.tbl_contains({ "lua", "python", "rust" }, vim.bo.filetype)
+      end,
       keymap = {
         preset = "super-tab",
         ["<C-space>"] = false,
@@ -106,6 +109,9 @@ return {
         ghost_text = { enabled = true },
       },
       signature = { enabled = true },
+      sources = {
+        default = { "lsp", "path", "snippets" },
+      },
     },
   },
 }
