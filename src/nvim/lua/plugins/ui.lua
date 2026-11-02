@@ -37,6 +37,7 @@ return {
     },
     opts = function()
       local c = require("theme").palette
+      local is_picking_focus = require("cokeline.mappings").is_picking_focus
 
       local function fg(buffer)
         return buffer.is_focused and c.gray[12] or c.muted
@@ -63,11 +64,15 @@ return {
           { text = "" },
           {
             text = function(buffer)
+              if is_picking_focus() then
+                return " " .. buffer.pick_letter .. " "
+              end
               return " " .. buffer.devicon.icon
             end,
             fg = function(buffer)
-              return buffer.devicon.color
+              return is_picking_focus() and c.orange or buffer.devicon.color
             end,
+            bold = is_picking_focus,
           },
           {
             text = function(buffer)
