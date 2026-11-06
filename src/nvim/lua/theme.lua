@@ -264,7 +264,6 @@ local groups = {
     ["@type.builtin"] = { link = "Type" },
     ["@type.definition"] = { link = "Type" },
     ["@module"] = { link = "Type" },
-    ["@module.builtin"] = { link = "Type" },
     ["@constructor"] = { link = "Type" },
 
     ["@keyword"] = { link = "Keyword" },
@@ -299,6 +298,7 @@ local groups = {
 
   -- Language server
   lsp = {
+    ["@lsp.type.namespace"] = { fg = c.teal, italic = true },
     ["@lsp.type.string.python"] = {},
     ["@lsp.type.variable.python"] = {},
 
@@ -311,7 +311,6 @@ local groups = {
     ["@lsp.type.enum.rust"] = { link = "Type" },
     ["@lsp.type.formatSpecifier.rust"] = { link = "Keyword" },
     ["@lsp.type.macro.rust"] = { link = "Keyword" },
-    ["@lsp.type.namespace.rust"] = { link = "Type" },
     ["@lsp.type.number.rust"] = { link = "Number" },
     ["@lsp.type.typeAlias.rust"] = { link = "Type" },
 
