@@ -17,10 +17,17 @@
   (#eq? @variable.builtin "cls")
   (#set! priority 101))
 
-; Don't special-case dunder identifiers even under semantic highlighting
+; Capture underscore-prefixed uppercase identifiers as constants
+((identifier) @constant
+  (#lua-match? @constant "^_+[A-Z][A-Z0-9_]*$")
+  (#set! priority 101))
+
+; Capture bare dunder variables without overriding constants or callable names
 ((identifier) @variable
   (#lua-match? @variable "^__[a-zA-Z0-9_]*__$")
-  (#set! priority 130))
+  (#not-lua-match? @variable "^_+[A-Z][A-Z0-9_]*$")
+  (#not-has-parent? @variable function_definition class_definition call attribute)
+  (#set! priority 101))
 
 ; Capture @property getters as properties not functions
 ((decorated_definition
@@ -94,14 +101,12 @@
 
 ; Capture Python string prefixes
 ((string_start) @string.prefix
-  (#lua-match? @string.prefix "[fFbB]")
   (#lua-match? @string.prefix "^[fFbBrR]+[\"']$")
   (#offset! @string.prefix 0 0 0 -1)
   (#set! priority 101))
 
 ; Capture Python string prefixes for triple-quoted strings
 ((string_start) @string.prefix
-  (#lua-match? @string.prefix "[fFbB]")
   (#lua-match? @string.prefix "^[fFbBrR]+[\"'][\"'][\"']$")
   (#offset! @string.prefix 0 0 0 -3)
   (#set! priority 101))

@@ -323,6 +323,7 @@ local groups = {
     ["@lsp.mod.mutable.rust"] = {},
 
     ["DiagnosticUnnecessary"] = { dim = true },
+    ["DiagnosticUnderlineError"] = {},
     ["DiagnosticUnderlineHint"] = {},
   },
 }
