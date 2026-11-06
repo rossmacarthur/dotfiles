@@ -85,32 +85,81 @@ return {
       enabled = function()
         return vim.tbl_contains({ "lua", "python", "rust" }, vim.bo.filetype)
       end,
+
       keymap = {
         preset = "super-tab",
         ["<C-space>"] = false,
-        ["<CR>"] = { "select_and_accept", "fallback" },
       },
+
       completion = {
         menu = {
+          border = "rounded",
           max_height = 8,
           draw = {
             components = {
               label = {
                 width = { max = 30 },
-                ellipsis = true,
               },
             },
           },
         },
+
         documentation = {
           auto_show = true,
           auto_show_delay_ms = 300,
+          treesitter_highlighting = false,
+          window = {
+            border = "rounded",
+            max_width = 65,
+            max_height = 15,
+          },
         },
-        ghost_text = { enabled = true },
+
+        ghost_text = {
+          enabled = true,
+        },
+
+        trigger = {
+          show_on_insert_on_trigger_character = false,
+          show_on_accept_on_trigger_character = false,
+          show_on_backspace_after_accept = false,
+          show_on_backspace_after_insert_enter = false,
+        },
+
+        list = {
+          selection = {
+            auto_insert = false,
+          },
+        },
       },
-      signature = { enabled = true },
-      sources = {
-        default = { "lsp", "path", "snippets" },
+
+      signature = {
+        enabled = true,
+        trigger = {
+          enabled = false,
+        },
+        window = {
+          treesitter_highlighting = false,
+          border = "rounded",
+        },
+      },
+
+      cmdline = {
+        keymap = {
+          ["<Up>"] = { "select_prev", "fallback" },
+          ["<Down>"] = { "select_next", "fallback" },
+          ["<Tab>"] = { "select_and_accept", "show", "fallback" },
+        },
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+          list = {
+            selection = {
+              auto_insert = false,
+            },
+          },
+        },
       },
     },
   },

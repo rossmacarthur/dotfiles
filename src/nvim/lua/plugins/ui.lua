@@ -51,7 +51,7 @@ return {
       local is_picking_focus = require("cokeline.mappings").is_picking_focus
 
       local function fg(buffer)
-        return buffer.is_focused and c.gray[12] or c.muted
+        return buffer.is_focused and c.gray[11] or c.muted
       end
 
       local function bg(buffer)
@@ -81,7 +81,7 @@ return {
               return " " .. buffer.devicon.icon
             end,
             fg = function(buffer)
-              return is_picking_focus() and c.orange or buffer.devicon.color
+              return is_picking_focus() and c.cyan or buffer.devicon.color
             end,
             bold = is_picking_focus,
           },
@@ -89,15 +89,11 @@ return {
             text = function(buffer)
               return buffer.unique_prefix
             end,
-            fg = c.gray[9],
-            italic = true,
+            fg = c.muted,
           },
           {
             text = function(buffer)
               return buffer.filename .. " "
-            end,
-            italic = function(buffer)
-              return buffer.is_focused
             end,
           },
           {

@@ -8,8 +8,13 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.undofile = true
 vim.opt.undolevels = 1000
 
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 3
+vim.opt.showcmdloc = "statusline"
+
 vim.opt.cursorline = true
 vim.opt.number = true
+vim.opt.pumborder = "rounded"
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true

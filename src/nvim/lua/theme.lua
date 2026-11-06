@@ -5,9 +5,9 @@
 
 -- Palette
 local gray = {
-  "#0A0A0A", -- 1
-  "#1E1E1E", -- 2
-  "#252525", -- 3
+  "#1E1E1E", -- 1
+  "#222222", -- 2
+  "#292929", -- 3
   "#333333", -- 4
   "#454545", -- 5
   "#5A5A5A", -- 6
@@ -23,25 +23,25 @@ local c = {
   gray = gray,
 
   -- Base
-  bg = gray[2],
-  fg = gray[11],
+  bg = gray[1],
   panel = gray[3],
   border = gray[5],
   muted = gray[8],
+  menu = gray[9],
+  fg = gray[11],
+  bright = gray[13],
 
   -- Editor UI
-  line = "#282828",
+  line = gray[2],
   selection = "#264F78",
   cursor = "#AEAFAD",
-  cursor_line_nr = "#C6C6C6",
   search = "#613315",
   inc_search = "#515C6A",
   match_paren = "#3A3D41",
 
   -- Statusline & completion
-  statusline_bg = "#007ACC",
-  statusline_fg = gray[13],
-  completion_selection = "#04395E",
+  statusline = "#007ACC",
+  completion = "#04395E",
 
   -- Diagnostics
   warning = "#CCA700",
@@ -72,58 +72,67 @@ local groups = {
   -- Editor
   editor = {
     Normal = { fg = c.fg, bg = c.bg },
+    NormalNC = { link = "Normal" },
+    EndOfBuffer = { link = "Normal" },
+    SignColumn = { link = "Normal" },
+
     NormalFloat = { fg = c.fg, bg = c.panel },
     FloatBorder = { fg = c.border, bg = c.panel },
     WinSeparator = { fg = c.border },
+
     Cursor = { fg = c.bg, bg = c.cursor },
     CursorLine = { bg = c.line },
     CursorLineNr = { bg = c.line },
+    CursorColumn = { link = "CursorLine" },
+    ColorColumn = { link = "CursorLine" },
+
     Visual = { bg = c.selection },
+    VisualNOS = { link = "Visual" },
+
     Search = { bg = c.search },
     IncSearch = { bg = c.inc_search },
+    CurSearch = { link = "IncSearch" },
     MatchParen = { bg = c.match_paren },
-    StatusLine = { fg = c.statusline_fg, bg = c.statusline_bg },
-    StatusLineNC = { fg = c.fg, bg = c.panel },
+
     Folded = { fg = c.muted, bg = c.panel },
     IblIndent = { fg = c.border },
     IblScope = { fg = c.border },
 
-    -- Links
-    NormalNC = { link = "Normal" },
-    SignColumn = { link = "Normal" },
-    EndOfBuffer = { link = "Normal" },
-    CursorColumn = { link = "CursorLine" },
-    ColorColumn = { link = "CursorLine" },
-    VisualNOS = { link = "Visual" },
-    CurSearch = { link = "IncSearch" },
-    TabLine = { link = "StatusLineNC" },
-    TabLineFill = { link = "StatusLineNC" },
-    WinBarNC = { link = "StatusLineNC" },
+    StatusLine = { fg = c.bright, bg = c.statusline },
+    StatusLineNC = { fg = c.fg, bg = c.muted },
+
+    TabLine = { fg = c.fg, bg = c.panel },
+    TabLineFill = { link = "TabLine" },
     TabLineSel = { link = "Normal" },
+
     WinBar = { link = "Normal" },
+    WinBarNC = { link = "TabLine" },
   },
 
   -- UI
   ui = {
-    Pmenu = { fg = c.fg, bg = c.panel },
-    PmenuSel = { fg = c.statusline_fg, bg = c.completion_selection },
-    PmenuSbar = { bg = c.panel },
+    Pmenu = { fg = c.menu },
+    PmenuSel = { fg = c.bright, bg = c.completion },
+    PmenuSbar = { fg = c.cyan, bg = c.panel },
     PmenuThumb = { bg = c.muted },
+    PmenuBorder = { fg = c.cyan },
+    TelescopeBorder = { link = "PmenuBorder" },
+
+    LineNr = { fg = c.muted },
+    FoldColumn = { fg = c.muted },
+    NonText = { fg = c.muted },
+    Whitespace = { fg = c.muted },
 
     Directory = { fg = c.blue },
     Title = { fg = c.blue },
+
     Question = { fg = c.blue },
     MoreMsg = { fg = c.blue },
-
-    ErrorMsg = { fg = c.red },
     WarningMsg = { fg = c.warning },
+    ErrorMsg = { fg = c.red },
+
     Error = { fg = c.red },
     Todo = { fg = c.green },
-
-    LineNr = { fg = c.muted },
-    NonText = { fg = c.muted },
-    Whitespace = { fg = c.muted },
-    FoldColumn = { fg = c.muted },
   },
 
   -- Gitsigns
@@ -140,6 +149,42 @@ local groups = {
     DiffCharAdd = { bg = c.git_add_br },
     DiffCharDelete = { bg = c.git_del_br },
     ExplorerDirectorySmall = { fg = c.muted },
+  },
+
+  -- BlinkCmp
+  completion = {
+    BlinkCmpMenuBorder = { link = "PmenuBorder" },
+
+    BlinkCmpDoc = { link = "BlinkCmpMenu" },
+    BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" },
+    BlinkCmpDocSeparator = { link = "BlinkCmpDoc" },
+
+    BlinkCmpSignatureHelp = { link = "BlinkCmpMenu" },
+    BlinkCmpSignatureHelpBorder = { link = "BlinkCmpMenuBorder" },
+
+    -- Icons
+    BlinkCmpKind = { link = "NonText" },
+    BlinkCmpKindText = { link = "Normal" },
+    BlinkCmpKindMethod = { link = "Function" },
+    BlinkCmpKindFunction = { link = "Function" },
+    BlinkCmpKindConstructor = { link = "Function" },
+
+    BlinkCmpKindField = { link = "Identifier" },
+    BlinkCmpKindVariable = { link = "Identifier" },
+    BlinkCmpKindProperty = { link = "Identifier" },
+
+    BlinkCmpKindClass = { link = "Type" },
+    BlinkCmpKindInterface = { link = "Type" },
+    BlinkCmpKindStruct = { link = "Type" },
+    BlinkCmpKindEnum = { link = "Type" },
+    BlinkCmpKindEnumMember = { link = "Constant" },
+
+    BlinkCmpKindKeyword = { link = "Keyword" },
+    BlinkCmpKindConstant = { link = "Constant" },
+    BlinkCmpKindSnippet = { link = "Special" },
+    BlinkCmpKindFile = { link = "Normal" },
+    BlinkCmpKindFolder = { link = "Directory" },
+    BlinkCmpKindModule = { link = "Type" },
   },
 
   -- Syntax
