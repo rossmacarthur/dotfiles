@@ -1,5 +1,8 @@
 bell-features = "audio"
-font-family = "FiraCode Nerd Font"
+font-family = "FiraCode Nerd Font Mono"
+font-style = Regular
+font-thicken = true
+font-thicken-strength = 0
 font-size = 14
 adjust-cell-height = 20%
 theme = Dark+
@@ -7,6 +10,5 @@ unfocused-split-opacity = 1.0
 # color29 from pallete: ghostty +show-config | grep '= 29='
 split-divider-color = #00875f
 scrollback-limit = 1000000000
-term = xterm-256color
 keybind = super+t=unbind
 window-decoration = none
