@@ -28,6 +28,9 @@ local function parse(text, column)
   -- The empty captures mark the bounds so we select the reference under the cursor
   for first, path, line, col, last_column in text:gmatch("()([^%s\"'<>|%(%)%[%]:]+):?(%d*):?(%d*)()") do
     if column >= first and column < last_column then
+      if first == 5 and (text:match("^%-%-%- a/") or text:match("^%+%+%+ b/")) then
+        path = path:sub(3)
+      end
       return { path = path, line = tonumber(line) or 1, column = tonumber(col) or 1 }
     end
   end

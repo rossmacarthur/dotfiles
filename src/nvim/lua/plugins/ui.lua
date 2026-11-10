@@ -1,12 +1,3 @@
-local with_current_buffer = function(f)
-  return function()
-    local buffer = require("cokeline.buffers").get_current()
-    if buffer then
-      f(buffer)
-    end
-  end
-end
-
 return {
   {
     "stevearc/oil.nvim",
@@ -23,7 +14,15 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     opts = {
-      defaults = { file_ignore_patterns = { "^%.git/" } },
+      defaults = {
+        file_ignore_patterns = { "^%.git/" },
+        get_selection_window = function()
+          if vim.bo.buftype == "terminal" then
+            return require("bespoke.editor").ensure_window()
+          end
+          return 0
+        end,
+      },
       pickers = { find_files = { hidden = true } },
     },
     config = function(_, opts)
@@ -36,9 +35,82 @@ return {
       { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
-      { "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Telescope find in buffer" },
+      { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Telescope find in buffer" },
       { "grr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope find function references" },
     },
+  },
+  {
+    name = "bespoke",
+    dir = vim.fs.normalize(vim.fs.dirname(debug.getinfo(1, "S").source:sub(2)) .. "/../.."),
+    main = "bespoke",
+    lazy = false,
+    opts = {
+      terminal = {
+        env = {
+          EDITOR = "nvr -l --remote-wait",
+          GIT_EDITOR = "nvr -l --remote-wait",
+        },
+        on_create = function(buffer)
+          vim.keymap.set("n", "gF", require("bespoke.terminal").open_reference, {
+            buffer = buffer,
+            desc = "Open terminal file reference",
+          })
+        end,
+      },
+    },
+    keys = function()
+      local keys = {
+        {
+          "<D-t>",
+          function()
+            require("bespoke.terminal").toggle()
+          end,
+          mode = { "n", "i", "t" },
+          desc = "Show/hide tab terminal",
+        },
+        {
+          "<D-\\>",
+          function()
+            require("bespoke.editor").split()
+          end,
+          mode = { "n", "i", "t" },
+          desc = "Split vertically",
+        },
+        {
+          "<C-Space>",
+          function()
+            require("bespoke.terminal").toggle_focus()
+          end,
+          mode = { "n", "i", "t" },
+          desc = "Focus editor/terminal",
+        },
+        {
+          "<C-LeftMouse>",
+          function()
+            local mouse = vim.fn.getmousepos()
+            if require("bespoke.terminal").owns_window(mouse.winid) then
+              return '<Cmd>lua require("bespoke.terminal").open_reference(true)<CR>'
+            end
+            return "<C-LeftMouse>"
+          end,
+          mode = { "n", "i", "t" },
+          expr = true,
+          desc = "Open terminal file reference or follow editor tag",
+        },
+      }
+
+      for number = 1, 4 do
+        keys[#keys + 1] = {
+          ("<D-%d>"):format(number),
+          function()
+            require("bespoke.editor").focus_split(number)
+          end,
+          mode = { "n", "i", "t" },
+          desc = ("Focus or create split %d"):format(number),
+        }
+      end
+      return keys
+    end,
   },
   {
     "willothy/nvim-cokeline",
@@ -58,7 +130,18 @@ return {
         return buffer.is_focused and c.bg or c.gray[4]
       end
 
-      return {
+      local function on_click(_, _, button, _, buffer)
+        if button == "l" then
+          require("bespoke.editor").open_buffer(buffer.number)
+        elseif button == "r" then
+          local config = require("cokeline.config").buffers
+          if config.delete_on_right_click then
+            require("cokeline.utils").buf_delete(buffer.number, config.focus_on_delete)
+          end
+        end
+      end
+
+      local opts = {
         default_hl = { fg = fg, bg = bg },
         components = {
           {
@@ -152,32 +235,51 @@ return {
           },
         },
       }
+
+      for _, component in ipairs(opts.components) do
+        component.on_click = component.on_click or on_click
+      end
+
+      return opts
     end,
-    keys = {
-      { "<leader>[", "<Plug>(cokeline-focus-prev)", desc = "Previous buffer" },
-      { "<leader>]", "<Plug>(cokeline-focus-next)", desc = "Next buffer" },
-      { "<leader>bp", "<Plug>(cokeline-pick-focus)", desc = "Pick buffer" },
-      {
-        "<leader>w",
-        vim.cmd.write,
-        desc = "Save buffer",
-      },
-      {
-        "<leader>x",
-        with_current_buffer(function(buffer)
-          vim.cmd.write()
-          buffer:delete()
-        end),
-        desc = "Save and delete buffer",
-      },
-      {
-        "<leader>bd",
-        with_current_buffer(function(buffer)
-          buffer:delete()
-        end),
-        desc = "Delete buffer",
-      },
-    },
+    keys = function()
+      local with_current_buffer = function(f)
+        return function()
+          local buffer = require("cokeline.buffers").get_current()
+          if buffer then
+            f(buffer)
+          end
+        end
+      end
+
+      return {
+        { "<leader>[", "<Plug>(cokeline-focus-prev)", desc = "Previous buffer" },
+        { "<leader>]", "<Plug>(cokeline-focus-next)", desc = "Next buffer" },
+        { "<leader>bp", "<Plug>(cokeline-pick-focus)", desc = "Pick buffer" },
+        { "<leader>q", "<cmd>q<CR>", desc = "Quit without saving" },
+        {
+          "<leader>w",
+          vim.cmd.write,
+          desc = "Save buffer",
+        },
+        {
+          "<leader>x",
+          with_current_buffer(function(buffer)
+            vim.cmd.write()
+            buffer:delete()
+            require("bespoke.terminal").focus_visible()
+          end),
+          desc = "Save, delete buffer and return to visible terminal",
+        },
+        {
+          "<leader>bd",
+          with_current_buffer(function(buffer)
+            buffer:delete()
+          end),
+          desc = "Delete buffer",
+        },
+      }
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",

@@ -28,6 +28,11 @@ vim.opt.tabstop = 4
 
 vim.cmd.colorscheme("darkport")
 
+-- Keybindings
+vim.keymap.set({ "n", "v", "i" }, "<ScrollWheelLeft>", "<Nop>")
+vim.keymap.set({ "n", "v", "i" }, "<ScrollWheelRight>", "<Nop>")
+vim.keymap.set("x", "<D-c>", '"+y', { desc = "Copy to OS clipboard" })
+
 -- Custom filetype mappings
 vim.filetype.add({
   extension = { tac = "python" }, -- Twisted
