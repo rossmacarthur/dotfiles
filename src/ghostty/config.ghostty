@@ -1,5 +1,5 @@
 bell-features = "audio"
-font-family = "FiraCode Nerd Font Mono"
+font-family = "FiraCode Nerd Font"
 font-style = Regular
 font-thicken = true
 font-thicken-strength = 0
@@ -7,8 +7,18 @@ font-size = 14
 adjust-cell-height = 20%
 theme = Dark+
 unfocused-split-opacity = 1.0
-# color29 from pallete: ghostty +show-config | grep '= 29='
+# color29 from palette: ghostty +show-config | grep '= 29='
 split-divider-color = #00875f
 scrollback-limit = 1000000000
-keybind = super+t=unbind
 window-decoration = none
+
+# unbind Cmd+t and Cmd+<n> so we can use them in Neovim
+keybind = super+t=unbind
+keybind = super+digit_1=unbind
+keybind = super+1=unbind
+keybind = super+digit_2=unbind
+keybind = super+2=unbind
+keybind = super+digit_3=unbind
+keybind = super+3=unbind
+keybind = super+digit_4=unbind
+keybind = super+4=unbind
