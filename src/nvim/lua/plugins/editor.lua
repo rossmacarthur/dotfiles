@@ -32,8 +32,28 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "python", "rust" },
+    ft = { "python", "rust", "typescript", "javascript", "vue" },
     config = function()
+      local vue_server = vim.fn.resolve(vim.fn.exepath("vue-language-server"))
+      vim.lsp.config("vtsls", {
+        filetypes = { "typescript", "javascript", "vue" },
+        settings = {
+          vtsls = {
+            autoUseWorkspaceTsdk = true,
+            tsserver = {
+              globalPlugins = {
+                {
+                  name = "@vue/typescript-plugin",
+                  location = vim.fs.dirname(vim.fs.dirname(vue_server)),
+                  languages = { "vue" },
+                  configNamespace = "typescript",
+                  enableForWorkspaceTypeScriptVersions = true,
+                },
+              },
+            },
+          },
+        },
+      })
       vim.lsp.config("rust_analyzer", {
         capabilities = {
           -- Request full semantic tokens so format-string numbers are included
@@ -48,7 +68,8 @@ return {
           },
         },
       })
-      vim.lsp.enable({ "ty", "rust_analyzer" })
+      vim.lsp.document_color.enable(false)
+      vim.lsp.enable({ "ty", "rust_analyzer", "vtsls", "vue_ls" })
     end,
   },
   {
