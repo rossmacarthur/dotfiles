@@ -244,6 +244,7 @@ local groups = {
     ["@number"] = { link = "Number" },
     ["@constant"] = { link = "Constant" },
     ["@constant.builtin"] = { link = "Boolean" },
+    ["@constant.builtin.python"] = {},
     ["@constant.builtin.rust"] = { link = "Constant" },
 
     ["@variable"] = { link = "Identifier" },
@@ -292,6 +293,7 @@ local groups = {
     ["@keyword.directive.scss"] = { link = "Statement" },
     ["@keyword.import"] = { link = "Statement" },
     ["@keyword.import.rust"] = { link = "Keyword" },
+    ["@keyword.statement"] = { link = "Statement" },
 
     ["@operator"] = { link = "Operator" },
     ["@operator.regex"] = { link = "@string.regexp" },
@@ -349,8 +351,9 @@ local groups = {
     ["@lsp.mod.mutable.rust"] = {},
 
     ["DiagnosticUnnecessary"] = { dim = true },
-    ["DiagnosticUnderlineError"] = {},
     ["DiagnosticUnderlineHint"] = {},
+    ["DiagnosticUnderlineWarn"] = {},
+    ["DiagnosticUnderlineError"] = {},
   },
 }
 

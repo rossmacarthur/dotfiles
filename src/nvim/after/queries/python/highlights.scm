@@ -38,6 +38,23 @@
   (#eq? @_decorator "property")
   (#set! priority 101))
 
+; Capture None as a keyword
+((none) @keyword
+  (#set! priority 101))
+
+; Capture simple statement keywords
+([
+  (delete_statement
+    "del" @keyword.statement)
+  (pass_statement
+    "pass" @keyword.statement)
+  (print_statement
+    "print" @keyword.statement) ; python 2
+  (exec_statement
+    "exec" @keyword.statement)  ; python 2
+]
+  (#set! priority 101))
+
 ; Capture "with ... as" as context keywords like statements
 ([
   (with_statement
