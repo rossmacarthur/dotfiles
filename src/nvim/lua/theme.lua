@@ -135,6 +135,34 @@ local groups = {
     Todo = { fg = c.green },
   },
 
+  -- Cokeline
+  cokeline = {
+    CokelineFill = { link = "TabLineFill" },
+
+    CokelineBuffer = { fg = c.muted, bg = c.gray[4] },
+    CokelineBufferFocused = { fg = c.fg, bg = c.bg },
+
+    CokelineSeparator = { fg = c.panel, bg = c.gray[4] },
+    CokelineSeparatorFocused = { fg = c.blue, bg = c.gray[4] },
+    CokelineSeparatorAfterFocused = { fg = c.bg, bg = c.bg },
+    CokelineSeparatorFirst = { fg = c.panel, bg = c.panel },
+
+    CokelinePick = { fg = c.blue },
+
+    CokelinePrefix = { link = "CokelineBuffer" },
+    CokelinePrefixFocused = { fg = c.muted, bg = c.bg },
+
+    CokelineClose = { link = "CokelineBuffer" },
+    CokelineCloseFocused = { fg = c.muted, bg = c.bg },
+    CokelineCloseHover = { fg = c.fg, bg = c.gray[4] },
+    CokelineCloseHoverFocused = { fg = c.fg, bg = c.bg },
+    CokelineModified = { fg = c.fg, bg = c.gray[4] },
+    CokelineModifiedFocused = { fg = c.fg, bg = c.bg },
+
+    CokelineTab = { fg = c.gray[9], bg = c.gray[4] },
+    CokelineTabActive = { fg = c.gray[12], bg = c.bg },
+  },
+
   -- Gitsigns
   gitsigns = {
     GitSignsAdd = { fg = c.green },
