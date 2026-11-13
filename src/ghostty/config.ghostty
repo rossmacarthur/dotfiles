@@ -12,7 +12,7 @@ split-divider-color = #00875f
 scrollback-limit = 1000000000
 window-decoration = none
 
-# unbind Cmd+t and Cmd+<n> so we can use them in Neovim
+# unbind these so we can use them in Neovim
 keybind = super+t=unbind
 keybind = super+digit_1=unbind
 keybind = super+1=unbind
@@ -22,3 +22,7 @@ keybind = super+digit_3=unbind
 keybind = super+3=unbind
 keybind = super+digit_4=unbind
 keybind = super+4=unbind
+keybind = super+digit_5=unbind
+keybind = super+5=unbind
+keybind = super+[=unbind
+keybind = super+]=unbind
