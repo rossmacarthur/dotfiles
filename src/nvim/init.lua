@@ -49,5 +49,6 @@ if have_lazy then
     spec = { { import = "plugins" } },
     change_detection = { notify = false },
     rocks = { enabled = false },
+    ui = { border = "rounded", backdrop = 100 },
   })
 end

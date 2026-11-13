@@ -71,13 +71,14 @@ local c = {
 local groups = {
   -- Editor
   editor = {
+    Bold = { bold = true },
     Normal = { fg = c.fg, bg = c.bg },
     NormalNC = { link = "Normal" },
     EndOfBuffer = { link = "Normal" },
     SignColumn = { link = "Normal" },
 
-    NormalFloat = { fg = c.fg, bg = c.panel },
-    FloatBorder = { fg = c.border, bg = c.panel },
+    NormalFloat = { link = "Normal" },
+    FloatBorder = { fg = c.cyan },
     WinSeparator = { fg = c.border },
 
     Cursor = { fg = c.bg, bg = c.cursor },
@@ -115,8 +116,8 @@ local groups = {
     PmenuSel = { fg = c.bright, bg = c.completion },
     PmenuSbar = { fg = c.cyan, bg = c.panel },
     PmenuThumb = { bg = c.muted },
-    PmenuBorder = { fg = c.cyan },
-    TelescopeBorder = { link = "PmenuBorder" },
+    PmenuBorder = { link = "FloatBorder" },
+    TelescopeBorder = { link = "FloatBorder" },
 
     LineNr = { fg = c.muted },
     FoldColumn = { fg = c.muted },
@@ -133,6 +134,49 @@ local groups = {
 
     Error = { fg = c.red },
     Todo = { fg = c.green },
+  },
+
+  -- Lazy
+  lazy = {
+    LazyH1 = { fg = c.bright, bg = c.selection, bold = true },
+    LazyH2 = { fg = c.blue, bold = true },
+    LazyButton = { fg = c.muted, bg = c.bg },
+    LazyButtonActive = { link = "LazyH1" },
+
+    LazyComment = { fg = c.muted },
+    LazyDimmed = { fg = c.muted },
+    LazyProp = { link = "LazyDimmed" },
+    LazyValue = { fg = c.fg },
+    LazySpecial = { fg = c.blue },
+
+    LazyDir = { fg = c.cyan },
+    LazyUrl = { fg = c.cyan, underline = true },
+    LazyLocal = { fg = c.teal },
+
+    LazyCommit = { fg = c.muted },
+    LazyCommitIssue = { fg = c.cyan },
+    LazyCommitType = { fg = c.blue },
+    LazyCommitScope = { fg = c.fg, italic = true },
+
+    LazyProgressDone = { fg = c.teal },
+    LazyProgressTodo = { fg = c.gray[5] },
+
+    LazyTaskOutput = { fg = c.fg },
+    LazyError = { fg = c.red },
+    LazyWarning = { fg = c.warning },
+    LazyInfo = { fg = c.blue },
+    LazyNoCond = { fg = c.muted },
+
+    LazyReasonRuntime = { fg = c.muted },
+    LazyReasonPlugin = { fg = c.blue },
+    LazyReasonEvent = { fg = c.purple },
+    LazyReasonKeys = { fg = c.cyan },
+    LazyReasonStart = { fg = c.teal },
+    LazyReasonSource = { fg = c.muted },
+    LazyReasonFt = { fg = c.cyan },
+    LazyReasonCmd = { fg = c.blue },
+    LazyReasonImport = { fg = c.muted },
+    LazyReasonRequire = { fg = c.muted },
   },
 
   -- Cokeline
@@ -181,14 +225,10 @@ local groups = {
 
   -- BlinkCmp
   completion = {
-    BlinkCmpMenuBorder = { link = "PmenuBorder" },
-
+    BlinkCmpMenuBorder = { link = "FloatBorder" },
     BlinkCmpDoc = { link = "BlinkCmpMenu" },
-    BlinkCmpDocBorder = { link = "BlinkCmpMenuBorder" },
-    BlinkCmpDocSeparator = { link = "BlinkCmpDoc" },
-
-    BlinkCmpSignatureHelp = { link = "BlinkCmpMenu" },
-    BlinkCmpSignatureHelpBorder = { link = "BlinkCmpMenuBorder" },
+    BlinkCmpDocBorder = { link = "FloatBorder" },
+    BlinkCmpSignatureHelpBorder = { link = "FloatBorder" },
 
     -- Icons
     BlinkCmpKind = { link = "NonText" },
