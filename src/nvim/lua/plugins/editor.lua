@@ -32,8 +32,35 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
-    ft = { "python", "rust", "typescript", "javascript", "vue" },
+    ft = { "lua", "python", "rust", "typescript", "javascript", "vue" },
     config = function()
+      vim.lsp.config("lua_ls", {
+        settings = {
+          Lua = {
+            runtime = { version = "LuaJIT" },
+            diagnostics = { globals = { "vim" } },
+            workspace = {
+              library = { vim.env.VIMRUNTIME },
+            },
+          },
+        },
+      })
+
+      vim.lsp.config("rust_analyzer", {
+        capabilities = {
+          -- Request full semantic tokens so format-string numbers are included
+          -- Treesitter does not highlight format strings for some reason
+          textDocument = { semanticTokens = { augmentsSyntaxTokens = false } },
+        },
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = { targetDir = true },
+            diagnostics = { experimental = { enable = true } },
+            imports = { granularity = { group = "item" } },
+          },
+        },
+      })
+
       local vue_server = vim.fn.resolve(vim.fn.exepath("vue-language-server"))
       vim.lsp.config("vtsls", {
         filetypes = { "typescript", "javascript", "vue" },
@@ -54,22 +81,9 @@ return {
           },
         },
       })
-      vim.lsp.config("rust_analyzer", {
-        capabilities = {
-          -- Request full semantic tokens so format-string numbers are included
-          -- Treesitter does not highlight format strings for some reason
-          textDocument = { semanticTokens = { augmentsSyntaxTokens = false } },
-        },
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = { targetDir = true },
-            diagnostics = { experimental = { enable = true } },
-            imports = { granularity = { group = "item" } },
-          },
-        },
-      })
+
       vim.lsp.document_color.enable(false)
-      vim.lsp.enable({ "ty", "rust_analyzer", "vtsls", "vue_ls" })
+      vim.lsp.enable({ "lua_ls", "ty", "rust_analyzer", "vtsls", "vue_ls" })
     end,
   },
   {
