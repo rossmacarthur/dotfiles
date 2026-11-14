@@ -36,7 +36,8 @@ local function parse(text, column)
   end
 end
 
--- Resolve a file or directory reference at a one-based terminal row and column using the shell's current directory
+-- Resolve a file or directory reference at a one-based terminal row and column
+-- using the shell's current directory and its ancestors
 function M.resolve(bufnr, job_id, row, column)
   local text = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1] or ""
   local reference = parse(text, column)
@@ -54,6 +55,15 @@ function M.resolve(bufnr, job_id, row, column)
       return nil, "Cannot determine terminal shell directory", vim.log.levels.WARN
     end
     path = vim.fs.joinpath(cwd, path)
+    if vim.fn.isdirectory(path) == 0 and vim.fn.filereadable(path) == 0 then
+      for parent in vim.fs.parents(cwd) do
+        local candidate = vim.fs.joinpath(parent, reference.path)
+        if vim.fn.isdirectory(candidate) == 1 or vim.fn.filereadable(candidate) == 1 then
+          path = candidate
+          break
+        end
+      end
+    end
   end
   path = vim.fs.normalize(path)
   reference.is_directory = vim.fn.isdirectory(path) == 1
