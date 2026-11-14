@@ -1,5 +1,7 @@
 #!/usr/bin/env zsh
 
+source "${${(%):-%x}:A:h}/plugins/evalcache.plugin.zsh"
+
 # Add a directory to the PATH environment variable.
 path_push() {
     if [ ! -d "$1" ]; then return; fi
@@ -15,6 +17,16 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+if [[ "$OSTYPE" == darwin* ]]; then
+    export LANG=${LANG:-en_US.UTF-8}
+fi
+
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    evalcache /opt/homebrew/bin/brew shellenv zsh
+    path=("${(@u)path}")
+    fpath=("${(@u)fpath}")
+fi
+
 # Default editor
 if [ -z "${EDITOR+x}" ]; then
     for editor in nvim vim vi; do
@@ -23,11 +35,6 @@ if [ -z "${EDITOR+x}" ]; then
             break
         fi
     done
-fi
-
-# Completions!
-if [ -n "${HOMEBREW_PREFIX+x}" ]; then
-    fpath=($HOMEBREW_PREFIX/share/zsh/site-functions $fpath)
 fi
 
 # Go env
@@ -44,10 +51,7 @@ export DOCKER_CLI_HINTS=false
 path_push "$HOME/.local/bin"
 path_push "$HOME/.cargo/bin"
 path_push "$GOPATH/bin"
-
-if (( $+commands[mise] )); then
-    eval "$(mise activate zsh)"
-fi
+path_push "${MISE_DATA_DIR:-$XDG_DATA_HOME/mise}/shims"
 
 # Source all the things ✨
-eval "$(sheldon source)"
+evalcache sheldon source
