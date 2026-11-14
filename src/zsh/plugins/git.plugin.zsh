@@ -1,10 +1,6 @@
 # From https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 # MIT License
 
-# Git version checking
-autoload -Uz is-at-least
-git_version="${${(As: :)$(git version 2>/dev/null)}[3]}"
-
 # Outputs the name of the current branch
 # Usage example: git pull origin $(git_current_branch)
 # Using '--quiet' with 'symbolic-ref' will not cause a fatal error (128) if
@@ -291,10 +287,7 @@ compdef _git gdnolock=git-diff
 
 alias gdt='git diff-tree --no-commit-id --name-only -r'
 alias gf='git fetch'
-# --jobs=<n> was added in git 2.8
-is-at-least 2.8 "$git_version" \
-  && alias gfa='git fetch --all --tags --prune --jobs=10' \
-  || alias gfa='git fetch --all --tags --prune'
+alias gfa='git fetch --all --tags --prune --jobs=10'
 alias gfo='git fetch origin'
 alias gg='git gui citool'
 alias gga='git gui citool --amend'
@@ -374,9 +367,7 @@ function ggf() {
 compdef _git ggf=git-checkout
 
 alias gpf!='git push --force'
-is-at-least 2.30 "$git_version" \
-  && alias gpf='git push --force-with-lease --force-if-includes' \
-  || alias gpf='git push --force-with-lease'
+alias gpf='git push --force-with-lease --force-if-includes'
 
 function ggfl() {
   [[ "$#" != 1 ]] && local b="$(git_current_branch)"
@@ -385,9 +376,7 @@ function ggfl() {
 compdef _git ggfl=git-checkout
 
 alias gpsup='git push --set-upstream origin $(git_current_branch)'
-is-at-least 2.30 "$git_version" \
-  && alias gpsupf='git push --set-upstream origin $(git_current_branch) --force-with-lease --force-if-includes' \
-  || alias gpsupf='git push --set-upstream origin $(git_current_branch) --force-with-lease'
+alias gpsupf='git push --set-upstream origin $(git_current_branch) --force-with-lease --force-if-includes'
 alias gpv='git push --verbose'
 alias gpoat='git push origin --all && git push origin --tags'
 alias gpod='git push origin --delete'
@@ -458,10 +447,7 @@ alias gstc='git stash clear'
 alias gstd='git stash drop'
 alias gstl='git stash list'
 alias gstp='git stash pop'
-# use the default stash push on git 2.13 and newer
-is-at-least 2.13 "$git_version" \
-  && alias gsta='git stash push' \
-  || alias gsta='git stash save'
+alias gsta='git stash push'
 alias gsts='git stash show --patch'
 alias gst='git status'
 alias gss='git status --short'
@@ -490,5 +476,3 @@ alias gstu='gsta --include-untracked'
 alias gtl='gtl(){ git tag --sort=-v:refname -n --list "${1}*" }; noglob gtl'
 alias gk='\gitk --all --branches &!'
 alias gke='\gitk --all $(git log --walk-reflogs --pretty=%h) &!'
-
-unset git_version
