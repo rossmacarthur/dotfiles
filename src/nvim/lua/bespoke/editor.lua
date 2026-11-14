@@ -223,6 +223,17 @@ function M.open_location(location)
 end
 
 function M.setup()
+  vim.api.nvim_create_user_command("BespokeSplit", function()
+    M.split()
+  end, {})
+  vim.api.nvim_create_user_command("BespokeFocusSplit", function(opts)
+    local number = tonumber(opts.args)
+    if not number or number < 1 or number % 1 ~= 0 then
+      error("Split number must be a positive integer")
+    end
+    M.focus_split(number)
+  end, { nargs = 1 })
+
   local group = vim.api.nvim_create_augroup("BespokeEditor", { clear = true })
   vim.api.nvim_create_autocmd("WinLeave", {
     group = group,

@@ -153,6 +153,14 @@ function M.open_reference(from_mouse)
   editor.open_location(reference)
 end
 
+function M.click_reference()
+  local mouse = vim.fn.getmousepos()
+  if M.owns_window(mouse.winid) then
+    return "<Cmd>BespokeOpenReference!<CR>"
+  end
+  return "<C-LeftMouse>"
+end
+
 function M.setup(opts)
   opts = opts or {}
   env = vim.empty_dict()
@@ -160,6 +168,12 @@ function M.setup(opts)
     env[name] = value
   end
   on_create = opts.on_create
+
+  vim.api.nvim_create_user_command("BespokeTerminalToggle", M.toggle, {})
+  vim.api.nvim_create_user_command("BespokeFocusToggle", M.toggle_focus, {})
+  vim.api.nvim_create_user_command("BespokeOpenReference", function(command)
+    M.open_reference(command.bang)
+  end, { bang = true })
 
   local group = vim.api.nvim_create_augroup("BespokeTerminal", { clear = true })
   vim.api.nvim_create_autocmd("WinLeave", {
