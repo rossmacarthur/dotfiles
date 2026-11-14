@@ -7,15 +7,22 @@ shell = "zsh"
 [templates]
 defer = '''
     {{- hooks?.pre | nl }}
-    {%- for file in files %}zsh-defer source "{{ file }}"{{ "\n" }}
+    {%- for file in files %}zsh-defer -mp source "{{ file }}"{{ "\n" }}
     {%- endfor %}
     {{- hooks?.post | nl }}'''
+completion-fpath = '''
+{%- for file in files %}
+fpath+=("${${:-"{{ file }}"}:h}")
+{%- endfor %}
+'''
 
 # Completions
 # -----------
 
 [plugins.docker-zsh-completion]
 github = "greymd/docker-zsh-completion"
+use = ["repos/**/completion/zsh/_*"]
+apply = ["completion-fpath"]
 
 [plugins.rust-zsh-completions]
 github = "ryutok/rust-zsh-completions"
@@ -31,11 +38,10 @@ local = "~/.zsh/plugins"
 use = ["history.plugin.zsh"]
 
 [plugins.starship]
-inline = 'eval "$(starship init zsh)"'
-
-[plugins.wd]
-github = "mfaerevaag/wd"
-apply = ["fpath", "source"]
+inline = '''
+evalcache starship init zsh
+RPROMPT=
+'''
 
 [plugins.zsh-defer]
 github = "romkatv/zsh-defer"
@@ -43,8 +49,16 @@ github = "romkatv/zsh-defer"
 # Deferred plugins
 # ----------------
 
+[plugins.wd]
+github = "mfaerevaag/wd"
+apply = ["fpath", "defer"]
+
 [plugins.autoenv]
 github = "zpm-zsh/autoenv"
+apply = ["defer"]
+
+[plugins.compinit]
+local = "~/.zsh/plugins"
 apply = ["defer"]
 
 [plugins.local-1]
@@ -61,8 +75,4 @@ hooks.pre = "export YSU_MODE=ALL"
 github = "zsh-users/zsh-autosuggestions"
 use = ["{{ name }}.zsh"]
 apply = ["defer"]
-
-# This works best if it is placed last.
-[plugins.compinit]
-local = "~/.zsh/plugins"
-apply = ["defer"]
+hooks.post = "zsh-defer -mp _zsh_autosuggest_start"
