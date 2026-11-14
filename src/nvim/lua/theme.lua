@@ -34,17 +34,12 @@ local c = {
   -- Editor UI
   line = gray[2],
   selection = "#264F78",
-  cursor = "#AEAFAD",
   search = "#613315",
   inc_search = "#515C6A",
   match_paren = "#3A3D41",
 
-  -- Statusline & completion
-  statusline = "#007ACC",
+  -- Completion
   completion = "#04395E",
-
-  -- Diagnostics
-  warning = "#CCA700",
 
   -- Diff
   git_add = "#414A2F",
@@ -52,7 +47,7 @@ local c = {
   git_add_br = "#4B5A2A",
   git_del_br = "#6F1313",
 
-  -- Syntax
+  -- Colors
   blue = "#569CD6",
   cyan = "#9CDCFE",
   teal = "#4EC9B0",
@@ -61,11 +56,10 @@ local c = {
   orange = "#CE9178",
   green = "#6A9955",
   red = "#F44747",
-
-  number = "#B5CEA8",
-  constant = "#4FC1FF",
-  escape = "#D7BA7D",
-  regexp = "#D16969",
+  gold = "#D7BA7D",
+  rose = "#D16969",
+  sage = "#B5CEA8",
+  sky = "#4FC1FF",
 }
 
 local groups = {
@@ -81,7 +75,7 @@ local groups = {
     FloatBorder = { fg = c.cyan },
     WinSeparator = { fg = c.border },
 
-    Cursor = { fg = c.bg, bg = c.cursor },
+    Cursor = { fg = c.bg, bg = c.fg },
     CursorLine = { bg = c.line },
     CursorLineNr = { bg = c.line },
     CursorColumn = { link = "CursorLine" },
@@ -99,8 +93,8 @@ local groups = {
     IblIndent = { fg = c.border },
     IblScope = { fg = c.border },
 
-    StatusLine = { fg = c.bright, bg = c.statusline },
-    StatusLineNC = { fg = c.fg, bg = c.muted },
+    StatusLine = { fg = c.fg, bg = c.panel },
+    StatusLineNC = { link = "StatusLine" },
 
     TabLine = { fg = c.fg, bg = c.panel },
     TabLineFill = { link = "TabLine" },
@@ -129,7 +123,7 @@ local groups = {
 
     Question = { fg = c.blue },
     MoreMsg = { fg = c.blue },
-    WarningMsg = { fg = c.warning },
+    WarningMsg = { fg = c.gold },
     ErrorMsg = { fg = c.red },
 
     Error = { fg = c.red },
@@ -163,7 +157,7 @@ local groups = {
 
     LazyTaskOutput = { fg = c.fg },
     LazyError = { fg = c.red },
-    LazyWarning = { fg = c.warning },
+    LazyWarning = { fg = c.gold },
     LazyInfo = { fg = c.blue },
     LazyNoCond = { fg = c.muted },
 
@@ -207,11 +201,48 @@ local groups = {
     CokelineTabActive = { fg = c.gray[12], bg = c.bg },
   },
 
+  -- Statusline
+  statusline = {
+    StatusLineModeNormal = { fg = c.bg, bg = c.blue, bold = true },
+    StatusLineModeInsert = { fg = c.bg, bg = c.teal, bold = true },
+    StatusLineModeVisual = { fg = c.bg, bg = c.purple, bold = true },
+    StatusLineModeSelect = { link = "StatusLineModeVisual" },
+    StatusLineModeReplace = { fg = c.bg, bg = c.orange, bold = true },
+    StatusLineModeCommand = { fg = c.bg, bg = c.yellow, bold = true },
+    StatusLineModePrompt = { link = "StatusLineModeCommand" },
+    StatusLineModeTerminal = { link = "StatusLineModeInsert" },
+    StatusLineModeShell = { link = "StatusLineModeTerminal" },
+
+    StatusLineModeNormalArrow = { fg = c.blue, bg = c.panel },
+    StatusLineModeInsertArrow = { fg = c.teal, bg = c.panel },
+    StatusLineModeVisualArrow = { fg = c.purple, bg = c.panel },
+    StatusLineModeSelectArrow = { link = "StatusLineModeVisualArrow" },
+    StatusLineModeReplaceArrow = { fg = c.orange, bg = c.panel },
+    StatusLineModeCommandArrow = { fg = c.yellow, bg = c.panel },
+    StatusLineModePromptArrow = { link = "StatusLineModeCommandArrow" },
+    StatusLineModeTerminalArrow = { link = "StatusLineModeInsertArrow" },
+    StatusLineModeShellArrow = { link = "StatusLineModeTerminalArrow" },
+
+    StatusLineDirectory = { fg = c.muted },
+    StatusLineFilename = { fg = c.fg },
+    StatusLineBranch = { fg = c.muted },
+    StatusLineAdded = { link = "GitSignsAdd" },
+    StatusLineRemoved = { link = "GitSignsDelete" },
+    StatusLineChanged = { link = "GitSignsChange" },
+    StatusLineRecording = { fg = c.orange, bold = true },
+    StatusLineError = { link = "DiagnosticSignError" },
+    StatusLineWarning = { link = "DiagnosticSignWarn" },
+    StatusLineHint = { link = "DiagnosticSignHint" },
+    StatusLineHover = { bg = c.gray[4] },
+    StatusLinePosition = { fg = c.muted },
+    StatusLineSelection = { fg = c.muted },
+  },
+
   -- Gitsigns
   gitsigns = {
     GitSignsAdd = { fg = c.green },
-    GitSignsChange = { fg = c.blue },
-    GitSignsDelete = { fg = c.red },
+    GitSignsChange = { fg = c.gold },
+    GitSignsDelete = { fg = c.rose },
   },
 
   -- CodeDiff
@@ -260,9 +291,9 @@ local groups = {
     Comment = { fg = c.green },
     String = { fg = c.orange },
     Character = { fg = c.orange },
-    Number = { fg = c.number },
+    Number = { fg = c.sage },
     Boolean = { fg = c.blue },
-    Constant = { fg = c.constant },
+    Constant = { fg = c.sky },
     Identifier = { fg = c.cyan },
     Function = { fg = c.yellow },
 
@@ -283,8 +314,8 @@ local groups = {
     Operator = { fg = c.fg },
     Delimiter = { fg = c.fg },
 
-    Special = { fg = c.escape },
-    SpecialChar = { fg = c.escape },
+    Special = { fg = c.gold },
+    SpecialChar = { fg = c.gold },
 
     Underlined = { underline = true },
     Ignore = {},
@@ -302,7 +333,7 @@ local groups = {
     ["@character.special.vue"] = { link = "Delimiter" },
 
     ["@string"] = { link = "String" },
-    ["@string.regexp"] = { fg = c.regexp },
+    ["@string.regexp"] = { fg = c.rose },
     ["@string.escape"] = { link = "Special" },
     ["@string.documentation"] = { link = "Comment" },
     ["@string.prefix"] = { link = "Keyword" },
@@ -418,6 +449,10 @@ local groups = {
 
     ["@lsp.mod.mutable.rust"] = {},
 
+    ["DiagnosticError"] = { fg = c.rose },
+    ["DiagnosticWarn"] = { fg = c.gold },
+    ["DiagnosticHint"] = { fg = c.blue },
+    ["DiagnosticInfo"] = { fg = c.muted },
     ["DiagnosticUnnecessary"] = { dim = true },
     ["DiagnosticUnderlineHint"] = {},
     ["DiagnosticUnderlineWarn"] = {},

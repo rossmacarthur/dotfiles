@@ -26,6 +26,21 @@ return {
       pickers = { find_files = { hidden = true } },
     },
     config = function(_, opts)
+      local mouse_click = {
+        function(prompt_bufnr)
+          local mouse = vim.fn.getmousepos()
+          if vim.o.laststatus == 3 and mouse.screenrow == vim.o.lines - vim.o.cmdheight then
+            return "<LeftMouse>"
+          end
+          return require("telescope.actions").mouse_click(prompt_bufnr)
+        end,
+        type = "action",
+        opts = { expr = true },
+      }
+      opts.defaults.mappings = {
+        i = { ["<LeftMouse>"] = mouse_click },
+        n = { ["<LeftMouse>"] = mouse_click },
+      }
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
     end,
@@ -44,6 +59,7 @@ return {
     dir = vim.fs.normalize(vim.fs.dirname(debug.getinfo(1, "S").source:sub(2)) .. "/../.."),
     main = "bespoke",
     lazy = false,
+    dependencies = { "rebelot/heirline.nvim", "nvim-tree/nvim-web-devicons" },
     opts = {
       terminal = {
         env = {

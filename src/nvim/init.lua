@@ -11,6 +11,7 @@ vim.opt.undolevels = 1000
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
 vim.opt.showcmdloc = "statusline"
+vim.opt.showmode = false
 
 vim.opt.cursorline = true
 vim.opt.number = true

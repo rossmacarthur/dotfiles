@@ -60,8 +60,8 @@ local function create_window(buf, config)
   return win
 end
 
--- Return an editor window in this tab; only creating one changes focus
-function M.ensure_window()
+-- Find an existing editor window in this tab without changing focus
+function M.find_window()
   local win = vim.api.nvim_get_current_win()
   if is_window(win) then
     return win
@@ -77,7 +77,16 @@ function M.ensure_window()
       return candidate
     end
   end
+end
 
+-- Return an editor window in this tab; only creating one changes focus
+function M.ensure_window()
+  local win = M.find_window()
+  if win then
+    return win
+  end
+
+  local destination = destinations[vim.api.nvim_get_current_tabpage()]
   local buf = choose_buffer(destination and destination.buf)
   return create_window(buf, { split = "left", win = -1 })
 end
