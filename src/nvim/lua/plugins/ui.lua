@@ -16,6 +16,9 @@ return {
     opts = {
       defaults = {
         file_ignore_patterns = { "^%.git/" },
+        sorting_strategy = "ascending",
+        layout_strategy = "horizontal",
+        layout_config = { prompt_position = "top" },
         get_selection_window = function()
           if vim.bo.buftype == "terminal" then
             return require("bespoke.editor").ensure_window()
