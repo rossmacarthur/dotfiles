@@ -120,6 +120,8 @@ sudo scutil --set HostName lt-ross
 
 ### Fonts
 
-**Fira Code**
+**FiraCode Nerd Font**
 
-Download from https://github.com/tonsky/FiraCode/releases/latest
+```sh
+brew install --cask font-fira-code font-fira-code-nerd-font
+```
