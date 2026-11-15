@@ -116,9 +116,7 @@ local basename = {
 local filename = {
   init = function(self)
     local name = vim.api.nvim_buf_get_name(self.bufnr)
-    if vim.bo[self.bufnr].buftype == "terminal" then
-      self.directory, self.basename = "", "[Terminal]"
-    elseif name == "" then
+    if name == "" then
       self.directory, self.basename = "", "[No Name]"
     else
       local prefix = vim.fn.getcwd(self.winid):gsub("/+$", "") .. "/"
@@ -141,6 +139,34 @@ local filename = {
   { provider = " " },
 }
 
+local terminal = {
+  condition = function(self)
+    return self.is_terminal
+  end,
+  init = function(self)
+    if not self.terminal then
+      self.directory, self.basename = "", "[Terminal]"
+      return
+    end
+    local path = vim.fn.fnamemodify(self.terminal.cwd, ":~")
+    self.directory, self.basename = path:match("^(.*[/])([^/]+)$")
+    if not self.basename then
+      self.directory, self.basename = "", path
+    end
+  end,
+  { provider = "   ", hl = "StatusLineTerminalIcon" },
+  {
+    provider = function(self)
+      return self.terminal and (escape(self.terminal.command) .. " ") or ""
+    end,
+    hl = "StatusLineFilename",
+  },
+  directory,
+  { provider = "%<" },
+  basename,
+  { provider = " " },
+}
+
 local function git_count(kind, prefix, highlight)
   return {
     provider = function(self)
@@ -160,10 +186,17 @@ local branch = {
     self.git_status = vim.b[self.bufnr].gitsigns_status_dict or {}
   end,
   hl = "StatusLineBranch",
+  { provider = "  ", hl = "StatusLineBranchIcon" },
   {
     provider = function(self)
-      return "  " .. escape(vim.b[self.bufnr].gitsigns_head)
+      return escape(vim.b[self.bufnr].gitsigns_head)
     end,
+  },
+  {
+    provider = function(self)
+      return require("bespoke.statusline.git").is_dirty(self.git_status) and "*" or ""
+    end,
+    hl = "StatusLineDirty",
   },
   git_count("added", " +", "StatusLineAdded"),
   git_count("removed", " -", "StatusLineRemoved"),
@@ -198,6 +231,9 @@ local function diagnostic(severity, icon, highlight)
 end
 
 local diagnostics = {
+  condition = function(self)
+    return not self.is_terminal
+  end,
   init = function(self)
     self.counts = vim.diagnostic.count(self.bufnr)
   end,
@@ -207,6 +243,9 @@ local diagnostics = {
 }
 
 local location = {
+  condition = function(self)
+    return not self.is_terminal or vim.fn.mode() ~= "t"
+  end,
   init = function(self)
     local current_mode = vim.fn.mode()
     local visual = current_mode == "v" or current_mode == "V" or current_mode == "\22"
@@ -234,11 +273,12 @@ return {
       self.winid = require("bespoke.editor").find_window() or self.winid
     end
     self.bufnr = vim.api.nvim_win_get_buf(self.winid)
+    self.is_terminal = vim.bo[self.bufnr].buftype == "terminal"
+    self.terminal = self.is_terminal and require("bespoke.terminal").get(self.bufnr) or nil
   end,
   hl = "StatusLine",
   mode,
-  filename,
-  branch,
+  { fallthrough = false, terminal, { filename, branch } },
   recording,
   { provider = "%=" },
   diagnostics,

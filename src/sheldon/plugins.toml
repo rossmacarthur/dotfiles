@@ -37,6 +37,10 @@ github = "zsh-users/zsh-completions"
 local = "~/.zsh/plugins"
 use = ["history.plugin.zsh"]
 
+[plugins.nvim]
+local = "~/.zsh/plugins"
+use = ["nvim.plugin.zsh"]
+
 [plugins.starship]
 inline = '''
 evalcache starship init zsh

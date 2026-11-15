@@ -1,28 +1,5 @@
 local M = {}
 
--- Find the running shell's current directory using procfs or lsof
-local function shell_directory(job_id)
-  if not job_id or vim.fn.jobwait({ job_id }, 0)[1] ~= -1 then
-    return
-  end
-  local pid = vim.fn.jobpid(job_id)
-  local cwd = vim.uv.fs_readlink("/proc/" .. pid .. "/cwd")
-  if cwd then
-    return cwd
-  end
-  if vim.fn.executable("lsof") == 0 then
-    return
-  end
-  local result = vim.system({ "lsof", "-a", "-p", tostring(pid), "-d", "cwd", "-Fn" }, { text = true }):wait(1000)
-  if result.code == 0 then
-    for line in result.stdout:gmatch("[^\n]+") do
-      if line:sub(1, 1) == "n" then
-        return line:sub(2)
-      end
-    end
-  end
-end
-
 -- Select the path[:line[:column]] reference at the given position, excluding paths containing whitespace
 local function parse(text, column)
   -- The empty captures mark the bounds so we select the reference under the cursor
@@ -36,10 +13,9 @@ local function parse(text, column)
   end
 end
 
--- Resolve a file or directory reference at a one-based terminal row and column
+-- Resolve a file or directory reference at a one-based column in terminal text
 -- using the shell's current directory and its ancestors
-function M.resolve(bufnr, job_id, row, column)
-  local text = vim.api.nvim_buf_get_lines(bufnr, row - 1, row, false)[1] or ""
+function M.resolve(text, cwd, column)
   local reference = parse(text, column)
   if not reference then
     return nil, "No path reference under cursor", vim.log.levels.INFO
@@ -50,7 +26,6 @@ function M.resolve(bufnr, job_id, row, column)
     path = vim.uv.os_homedir() .. path:sub(2)
   end
   if path:sub(1, 1) ~= "/" then
-    local cwd = shell_directory(job_id)
     if not cwd then
       return nil, "Cannot determine terminal shell directory", vim.log.levels.WARN
     end

@@ -27,6 +27,9 @@ local function show(tab, state)
     old_buf = state.bufnr
     state.bufnr = vim.api.nvim_create_buf(false, true)
     vim.bo[state.bufnr].bufhidden = "hide"
+    state.command = vim.fn.fnamemodify(vim.o.shell, ":t")
+    state.cwd = cwd
+    state.exit_status = nil
   end
 
   if win then
@@ -47,8 +50,17 @@ local function show(tab, state)
     if old_buf and vim.api.nvim_buf_is_valid(old_buf) then
       vim.api.nvim_buf_delete(old_buf, { force = true })
     end
-    -- Keep the job PID attached to the interactive shell so file references follow its cwd
-    state.job_id = vim.fn.jobstart("exec " .. vim.o.shell, { term = true, cwd = cwd, env = env })
+    local bufnr = state.bufnr
+    state.job_id = vim.fn.jobstart("exec " .. vim.o.shell, {
+      term = true,
+      cwd = cwd,
+      env = env,
+      on_exit = function(job_id, status)
+        if tabs[tab] == state and state.bufnr == bufnr and state.job_id == job_id then
+          state.exit_status = status
+        end
+      end,
+    })
     if state.job_id <= 0 then
       return vim.notify("Could not start terminal shell: " .. vim.o.shell, vim.log.levels.ERROR)
     end
@@ -130,6 +142,17 @@ function M.owns_window(win)
   return state ~= nil and vim.api.nvim_win_get_buf(win) == state.bufnr
 end
 
+function M.get(bufnr)
+  if not vim.api.nvim_buf_is_valid(bufnr) then
+    return
+  end
+  for _, state in pairs(tabs) do
+    if state.bufnr == bufnr then
+      return state
+    end
+  end
+end
+
 -- Open the terminal file or directory reference under the cursor or mouse
 function M.open_reference(from_mouse)
   local state = tabs[vim.api.nvim_get_current_tabpage()]
@@ -146,7 +169,8 @@ function M.open_reference(from_mouse)
     return
   end
 
-  local reference, err, level = references.resolve(state.bufnr, state.job_id, row, column)
+  local text = vim.api.nvim_buf_get_lines(state.bufnr, row - 1, row, false)[1] or ""
+  local reference, err, level = references.resolve(text, state.cwd, column)
   if not reference then
     return vim.notify(err, level)
   end
@@ -159,6 +183,27 @@ function M.click_reference()
     return "<Cmd>BespokeOpenReference!<CR>"
   end
   return "<C-LeftMouse>"
+end
+
+local function update_directory(event)
+  local state = M.get(event.buf)
+  local sequence = type(event.data) == "table" and event.data.sequence
+  if not state or state.exit_status ~= nil or type(sequence) ~= "string" then
+    return
+  end
+
+  local host, path = sequence:match("^\27%]7;file://([^/]*)(/.*)$")
+  if not path or (host ~= "" and host ~= "localhost" and host ~= vim.uv.os_gethostname()) then
+    return
+  end
+  local directory = vim.uri_to_fname("file://" .. path)
+  local stat = vim.uv.fs_stat(directory)
+  if not stat or stat.type ~= "directory" or directory == state.cwd then
+    return
+  end
+
+  state.cwd = directory
+  vim.api.nvim_exec_autocmds("User", { pattern = "BespokeTerminalUpdate", modeline = false })
 end
 
 function M.setup(opts)
@@ -176,6 +221,10 @@ function M.setup(opts)
   end, { bang = true })
 
   local group = vim.api.nvim_create_augroup("BespokeTerminal", { clear = true })
+  vim.api.nvim_create_autocmd("TermRequest", {
+    group = group,
+    callback = update_directory,
+  })
   vim.api.nvim_create_autocmd("WinLeave", {
     group = group,
     callback = function()

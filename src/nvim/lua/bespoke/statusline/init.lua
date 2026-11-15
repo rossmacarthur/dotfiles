@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  local git = require("bespoke.statusline.git")
   local hover = require("bespoke.statusline.hover")
   require("heirline").setup({ statusline = require("bespoke.statusline.components") })
 
@@ -9,6 +10,18 @@ function M.setup()
     hover.update()
     vim.cmd.redrawstatus()
   end)
+  local function refresh_git(event)
+    local bufnr = type(event.data) == "table" and event.data.buffer or event.buf
+    git.refresh(bufnr, redraw)
+    local win = require("bespoke.editor").find_window()
+    if win then
+      local editor_buf = vim.api.nvim_win_get_buf(win)
+      if editor_buf ~= bufnr then
+        git.refresh(editor_buf, redraw)
+      end
+    end
+  end
+
   local mouse_move = vim.keycode("<MouseMove>")
   local update_hover = vim.schedule_wrap(function()
     if hover.update() then
@@ -37,7 +50,21 @@ function M.setup()
   vim.api.nvim_create_autocmd("User", {
     group = group,
     pattern = "GitSignsUpdate",
-    callback = redraw,
+    callback = function(event)
+      refresh_git(event)
+      redraw()
+    end,
+  })
+  vim.api.nvim_create_autocmd({
+    "BufEnter",
+    "BufWritePost",
+    "FocusGained",
+    "TermLeave",
+    "TermClose",
+    "ShellCmdPost",
+  }, {
+    group = group,
+    callback = refresh_git,
   })
   vim.api.nvim_create_autocmd("ColorScheme", {
     group = group,
@@ -46,6 +73,12 @@ function M.setup()
       redraw()
     end,
   })
+  vim.api.nvim_create_autocmd("User", {
+    group = group,
+    pattern = "BespokeTerminalUpdate",
+    callback = redraw,
+  })
+  git.refresh(vim.api.nvim_get_current_buf(), redraw)
 end
 
 return M
