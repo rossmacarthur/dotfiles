@@ -89,7 +89,7 @@ return {
   {
     "stevearc/conform.nvim",
     event = { "BufWritePre" },
-    cmd = { "ConformInfo" },
+    cmd = { "ConformInfo", "Wraw" },
     keys = {
       {
         "<leader>cf",
@@ -105,12 +105,34 @@ return {
     },
     opts = {
       formatters_by_ft = {
+        ["_"] = { "trim_whitespace", "trim_newlines" },
         lua = { "stylua" },
         python = { "ruff_fix", "ruff_format" },
         rust = { "rustfmt" },
       },
-      format_on_save = { timeout_ms = 500 },
+      format_on_save = function(bufnr)
+        if vim.b[bufnr].disable_autoformat then
+          return
+        end
+        return { timeout_ms = 500 }
+      end,
     },
+    config = function(_, opts)
+      require("conform").setup(opts)
+
+      vim.api.nvim_create_user_command("Wraw", function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local previous = vim.b[bufnr].disable_autoformat
+
+        vim.b[bufnr].disable_autoformat = true
+        local ok, err = pcall(vim.cmd.write)
+        vim.b[bufnr].disable_autoformat = previous
+
+        if not ok then
+          error(err)
+        end
+      end, { desc = "Write without Conform formatting" })
+    end,
   },
   {
     "saghen/blink.cmp",
