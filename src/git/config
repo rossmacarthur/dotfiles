@@ -15,7 +15,7 @@
 	cmd = code -n --wait --diff $LOCAL $REMOTE
 
 [difftool "codediff"]
-	cmd = nvim \"$LOCAL\" \"$REMOTE\" +\"CodeDiff --exit-on-close file $LOCAL $REMOTE\"
+	cmd = nvim -c 'lua vim.cmd.CodeDiff({ args = { \"--exit-on-close\", \"file\", vim.fn.argv(0), vim.fn.argv(1) } })' -- \"$LOCAL\" \"$REMOTE\"
 
 [fetch]
 	prune = true
@@ -23,14 +23,11 @@
 [init]
 	defaultBranch = trunk
 
-[log]
-	showSignature = true
-
 [merge]
 	tool = codediff
 
 [mergetool "codediff"]
-	cmd = nvim \"$MERGED\" -c \"CodeDiff --exit-on-close merge \\\"$MERGED\\\"\"
+	cmd = nvim -c 'lua vim.cmd.CodeDiff({ args = { \"--exit-on-close\", \"merge\", vim.fn.argv(0) } })' -- \"$MERGED\"
 
 [pull]
 	ff = only
