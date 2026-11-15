@@ -78,8 +78,6 @@ symlink "tmux/tmux.conf"          ".config/tmux/tmux.conf"
 symlink "vim/vimrc"               ".vimrc"
 symlink "vscode/settings.json"    "Library/Application Support/Code/User/settings.json"
 symlink "vscode/keybindings.json" "Library/Application Support/Code/User/keybindings.json"
-symlink "zed/keymap.json"         ".config/zed/keymap.json"
-symlink "zed/settings.json"       ".config/zed/settings.json"
 
 subheading "Zsh"
 symlink "zsh/zshrc"          ".zshrc"
