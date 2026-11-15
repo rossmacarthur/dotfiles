@@ -26,11 +26,14 @@ vim.opt.smartindent = true
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
+vim.opt.fixendofline = true
+vim.opt.endofline = true
 
 vim.opt.mouse = "a"
 vim.opt.mousemoveevent = true
 
 vim.cmd.colorscheme("darkport")
+require("no_eol")
 
 -- Keybindings
 vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>")

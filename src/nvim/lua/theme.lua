@@ -92,6 +92,7 @@ local groups = {
     Folded = { fg = c.muted, bg = c.panel },
     IblIndent = { fg = c.border },
     IblScope = { fg = c.border },
+    NoEol = { fg = c.rose },
 
     StatusLine = { fg = c.fg, bg = c.panel },
     StatusLineNC = { link = "StatusLine" },
