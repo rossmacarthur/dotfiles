@@ -6,6 +6,10 @@ return {
     opts = {},
   },
   {
+    "axkirillov/hbac.nvim",
+    config = true,
+  },
+  {
     "nvim-telescope/telescope.nvim",
     version = "*",
     cmd = "Telescope",
