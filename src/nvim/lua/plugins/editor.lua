@@ -13,6 +13,21 @@ return {
     config = true,
   },
   {
+    "kylechui/nvim-surround",
+    version = "^4",
+    event = "VeryLazy",
+    init = function()
+      vim.g.nvim_surround_no_normal_mappings = true
+    end,
+    keys = {
+      { "s", "<Plug>(nvim-surround-normal)", desc = "Surround motion" },
+      { "ss", "<Plug>(nvim-surround-normal-cur)", desc = "Surround current line" },
+      { "ds", "<Plug>(nvim-surround-delete)", desc = "Delete surrounding" },
+      { "cs", "<Plug>(nvim-surround-change)", desc = "Change surrounding" },
+      { "cS", "<Plug>(nvim-surround-change-line)", desc = "Change surrounding onto new lines" },
+    },
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     lazy = false,
     build = ":TSUpdate",
