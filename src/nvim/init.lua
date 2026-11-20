@@ -33,7 +33,9 @@ vim.opt.mouse = "a"
 vim.opt.mousemoveevent = true
 
 vim.cmd.colorscheme("darkport")
+
 require("no_eol")
+require("readonly_deps")
 
 -- Keybindings
 vim.keymap.set({ "n", "x" }, "<Space>", "<Nop>")
