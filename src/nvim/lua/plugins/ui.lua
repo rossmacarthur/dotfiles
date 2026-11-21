@@ -33,32 +33,43 @@ return {
       pickers = { find_files = { hidden = true } },
     },
     config = function(_, opts)
+      local actions = require("telescope.actions")
       local mouse_click = {
         function(prompt_bufnr)
           local mouse = vim.fn.getmousepos()
           if vim.o.laststatus == 3 and mouse.screenrow == vim.o.lines - vim.o.cmdheight then
             return "<LeftMouse>"
           end
-          return require("telescope.actions").mouse_click(prompt_bufnr)
+          return actions.mouse_click(prompt_bufnr)
         end,
         type = "action",
         opts = { expr = true },
       }
       opts.defaults.mappings = {
-        i = { ["<LeftMouse>"] = mouse_click },
-        n = { ["<LeftMouse>"] = mouse_click },
+        i = {
+          ["<LeftMouse>"] = mouse_click,
+          ["<C-s>"] = actions.send_to_qflist + actions.open_qflist,
+        },
+        n = {
+          ["<LeftMouse>"] = mouse_click,
+          ["<C-s>"] = actions.send_to_qflist + actions.open_qflist,
+        },
       }
       require("telescope").setup(opts)
       require("telescope").load_extension("fzf")
     end,
     keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Telescope find files" },
-      { "<leader>fv", "<cmd>Telescope git_files<cr>", desc = "Telescope find Git files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Telescope live grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Telescope buffers" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Telescope help tags" },
-      { "<leader>fs", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Telescope find in buffer" },
-      { "grr", "<cmd>Telescope lsp_references<cr>", desc = "Telescope find function references" },
+      { "<leader>bb", "<cmd>Telescope buffers<cr>", desc = "Browse buffers" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+      { "<leader>fv", "<cmd>Telescope git_files<cr>", desc = "Find Git files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+      { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find help tags" },
+      { "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Find in buffer" },
+      { "<leader>fs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Find symbols" },
+      { "<leader>fr", "<cmd>Telescope lsp_references<cr>", desc = "Find references" },
+      { "<leader>fd", "<cmd>Telescope lsp_definitions<cr>", desc = "Find definition" },
+      { "<leader>fi", "<cmd>Telescope lsp_implementations<cr>", desc = "Find implementation" },
+      { "<leader>ft", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Find type definition" },
     },
   },
   {

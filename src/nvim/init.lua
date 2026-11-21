@@ -16,6 +16,7 @@ vim.opt.showmode = false
 vim.opt.cursorline = true
 vim.opt.number = true
 vim.opt.pumborder = "rounded"
+vim.opt.winborder = "rounded"
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
@@ -47,6 +48,15 @@ vim.keymap.set("x", "<D-c>", '"+y', { desc = "Copy to OS clipboard" })
 vim.filetype.add({
   extension = { tac = "python" }, -- Twisted
   pattern = { [".*%.arc.*"] = "json" }, -- arcanist
+})
+
+-- Show float when jumping to a diagnostics
+vim.diagnostic.config({
+  jump = {
+    on_jump = function(_, bufnr)
+      vim.diagnostic.open_float({ bufnr = bufnr, scope = "cursor", focus = false })
+    end,
+  },
 })
 
 -- Load plugins

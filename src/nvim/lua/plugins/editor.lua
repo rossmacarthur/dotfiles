@@ -97,6 +97,34 @@ return {
         },
       })
 
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("LspKeymaps", { clear = true }),
+        callback = function(args)
+          vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, {
+            buffer = args.buf,
+            desc = "LSP Code Action",
+          })
+          vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, {
+            buffer = args.buf,
+            desc = "Code diagnostic",
+          })
+          vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, {
+            buffer = args.buf,
+            desc = "Code rename",
+          })
+
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client:supports_method("textDocument/inlayHint", args.buf) then
+            vim.keymap.set("n", "<leader>ch", function()
+              local filter = { bufnr = args.buf }
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled(filter), filter)
+            end, {
+              buffer = args.buf,
+              desc = "Toggle code hints",
+            })
+          end
+        end,
+      })
       vim.lsp.document_color.enable(false)
       vim.lsp.enable({ "lua_ls", "ty", "rust_analyzer", "vtsls", "vue_ls" })
     end,
