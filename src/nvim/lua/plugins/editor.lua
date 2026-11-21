@@ -183,7 +183,28 @@ return {
     event = { "InsertEnter", "CmdlineEnter" },
     opts = {
       enabled = function()
-        return vim.tbl_contains({ "lua", "python", "rust" }, vim.bo.filetype)
+        if not vim.tbl_contains({ "lua", "python", "rust" }, vim.bo.filetype) then
+          return false
+        end
+
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local ok, node = pcall(vim.treesitter.get_node, {
+          pos = { row - 1, math.max(col - 1, 0) },
+          ignore_injections = true,
+        })
+
+        while ok and node do
+          local node_type = node:type()
+          if node_type:find("comment", 1, true) or (vim.bo.filetype == "python" and node_type == "string") then
+            return false
+          end
+          if vim.bo.filetype == "python" and node_type == "interpolation" then
+            return true
+          end
+          node = node:parent()
+        end
+
+        return true
       end,
 
       keymap = {
@@ -191,11 +212,26 @@ return {
         ["<C-space>"] = false,
       },
 
+      fuzzy = {
+        max_typos = 0,
+      },
+
+      sources = {
+        min_keyword_length = 2,
+      },
+
       completion = {
         menu = {
+          auto_show_delay_ms = 0,
           border = "rounded",
           max_height = 8,
           draw = {
+            columns = {
+              { "kind_icon" },
+              { "label", "label_description", gap = 1 },
+              { "source_name" },
+            },
+
             components = {
               label = {
                 width = { max = 30 },
@@ -217,9 +253,11 @@ return {
 
         ghost_text = {
           enabled = true,
+          show_without_menu = false,
         },
 
         trigger = {
+          show_on_keyword = true,
           show_on_insert_on_trigger_character = false,
           show_on_accept_on_trigger_character = false,
           show_on_backspace_after_accept = false,
