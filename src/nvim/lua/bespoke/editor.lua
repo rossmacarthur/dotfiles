@@ -138,7 +138,14 @@ function M.focus_split(number)
     return
   end
 
-  vim.api.nvim_set_current_win(win)
+  if win == vim.api.nvim_get_current_win() then
+    -- Refresh after the mapping's showcmd text has cleared
+    vim.schedule(function()
+      vim.cmd.redrawstatus()
+    end)
+  else
+    vim.api.nvim_set_current_win(win)
+  end
   if vim.bo.buftype == "terminal" then
     vim.cmd.startinsert()
   end

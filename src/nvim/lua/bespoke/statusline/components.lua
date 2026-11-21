@@ -55,7 +55,11 @@ local mode = {
   end,
   {
     provider = function(self)
-      return " " .. self.name:upper() .. " "
+      if self.name ~= "Terminal" and vim.api.nvim_eval_statusline("%S", {}).str ~= "" then
+        return " %8.8S "
+      end
+      local name = self.name:upper()
+      return ("%-10s"):format(vim.fn.printf("%*s", math.floor((10 + #name) / 2), name))
     end,
     hl = function(self)
       return "StatusLineMode" .. self.name

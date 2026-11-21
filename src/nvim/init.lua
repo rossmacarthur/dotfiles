@@ -10,6 +10,7 @@ vim.opt.undolevels = 1000
 
 vim.opt.cmdheight = 0
 vim.opt.laststatus = 3
+vim.opt.showcmd = true
 vim.opt.showcmdloc = "statusline"
 vim.opt.showmode = false
 

@@ -112,7 +112,7 @@ function M.setup()
 
   local close = {
     text = function(buffer)
-      local icon = buffer.is_modified and " ⦁" or " ✕"
+      local icon = buffer.is_modified and "  " or "  "
       return icon .. (buffer.is_last and " " or "")
     end,
     highlight = function(buffer)
@@ -148,6 +148,27 @@ function M.setup()
     default_hl = { fg = default_hl, bg = default_hl },
     components = components,
     tabs = { components = { tab_number } },
+  })
+
+  local function update_visibility()
+    local lifecycle = package.loaded["codediff.ui.lifecycle"]
+    local session = lifecycle and lifecycle.get_session(vim.api.nvim_get_current_tabpage())
+    vim.opt.showtabline = session and 0 or 2
+  end
+
+  -- Run after Cokeline's handlers, which show the tabline when buffers are added
+  local group = vim.api.nvim_create_augroup("BespokeBufferline", { clear = true })
+  vim.api.nvim_create_autocmd({ "VimEnter", "TabEnter", "BufAdd" }, {
+    group = group,
+    callback = update_visibility,
+  })
+  vim.api.nvim_create_autocmd("User", {
+    group = group,
+    pattern = { "CodeDiffOpen", "CodeDiffClose" },
+    callback = function()
+      -- CodeDiffClose fires before the session is removed
+      vim.schedule(update_visibility)
+    end,
   })
 end
 
