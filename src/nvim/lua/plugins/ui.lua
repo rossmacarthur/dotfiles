@@ -94,8 +94,22 @@ return {
     },
     keys = function()
       local keys = {
-        { "<D-[>", "<Plug>(cokeline-focus-prev)", desc = "Previous buffer" },
-        { "<D-]>", "<Plug>(cokeline-focus-next)", desc = "Next buffer" },
+        {
+          "<D-S-[>",
+          function()
+            require("bespoke.bufferline").focus(-1)
+          end,
+          mode = { "n", "i", "t" },
+          desc = "Previous buffer",
+        },
+        {
+          "<D-S-]>",
+          function()
+            require("bespoke.bufferline").focus(1)
+          end,
+          mode = { "n", "i", "t" },
+          desc = "Next buffer",
+        },
         { "<leader>bp", "<Plug>(cokeline-pick-focus)", desc = "Pick buffer" },
         { "<leader>q", "<Cmd>quit<CR>", desc = "Quit without saving" },
         { "<leader>w", "<Cmd>write<CR>", desc = "Save buffer" },

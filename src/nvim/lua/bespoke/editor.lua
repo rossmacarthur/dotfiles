@@ -50,7 +50,14 @@ local function choose_buffer(preferred)
 end
 
 local function create_window(buf, config)
+  local source_win = config.win and config.win > 0 and config.win or vim.api.nvim_get_current_win()
+  local from_terminal = vim.bo[vim.api.nvim_win_get_buf(source_win)].buftype == "terminal"
   local win = vim.api.nvim_open_win(buf, true, config)
+  -- A split inherits its source window's jumps, including terminal locations
+  if from_terminal then
+    vim.cmd.clearjumps()
+  end
+
   -- New splits can inherit the terminal's hidden gutter and line numbers
   if vim.bo[buf].buftype == "" then
     vim.wo[win].number = true
@@ -94,12 +101,6 @@ end
 -- Split right of a window, keeping new editors to the left of the managed terminal
 -- A win of -1 appends an editor before the terminal or at the tab's right edge
 function M.split(win)
-  local preferred
-  if not is_window(vim.api.nvim_get_current_win()) then
-    local destination = destinations[vim.api.nvim_get_current_tabpage()]
-    preferred = destination and destination.buf
-  end
-
   local terminal = require("bespoke.terminal")
   win = win or vim.api.nvim_get_current_win()
   if win == -1 then
@@ -115,12 +116,16 @@ function M.split(win)
   if vim.bo.buftype == "terminal" then
     vim.cmd.stopinsert()
   end
-  local buf = choose_buffer(preferred)
+  local buf = vim.api.nvim_get_current_buf()
+  if not is_buffer(buf) then
+    buf = vim.api.nvim_create_buf(true, false)
+  end
   return create_window(buf, { split = direction, win = win })
 end
 
 -- Focus a numbered window, appending one editor split if it is missing
 function M.focus_split(number)
+  vim.cmd.stopinsert()
   local win = vim.fn.win_getid(number)
   if win == 0 then
     M.split(-1)

@@ -1,5 +1,24 @@
 local M = {}
 
+function M.focus(step)
+  vim.cmd.stopinsert()
+  if vim.bo.buftype == "terminal" then
+    local tab = vim.api.nvim_get_current_tabpage()
+    vim.schedule(function()
+      if vim.api.nvim_get_current_tabpage() ~= tab then
+        return
+      end
+      vim.api.nvim_set_current_win(require("bespoke.editor").ensure_window())
+      M.focus(step)
+    end)
+    return
+  end
+
+  -- Refresh the focused buffer before stepping, including after leaving a terminal
+  require("cokeline.buffers").get_visible()
+  require("cokeline.mappings").by_step("focus", step)
+end
+
 function M.delete()
   local buffer = require("cokeline.buffers").get_current()
   if buffer then
