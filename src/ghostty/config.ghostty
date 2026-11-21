@@ -26,3 +26,5 @@ keybind = super+digit_5=unbind
 keybind = super+5=unbind
 keybind = super+[=unbind
 keybind = super+]=unbind
+keybind = super+shift+[=unbind
+keybind = super+shift+]=unbind
